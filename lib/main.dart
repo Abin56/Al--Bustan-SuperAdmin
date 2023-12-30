@@ -1,6 +1,5 @@
 import 'package:canteen_superadmin_website/firebase_options.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/admin_panel.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +9,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

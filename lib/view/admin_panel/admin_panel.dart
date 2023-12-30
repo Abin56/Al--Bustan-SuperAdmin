@@ -87,8 +87,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
 }
 
 List<Widget> pages = [
-  Center(
-    child: Text(sideMenu[1]),
+  const Center(
+    child: DashboardContainer(),
   ),
   const Center(
     child: InventoryWidget(),

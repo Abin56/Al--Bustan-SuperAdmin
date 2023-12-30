@@ -50,6 +50,8 @@ dependencies:
   sidebar_drawer:
   fluttertoast:
   intl:
+  syncfusion_flutter_charts: ^21.2.4
+  intl:
 
 dev_dependencies:
   flutter_test:
@@ -86,6 +88,8 @@ flutter:
     - assets/AL - Bustan.png
     - assets/user.png
 
+  assets:
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

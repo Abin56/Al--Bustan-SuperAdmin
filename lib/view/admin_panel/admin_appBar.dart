@@ -1,3 +1,4 @@
+import 'package:canteen_superadmin_website/view/admin_panel/employee_request/employee_request.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
@@ -250,7 +251,9 @@ class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
               ),
             ),
             sWidtht10,
-            const Icon(Icons.settings_outlined)
+             IconButton(onPressed: (){
+              employeeRequestList(context);
+             }, icon: const Icon(Icons.settings_outlined))
             // Padding(
             //   padding: const EdgeInsets.only(left: 05),
             //   child: SizedBox(

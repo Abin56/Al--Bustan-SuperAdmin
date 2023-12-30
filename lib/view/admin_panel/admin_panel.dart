@@ -1,5 +1,6 @@
 import 'package:canteen_superadmin_website/view/admin_panel/admin_appBar.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/drawer_pages/drawer_pages.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
@@ -42,12 +43,13 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                             SizedBox(
                               height: 60,
                               child: Image.asset(
-                                'assests/images/leptonlogo.png',
+                                'assets/AL - Bustan.png',
                                 fit: BoxFit.fill,
                               ),
                             ),
+                            sWidtht10,
                             GooglePoppinsWidgets(
-                              text: "LEPTON DUJO",
+                              text: "AL BUSTAN",
                               fontsize: 20,
                               fontWeight: FontWeight.w500,
                             )
@@ -88,8 +90,8 @@ List<Widget> pages = [
   Center(
     child: Text(sideMenu[1]),
   ),
-  Center(
-    child: Text(sideMenu[2]),
+  const Center(
+    child: InventoryWidget(),
   ),
   Center(
     child: Text(sideMenu[3]),

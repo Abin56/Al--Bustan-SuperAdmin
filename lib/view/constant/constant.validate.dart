@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-
 const SizedBox sHeight10 = SizedBox(
   height: 10,
 );
@@ -27,7 +26,6 @@ const SizedBox sWidtht10 = SizedBox(
 const SizedBox sWidtht40 = SizedBox(
   width: 40,
 );
-
 
 const String netWorkImagePathPerson =
     "https://www.seekpng.com/png/full/202-2024994_profile-icon-profile-logo-no-background.png";
@@ -168,4 +166,16 @@ void getUserUid() async {
 dateConveter(DateTime date) {
   String formattedDate = DateFormat('dd-MM-yyyy').format(date);
   return formattedDate;
+}
+
+Widget iconWidget({
+  required IconData icon,
+  required Color color,
+  required double size,
+}) {
+  return Icon(
+    icon,
+    color: color,
+    size: size,
+  );
 }

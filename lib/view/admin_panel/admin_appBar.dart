@@ -1,7 +1,8 @@
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
+import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/fonts/text_widget.dart';
-import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 
@@ -54,6 +55,7 @@ class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
 
   @override
   Widget build(BuildContext context) {
+    final sizeW = MediaQuery.of(context).size.width;
     return PreferredSize(
       preferredSize: const Size.fromHeight(100.0),
       child: Container(
@@ -75,106 +77,114 @@ class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
                 ),
               ],
             ),
+            sWidtht10,
+            SizedBox(
+              height: 40,
+              width: sizeW * 0.3,
+              child: const CupertinoSearchTextField(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                placeholder: 'Search anything',
+              ),
+            ),
             const Spacer(),
-            SizedBox(
-              width: 109,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    children: [
-                      Column(
-                       crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          const Text(
-                            'Stevne Zone',
-                            style: TextStyle(fontSize: 12),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 0),
-                            child: Text(
-                              'Admin',
-                              style: TextStyle(
-                                  color: cBlack.withOpacity(0.5),
-                                  fontSize: 10.7),
-                            ),
-                          ),
-                        ],
-                      ),
-                      IconButton(
-                          focusNode: textButtonFocusNode2,
-                          onPressed: () {
-                            
-                            // ResponsiveWebSite.isDesktop(context)
-                            //     ? textButtonFocusNode2.requestFocus()
-                            //     : appBarAdminBox(context);
-                            showOverlay = true;
-                          },
-                          icon: const Icon(
-                            Icons.arrow_drop_down,
-                            size: 18,
-                            color: cBlack,
-                          )),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            CircleAvatar(
-              backgroundColor: Colors.transparent,
-              radius: 20,
-              child: Image.asset(
-                'assests/png/avathar.png',
-                fit: BoxFit.cover,
-              ),
-            ),
-            SizedBox(
-              width: 70,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Stack(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 15, right: 10),
-                        child: IconButton(
-                            focusNode: textButtonFocusNode,
-                            onPressed: () {
-                              // if (val) {
-                              // ResponsiveWebSite.isDesktop(context)
-                              //     ? textButtonFocusNode.requestFocus()
-                              //     : appBarMailBox(context);
-                              showOverlay = true;
-                              // }
-                            },
-                            icon: Icon(
-                              Icons.mail_outline_outlined,
-                              color: cBlack.withOpacity(0.4),
-                            )),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 07, left: 22),
-                        child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 12,
-                          child: CircleAvatar(
-                            backgroundColor:
-                                const Color.fromARGB(255, 42, 215, 197),
-                            radius: 10,
-                            child: GooglePoppinsWidgets(
-                              text: '5',
-                              fontsize: 11,
-                              fontWeight: FontWeight.w600,
-                              color: cWhite,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            // SizedBox(
+            //   width: 109,
+            //   child: Column(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       Row(
+            //         children: [
+            //           Column(
+            //             crossAxisAlignment: CrossAxisAlignment.end,
+            //             children: [
+            //               const Text(
+            //                 'Stevne Zone',
+            //                 style: TextStyle(fontSize: 12),
+            //               ),
+            //               Padding(
+            //                 padding: const EdgeInsets.only(right: 0),
+            //                 child: Text(
+            //                   'Admin',
+            //                   style: TextStyle(
+            //                       color: cBlack.withOpacity(0.5),
+            //                       fontSize: 10.7),
+            //                 ),
+            //               ),
+            //             ],
+            //           ),
+            //           IconButton(
+            //               focusNode: textButtonFocusNode2,
+            //               onPressed: () {
+            //                 // ResponsiveWebSite.isDesktop(context)
+            //                 //     ? textButtonFocusNode2.requestFocus()
+            //                 //     : appBarAdminBox(context);
+            //                 showOverlay = true;
+            //               },
+            //               icon: const Icon(
+            //                 Icons.arrow_drop_down,
+            //                 size: 18,
+            //                 color: cBlack,
+            //               )),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // CircleAvatar(
+            //   backgroundColor: Colors.transparent,
+            //   radius: 20,
+            //   child: Image.asset(
+            //     'assests/png/avathar.png',
+            //     fit: BoxFit.cover,
+            //   ),
+            // ),
+            // SizedBox(
+            //   width: 70,
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.end,
+            //     children: [
+            //       Stack(
+            //         children: [
+            //           Padding(
+            //             padding: const EdgeInsets.only(top: 15, right: 10),
+            //             child: IconButton(
+            //                 focusNode: textButtonFocusNode,
+            //                 onPressed: () {
+            //                   // if (val) {
+            //                   // ResponsiveWebSite.isDesktop(context)
+            //                   //     ? textButtonFocusNode.requestFocus()
+            //                   //     : appBarMailBox(context);
+            //                   showOverlay = true;
+            //                   // }
+            //                 },
+            //                 icon: Icon(
+            //                   Icons.mail_outline_outlined,
+            //                   color: cBlack.withOpacity(0.4),
+            //                 )),
+            //           ),
+            //           Padding(
+            //             padding: const EdgeInsets.only(top: 07, left: 22),
+            //             child: CircleAvatar(
+            //               backgroundColor: Colors.white,
+            //               radius: 12,
+            //               child: CircleAvatar(
+            //                 backgroundColor:
+            //                     const Color.fromARGB(255, 42, 215, 197),
+            //                 radius: 10,
+            //                 child: GooglePoppinsWidgets(
+            //                   text: '5',
+            //                   fontsize: 11,
+            //                   fontWeight: FontWeight.w600,
+            //                   color: cWhite,
+            //                 ),
+            //               ),
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
             SizedBox(
               width: 50,
               child: Column(
@@ -220,6 +230,27 @@ class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
                 ],
               ),
             ),
+
+            Container(
+              height: 40,
+              decoration: BoxDecoration(
+                  color: cLateGrey, borderRadius: BorderRadius.circular(20)),
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Row(children: [
+                  const CircleAvatar(
+                    radius: 15,
+                    backgroundImage: AssetImage('assets/user.png'),
+                  ),
+                  sWidtht10,
+                  GooglePoppinsWidgets(text: "AL BUSTAN", fontsize: 11),
+                  sWidtht10,
+                  const Icon(Icons.keyboard_arrow_down_rounded)
+                ]),
+              ),
+            ),
+            sWidtht10,
+            const Icon(Icons.settings_outlined)
             // Padding(
             //   padding: const EdgeInsets.only(left: 05),
             //   child: SizedBox(

@@ -17,9 +17,9 @@ class AppBarAdminPanel extends StatefulWidget {
 class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
   OverlayState? overlayState;
   OverlayEntry? overlayEntry;
-  OverlayEntry? overlayEntry2;
   OverlayEntry? overlayEntry3;
   bool showOverlay = false;
+  OverlayEntry? overlayEntry2;
   int index = 0;
   final layerLink = LayerLink();
   final textButtonFocusNode = FocusNode();
@@ -84,7 +84,7 @@ class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
                   Row(
                     children: [
                       Column(
-                       crossAxisAlignment: CrossAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           const Text(
                             'Stevne Zone',
@@ -104,7 +104,6 @@ class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
                       IconButton(
                           focusNode: textButtonFocusNode2,
                           onPressed: () {
-                            
                             // ResponsiveWebSite.isDesktop(context)
                             //     ? textButtonFocusNode2.requestFocus()
                             //     : appBarAdminBox(context);

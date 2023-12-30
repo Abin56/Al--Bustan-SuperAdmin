@@ -3,6 +3,7 @@ import 'package:canteen_superadmin_website/view/admin_panel/drawer_pages/drawer_
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/dashboard_container.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 
@@ -21,72 +22,75 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
       backgroundColor: cWhite,
       body: SafeArea(
         child: SidebarDrawer(
-            body: ListView(
-              children: [
-                const AppBarAdminPanel(),
-                pages[selectedIndex],
-              ],
-            ),
-            drawer: Container(
-              color: cWhite,
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              height: 60,
-                              child: Image.asset(
-                                'assests/images/leptonlogo.png',
-                                fit: BoxFit.fill,
-                              ),
+          body: ListView(
+            children: [
+              const AppBarAdminPanel(),
+              pages[selectedIndex],
+            ],
+          ),
+          drawer: Container(
+            color: cWhite,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(0),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            height: 60,
+                            child: Image.asset(
+                              'assests/images/leptonlogo.png',
+                              fit: BoxFit.fill,
                             ),
-                            GooglePoppinsWidgets(
-                              text: "LEPTON DUJO",
-                              fontsize: 20,
-                              fontWeight: FontWeight.w500,
-                            )
-                          ],
-                        ),
+                          ),
+                          GooglePoppinsWidgets(
+                            text: "LEPTON DUJO",
+                            fontsize: 20,
+                            fontWeight: FontWeight.w500,
+                          )
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10, top: 12),
-                        child: Text(
-                          "Main Menu",
-                          style: TextStyle(
-                              color: cBlack.withOpacity(
-                                0.4,
-                              ),
-                              fontSize: 12),
-                        ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, top: 12),
+                      child: Text(
+                        "Main Menu",
+                        style: TextStyle(
+                            color: cBlack.withOpacity(
+                              0.4,
+                            ),
+                            fontSize: 12),
                       ),
-                      sHeight10,
-                      DrawerSelectedPagesSection(
-                        selectedIndex: selectedIndex,
-                        onTap: (index) {
-                          setState(() {
+                    ),
+                    sHeight10,
+                    DrawerSelectedPagesSection(
+                      selectedIndex: selectedIndex,
+                      onTap: (index) {
+                        setState(
+                          () {
                             selectedIndex = index;
-                          });
-                        },
-                      )
-                    ],
-                  ),
+                          },
+                        );
+                      },
+                    )
+                  ],
                 ),
               ),
-            )),
+            ),
+          ),
+        ),
       ),
     );
   }
 }
 
 List<Widget> pages = [
-  Center(
-    child: Text(sideMenu[1]),
+  const Center(
+    child: DashboardContainer(),
   ),
   Center(
     child: Text(sideMenu[2]),

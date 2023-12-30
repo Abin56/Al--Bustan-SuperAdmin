@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-
 const SizedBox sHeight10 = SizedBox(
   height: 10,
 );
@@ -24,10 +23,12 @@ const SizedBox sHeight40 = SizedBox(
 const SizedBox sWidtht10 = SizedBox(
   width: 10,
 );
+const SizedBox sWidtht5 = SizedBox(
+  width: 5,
+);
 const SizedBox sWidtht40 = SizedBox(
   width: 40,
 );
-
 
 const String netWorkImagePathPerson =
     "https://www.seekpng.com/png/full/202-2024994_profile-icon-profile-logo-no-background.png";

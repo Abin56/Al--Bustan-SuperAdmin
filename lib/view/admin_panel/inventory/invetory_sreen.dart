@@ -1,6 +1,7 @@
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class InventoryWidget extends StatelessWidget {
@@ -8,10 +9,12 @@ class InventoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sizeW = MediaQuery.of(context).size.width;
+    final sizeH = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
-        height: 500,
+        height: sizeH * 0.85,
         width: 1100,
         decoration: BoxDecoration(
             color: cWhite, borderRadius: BorderRadius.circular(20)),
@@ -35,6 +38,12 @@ class InventoryWidget extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                         ),
                         const Spacer(),
+                        SizedBox(
+                          height: 40,
+                          width: sizeW * 0.1,
+                          child: const CupertinoSearchTextField(),
+                        ),
+                        sWidtht10,
                         Container(
                           height: 40,
                           decoration: BoxDecoration(

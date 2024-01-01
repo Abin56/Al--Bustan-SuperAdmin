@@ -40,6 +40,7 @@ class InventoryWidget extends StatelessWidget {
                         const Spacer(),
                         SizedBox(
                           height: 40,
+                          
                           width: sizeW * 0.1,
                           child: const CupertinoSearchTextField(),
                         ),

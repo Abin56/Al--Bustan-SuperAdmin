@@ -1,4 +1,4 @@
-import 'package:canteen_superadmin_website/view/admin_panel/inventory/widget/storekeeper_details.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
@@ -6,8 +6,8 @@ import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class InventoryWidget extends StatelessWidget {
-  const InventoryWidget({super.key});
+class StoreRequetWidget extends StatelessWidget {
+  const StoreRequetWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class InventoryWidget extends StatelessWidget {
                             image: 'assets/drawer_images/inventory.png'),
                         sWidtht10,
                         GooglePoppinsWidgets(
-                          text: 'Invetory Management',
+                          text: 'Add Store Request',
                           fontsize: 20,
                           fontWeight: FontWeight.w500,
                         ),
@@ -46,35 +46,18 @@ class InventoryWidget extends StatelessWidget {
                           child: const CupertinoSearchTextField(),
                         ),
                         sWidtht10,
-                        MaterialButton(
-                          onPressed: () {
-                            customShowDilogBox(
-                                context: context,
-                                title: 'Add Category',
-                                children: [
-                                  TextField(
-                                    decoration: InputDecoration(
-                                        hintText: 'Category',
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10))),
-                                  )
-                                ],
-                                doyouwantActionButton: true);
-                          },
-                          child: Container(
-                            height: 40,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: cGreen),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: GooglePoppinsWidgets(
-                                    text: "Add Category",
-                                    fontsize: 14,
-                                    color: cWhite),
-                              ),
+                        Container(
+                          height: 40,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: cGreen),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: GooglePoppinsWidgets(
+                                  text: "+ Add New Item",
+                                  fontsize: 14,
+                                  color: cWhite),
                             ),
                           ),
                         )
@@ -111,7 +94,7 @@ class InventoryWidget extends StatelessWidget {
                           child: ListView.separated(
                               // scrollDirection: Axis.horizontal,
                               itemBuilder: (BuildContext context, int index) {
-                                return InventoryTileWidget(
+                                return StoreRequestTileWidget(
                                     index: index,
                                     itemCode: "uashu",
                                     image: 'adsad',
@@ -139,8 +122,8 @@ class InventoryWidget extends StatelessWidget {
   }
 }
 
-class InventoryTileWidget extends StatelessWidget {
-  const InventoryTileWidget({
+class StoreRequestTileWidget extends StatelessWidget {
+  const StoreRequestTileWidget({
     required this.index,
     required this.itemCode,
     required this.image,
@@ -195,28 +178,27 @@ class InventoryTileWidget extends StatelessWidget {
             width: 150,
             headerTitle: stock,
           ),
-          PopupMenuButton(
-            itemBuilder: (context) {
-              return [
-                PopupMenuItem(
-                    onTap: () {},
-                    child: GooglePoppinsWidgets(
-                        text: 'Add more details', fontsize: 11)),
-                PopupMenuItem(
-                    onTap: () {
-                      customShowDilogBox(
-                          context: context,
-                          title: "Shopkeeper Datails",
-                          children: [
-                            Expanded(child: StoreKeeperDatailsWidget())
-                          ],
-                          doyouwantActionButton: true);
-                      // ShowDialogWidget(context, StoreKeeperDatailsWidget());
-                    },
-                    child: GooglePoppinsWidgets(
-                        text: 'Storekeeper details', fontsize: 11)),
-              ];
+          MaterialButton(
+            onPressed: () {
+              customShowDilogBox(
+                  context: context,
+                  title: "Make Store Request",
+                  children: [StoreTextFieldWidget(hint: 'Quantity')],
+                  doyouwantActionButton: true);
             },
+            child: Container(
+              height: 40,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10), color: cGreen),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: GooglePoppinsWidgets(
+                  text: 'Make Request',
+                  fontsize: 12,
+                  color: cWhite,
+                ),
+              ),
+            ),
           )
         ],
       ),
@@ -224,79 +206,65 @@ class InventoryTileWidget extends StatelessWidget {
   }
 }
 
-class ListViewTableHeaderWidget extends StatelessWidget {
-  final String headerTitle;
-  final double? width;
+// class NewStoreRequetWidget extends StatelessWidget {
+//   const NewStoreRequetWidget({super.key});
 
-  const ListViewTableHeaderWidget({
-    this.width,
-    required this.headerTitle,
-    super.key,
-  });
+//   @override
+//   Widget build(BuildContext context) {
+//     final sizeW = MediaQuery.of(context).size.width;
+//     return Container(
+//       width: sizeW * 0.7,
+//       child: Padding(
+//         padding: const EdgeInsets.all(20.0),
+//         child: SingleChildScrollView(
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               GooglePoppinsWidgets(
+//                 text: 'Add Store Request',
+//                 fontsize: 20,
+//                 fontWeight: FontWeight.w500,
+//               ),
+//               sHeight10,
+//               StoreTextFieldWidget(
+//                 hint: 'Product Name',
+//               ),
+//               sHeight10,
+//               StoreTextFieldWidget(
+//                 hint: "Quantity",
+//               ),
+//               sHeight10,
+//               StoreTextFieldWidget(
+//                 hint: "Quantity",
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// ignore: must_be_immutable
+class StoreTextFieldWidget extends StatelessWidget {
+  StoreTextFieldWidget({super.key, required this.hint, this.width});
+
+  final String hint;
+  double? width;
+  // final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 50,
       width: width,
-      decoration: BoxDecoration(
-          color: cLateGrey,
-          border: Border.symmetric(
-            horizontal: BorderSide(color: cBlack.withOpacity(0.5)),
-          )),
-      child: Center(
-        child: Text(
-          headerTitle,
-          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+      child: TextField(
+        // controller: controller,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+          hintText: hint,
         ),
       ),
     );
-  }
-}
-
-class DataContainerWidget extends StatelessWidget {
-  final int index;
-  final String headerTitle;
-  final double? width;
-  final Color? color;
-  final double? height;
-
-  const DataContainerWidget({
-    required this.index,
-    this.color,
-    this.width,
-    this.height,
-    required this.headerTitle,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      decoration: const BoxDecoration(
-        color: cWhite,
-      ),
-      child: Center(
-        child: Text(
-          headerTitle,
-          style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 12.5),
-        ),
-      ),
-    );
-  }
-}
-
-class ImageWidget extends StatelessWidget {
-  const ImageWidget({
-    required this.image,
-    super.key,
-  });
-
-  final String image;
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(height: 30, width: 30, child: Image.asset(image));
   }
 }

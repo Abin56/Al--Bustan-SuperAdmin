@@ -73,7 +73,7 @@ class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
                   width: 40,
                   decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(14)),
-                      color: Color.fromARGB(255, 61, 94, 225)),
+                      color: cLateGrey),
                   child: const DrawerIcon(),
                 ),
               ],
@@ -251,9 +251,11 @@ class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
               ),
             ),
             sWidtht10,
-             IconButton(onPressed: (){
-              employeeRequestList(context);
-             }, icon: const Icon(Icons.settings_outlined))
+            IconButton(
+                onPressed: () {
+                  employeeRequestList(context);
+                },
+                icon: const Icon(Icons.settings_outlined))
             // Padding(
             //   padding: const EdgeInsets.only(left: 05),
             //   child: SizedBox(

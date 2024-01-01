@@ -1,6 +1,8 @@
 import 'package:canteen_superadmin_website/view/admin_panel/admin_appBar.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/drawer_pages/drawer_pages.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/inventory/add_category_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/inventory/store_request.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
@@ -29,58 +31,62 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                 pages[selectedIndex],
               ],
             ),
-            drawer: Container(
-              color: cWhite,
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              height: 60,
-                              child: Image.asset(
-                                'assets/AL - Bustan.png',
-                                fit: BoxFit.fill,
-                              ),
+            drawer: ListView(
+              children: [
+                Container(
+                  color: cWhite,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(0),
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  height: 60,
+                                  child: Image.asset(
+                                    'assets/AL - Bustan.png',
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                sWidtht10,
+                                GooglePoppinsWidgets(
+                                  text: "AL BUSTAN",
+                                  fontsize: 20,
+                                  fontWeight: FontWeight.w500,
+                                )
+                              ],
                             ),
-                            sWidtht10,
-                            GooglePoppinsWidgets(
-                              text: "AL BUSTAN",
-                              fontsize: 20,
-                              fontWeight: FontWeight.w500,
-                            )
-                          ],
-                        ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10, top: 12),
+                            child: Text(
+                              "Main Menu",
+                              style: TextStyle(
+                                  color: cBlack.withOpacity(
+                                    0.4,
+                                  ),
+                                  fontSize: 12),
+                            ),
+                          ),
+                          sHeight10,
+                          DrawerSelectedPagesSection(
+                            selectedIndex: selectedIndex,
+                            onTap: (index) {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                            },
+                          )
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10, top: 12),
-                        child: Text(
-                          "Main Menu",
-                          style: TextStyle(
-                              color: cBlack.withOpacity(
-                                0.4,
-                              ),
-                              fontSize: 12),
-                        ),
-                      ),
-                      sHeight10,
-                      DrawerSelectedPagesSection(
-                        selectedIndex: selectedIndex,
-                        onTap: (index) {
-                          setState(() {
-                            selectedIndex = index;
-                          });
-                        },
-                      )
-                    ],
+                    ),
                   ),
                 ),
-              ),
+              ],
             )),
       ),
     );
@@ -94,11 +100,11 @@ List<Widget> pages = [
   const Center(
     child: InventoryWidget(),
   ),
-  Center(
-    child: Text(sideMenu[3]),
+  const Center(
+    child: const StoreRequetWidget(),
   ),
   Center(
-    child: Text(sideMenu[4]),
+    child: Text(sideMenu[5]),
   ),
   Center(
     child: Text(sideMenu[5]),

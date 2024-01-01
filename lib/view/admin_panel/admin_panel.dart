@@ -1,6 +1,5 @@
 import 'package:canteen_superadmin_website/view/admin_panel/admin_appBar.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/drawer_pages/drawer_pages.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/inventory/add_category_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/store_request.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/product%20details/product_details.dart';
@@ -96,15 +95,9 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
 
 List<Widget> pages = [
   const DashboardContainer(),
-  const Center(
-    child: ProductDetails(),
-  ),
-  const Center(
-    child: InventoryWidget(),
-  ),
-  const Center(
-    child: const StoreRequetWidget(),
-  ),
+  const ProductDetails(),
+  const InventoryWidget(),
+  const StoreRequetWidget(),
   Center(
     child: Text(sideMenu[3]),
   ),

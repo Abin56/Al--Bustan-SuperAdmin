@@ -21,68 +21,71 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: cWhite,
-      body: SafeArea(
-        child: SidebarDrawer(
-            body: ListView(
-              children: [
-                const AppBarAdminPanel(),
-                pages[selectedIndex],
-              ],
-            ),
-            drawer: Container(
-              color: cWhite,
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              height: 60,
-                              child: Image.asset(
-                                'assets/AL - Bustan.png',
-                                fit: BoxFit.fill,
+      body: SidebarDrawer(
+          body: ListView(
+            children: [
+              const AppBarAdminPanel(),
+              pages[selectedIndex],
+            ],
+          ),
+          drawer: Column(
+            children: [
+              Container(
+                color: cred,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(0),
+                          child: Row(
+                            children: [
+                              Container(
+                                color: Colors.red,
+                                height: 60,
+                                child: Image.asset(
+                                  'assets/AL - Bustan.png',
+                                  fit: BoxFit.fill,
+                                ),
                               ),
-                            ),
-                            sWidtht10,
-                            GooglePoppinsWidgets(
-                              text: "AL BUSTAN",
-                              fontsize: 20,
-                              fontWeight: FontWeight.w500,
-                            )
-                          ],
+                              sWidtht10,
+                              GooglePoppinsWidgets(
+                                text: "AL BUSTAN",
+                                fontsize: 20,
+                                fontWeight: FontWeight.w500,
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10, top: 12),
-                        child: Text(
-                          "Main Menu",
-                          style: TextStyle(
-                              color: cBlack.withOpacity(
-                                0.4,
-                              ),
-                              fontSize: 12),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, top: 12),
+                          child: Text(
+                            "Main Menu",
+                            style: TextStyle(
+                                color: cBlack.withOpacity(
+                                  0.4,
+                                ),
+                                fontSize: 12),
+                          ),
                         ),
-                      ),
-                      sHeight10,
-                      DrawerSelectedPagesSection(
-                        selectedIndex: selectedIndex,
-                        onTap: (index) {
-                          setState(() {
-                            selectedIndex = index;
-                          });
-                        },
-                      )
-                    ],
+                        sHeight10,
+                        DrawerSelectedPagesSection(
+                          selectedIndex: selectedIndex,
+                          onTap: (index) {
+                            setState(() {
+                              selectedIndex = index;
+                            });
+                          },
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
-            )),
-      ),
+            ],
+          )),
     );
   }
 }

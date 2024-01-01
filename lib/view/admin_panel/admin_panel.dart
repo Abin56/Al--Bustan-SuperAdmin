@@ -5,6 +5,7 @@ import 'package:canteen_superadmin_website/view/admin_panel/product%20details/pr
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/dashboard_container.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 
@@ -31,7 +32,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
           drawer: Column(
             children: [
               Container(
-                color: cred,
+                color: cWhite,
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
@@ -42,8 +43,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                           padding: const EdgeInsets.all(0),
                           child: Row(
                             children: [
-                              Container(
-                                color: Colors.red,
+                              SizedBox(
                                 height: 60,
                                 child: Image.asset(
                                   'assets/AL - Bustan.png',
@@ -91,8 +91,9 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
 }
 
 List<Widget> pages = [
+  const DashboardContainer(),
   const Center(
-    child:ProductDetails(),
+    child: ProductDetails(),
   ),
   const Center(
     child: InventoryWidget(),

@@ -38,19 +38,38 @@ class DrawerSelectedPagesSection extends StatelessWidget {
           ),
         ),
         sHeight10,
-        ListTile(
+        ExpansionTile(
           leading: const DashBoardIconWidget(
               image: 'assets/drawer_images/inventory.png'),
-          tileColor: selectedIndex == 1
-              ? themeColorBlue.withOpacity(0.1)
-              : Colors.transparent,
-          onTap: () {
-            index = 1;
-            onTap.call(index);
-          },
           title: DashboardTextFontWidget(
-            title: 'Inventory',
+            title: 'Store',
           ),
+          children: <Widget>[
+            ListTile(
+              tileColor: selectedIndex == 1
+                  ? themeColorBlue.withOpacity(0.1)
+                  : Colors.transparent,
+              onTap: () {
+                index = 1;
+                onTap.call(index);
+              },
+              title: DashboardTextFontWidget(
+                title: 'Store details',
+              ),
+            ),
+            ListTile(
+              tileColor: selectedIndex == 2
+                  ? themeColorBlue.withOpacity(0.1)
+                  : Colors.transparent,
+              onTap: () {
+                index = 2;
+                onTap.call(index);
+              },
+              title: DashboardTextFontWidget(
+                title: 'Add Store request',
+              ),
+            ),
+          ],
         ),
         sHeight10,
         ExpansionTile(

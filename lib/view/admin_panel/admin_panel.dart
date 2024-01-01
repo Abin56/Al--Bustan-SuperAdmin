@@ -1,6 +1,8 @@
 import 'package:canteen_superadmin_website/view/admin_panel/admin_appBar.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/drawer_pages/drawer_pages.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/inventory/add_category_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/inventory/store_request.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/product%20details/product_details.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
@@ -22,70 +24,72 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: cWhite,
-      body: SidebarDrawer(
-          body: ListView(
-            children: [
-              const AppBarAdminPanel(),
-              pages[selectedIndex],
-            ],
-          ),
-          drawer: Column(
-            children: [
-              Container(
-                color: cWhite,
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(0),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                height: 60,
-                                child: Image.asset(
-                                  'assets/AL - Bustan.png',
-                                  fit: BoxFit.fill,
+      body: SafeArea(
+        child: SidebarDrawer(
+            body: ListView(
+              children: [
+                const AppBarAdminPanel(),
+                pages[selectedIndex],
+              ],
+            ),
+            drawer: ListView(
+              children: [
+                Container(
+                  color: cWhite,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(0),
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  height: 60,
+                                  child: Image.asset(
+                                    'assets/AL - Bustan.png',
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
-                              ),
-                              sWidtht10,
-                              GooglePoppinsWidgets(
-                                text: "AL BUSTAN",
-                                fontsize: 20,
-                                fontWeight: FontWeight.w500,
-                              )
-                            ],
+                                sWidtht10,
+                                GooglePoppinsWidgets(
+                                  text: "AL BUSTAN",
+                                  fontsize: 20,
+                                  fontWeight: FontWeight.w500,
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, top: 12),
-                          child: Text(
-                            "Main Menu",
-                            style: TextStyle(
-                                color: cBlack.withOpacity(
-                                  0.4,
-                                ),
-                                fontSize: 12),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10, top: 12),
+                            child: Text(
+                              "Main Menu",
+                              style: TextStyle(
+                                  color: cBlack.withOpacity(
+                                    0.4,
+                                  ),
+                                  fontSize: 12),
+                            ),
                           ),
-                        ),
-                        sHeight10,
-                        DrawerSelectedPagesSection(
-                          selectedIndex: selectedIndex,
-                          onTap: (index) {
-                            setState(() {
-                              selectedIndex = index;
-                            });
-                          },
-                        )
-                      ],
+                          sHeight10,
+                          DrawerSelectedPagesSection(
+                            selectedIndex: selectedIndex,
+                            onTap: (index) {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                            },
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          )),
+              ],
+            )),
+      ),
     );
   }
 }
@@ -97,6 +101,9 @@ List<Widget> pages = [
   ),
   const Center(
     child: InventoryWidget(),
+  ),
+  const Center(
+    child: const StoreRequetWidget(),
   ),
   Center(
     child: Text(sideMenu[3]),

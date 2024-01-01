@@ -1,4 +1,6 @@
 import 'package:canteen_superadmin_website/view/admin_panel/admin_appBar.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/delivery_screen/delivery_screen.dart';
+
 import 'package:canteen_superadmin_website/view/admin_panel/drawer_pages/drawer_pages.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
@@ -90,7 +92,9 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
 
 List<Widget> pages = [
   const Center(
-    child: DashboardContainer(),
+    child: DeliveryScreen(
+      products: [],
+    ),
   ),
   Center(
     child: Text(sideMenu[2]),

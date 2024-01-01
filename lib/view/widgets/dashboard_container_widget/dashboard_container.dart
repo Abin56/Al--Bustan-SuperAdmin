@@ -28,18 +28,21 @@ class DashboardContainer extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: CustomContainer(
                   height: size.height * 0.246,
-                  width: size.width * 0.26,
+                  width: size.width * 0.28,
                   child: Padding(
                     padding: const EdgeInsets.all(10),
                     child: Column(
                       children: [
                         Row(
                           children: [
-                            const Text(
-                              "Sales Overview",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
+                            const Expanded(
+                              child: Text(
+                                "Sales Overview",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
                             ),
                             const Spacer(),
@@ -104,7 +107,7 @@ class DashboardContainer extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: CustomContainer(
                   height: size.height * 0.246,
-                  width: size.width * 0.26,
+                  width: size.width * 0.28,
                   child: Padding(
                     padding: const EdgeInsets.all(10),
                     child: Column(
@@ -113,11 +116,14 @@ class DashboardContainer extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              "Purchase Overview",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
+                            const Expanded(
+                              child: Text(
+                                "Purchase Overview",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
                             ),
                             const Spacer(),
@@ -153,18 +159,18 @@ class DashboardContainer extends StatelessWidget {
                             Row(
                               children: [
                                 DashboardItem(
+                                  bgColor: AppColors.pinkColor,
                                   icon: Icons.credit_card_outlined,
-                                  iconColor: AppColors.pinkColor,
-                                  title: "Cost",
-                                  value: "78",
-                                  bgColor: AppColors.lightPinkColor,
+                                  iconColor: AppColors.lightPinkColor,
+                                  title: "No of Purchase",
+                                  value: "12",
                                 ),
                                 Spacer(),
                                 DashboardItem(
                                   icon: Icons.rotate_90_degrees_ccw_sharp,
                                   iconColor: AppColors.indigoColor,
-                                  title: "Returns",
-                                  value: "05",
+                                  title: "Cael Order",
+                                  value: "02",
                                   bgColor: AppColors.lightIndigoColors,
                                 ),
                               ],
@@ -178,7 +184,6 @@ class DashboardContainer extends StatelessWidget {
               ),
             ],
           ),
-          sWidtht40,
 
           // <<<<<<<<<<< 3 >>>>>>>>>
           Padding(
@@ -216,6 +221,7 @@ class DashboardContainer extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                             const Spacer(),
@@ -236,6 +242,7 @@ class DashboardContainer extends StatelessWidget {
                                 color: AppColors.greyColor,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                             Spacer(),
@@ -262,6 +269,7 @@ class DashboardContainer extends StatelessWidget {
                                 color: AppColors.greyColor,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                             Spacer(),
@@ -270,6 +278,7 @@ class DashboardContainer extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.w900,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ],
@@ -288,6 +297,7 @@ class DashboardContainer extends StatelessWidget {
                                 color: AppColors.greyColor,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                             Spacer(),
@@ -296,6 +306,7 @@ class DashboardContainer extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.w900,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ],

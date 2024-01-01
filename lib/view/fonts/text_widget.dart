@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:flutter/material.dart';
 
 class TextFontWidget extends StatelessWidget {
@@ -24,7 +25,7 @@ class TextFontWidget extends StatelessWidget {
     return Text(
       text,
       overflow: overflow,
-     // maxLines: 1,
+      // maxLines: 1,
       style: TextStyle(
         letterSpacing: letterSpacing,
         fontSize: fontsize,

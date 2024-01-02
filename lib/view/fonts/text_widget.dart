@@ -1,6 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:flutter/material.dart';
 
 class TextFontWidget extends StatelessWidget {

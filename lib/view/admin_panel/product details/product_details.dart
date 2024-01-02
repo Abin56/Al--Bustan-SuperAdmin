@@ -106,8 +106,8 @@ class ContainerWidget extends StatelessWidget {
   }
 }
 
-class productContainerWidget extends StatelessWidget {
-  const productContainerWidget({
+class ProductContainerWidget extends StatelessWidget {
+  const ProductContainerWidget({
     required this.text,
     super.key,
   });
@@ -218,19 +218,19 @@ List<Widget> product_details = [
       height: 350,
       child: Column(
         children: [
-          productContainerWidget(
+          ProductContainerWidget(
             text: 'Product Name',
           ),
-          productContainerWidget(
+          ProductContainerWidget(
             text: 'Price',
           ),
-          productContainerWidget(
+          ProductContainerWidget(
             text: 'Expiry Date',
           ),
-          productContainerWidget(
+          ProductContainerWidget(
             text: 'Quantity in stock',
           ),
-          productContainerWidget(
+          ProductContainerWidget(
             text: 'Select Category',
           ),
         ],

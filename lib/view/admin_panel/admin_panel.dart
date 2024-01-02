@@ -1,6 +1,10 @@
 import 'package:canteen_superadmin_website/view/admin_panel/admin_appBar.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/delivery_screen/delivery_screen.dart';
+
 import 'package:canteen_superadmin_website/view/admin_panel/drawer_pages/drawer_pages.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/inventory/store_request.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/product%20details/product_details.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
@@ -29,58 +33,62 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                 pages[selectedIndex],
               ],
             ),
-            drawer: Container(
-              color: cWhite,
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              height: 60,
-                              child: Image.asset(
-                                'assets/AL - Bustan.png',
-                                fit: BoxFit.fill,
-                              ),
+            drawer: ListView(
+              children: [
+                Container(
+                  color: cWhite,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(0),
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  height: 60,
+                                  child: Image.asset(
+                                    'assets/AL - Bustan.png',
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                sWidtht10,
+                                GooglePoppinsWidgets(
+                                  text: "AL BUSTAN",
+                                  fontsize: 20,
+                                  fontWeight: FontWeight.w500,
+                                )
+                              ],
                             ),
-                            sWidtht10,
-                            GooglePoppinsWidgets(
-                              text: "AL BUSTAN",
-                              fontsize: 20,
-                              fontWeight: FontWeight.w500,
-                            )
-                          ],
-                        ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10, top: 12),
+                            child: Text(
+                              "Main Menu",
+                              style: TextStyle(
+                                  color: cBlack.withOpacity(
+                                    0.4,
+                                  ),
+                                  fontSize: 12),
+                            ),
+                          ),
+                          sHeight10,
+                          DrawerSelectedPagesSection(
+                            selectedIndex: selectedIndex,
+                            onTap: (index) {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                            },
+                          )
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10, top: 12),
-                        child: Text(
-                          "Main Menu",
-                          style: TextStyle(
-                              color: cBlack.withOpacity(
-                                0.4,
-                              ),
-                              fontSize: 12),
-                        ),
-                      ),
-                      sHeight10,
-                      DrawerSelectedPagesSection(
-                        selectedIndex: selectedIndex,
-                        onTap: (index) {
-                          setState(() {
-                            selectedIndex = index;
-                          });
-                        },
-                      )
-                    ],
+                    ),
                   ),
                 ),
-              ),
+              ],
             )),
       ),
     );
@@ -88,12 +96,15 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
 }
 
 List<Widget> pages = [
-  const Center(
-    child: DashboardContainer(),
+  const DashboardContainer(),
+  const InventoryWidget(),
+  const StoreRequetWidget(),
+  const ProductDetails(),
+  const DeliveryScreen(
+    products: [],
   ),
-  const Center(
-    child: InventoryWidget(),
-  ),
+  Text(sideMenu[2]),
+  const ProductDetails(),
   Center(
     child: Text(sideMenu[3]),
   ),

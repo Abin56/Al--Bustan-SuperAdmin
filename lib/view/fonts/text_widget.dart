@@ -24,7 +24,7 @@ class TextFontWidget extends StatelessWidget {
     return Text(
       text,
       overflow: overflow,
-     // maxLines: 1,
+      // maxLines: 1,
       style: TextStyle(
         letterSpacing: letterSpacing,
         fontSize: fontsize,

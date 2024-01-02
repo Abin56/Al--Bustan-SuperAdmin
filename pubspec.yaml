@@ -46,6 +46,7 @@ dependencies:
   lottie:
   shared_preferences:
   uuid:
+  text_scroll:
   get:
   sidebar_drawer:
   fluttertoast:

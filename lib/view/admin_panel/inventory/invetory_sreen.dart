@@ -15,7 +15,7 @@ class InventoryWidget extends StatelessWidget {
 
   final getStroreCtr = Get.put(StoreController());
 
-  TextEditingController categoryCtr = TextEditingController();
+  final TextEditingController categoryCtr = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -135,8 +135,7 @@ class InventoryWidget extends StatelessWidget {
                                   if (snapshot.connectionState ==
                                       ConnectionState.waiting) {
                                     return const Center(
-                                        child:
-                                            const CircularProgressIndicator());
+                                        child: CircularProgressIndicator());
                                   } else if (!snapshot.hasData) {
                                     return Center(
                                       child: GooglePoppinsWidgets(

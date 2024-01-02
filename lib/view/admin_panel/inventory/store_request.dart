@@ -1,6 +1,5 @@
 import 'package:canteen_superadmin_website/controller/employee_controller/employee_controller.dart';
 import 'package:canteen_superadmin_website/controller/store_controller.dart';
-import 'package:canteen_superadmin_website/model/category_model.dart';
 import 'package:canteen_superadmin_website/model/employe_createprofile_model.dart';
 import 'package:canteen_superadmin_website/model/product_model.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
@@ -113,8 +112,7 @@ class StoreRequetWidget extends StatelessWidget {
                                   if (snapshot.connectionState ==
                                       ConnectionState.waiting) {
                                     return const Center(
-                                        child:
-                                            const CircularProgressIndicator());
+                                        child: CircularProgressIndicator());
                                   } else if (!snapshot.hasData) {
                                     return Center(
                                       child: GooglePoppinsWidgets(

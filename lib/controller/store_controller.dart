@@ -1,4 +1,5 @@
 import 'package:canteen_superadmin_website/model/category_model.dart';
+import 'package:canteen_superadmin_website/model/product_request_model.dart';
 import 'package:canteen_superadmin_website/view/constant/const.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,8 +8,8 @@ import 'package:uuid/uuid.dart';
 
 class StoreController extends GetxController {
   final fireStore = FirebaseFirestore.instance;
-  RxString recCatDocID = ''.obs;
-  RxString recCatName = ''.obs;
+  RxString productCategoryName = ''.obs;
+  RxString productName = ''.obs;
   List<ProductCategoryModel> productCatList = [];
 
   Future<List<ProductCategoryModel>> fetchProductCategory() async {
@@ -41,6 +42,39 @@ class StoreController extends GetxController {
         .set(data)
         .then((value) {
       showToast(msg: "Category Add");
+      Navigator.pop(context);
+    });
+  }
+
+  addStoreRequest(
+      {required String employeeId,
+      required String productName,
+      required String productId,
+      required int quantity,
+      required bool pending,
+      required String category,
+      required String employeeName,
+      required BuildContext context}) {
+    final uuid = const Uuid().v1();
+    final time = DateTime.now();
+    final data = ProductRequestModel(
+        productName: productName,
+        productId: productId,
+        quantity: quantity,
+        pending: pending,
+        docId: uuid,
+        category: category,
+        time: time.toString(),
+        employeeName: employeeName,
+        employeeId: employeeId);
+    fireStore
+        .collection('EmployeeProfile')
+        .doc(employeeId)
+        .collection('storeRequest')
+        .doc(uuid)
+        .set(data.toMap())
+        .then((value) {
+      showToast(msg: "Request Added");
       Navigator.pop(context);
     });
   }

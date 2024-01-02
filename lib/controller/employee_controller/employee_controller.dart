@@ -4,8 +4,9 @@ import 'package:get/get.dart';
 
 class EmployeeController extends GetxController {
   RxString employeeUID = ''.obs;
+  String employeeName = '';
   List<EmployeeProfileCreateModel> employeeList = [];
-  Future<List<EmployeeProfileCreateModel>> fetchRecCategory() async {
+  Future<List<EmployeeProfileCreateModel>> fetchEmployees() async {
     final firebase =
         await FirebaseFirestore.instance.collection('EmployeeProfile').get();
 

@@ -19,92 +19,99 @@ class ProductDetails extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        ResponsiveWebSite.isMobile(context)?
-        SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(children: [
-              SizedBox(width:double.infinity,height: 350,
-                child: product_details[0]),
-                ContainerWidget(widget:Column(children: [
-                  product_details[1],
-                  product_details[2],
-                ],))
-
-            ],),
-          ),
-          
-        )
-       : Row(
-          children: [
-            Expanded(
-                flex: 1,
+        ResponsiveWebSite.isMobile(context)
+            ? SingleChildScrollView(
                 child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: SizedBox(height: 500, child: product_details[0]))),
-            Expanded(
-                flex: 3,
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: ContainerWidget(widget:    Column(
-                          children: [
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                          width: double.infinity,
+                          height: 350,
+                          child: product_details[0]),
+                      ContainerWidget(
+                          widget: Column(
+                        children: [
+                          product_details[1],
+                          product_details[2],
+                        ],
+                      ))
+                    ],
+                  ),
+                ),
+              )
+            : Row(
+                children: [
+                  Expanded(
+                      flex: 1,
+                      child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: SizedBox(
+                              height: 500, child: product_details[0]))),
+                  Expanded(
+                      flex: 3,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: ContainerWidget(
+                          widget: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                      child: Padding(
                                     padding: const EdgeInsets.only(top: 10),
                                     child: product_details[1],
-                                  )
-                                ),
-                                Expanded(
-                                  child: Padding(
+                                  )),
+                                  Expanded(
+                                      child: Padding(
                                     padding: const EdgeInsets.only(top: 20),
                                     child: product_details[2],
-                                  )
-                                ),
-                              ],
-                            )
-                          ],
-                        ),),
-                )),
-          ],
-        )
+                                  )),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      )),
+                ],
+              )
       ],
     ));
   }
 }
 
 class ContainerWidget extends StatelessWidget {
-   ContainerWidget({required this.widget,
+  const ContainerWidget({
+    required this.widget,
     super.key,
   });
-Widget widget;
+  final Widget widget;
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
           border: Border.all(color: cGrey.withOpacity(0.5)),
           borderRadius: BorderRadius.circular(10)),
-      height: ResponsiveWebSite.isMobile(context)?650:500,
+      height: ResponsiveWebSite.isMobile(context) ? 650 : 500,
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Container(
           decoration: BoxDecoration(
               border: Border.all(color: cGrey.withOpacity(0.5)),
               borderRadius: BorderRadius.circular(10)),
-        child: widget,
+          child: widget,
         ),
       ),
     );
   }
 }
 
-class productContainerWidget extends StatelessWidget {
-  productContainerWidget({
+class ProductContainerWidget extends StatelessWidget {
+  const ProductContainerWidget({
     required this.text,
     super.key,
   });
-  String text;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -149,7 +156,8 @@ List<Widget> product_details = [
                 border: Border.all(color: cGrey.withOpacity(0.5)),
                 borderRadius: BorderRadius.circular(10)),
             child: const Padding(
-              padding: EdgeInsets.only(top: 10,left: 10,right: 10,bottom: 10),
+              padding:
+                  EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10),
               child: Imageuploadwidget(),
             ),
           ),
@@ -157,7 +165,8 @@ List<Widget> product_details = [
             padding: const EdgeInsets.only(left: 10, right: 10, top: 30),
             child: GooglePoppinsWidgets(
               fontsize: 16,
-              text: 'Add Additional Images',fontWeight: FontWeight.bold,
+              text: 'Add Additional Images',
+              fontWeight: FontWeight.bold,
             ),
           ),
           Padding(
@@ -185,7 +194,7 @@ List<Widget> product_details = [
                           color: Colors.orange,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 10,bottom: 10),
+                          padding: const EdgeInsets.only(top: 10, bottom: 10),
                           child: GooglePoppinsWidgets(
                             text: 'Upload Image',
                             fontsize: 14,
@@ -203,46 +212,43 @@ List<Widget> product_details = [
       ),
     ),
   ), ///////////////////////////////////1
+  const Padding(
+    padding: EdgeInsets.only(right: 10, left: 10),
+    child: SizedBox(
+      height: 350,
+      child: Column(
+        children: [
+          ProductContainerWidget(
+            text: 'Product Name',
+          ),
+          ProductContainerWidget(
+            text: 'Price',
+          ),
+          ProductContainerWidget(
+            text: 'Expiry Date',
+          ),
+          ProductContainerWidget(
+            text: 'Quantity in stock',
+          ),
+          ProductContainerWidget(
+            text: 'Select Category',
+          ),
+        ],
+      ),
+    ),
+  ), //////////////////////////////////////////////////////////////2
   Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 10, left: 10),
-                                    child: SizedBox(height: 350,
-                                      child: Column(
-                                        children: [
-                                          productContainerWidget(
-                                            text: 'Product Name',
-                                          ),
-                                          productContainerWidget(
-                                            text: 'Price',
-                                          ),
-                                          productContainerWidget(
-                                            text: 'Expiry Date',
-                                          ),
-                                          productContainerWidget(
-                                            text: 'Quantity in stock',
-                                          ),
-                                           productContainerWidget(
-                                            text: 'Select Category',
-                                          ),
-                                        
-                                        ],
-                                      ),
-                                    ),
-                                  ),//////////////////////////////////////////////////////////////2
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    child: Container(
-                                      height: 350,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: cGrey.withOpacity(0.5)),
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: TextFormField(decoration: const InputDecoration( border: InputBorder.none,
-                                        hintText: 'Description'),)
-                                    ),
-                                  ),
+    padding: const EdgeInsets.only(left: 10, right: 10),
+    child: Container(
+        height: 350,
+        decoration: BoxDecoration(
+            border: Border.all(color: cGrey.withOpacity(0.5)),
+            borderRadius: BorderRadius.circular(10)),
+        child: TextFormField(
+          decoration: const InputDecoration(
+              border: InputBorder.none, hintText: 'Description'),
+        )),
+  ),
 ];
 
 class Imageuploadwidget extends StatelessWidget {

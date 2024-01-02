@@ -1,3 +1,4 @@
+import 'package:canteen_superadmin_website/controller/store_controller.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
@@ -5,9 +6,12 @@ import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class StoreRequetWidget extends StatelessWidget {
-  const StoreRequetWidget({super.key});
+  StoreRequetWidget({super.key});
+
+  final getStroreCtr = Get.put(StoreController());
 
   @override
   Widget build(BuildContext context) {

@@ -98,7 +98,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
 List<Widget> pages = [
   const DashboardContainer(),
   InventoryWidget(),
-  const StoreRequetWidget(),
+  StoreRequetWidget(),
   const ProductDetails(),
   const DeliveryScreen(
     products: [],

@@ -96,18 +96,15 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
 }
 
 List<Widget> pages = [
-  const Center(
-    child: DeliveryScreen(
-      products: [],
-    ),
-  ),
-  Center(
-    child: Text(sideMenu[2]),
-  ),
   const DashboardContainer(),
-  const ProductDetails(),
   const InventoryWidget(),
   const StoreRequetWidget(),
+  const ProductDetails(),
+  const DeliveryScreen(
+    products: [],
+  ),
+  Text(sideMenu[2]),
+  const ProductDetails(),
   Center(
     child: Text(sideMenu[3]),
   ),

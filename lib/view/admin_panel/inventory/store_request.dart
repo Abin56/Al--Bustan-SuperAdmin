@@ -1,4 +1,5 @@
 import 'package:canteen_superadmin_website/controller/store_controller.dart';
+import 'package:canteen_superadmin_website/model/product_model.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
@@ -101,23 +102,48 @@ class StoreRequetWidget extends StatelessWidget {
                         Expanded(
                           child: Container(
                             decoration: const BoxDecoration(),
-                            child: ListView.separated(
-                                // scrollDirection: Axis.horizontal,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return StoreRequestTileWidget(
-                                      index: index,
-                                      itemCode: "uashu",
-                                      image: 'adsad',
-                                      itemName: "Carrot",
-                                      itemGroup: 'Veg',
-                                      purchasDate: '12/12/2023',
-                                      stock: '50');
-                                },
-                                separatorBuilder:
-                                    (BuildContext context, int index) {
-                                  return const Divider();
-                                },
-                                itemCount: 10),
+                            child: StreamBuilder(
+                                stream: getStroreCtr.getProductDataFromDB(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                        child:
+                                            const CircularProgressIndicator());
+                                  } else if (!snapshot.hasData) {
+                                    return Center(
+                                      child: GooglePoppinsWidgets(
+                                          text: "No data", fontsize: 15),
+                                    );
+                                  } else {
+                                    return ListView.separated(
+                                        // scrollDirection: Axis.horizontal,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          final productData =
+                                              ProductAddingModel.fromMap(
+                                                  snapshot.data!.docs[index]);
+                                          return StoreRequestTileWidget(
+                                              index: index,
+                                              itemCode:
+                                                  productData.barcodeNumber,
+                                              image: 'Image',
+                                              itemName: productData.productname,
+                                              itemGroup:
+                                                  productData.categoryName,
+                                              purchasDate: dateConveter(
+                                                  DateTime.parse(
+                                                      productData.expiryDate)),
+                                              stock: productData.quantityinStock
+                                                  .toString());
+                                        },
+                                        separatorBuilder:
+                                            (BuildContext context, int index) {
+                                          return const Divider();
+                                        },
+                                        itemCount: snapshot.data!.docs.length);
+                                  }
+                                }),
                           ),
                         )
                       ],

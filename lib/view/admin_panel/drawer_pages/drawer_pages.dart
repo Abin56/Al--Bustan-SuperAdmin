@@ -20,10 +20,8 @@ class DrawerSelectedPagesSection extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          leading: SizedBox(
-              height: 20,
-              width: 20,
-              child: Image.asset('assests/png/dashboard.png')),
+          leading: const DashBoardIconWidget(
+              image: 'assets/drawer_images/dashboard.png'),
           tileColor: selectedIndex == 0
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
@@ -40,30 +38,45 @@ class DrawerSelectedPagesSection extends StatelessWidget {
           ),
         ),
         sHeight10,
-        ListTile(
-          leading: SizedBox(
-              height: 20,
-              width: 20,
-              child: Image.asset('assests/png/blackboard.png')),
-          tileColor: selectedIndex == 1
-              ? themeColorBlue.withOpacity(0.1)
-              : Colors.transparent,
-          onTap: () {
-            index = 1;
-            onTap.call(index);
-          },
+        ExpansionTile(
+          leading: const DashBoardIconWidget(
+              image: 'assets/drawer_images/inventory.png'),
           title: DashboardTextFontWidget(
-            title: 'Class',
+            title: 'Store',
           ),
+          children: <Widget>[
+            ListTile(
+              tileColor: selectedIndex == 1
+                  ? themeColorBlue.withOpacity(0.1)
+                  : Colors.transparent,
+              onTap: () {
+                index = 1;
+                onTap.call(index);
+              },
+              title: DashboardTextFontWidget(
+                title: 'Store details',
+              ),
+            ),
+            ListTile(
+              tileColor: selectedIndex == 2
+                  ? themeColorBlue.withOpacity(0.1)
+                  : Colors.transparent,
+              onTap: () {
+                index = 2;
+                onTap.call(index);
+              },
+              title: DashboardTextFontWidget(
+                title: 'Add Store request',
+              ),
+            ),
+          ],
         ),
         sHeight10,
         ExpansionTile(
-          leading: SizedBox(
-              height: 25,
-              width: 25,
-              child: Image.asset('assests/png/attendance.png')),
+          leading: const DashBoardIconWidget(
+              image: 'assets/drawer_images/purchase.png'),
           title: DashboardTextFontWidget(
-            title: 'Attendance',
+            title: 'Purchase',
           ),
           children: <Widget>[
             ListTile(
@@ -75,7 +88,7 @@ class DrawerSelectedPagesSection extends StatelessWidget {
                 onTap.call(index);
               },
               title: DashboardTextFontWidget(
-                title: 'Students',
+                title: 'Supplier Return',
               ),
             ),
             ListTile(
@@ -106,12 +119,10 @@ class DrawerSelectedPagesSection extends StatelessWidget {
         ),
         sHeight10,
         ExpansionTile(
-          leading: SizedBox(
-              height: 20,
-              width: 20,
-              child: Image.asset('assests/png/users.png')),
+          leading: const DashBoardIconWidget(
+              image: 'assets/drawer_images/product-return.png'),
           title: DashboardTextFontWidget(
-            title: 'User categories',
+            title: 'Supplier Return',
           ),
           children: <Widget>[
             ListTile(
@@ -154,12 +165,10 @@ class DrawerSelectedPagesSection extends StatelessWidget {
         ),
         sHeight10,
         ExpansionTile(
-          leading: SizedBox(
-              height: 20,
-              width: 20,
-              child: Image.asset('assests/png/exam.png')),
+          leading: const DashBoardIconWidget(
+              image: 'assets/drawer_images/invoice.png'),
           title: DashboardTextFontWidget(
-            title: ' Examinations',
+            title: 'Invoice',
           ),
           children: <Widget>[
             ListTile(
@@ -214,12 +223,10 @@ class DrawerSelectedPagesSection extends StatelessWidget {
         ),
         sHeight10,
         ExpansionTile(
-          leading: SizedBox(
-              height: 20,
-              width: 20,
-              child: Image.asset('assests/png/results.png')),
+          leading:
+              const DashBoardIconWidget(image: 'assets/drawer_images/sale.png'),
           title: DashboardTextFontWidget(
-            title: 'Results',
+            title: 'Sale',
           ),
           children: <Widget>[
             ListTile(
@@ -262,12 +269,10 @@ class DrawerSelectedPagesSection extends StatelessWidget {
         ),
         sHeight10,
         ExpansionTile(
-          leading: SizedBox(
-              height: 20,
-              width: 20,
-              child: Image.asset('assests/png/notice.png')),
+          leading:
+              const DashBoardIconWidget(image: 'assets/drawer_images/bill.png'),
           title: DashboardTextFontWidget(
-            title: 'Notices',
+            title: 'Bill',
           ),
           children: <Widget>[
             ListTile(
@@ -310,12 +315,10 @@ class DrawerSelectedPagesSection extends StatelessWidget {
         ),
         sHeight10,
         ExpansionTile(
-          leading: SizedBox(
-              height: 20,
-              width: 20,
-              child: Image.asset('assests/png/banner.png')),
+          leading: const DashBoardIconWidget(
+              image: 'assets/drawer_images/customer.png'),
           title: DashboardTextFontWidget(
-            title: 'Events',
+            title: 'Customer',
           ),
           children: <Widget>[
             ListTile(
@@ -358,13 +361,11 @@ class DrawerSelectedPagesSection extends StatelessWidget {
         ),
         sHeight10,
         ExpansionTile(
-          leading: SizedBox(
-              height: 20,
-              width: 20,
-              child: Image.asset('assests/png/meetings.png')),
+          leading: const DashBoardIconWidget(
+              image: 'assets/drawer_images/supplier.png'),
           textColor: Colors.amber,
           title: DashboardTextFontWidget(
-            title: 'Meetings',
+            title: 'Supplier',
           ),
           children: <Widget>[
             ListTile(
@@ -429,124 +430,135 @@ class DrawerSelectedPagesSection extends StatelessWidget {
             ),
           ],
         ),
-        sHeight10,
-        ListTile(
-          leading: SizedBox(
-              height: 20,
-              width: 20,
-              child: Image.asset('assests/png/notification.png')),
-          tileColor: selectedIndex == 26
-              ? themeColorBlue.withOpacity(0.1)
-              : Colors.transparent,
-          onTap: () {
-            index = 26;
-            onTap.call(index);
-          },
-          title: DashboardTextFontWidget(
-            title: 'Notifications',
-          ),
-        ),
-        sHeight10,
-        ListTile(
-          leading: SizedBox(
-              height: 20,
-              width: 20,
-              child: Image.asset('assests/png/tracking.png')),
-          tileColor: selectedIndex == 27
-              ? themeColorBlue.withOpacity(0.1)
-              : Colors.transparent,
-          onTap: () {
-            index = 27;
-            onTap.call(index);
-          },
-          title: DashboardTextFontWidget(
-            title: 'Bus Tracking',
-          ),
-        ),
-        sHeight10,
-        ListTile(
-          tileColor: selectedIndex == 28
-              ? themeColorBlue.withOpacity(0.1)
-              : Colors.transparent,
-          onTap: () {
-            index = 28;
-            onTap.call(index);
-          },
-          title: DashboardTextFontWidget(
-            title: 'Create Admin',
-          ),
-        ),
-        sHeight10,
-        ListTile(
-          tileColor: selectedIndex == 29
-              ? themeColorBlue.withOpacity(0.1)
-              : Colors.transparent,
-          onTap: () {
-            index = 29;
-            onTap.call(index);
-          },
-          title: DashboardTextFontWidget(
-            title: 'General Instructions',
-          ),
-        ),
-        sHeight10,
-        ListTile(
-          tileColor: selectedIndex == 30
-              ? themeColorBlue.withOpacity(0.1)
-              : Colors.transparent,
-          onTap: () {
-            index = 30;
-            onTap.call(index);
-          },
-          title: DashboardTextFontWidget(
-            title: 'General Instructions',
-          ),
-        ),
-        sHeight10,
-        ListTile(
-          tileColor: selectedIndex == 31
-              ? themeColorBlue.withOpacity(0.1)
-              : Colors.transparent,
-          onTap: () {
-            index = 31;
-            onTap.call(index);
-          },
-          title: DashboardTextFontWidget(
-            title: 'Fees and bills',
-          ),
-        ),
-        sHeight10,
-        ListTile(
-          tileColor: selectedIndex == 32
-              ? themeColorBlue.withOpacity(0.1)
-              : Colors.transparent,
-          onTap: () {
-            index = 32;
-            onTap.call(index);
-          },
-          title: DashboardTextFontWidget(
-            title: 'Alumni Associations',
-          ),
-        ),
-        sHeight10,
-        ListTile(
-          tileColor: selectedIndex == 33
-              ? themeColorBlue.withOpacity(0.1)
-              : Colors.transparent,
-          onTap: () {
-            index = 33;
-            onTap.call(index);
-          },
-          title: DashboardTextFontWidget(
-            title: 'Class promotions',
-          ),
-        ),
+        // sHeight10,
+        // ListTile(
+        //   leading: SizedBox(
+        //       height: 20,
+        //       width: 20,
+        //       child: Image.asset('assests/png/notification.png')),
+        //   tileColor: selectedIndex == 26
+        //       ? themeColorBlue.withOpacity(0.1)
+        //       : Colors.transparent,
+        //   onTap: () {
+        //     index = 26;
+        //     onTap.call(index);
+        //   },
+        //   title: DashboardTextFontWidget(
+        //     title: 'Notifications',
+        //   ),
+        // ),
+        // sHeight10,
+        // ListTile(
+        //   leading: SizedBox(
+        //       height: 20,
+        //       width: 20,
+        //       child: Image.asset('assests/png/tracking.png')),
+        //   tileColor: selectedIndex == 27
+        //       ? themeColorBlue.withOpacity(0.1)
+        //       : Colors.transparent,
+        //   onTap: () {
+        //     index = 27;
+        //     onTap.call(index);
+        //   },
+        //   title: DashboardTextFontWidget(
+        //     title: 'Bus Tracking',
+        //   ),
+        // ),
+        // sHeight10,
+        // ListTile(
+        //   tileColor: selectedIndex == 28
+        //       ? themeColorBlue.withOpacity(0.1)
+        //       : Colors.transparent,
+        //   onTap: () {
+        //     index = 28;
+        //     onTap.call(index);
+        //   },
+        //   title: DashboardTextFontWidget(
+        //     title: 'Create Admin',
+        //   ),
+        // ),
+        // sHeight10,
+        // ListTile(
+        //   tileColor: selectedIndex == 29
+        //       ? themeColorBlue.withOpacity(0.1)
+        //       : Colors.transparent,
+        //   onTap: () {
+        //     index = 29;
+        //     onTap.call(index);
+        //   },
+        //   title: DashboardTextFontWidget(
+        //     title: 'General Instructions',
+        //   ),
+        // ),
+        // sHeight10,
+        // ListTile(
+        //   tileColor: selectedIndex == 30
+        //       ? themeColorBlue.withOpacity(0.1)
+        //       : Colors.transparent,
+        //   onTap: () {
+        //     index = 30;
+        //     onTap.call(index);
+        //   },
+        //   title: DashboardTextFontWidget(
+        //     title: 'General Instructions',
+        //   ),
+        // ),
+        // sHeight10,
+        // ListTile(
+        //   tileColor: selectedIndex == 31
+        //       ? themeColorBlue.withOpacity(0.1)
+        //       : Colors.transparent,
+        //   onTap: () {
+        //     index = 31;
+        //     onTap.call(index);
+        //   },
+        //   title: DashboardTextFontWidget(
+        //     title: 'Fees and bills',
+        //   ),
+        // ),
+        // sHeight10,
+        // ListTile(
+        //   tileColor: selectedIndex == 32
+        //       ? themeColorBlue.withOpacity(0.1)
+        //       : Colors.transparent,
+        //   onTap: () {
+        //     index = 32;
+        //     onTap.call(index);
+        //   },
+        //   title: DashboardTextFontWidget(
+        //     title: 'Alumni Associations',
+        //   ),
+        // ),
+        // sHeight10,
+        // ListTile(
+        //   tileColor: selectedIndex == 33
+        //       ? themeColorBlue.withOpacity(0.1)
+        //       : Colors.transparent,
+        //   onTap: () {
+        //     index = 33;
+        //     onTap.call(index);
+        //   },
+        //   title: DashboardTextFontWidget(
+        //     title: 'Class promotions',
+        //   ),
+        // ),
       ],
     );
   }
 }
 
+class DashBoardIconWidget extends StatelessWidget {
+  const DashBoardIconWidget({
+    required this.image,
+    super.key,
+  });
 
+  final String image;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(height: 25, width: 25, child: Image.asset(image));
+  }
+}
 
 class DashboardTextFontWidget extends StatelessWidget {
   String title;

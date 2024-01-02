@@ -4,6 +4,7 @@ const Color cWhite = Colors.white;
 const Color cBlack = Colors.black;
 const Color cBlue = Colors.blue;
 const Color cGrey = Colors.grey;
+const Color cLateGrey = Color.fromARGB(255, 219, 219, 219);
 const Color cred = Colors.red;
 const Color cGreen = Colors.green;
 const Color themeColorBlue = Color.fromARGB(255, 6, 71, 157);

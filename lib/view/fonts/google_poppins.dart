@@ -9,8 +9,8 @@ class GooglePoppinsWidgets extends StatelessWidget {
   FontWeight? fontWeight;
   Color? color;
   TextAlign? textAlign;
-  double?textScaleFactor;
-  TextDecoration?decoration;
+  double? textScaleFactor;
+  TextDecoration? decoration;
   GooglePoppinsWidgets({
     required this.text,
     required this.fontsize,
@@ -25,19 +25,16 @@ class GooglePoppinsWidgets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      
       text,
-      textAlign:textAlign ,
-      // overflow: TextOverflow.ellipsis,
+      textAlign: textAlign,
+      overflow: TextOverflow.ellipsis,
       style: GoogleFonts.poppins(
-        
-        decoration:decoration,
+        decoration: decoration,
         fontSize: fontsize,
         fontWeight: fontWeight,
         color: color,
-      
       ),
-        textScaleFactor: textScaleFactor,
+      textScaleFactor: textScaleFactor,
     );
   }
 }

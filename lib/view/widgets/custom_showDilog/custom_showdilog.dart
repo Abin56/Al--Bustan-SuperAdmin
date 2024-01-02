@@ -3,7 +3,6 @@ import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/back_container/back_container.dart';
 import 'package:flutter/material.dart';
 
-
 customShowDilogBox(
     {required BuildContext context,
     required String title,
@@ -22,9 +21,9 @@ customShowDilogBox(
             children: [
               GooglePoppinsWidgets(
                   text: title, fontsize: 13, fontWeight: FontWeight.w600),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(top: 10),
-                child: const BackButtonContainerWidget(),
+                child: BackButtonContainerWidget(),
               ),
             ],
           ),

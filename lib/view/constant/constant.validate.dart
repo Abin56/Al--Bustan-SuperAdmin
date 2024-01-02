@@ -136,7 +136,8 @@ String _twoDigits(int n) {
   return "0$n";
 }
 
-const _chars = '1234567890';
+const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+
 Random _rnd = Random();
 
 String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
@@ -169,4 +170,16 @@ void getUserUid() async {
 dateConveter(DateTime date) {
   String formattedDate = DateFormat('dd-MM-yyyy').format(date);
   return formattedDate;
+}
+
+Widget iconWidget({
+  required IconData icon,
+  required Color color,
+  required double size,
+}) {
+  return Icon(
+    icon,
+    color: color,
+    size: size,
+  );
 }

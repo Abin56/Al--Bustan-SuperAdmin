@@ -20,7 +20,7 @@ class CustomContainer extends StatelessWidget {
       width: width,
       decoration: BoxDecoration(
         color: AppColors.backGroundColor,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(10),
         border: Border.all(
           color: AppColors.lightGreyColor,
           width: 1.0,

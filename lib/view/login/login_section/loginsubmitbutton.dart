@@ -1,11 +1,11 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 import '../../fonts/google_poppins.dart';
 
-class ButtonContainerWidget extends StatelessWidget {
+class LoginButtonContainerWidget extends StatelessWidget {
   void Function() onTap;
   final String text;
   final double width;
@@ -15,7 +15,7 @@ class ButtonContainerWidget extends StatelessWidget {
 
 
 
-   ButtonContainerWidget({super.key,required this.text ,required this.width,required this.height,required this. fontSize,required this.onTap});
+   LoginButtonContainerWidget({super.key,required this.text ,required this.width,required this.height,required this. fontSize,required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,8 @@ class ButtonContainerWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: const BoxDecoration(
-          color: themeColorBlue,
-          borderRadius: BorderRadius.horizontal(),
+          color: Colors.orange,
+        borderRadius: BorderRadius.all(Radius.circular(4)),
         ),
         width: width,
         height: height,
@@ -70,4 +70,3 @@ class ColorButtonContainerWidget extends StatelessWidget {
     );
   }
 }
-

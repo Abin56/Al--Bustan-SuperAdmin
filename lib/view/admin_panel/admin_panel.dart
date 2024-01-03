@@ -3,6 +3,7 @@ import 'package:canteen_superadmin_website/view/admin_panel/delivery_screen/deli
 
 import 'package:canteen_superadmin_website/view/admin_panel/drawer_pages/drawer_pages.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/inventory/product_temporary_list.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/store_request.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/product%20details/product_details.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
@@ -106,7 +107,7 @@ List<Widget> pages = [
   Text(sideMenu[2]),
   const ProductDetails(),
   Center(
-    child: Text(sideMenu[3]),
+    child: ProductTempWidget(),
   ),
   Center(
     child: Text(sideMenu[4]),

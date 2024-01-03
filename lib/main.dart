@@ -1,4 +1,5 @@
 import 'package:canteen_superadmin_website/firebase_options.dart';
+import 'package:canteen_superadmin_website/sample.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/admin_panel.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AdminHomeScreen(),
-
+      home: ExcelProductListContainer(),
     );
   }
 }

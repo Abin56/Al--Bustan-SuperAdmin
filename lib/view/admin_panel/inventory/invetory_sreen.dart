@@ -165,8 +165,8 @@ class InventoryWidget extends StatelessWidget {
                                               purchasDate: dateConveter(
                                                   DateTime.parse(
                                                       productData.expiryDate)),
-                                              stock: productData.quantityinStock
-                                                  .toString());
+                                              stock:
+                                                  productData.quantityinStock);
                                         },
                                         separatorBuilder:
                                             (BuildContext context, int index) {

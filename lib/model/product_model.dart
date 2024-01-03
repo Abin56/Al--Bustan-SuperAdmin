@@ -80,7 +80,7 @@ class ProductAddingModel {
         categoryID: map['categoryID'] ?? '',
         categoryName: map['categoryName'] ?? '',
         price: map['price'] ?? 0,
-        quantityinStock: map['quantityinStock'] ?? 0,
+        quantityinStock: map['quantityinStock'] ?? "0",
         expiryDate: map['expiryDate'] ?? '',
         addDate: map['addDate'] ?? '',
         authuid: map['authuid'] ?? '',

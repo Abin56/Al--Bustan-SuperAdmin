@@ -39,7 +39,7 @@ class ProductTempWidget extends StatelessWidget {
                   ),
                   MaterialButton(
                     onPressed: () {
-                      // getCtr.addTempProductToDB(getCtr.tempProductList);
+                      getCtr.addTempProductToDB(getCtr.tempProductList);
                     },
                     child: Container(
                       height: 40,
@@ -50,7 +50,7 @@ class ProductTempWidget extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
                           child: GooglePoppinsWidgets(
-                              text: "Add Category",
+                              text: "Add to Product List",
                               fontsize: 14,
                               color: cWhite),
                         ),

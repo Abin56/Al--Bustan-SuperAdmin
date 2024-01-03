@@ -27,7 +27,7 @@ class ExcelController extends GetxController {
               headRow[2]?.value.toString() == "UNIT" &&
               headRow[3]?.value.toString() == "COMPANY NAME/ BRAND" &&
               headRow[4]?.value.toString() == "QUANTITY IN STOCK") {
-            for (int i = 0; i < table.maxRows; i++) {
+            for (int i = 1; i < table.maxRows; i++) {
               final uuid = const Uuid().v1();
               List<Data?>? firstRow = table.rows[i];
 //fetching data from excel cells

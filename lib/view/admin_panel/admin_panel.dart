@@ -1,5 +1,6 @@
 import 'package:canteen_superadmin_website/view/admin_panel/admin_appBar.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/delivery_screen/delivery_screen.dart';
+import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/delivery_screen.dart';
+import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/prodects.dart';
 
 import 'package:canteen_superadmin_website/view/admin_panel/drawer_pages/drawer_pages.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
@@ -100,11 +101,11 @@ List<Widget> pages = [
   const InventoryWidget(),
   const StoreRequetWidget(),
   const ProductDetails(),
-  const DeliveryScreen(
-    products: [],
-  ),
+  const DeliveryScreen(),
+  const ProductScreen(),
+  const DeliveryScreen(),
   Text(sideMenu[2]),
-  const ProductDetails(),
+  // const ProductScreen(),
   Center(
     child: Text(sideMenu[3]),
   ),

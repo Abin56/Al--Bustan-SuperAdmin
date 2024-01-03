@@ -10,6 +10,7 @@ import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/dashboard_container.dart';
+import 'package:canteen_superadmin_website/view/widgets/table_listview/table_listview.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 
@@ -107,7 +108,7 @@ List<Widget> pages = [
   Text(sideMenu[2]),
   const ProductDetails(),
   Center(
-    child: ProductTempWidget(),
+    child: TableListviewWidget(),
   ),
   Center(
     child: Text(sideMenu[4]),

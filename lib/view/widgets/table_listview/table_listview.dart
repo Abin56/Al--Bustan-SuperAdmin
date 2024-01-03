@@ -1,6 +1,10 @@
 import 'package:canteen_superadmin_website/controller/tempProduct_controller.dart/tempProduct_controller.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
+import 'package:canteen_superadmin_website/view/widgets/table_listview/barcode_setup.dart';
+import 'package:canteen_superadmin_website/view/widgets/table_listview/textFormFiled_.dart';
+import 'package:canteen_superadmin_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -89,22 +93,61 @@ class TableListviewWidget extends StatelessWidget {
                                                 width: 30,
                                                 headerTitle: '${index + 1}',
                                               ),
-                                              // Obx((){
-                                              //   if (tempProductController.barcodebool.value==tr) {
-                                                  
-                                              //   }
-
-                                              // } DataContainerWidget(
-                                              //       index: index,
-                                              //       width: 200,
-                                              //       headerTitle:
-                                              //           data['barcodeNumber'],
-                                              //     )),
+                                              data['barcodeNumber'] == ''
+                                                  ? BarcodeSetup(index: index)
+                                                  : DataContainerWidget(
+                                                      index: index,
+                                                      width: 200,
+                                                      headerTitle:
+                                                          data['barcodeNumber'],
+                                                    ),
                                               data['productname'] == ''
                                                   ? SizedBox(
                                                       height: 48,
                                                       width: 300,
-                                                      child: TextFormField(),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceAround,
+                                                        children: [
+                                                          SizedBox(
+                                                            height: 30,
+                                                            width: 200,
+                                                            child: TextFormFiledWidget(
+                                                                hintText:
+                                                                    "Product Name",
+                                                                title:
+                                                                    'Product Nam',
+                                                                width: 200),
+                                                          ),
+                                                          Container(
+                                                            width: 80,
+                                                            decoration:
+                                                                const BoxDecoration(
+                                                              color:
+                                                                  themeColorBlue,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .horizontal(),
+                                                            ),
+                                                            height: 25,
+                                                            child: Center(
+                                                              child:
+                                                                  GooglePoppinsWidgets(
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                color: cWhite,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                text: "Set",
+                                                                fontsize: 10,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     )
                                                   : DataContainerWidget(
                                                       index: index,

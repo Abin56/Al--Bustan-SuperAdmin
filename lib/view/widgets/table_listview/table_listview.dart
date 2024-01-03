@@ -1,6 +1,5 @@
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
-import 'package:canteen_superadmin_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -170,28 +169,13 @@ class TableListviewWidget extends StatelessWidget {
                                                           data['barcodeNumber'],
                                                     ),
                                               data['productname'] == ''
-                                                  ? Container(
+                                                  ? SizedBox(
                                                       height: 48,
-                                                      width: 200,
-                                                      decoration: BoxDecoration(
-                                                          color: index % 2 == 0
-                                                              ? Colors.grey
-                                                                  .withOpacity(
-                                                                      0.3)
-                                                              : Colors.blue
-                                                                  .withOpacity(
-                                                                      0.3),
-                                                          border: Border.all(
-                                                              color: cGrey
-                                                                  .withOpacity(
-                                                                      0.2))),
-                                                      child: Center(
-                                                        child: TextFormFiledContainerWidget(
-                                                            hintText:
-                                                                'Prodcut Name',
-                                                            title:
-                                                                "ProductName",
-                                                            width: 200),
+                                                      width: 300,
+                                                      child: Row(
+                                                        children: [
+                                                          TextFormField(),
+                                                        ],
                                                       ),
                                                     )
                                                   : DataContainerWidget(

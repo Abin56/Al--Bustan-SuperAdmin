@@ -1,5 +1,7 @@
 import 'package:canteen_superadmin_website/model/category_model.dart';
+import 'package:canteen_superadmin_website/model/product_model.dart';
 import 'package:canteen_superadmin_website/model/product_request_model.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/product%20details/product_details.dart';
 import 'package:canteen_superadmin_website/view/constant/const.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,6 +13,8 @@ class StoreController extends GetxController {
   RxString productCategoryName = ''.obs;
   RxString productName = ''.obs;
   List<ProductCategoryModel> productCatList = [];
+
+  List<DocumentSnapshot> tempProductList = [];
 
   Future<List<ProductCategoryModel>> fetchProductCategory() async {
     final firebase =
@@ -77,5 +81,21 @@ class StoreController extends GetxController {
       showToast(msg: "Request Added");
       Navigator.pop(context);
     });
+  }
+
+  Stream<QuerySnapshot> getProductTempData() {
+    final data = fireStore.collection('temporaryCollection').snapshots();
+    return data;
+  }
+
+  addTempProductToDB(List<DocumentSnapshot> dataList) async {
+    for (int i = 0; i < dataList.length; i++) {
+      ProductAddingModel data = ProductAddingModel.fromMap(dataList[i]);
+      String docID = data.docId;
+      await fireStore
+          .collection('pendingProducts')
+          .doc(docID)
+          .set(data.toMap());
+    }
   }
 }

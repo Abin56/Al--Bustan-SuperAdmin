@@ -24,7 +24,7 @@ class InventoryWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Container(
-        height: sizeH * 0.8,
+        height: sizeH * 0.85,
         width: double.infinity,
         decoration: BoxDecoration(
             color: cWhite,
@@ -136,6 +136,11 @@ class InventoryWidget extends StatelessWidget {
                                       ConnectionState.waiting) {
                                     return const Center(
                                         child: CircularProgressIndicator());
+                                  } else if (snapshot.data!.docs.isEmpty) {
+                                    return Center(
+                                      child: GooglePoppinsWidgets(
+                                          text: "No data", fontsize: 15),
+                                    );
                                   } else if (!snapshot.hasData) {
                                     return Center(
                                       child: GooglePoppinsWidgets(
@@ -160,8 +165,8 @@ class InventoryWidget extends StatelessWidget {
                                               purchasDate: dateConveter(
                                                   DateTime.parse(
                                                       productData.expiryDate)),
-                                              stock: productData.quantityinStock
-                                                  .toString());
+                                              stock:
+                                                  productData.quantityinStock);
                                         },
                                         separatorBuilder:
                                             (BuildContext context, int index) {

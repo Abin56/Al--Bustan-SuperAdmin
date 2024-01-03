@@ -52,6 +52,8 @@ dependencies:
   fluttertoast:
   syncfusion_flutter_charts: ^21.2.4
   intl:
+  excel: ^4.0.2
+  file_picker: ^6.1.1
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,5 @@
 import 'package:canteen_superadmin_website/controller/employee_controller/employee_controller.dart';
+import 'package:canteen_superadmin_website/controller/excel_controller/excel_controller.dart';
 import 'package:canteen_superadmin_website/controller/store_controller.dart';
 import 'package:canteen_superadmin_website/model/employe_createprofile_model.dart';
 import 'package:canteen_superadmin_website/model/product_model.dart';
@@ -17,6 +18,7 @@ class StoreRequetWidget extends StatelessWidget {
   StoreRequetWidget({super.key});
 
   final getStroreCtr = Get.put(StoreController());
+  final getExcelCtr = Get.put(ExcelController());
 
   @override
   Widget build(BuildContext context) {
@@ -61,18 +63,26 @@ class StoreRequetWidget extends StatelessWidget {
                             child: const CupertinoSearchTextField(),
                           ),
                           sWidtht10,
-                          Container(
-                            height: 40,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: cGreen),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: GooglePoppinsWidgets(
-                                    text: "+ Add New Item",
-                                    fontsize: 14,
-                                    color: cWhite),
+                          InkWell(
+                            onTap: () {
+                              getExcelCtr.uploadExcelFunction();
+                            },
+                            child: Container(
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: cGreen),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(
+                                    child: Obx(
+                                  () => getExcelCtr.isLoading.value
+                                      ? CircularProgressIndicator()
+                                      : GooglePoppinsWidgets(
+                                          text: "+ Add New Item",
+                                          fontsize: 14,
+                                          color: cWhite),
+                                )),
                               ),
                             ),
                           )
@@ -113,6 +123,11 @@ class StoreRequetWidget extends StatelessWidget {
                                       ConnectionState.waiting) {
                                     return const Center(
                                         child: CircularProgressIndicator());
+                                  } else if (snapshot.data!.docs.isEmpty) {
+                                    return Center(
+                                      child: GooglePoppinsWidgets(
+                                          text: "No data", fontsize: 15),
+                                    );
                                   } else if (!snapshot.hasData) {
                                     return Center(
                                       child: GooglePoppinsWidgets(

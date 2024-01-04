@@ -1,14 +1,18 @@
-import 'package:canteen_superadmin_website/controller/tempProduct_controller.dart/tempProduct_controller.dart';
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
-import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
-import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
-import 'package:canteen_superadmin_website/view/widgets/table_listview/barcode_setup.dart';
-import 'package:canteen_superadmin_website/view/widgets/table_listview/textFormFiled_.dart';
-import 'package:canteen_superadmin_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/campany_setup.dart';
+import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/category_setup.dart';
+import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/unit_setup.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'package:canteen_superadmin_website/controller/tempProduct_controller.dart/tempProduct_controller.dart';
+import 'package:canteen_superadmin_website/view/colors/colors.dart';
+import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
+import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/barcode_setup.dart';
+import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/product_name.dart';
+import 'package:canteen_superadmin_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
 
 class TableListviewWidget extends StatelessWidget {
   final TempProductController tempProductController =
@@ -102,88 +106,83 @@ class TableListviewWidget extends StatelessWidget {
                                                           data['barcodeNumber'],
                                                     ),
                                               data['productname'] == ''
-                                                  ? SizedBox(
-                                                      height: 48,
-                                                      width: 300,
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceAround,
-                                                        children: [
-                                                          SizedBox(
-                                                            height: 30,
-                                                            width: 200,
-                                                            child: TextFormFiledWidget(
-                                                                hintText:
-                                                                    "Product Name",
-                                                                title:
-                                                                    'Product Nam',
-                                                                width: 200),
-                                                          ),
-                                                          Container(
-                                                            width: 80,
-                                                            decoration:
-                                                                const BoxDecoration(
-                                                              color:
-                                                                  themeColorBlue,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .horizontal(),
-                                                            ),
-                                                            height: 25,
-                                                            child: Center(
-                                                              child:
-                                                                  GooglePoppinsWidgets(
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                color: cWhite,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                text: "Set",
-                                                                fontsize: 10,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
+                                                  ? const ProductNameEditWidget()
+                                                  : GestureDetector(
+                                                      onTap: () {
+                                                        customShowDilogBox(
+                                                            context: context,
+                                                            title:
+                                                                'Product Name',
+                                                            children: [
+                                                              TextFormFiledContainerWidget(
+                                                                  hintText:
+                                                                      'Product Name',
+                                                                  title:
+                                                                      'Product Name',
+                                                                  width: 200)
+                                                            ],
+                                                            actiontext:
+                                                                'UPDATE',
+                                                            actiononTapfuction:
+                                                                () async {},
+                                                            doyouwantActionButton:
+                                                                true);
+                                                      },
+                                                      child:
+                                                          DataContainerWidget(
+                                                        index: index,
+                                                        width: 300,
+                                                        headerTitle:
+                                                            data['productname'],
                                                       ),
+                                                    ),
+                                              data['categoryName'] == '' ||
+                                                      data['categoryID'] == ''
+                                                  ? CategorySetUpWidget(
+                                                      index: index,
                                                     )
                                                   : DataContainerWidget(
                                                       index: index,
-                                                      width: 300,
+                                                      width: 100,
                                                       headerTitle:
-                                                          data['productname'],
+                                                          data['categoryName'],
                                                     ),
-                                              Container(
-                                                width: 200,
-                                                decoration: BoxDecoration(
-                                                    color: index % 2 == 0
-                                                        ? Colors.grey
-                                                            .withOpacity(0.3)
-                                                        : Colors.blue
-                                                            .withOpacity(0.3),
-                                                    border: Border.all(
-                                                        color: cGrey
-                                                            .withOpacity(0.2))),
-                                                child: Center(
-                                                    child: DropdownSearch(
-                                                  items: const [
-                                                    'Vegtable',
-                                                    'fruits'
-                                                  ],
-                                                )),
-                                              ),
-                                              DataContainerWidget(
-                                                index: index,
-                                                width: 100,
-                                                headerTitle: '1x320g',
-                                              ),
-                                              DataContainerWidget(
-                                                index: index,
-                                                width: 180,
-                                                headerTitle: 'Al Kabeer',
-                                              ),
+                                              data['quantityinStock'] == ''
+                                                  ? const UnitNameEditWidget()
+                                                  : GestureDetector(
+                                                      onTap: () {
+                                                        customShowDilogBox(
+                                                            context: context,
+                                                            title: 'UNIT',
+                                                            children: [
+                                                              TextFormFiledContainerWidget(
+                                                                  hintText:
+                                                                      'UNIT',
+                                                                  title: 'UNIT',
+                                                                  width: 200)
+                                                            ],
+                                                            actiontext:
+                                                                'UPDATE',
+                                                            actiononTapfuction:
+                                                                () async {},
+                                                            doyouwantActionButton:
+                                                                true);
+                                                      },
+                                                      child:
+                                                          DataContainerWidget(
+                                                        index: index,
+                                                        width: 100,
+                                                        headerTitle: data[
+                                                            'quantityinStock'],
+                                                      ),
+                                                    ),
+                                              data['companyName'] == ''
+                                                  ? const CompanyORBrandEditWidget()
+                                                  : DataContainerWidget(
+                                                      index: index,
+                                                      width: 180,
+                                                      headerTitle: 'Al Kabeer',
+                                                    ),
                                               DataContainerWidget(
                                                 index: index,
                                                 width: 50,

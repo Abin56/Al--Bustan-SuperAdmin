@@ -172,11 +172,7 @@ class TableListviewWidget extends StatelessWidget {
                                                   ? SizedBox(
                                                       height: 48,
                                                       width: 300,
-                                                      child: Row(
-                                                        children: [
-                                                          TextFormField(),
-                                                        ],
-                                                      ),
+                                                      child: TextFormField(),
                                                     )
                                                   : DataContainerWidget(
                                                       index: index,

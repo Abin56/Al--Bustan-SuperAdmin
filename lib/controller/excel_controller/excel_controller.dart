@@ -65,14 +65,21 @@ class ExcelController extends GetxController {
                         : firstRow[1]!.value.toString(),
                     categoryID: "",
                     categoryName: "",
-                    price: 0,
+                    inPrice: 0,
+                    outPrice: 0,
                     quantityinStock: firstRow[4]?.value.toString() == "null"
                         ? "0"
                         : firstRow[4]!.value.toString(),
                     expiryDate: "",
                     addDate: "",
                     authuid: "",
-                    companyName: firstRow[3]?.value.toString() == "null"
+                    unit: firstRow[2]?.value.toString() == "null"
+                        ? ""
+                        : firstRow[2]!.value.toString(),
+                    packageType: firstRow[3]?.value.toString() == "null"
+                        ? ""
+                        : firstRow[5]!.value.toString(),
+                    companyName: firstRow[5]?.value.toString() == "null"
                         ? ""
                         : firstRow[3]!.value.toString());
 

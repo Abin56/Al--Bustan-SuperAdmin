@@ -9,11 +9,14 @@ class ProductAddingModel {
   String productname;
   String categoryID;
   String categoryName;
-  int price;
+  int inPrice;
+  int outPrice;
   String quantityinStock;
   String expiryDate;
   String addDate;
   String authuid;
+  String unit;
+  String packageType;
   String companyName;
 
   ProductAddingModel(
@@ -22,11 +25,14 @@ class ProductAddingModel {
       required this.productname,
       required this.categoryID,
       required this.categoryName,
-      required this.price,
+      required this.inPrice,
+      required this.outPrice,
       required this.quantityinStock,
       required this.expiryDate,
       required this.addDate,
       required this.authuid,
+      required this.unit,
+      required this.packageType,
       required this.companyName});
 
   ProductAddingModel copyWith({
@@ -35,11 +41,14 @@ class ProductAddingModel {
     String? productname,
     String? categoryID,
     String? categoryName,
-    int? price,
+    int? inPrice,
+    int? outPrice,
     String? quantityinStock,
     String? expiryDate,
     String? addDate,
     String? authuid,
+    String? unit,
+    String? packageType,
     String? companyName,
   }) {
     return ProductAddingModel(
@@ -48,11 +57,14 @@ class ProductAddingModel {
         productname: productname ?? this.productname,
         categoryID: categoryID ?? this.categoryID,
         categoryName: categoryName ?? this.categoryName,
-        price: price ?? this.price,
+        inPrice: inPrice ?? this.inPrice,
+        outPrice: outPrice ?? this.outPrice,
         quantityinStock: quantityinStock ?? this.quantityinStock,
         expiryDate: expiryDate ?? this.expiryDate,
         addDate: addDate ?? this.addDate,
         authuid: authuid ?? this.authuid,
+        unit: unit ?? this.unit,
+        packageType: packageType ?? this.unit,
         companyName: categoryName ?? this.companyName);
   }
 
@@ -63,11 +75,14 @@ class ProductAddingModel {
       'productname': productname,
       'categoryID': categoryID,
       'categoryName': categoryName,
-      'price': price,
+      'inPrice': inPrice,
+      'outPrice': outPrice,
       'quantityinStock': quantityinStock,
       'expiryDate': expiryDate,
       'addDate': addDate,
       'authuid': authuid,
+      'unit': unit,
+      'packageType': packageType,
       'companyName': companyName
     };
   }
@@ -79,11 +94,14 @@ class ProductAddingModel {
         productname: map['productname'] ?? '',
         categoryID: map['categoryID'] ?? '',
         categoryName: map['categoryName'] ?? '',
-        price: map['price'] ?? 0,
+        inPrice: map['inPrice'] ?? 0,
+        outPrice: map['outPrice'] ?? 0,
         quantityinStock: map['quantityinStock'] ?? "0",
         expiryDate: map['expiryDate'] ?? '',
         addDate: map['addDate'] ?? '',
         authuid: map['authuid'] ?? '',
+        unit: map['unit'] ?? '',
+        packageType: map['packageType'],
         companyName: map['companyName'] ?? '');
   }
 
@@ -94,7 +112,7 @@ class ProductAddingModel {
 
   @override
   String toString() {
-    return 'ProductAddingModel(docId: $docId, barcodeNumber: $barcodeNumber, productname: $productname, categoryID: $categoryID, categoryName: $categoryName, price: $price, quantityinStock: $quantityinStock, expiryDate: $expiryDate, addDate: $addDate, authuid: $authuid,companyName:$categoryName)';
+    return 'ProductAddingModel(docId: $docId, barcodeNumber: $barcodeNumber, productname: $productname, categoryID: $categoryID, categoryName: $categoryName, inPrice: $inPrice,outPrice: $outPrice, quantityinStock: $quantityinStock, expiryDate: $expiryDate, addDate: $addDate, authuid: $authuid,unit: $unit,packageType: $packageType,companyName:$categoryName)';
   }
 
   @override
@@ -106,11 +124,14 @@ class ProductAddingModel {
         other.productname == productname &&
         other.categoryID == categoryID &&
         other.categoryName == categoryName &&
-        other.price == price &&
+        other.inPrice == inPrice &&
+        other.outPrice == outPrice &&
         other.quantityinStock == quantityinStock &&
         other.expiryDate == expiryDate &&
         other.addDate == addDate &&
         other.authuid == authuid &&
+        other.unit == unit &&
+        other.packageType == packageType &&
         other.companyName == companyName;
   }
 
@@ -121,11 +142,14 @@ class ProductAddingModel {
         productname.hashCode ^
         categoryID.hashCode ^
         categoryName.hashCode ^
-        price.hashCode ^
+        inPrice.hashCode ^
+        outPrice.hashCode ^
         quantityinStock.hashCode ^
         expiryDate.hashCode ^
         addDate.hashCode ^
         authuid.hashCode ^
+        unit.hashCode ^
+        packageType.hashCode ^
         companyName.hashCode;
   }
 }

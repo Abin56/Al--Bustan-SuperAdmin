@@ -1,6 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/campany_setup.dart';
 import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/category_setup.dart';
+import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/inprice_setup.dart';
+import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/outprice_setup.dart';
+import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/packagetype_setup.dart';
+import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/qty_setup.dart';
+import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/return_setup.dart';
 import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/unit_setup.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';
@@ -29,7 +35,7 @@ class TableListviewWidget extends StatelessWidget {
           if (snap.hasData) {
             return Container(
               height: 600,
-              width: 1300,
+              width: 1485,
               decoration: BoxDecoration(
                 color: cWhite,
                 border: Border.all(
@@ -42,11 +48,11 @@ class TableListviewWidget extends StatelessWidget {
                   children: [
                     Expanded(
                         child: SizedBox(
-                      width: 1298,
+                      width: 1485,
                       child: Column(
                         children: [
                           const Padding(
-                            padding: EdgeInsets.only(left: 20, top: 10),
+                            padding: EdgeInsets.only(left: 10, top: 10),
                             child: Row(
                               children: [
                                 ListViewTableHeaderWidget(
@@ -68,14 +74,18 @@ class TableListviewWidget extends StatelessWidget {
                                 ListViewTableHeaderWidget(
                                     width: 100, headerTitle: 'PACKAGE TYPE'),
                                 ListViewTableHeaderWidget(
-                                    width: 100, headerTitle: 'PRICE'),
+                                    width: 100, headerTitle: 'Out PRICE'),
+                                ListViewTableHeaderWidget(
+                                    width: 100, headerTitle: 'OUT PRICE'),
+                                ListViewTableHeaderWidget(
+                                    width: 100, headerTitle: 'RETURN'),
                               ],
                             ),
                           ),
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                  top: 10, left: 20, right: 0, bottom: 10),
+                                  top: 10, left: 10, right: 0, bottom: 10),
                               child: Container(
                                 decoration: BoxDecoration(
                                     border: Border.all(
@@ -141,11 +151,53 @@ class TableListviewWidget extends StatelessWidget {
                                                   ? CategorySetUpWidget(
                                                       index: index,
                                                     )
-                                                  : DataContainerWidget(
-                                                      index: index,
-                                                      width: 100,
-                                                      headerTitle:
-                                                          data['categoryName'],
+                                                  : GestureDetector(
+                                                      onTap: () {
+                                                        customShowDilogBox(
+                                                            context: context,
+                                                            title: 'Category',
+                                                            children: [
+                                                              Container(
+                                                                width: 200,
+                                                                decoration: BoxDecoration(
+                                                                    color: index %
+                                                                                2 ==
+                                                                            0
+                                                                        ? Colors
+                                                                            .grey
+                                                                            .withOpacity(
+                                                                                0.3)
+                                                                        : Colors
+                                                                            .blue
+                                                                            .withOpacity(
+                                                                                0.3),
+                                                                    border: Border.all(
+                                                                        color: cGrey
+                                                                            .withOpacity(0.2))),
+                                                                child: Center(
+                                                                    child:
+                                                                        DropdownSearch(
+                                                                  items: const [
+                                                                    'Vegtable',
+                                                                    'fruits'
+                                                                  ],
+                                                                )),
+                                                              )
+                                                            ],
+                                                            actiontext:
+                                                                'UPDATE',
+                                                            actiononTapfuction:
+                                                                () async {},
+                                                            doyouwantActionButton:
+                                                                true);
+                                                      },
+                                                      child:
+                                                          DataContainerWidget(
+                                                        index: index,
+                                                        width: 200,
+                                                        headerTitle: data[
+                                                            'categoryName'],
+                                                      ),
                                                     ),
                                               data['quantityinStock'] == ''
                                                   ? const UnitNameEditWidget()
@@ -178,40 +230,214 @@ class TableListviewWidget extends StatelessWidget {
                                                     ),
                                               data['companyName'] == ''
                                                   ? const CompanyORBrandEditWidget()
-                                                  : DataContainerWidget(
-                                                      index: index,
-                                                      width: 180,
-                                                      headerTitle: 'Al Kabeer',
+                                                  : GestureDetector(
+                                                      onTap: () {
+                                                        customShowDilogBox(
+                                                            context: context,
+                                                            title: 'Brand Name',
+                                                            children: [
+                                                              TextFormFiledContainerWidget(
+                                                                  hintText:
+                                                                      'Brand Name',
+                                                                  title:
+                                                                      'Brand Name',
+                                                                  width: 200)
+                                                            ],
+                                                            actiontext:
+                                                                'UPDATE',
+                                                            actiononTapfuction:
+                                                                () async {},
+                                                            doyouwantActionButton:
+                                                                true);
+                                                      },
+                                                      child:
+                                                          DataContainerWidget(
+                                                        index: index,
+                                                        width: 180,
+                                                        headerTitle:
+                                                            data['companyName'],
+                                                      ),
                                                     ),
-                                              DataContainerWidget(
-                                                index: index,
-                                                width: 50,
-                                                headerTitle: '100',
-                                              ),
-                                              Container(
-                                                width: 100,
-                                                decoration: BoxDecoration(
-                                                    color: index % 2 == 0
-                                                        ? Colors.grey
-                                                            .withOpacity(0.3)
-                                                        : Colors.blue
-                                                            .withOpacity(0.3),
-                                                    border: Border.all(
-                                                        color: cGrey
-                                                            .withOpacity(0.2))),
-                                                child: Center(
-                                                    child: DropdownSearch(
-                                                  items: const [
-                                                    'Pieces',
-                                                    'Packet',
-                                                    'Cartoon'
-                                                  ],
-                                                )),
-                                              ),
-                                              DataContainerWidget(
-                                                index: index,
-                                                width: 100,
-                                                headerTitle: '500/-',
+                                              data['quantityinStock'] == ''
+                                                  ? const QTYEditWidget()
+                                                  : GestureDetector(
+                                                      onTap: () {
+                                                        customShowDilogBox(
+                                                            context: context,
+                                                            title: 'Quantity',
+                                                            children: [
+                                                              TextFormFiledContainerWidget(
+                                                                  hintText:
+                                                                      'Quantity',
+                                                                  title:
+                                                                      'Quantity',
+                                                                  width: 200)
+                                                            ],
+                                                            actiontext:
+                                                                'UPDATE',
+                                                            actiononTapfuction:
+                                                                () async {},
+                                                            doyouwantActionButton:
+                                                                true);
+                                                      },
+                                                      child:
+                                                          DataContainerWidget(
+                                                        index: index,
+                                                        width: 50,
+                                                        headerTitle: '100',
+                                                      ),
+                                                    ),
+                                              data['packageType'] == ''
+                                                  ? PackageSetUpWidget(
+                                                      index: index)
+                                                  : GestureDetector(
+                                                      onTap: () {
+                                                        customShowDilogBox(
+                                                            context: context,
+                                                            title:
+                                                                'PackageType',
+                                                            children: [
+                                                              Container(
+                                                                width: 100,
+                                                                decoration: BoxDecoration(
+                                                                    color: index %
+                                                                                2 ==
+                                                                            0
+                                                                        ? Colors
+                                                                            .grey
+                                                                            .withOpacity(
+                                                                                0.3)
+                                                                        : Colors
+                                                                            .blue
+                                                                            .withOpacity(
+                                                                                0.3),
+                                                                    border: Border.all(
+                                                                        color: cGrey
+                                                                            .withOpacity(0.2))),
+                                                                child: Center(
+                                                                    child:
+                                                                        DropdownSearch(
+                                                                  items: const [
+                                                                    'Pieces',
+                                                                    'Packet',
+                                                                    'Cartoon'
+                                                                  ],
+                                                                )),
+                                                              ),
+                                                            ],
+                                                            actiontext:
+                                                                'UPDATE',
+                                                            actiononTapfuction:
+                                                                () async {},
+                                                            doyouwantActionButton:
+                                                                true);
+                                                      },
+                                                      child:
+                                                          DataContainerWidget(
+                                                        index: index,
+                                                        width: 100,
+                                                        headerTitle:
+                                                            data['packageType'],
+                                                      ),
+                                                    ),
+                                              data['inPrice'] == ''
+                                                  ? const InPriceSetupWidget()
+                                                  : GestureDetector(
+                                                      onTap: () {
+                                                        customShowDilogBox(
+                                                            context: context,
+                                                            title: 'In Price',
+                                                            children: [
+                                                              TextFormFiledContainerWidget(
+                                                                  hintText:
+                                                                      'In Price',
+                                                                  title:
+                                                                      'In Price',
+                                                                  width: 200)
+                                                            ],
+                                                            actiontext:
+                                                                'UPDATE',
+                                                            actiononTapfuction:
+                                                                () async {},
+                                                            doyouwantActionButton:
+                                                                true);
+                                                      },
+                                                      child:
+                                                          DataContainerWidget(
+                                                        index: index,
+                                                        width: 100,
+                                                        headerTitle:
+                                                            data['outPrice'],
+                                                      ),
+                                                    ),
+                                              data['outPrice'] == ''
+                                                  ? const OutPriceSetupWidget()
+                                                  : GestureDetector(
+                                                      onTap: () {
+                                                        customShowDilogBox(
+                                                            context: context,
+                                                            title: 'Out Price',
+                                                            children: [
+                                                              TextFormFiledContainerWidget(
+                                                                  hintText:
+                                                                      'Out Price',
+                                                                  title:
+                                                                      'Out Price',
+                                                                  width: 200)
+                                                            ],
+                                                            actiontext:
+                                                                'UPDATE',
+                                                            actiononTapfuction:
+                                                                () async {},
+                                                            doyouwantActionButton:
+                                                                true);
+                                                      },
+                                                      child:
+                                                          DataContainerWidget(
+                                                        index: index,
+                                                        width: 100,
+                                                        headerTitle:
+                                                            data['inPrice'],
+                                                      ),
+                                                    ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  customShowDilogBox(
+                                                      context: context,
+                                                      title: 'Return',
+                                                      children: [
+                                                        ReturnSetUpWidget(
+                                                          index: index,
+                                                        ),
+                                                      ],
+                                                      actiontext: 'Return it',
+                                                      actiononTapfuction:
+                                                          () async {},
+                                                      doyouwantActionButton:
+                                                          true);
+                                                },
+                                                child: Container(
+                                                  width: 100,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.red
+                                                        .withOpacity(0.4),
+                                                    borderRadius:
+                                                        const BorderRadius
+                                                            .horizontal(),
+                                                  ),
+                                                  // height: 30,
+                                                  child: Center(
+                                                    child: GooglePoppinsWidgets(
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      color: cBlack,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      text: "RETURN",
+                                                      fontsize: 10,
+                                                    ),
+                                                  ),
+                                                ),
                                               ),
                                             ],
                                           ),

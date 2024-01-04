@@ -63,29 +63,7 @@ class StoreRequetWidget extends StatelessWidget {
                             child: const CupertinoSearchTextField(),
                           ),
                           sWidtht10,
-                          InkWell(
-                            onTap: () {
-                              getExcelCtr.uploadExcelFunction();
-                            },
-                            child: Container(
-                              height: 40,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: cGreen),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Center(
-                                    child: Obx(
-                                  () => getExcelCtr.isLoading.value
-                                      ? CircularProgressIndicator()
-                                      : GooglePoppinsWidgets(
-                                          text: "+ Add New Item",
-                                          fontsize: 14,
-                                          color: cWhite),
-                                )),
-                              ),
-                            ),
-                          )
+                          
                         ],
                       ),
                     ),

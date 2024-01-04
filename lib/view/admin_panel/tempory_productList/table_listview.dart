@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:canteen_superadmin_website/controller/excel_controller/excel_controller.dart';
 import 'package:canteen_superadmin_website/controller/store_controller.dart';
 import 'package:canteen_superadmin_website/model/category_model.dart';
 import 'package:canteen_superadmin_website/model/packagetype_model.dart';
@@ -30,6 +31,7 @@ class TableListviewWidget extends StatelessWidget {
   TableListviewWidget({super.key});
 
   final getCtr = Get.put(StoreController());
+  final getExcelCtr = Get.put(ExcelController());
 
   @override
   Widget build(BuildContext context) {
@@ -71,10 +73,33 @@ class TableListviewWidget extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: Center(
                                 child: GooglePoppinsWidgets(
-                                    text: "Add to Product List",
+                                    text: "Upload Products",
                                     fontsize: 14,
                                     color: cWhite),
                               ),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            getExcelCtr.uploadExcelFunction();
+                          },
+                          child: Container(
+                            height: 40,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: cGreen),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Center(
+                                  child: Obx(
+                                () => getExcelCtr.isLoading.value
+                                    ? CircularProgressIndicator()
+                                    : GooglePoppinsWidgets(
+                                        text: "Select Excel",
+                                        fontsize: 14,
+                                        color: cWhite),
+                              )),
                             ),
                           ),
                         )

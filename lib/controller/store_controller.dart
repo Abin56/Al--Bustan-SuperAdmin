@@ -97,7 +97,7 @@ class StoreController extends GetxController {
           data.categoryID != "") {
         await fireStore
             .collection('pendingProducts')
-            .doc(docID)
+            .doc(data.barcodeNumber)
             .set(data.toMap())
             .then((value) async {
           await fireStore

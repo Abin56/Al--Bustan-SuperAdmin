@@ -294,7 +294,6 @@ class TableListviewWidget extends StatelessWidget {
                                                             title: 'Quantity',
                                                             children: [
                                                               TextFormFiledContainerWidget(
-                                                                
                                                                   hintText:
                                                                       'Quantity',
                                                                   title:
@@ -304,9 +303,7 @@ class TableListviewWidget extends StatelessWidget {
                                                             actiontext:
                                                                 'UPDATE',
                                                             actiononTapfuction:
-                                                                () async {
-                                                                  
-                                                                },
+                                                                () async {},
                                                             doyouwantActionButton:
                                                                 true);
                                                       },

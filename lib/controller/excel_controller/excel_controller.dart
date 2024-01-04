@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:excel/excel.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:uuid/uuid.dart';
 
 class ExcelController extends GetxController {
@@ -29,6 +30,7 @@ class ExcelController extends GetxController {
               headRow[4]?.value.toString() == "QUANTITY IN STOCK") {
             for (int i = 1; i < table.maxRows; i++) {
               final uuid = const Uuid().v1();
+              String time = DateTime.now().toString();
               List<Data?>? firstRow = table.rows[i];
 //fetching data from excel cells
 
@@ -65,8 +67,8 @@ class ExcelController extends GetxController {
                         : firstRow[1]!.value.toString(),
                     categoryID: "",
                     categoryName: "",
-                    inPrice: 0,
-                    outPrice: 0,
+                    inPrice: "",
+                    outPrice: "",
                     quantityinStock: firstRow[4]?.value.toString() == "null"
                         ? "0"
                         : firstRow[4]!.value.toString(),
@@ -81,7 +83,9 @@ class ExcelController extends GetxController {
                         : firstRow[5]!.value.toString(),
                     companyName: firstRow[5]?.value.toString() == "null"
                         ? ""
-                        : firstRow[3]!.value.toString());
+                        : firstRow[3]!.value.toString(),
+                    returnType: '',
+                    time: time);
 
                 firestore
                     .collection("temporaryCollection")

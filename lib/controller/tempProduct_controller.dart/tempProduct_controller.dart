@@ -29,6 +29,7 @@ class TempProductController extends GetxController {
 
     await fireStore.collection('temporaryCollection').doc(docId).update(data);
     showToast(msg: "Product name changed");
+
     Navigator.pop(context);
   }
 

@@ -9,8 +9,8 @@ class ProductAddingModel {
   String productname;
   String categoryID;
   String categoryName;
-  int inPrice;
-  int outPrice;
+  String inPrice;
+  String outPrice;
   String quantityinStock;
   String expiryDate;
   String addDate;
@@ -18,6 +18,8 @@ class ProductAddingModel {
   String unit;
   String packageType;
   String companyName;
+  String returnType;
+  String time;
 
   ProductAddingModel(
       {required this.docId,
@@ -33,7 +35,9 @@ class ProductAddingModel {
       required this.authuid,
       required this.unit,
       required this.packageType,
-      required this.companyName});
+      required this.companyName,
+      required this.time,
+      required this.returnType});
 
   ProductAddingModel copyWith({
     String? docId,
@@ -41,8 +45,8 @@ class ProductAddingModel {
     String? productname,
     String? categoryID,
     String? categoryName,
-    int? inPrice,
-    int? outPrice,
+    String? inPrice,
+    String? outPrice,
     String? quantityinStock,
     String? expiryDate,
     String? addDate,
@@ -50,6 +54,8 @@ class ProductAddingModel {
     String? unit,
     String? packageType,
     String? companyName,
+    String? returnType,
+    String? time,
   }) {
     return ProductAddingModel(
         docId: docId ?? this.docId,
@@ -65,7 +71,9 @@ class ProductAddingModel {
         authuid: authuid ?? this.authuid,
         unit: unit ?? this.unit,
         packageType: packageType ?? this.unit,
-        companyName: categoryName ?? this.companyName);
+        companyName: categoryName ?? this.companyName,
+        returnType: returnType ?? this.returnType,
+        time: time ?? this.time);
   }
 
   Map<String, dynamic> toMap() {
@@ -83,7 +91,9 @@ class ProductAddingModel {
       'authuid': authuid,
       'unit': unit,
       'packageType': packageType,
-      'companyName': companyName
+      'companyName': companyName,
+      'returnType': returnType,
+      'time': time
     };
   }
 
@@ -94,15 +104,17 @@ class ProductAddingModel {
         productname: map['productname'] ?? '',
         categoryID: map['categoryID'] ?? '',
         categoryName: map['categoryName'] ?? '',
-        inPrice: map['inPrice'] ?? 0,
-        outPrice: map['outPrice'] ?? 0,
+        inPrice: map['inPrice'] ?? "0",
+        outPrice: map['outPrice'] ?? "0",
         quantityinStock: map['quantityinStock'] ?? "0",
         expiryDate: map['expiryDate'] ?? '',
         addDate: map['addDate'] ?? '',
         authuid: map['authuid'] ?? '',
         unit: map['unit'] ?? '',
-        packageType: map['packageType'],
-        companyName: map['companyName'] ?? '');
+        packageType: map['packageType'] ?? '',
+        companyName: map['companyName'] ?? '',
+        returnType: map['returnType'] ?? '',
+        time: map['time'] ?? '');
   }
 
   String toJson() => json.encode(toMap());
@@ -112,7 +124,7 @@ class ProductAddingModel {
 
   @override
   String toString() {
-    return 'ProductAddingModel(docId: $docId, barcodeNumber: $barcodeNumber, productname: $productname, categoryID: $categoryID, categoryName: $categoryName, inPrice: $inPrice,outPrice: $outPrice, quantityinStock: $quantityinStock, expiryDate: $expiryDate, addDate: $addDate, authuid: $authuid,unit: $unit,packageType: $packageType,companyName:$categoryName)';
+    return 'ProductAddingModel(docId: $docId, barcodeNumber: $barcodeNumber, productname: $productname, categoryID: $categoryID, categoryName: $categoryName, inPrice: $inPrice,outPrice: $outPrice, quantityinStock: $quantityinStock, expiryDate: $expiryDate, addDate: $addDate, authuid: $authuid,unit: $unit,packageType: $packageType,companyName:$categoryName, returnType:$returnType,time:$time )';
   }
 
   @override
@@ -132,7 +144,9 @@ class ProductAddingModel {
         other.authuid == authuid &&
         other.unit == unit &&
         other.packageType == packageType &&
-        other.companyName == companyName;
+        other.companyName == companyName &&
+        other.returnType == returnType &&
+        other.time == time;
   }
 
   @override
@@ -150,6 +164,8 @@ class ProductAddingModel {
         authuid.hashCode ^
         unit.hashCode ^
         packageType.hashCode ^
-        companyName.hashCode;
+        companyName.hashCode ^
+        returnType.hashCode ^
+        time.hashCode;
   }
 }

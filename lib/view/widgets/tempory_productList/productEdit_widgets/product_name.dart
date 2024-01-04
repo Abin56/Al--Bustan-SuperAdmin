@@ -1,7 +1,9 @@
 import 'package:canteen_superadmin_website/controller/tempProduct_controller.dart/tempProduct_controller.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:canteen_superadmin_website/view/widgets/tempory_productList/textformFiled_widget/textFormFiled_.dart';
+import 'package:canteen_superadmin_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,19 +25,25 @@ class ProductNameEditWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          SizedBox(
-            height: 30,
-            width: 200,
-            child: TextFormFiledWidget(
-                controller: getTemp.productNameCtr,
-                hintText: "Product Name",
-                title: 'Product Name',
-                width: 200),
-          ),
           GestureDetector(
             onTap: () {
-              getTemp.productNameEdit(
-                  getTemp.productNameCtr.text, data['docId']);
+              getTemp.companyNameCtr.clear();
+              customShowDilogBox(
+                  context: context,
+                  title: 'Product Name',
+                  children: [
+                    TextFormFiledContainerWidget(
+                        controller: getTemp.productNameCtr,
+                        hintText: 'Product Name',
+                        title: 'Procuct Name',
+                        width: 200)
+                  ],
+                  actiontext: 'UPDATE',
+                  actiononTapfuction: () async {
+                    getTemp.productNameEdit(
+                        getTemp.productNameCtr.text, data['docId']);
+                  },
+                  doyouwantActionButton: true);
             },
             child: Container(
               width: 80,

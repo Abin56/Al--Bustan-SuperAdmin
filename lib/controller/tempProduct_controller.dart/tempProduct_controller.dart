@@ -7,6 +7,9 @@ class TempProductController extends GetxController {
   final fireStore = FirebaseFirestore.instance;
 
   TextEditingController productNameCtr = TextEditingController();
+  TextEditingController unitCtr = TextEditingController();
+  TextEditingController companyNameCtr = TextEditingController();
+  TextEditingController quantityCtr = TextEditingController();
 
   RxBool barcodebool = false.obs;
   RxBool productnamebool = false.obs;
@@ -60,10 +63,10 @@ class TempProductController extends GetxController {
   }
 
   companyNameEdit(String text, String docId, BuildContext context) async {
-    final data = {'categoryName': text};
+    final data = {'companyName': text};
 
     await fireStore.collection('temporaryCollection').doc(docId).update(data);
-    showToast(msg: "unit changed");
+    showToast(msg: "Brand name changed");
     Navigator.pop(context);
   }
 
@@ -79,7 +82,7 @@ class TempProductController extends GetxController {
     final data = {'quantityinStock': text};
 
     await fireStore.collection('temporaryCollection').doc(docId).update(data);
-    showToast(msg: "PackageType changed");
+    showToast(msg: "Quantity changed");
     Navigator.pop(context);
   }
 

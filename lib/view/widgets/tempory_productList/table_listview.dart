@@ -213,19 +213,21 @@ class TableListviewWidget extends StatelessWidget {
                                                             'categoryName'],
                                                       ),
                                                     ),
-                                              data['quantityinStock'] == ''
+                                              data['unit'] == ''
                                                   ? const UnitNameEditWidget()
                                                   : GestureDetector(
                                                       onTap: () {
                                                         tempProductController
                                                                 .unitCtr.text =
-                                                            data[
-                                                                'quantityinStock'];
+                                                            data['unit'];
                                                         customShowDilogBox(
                                                             context: context,
                                                             title: 'UNIT',
                                                             children: [
                                                               TextFormFiledContainerWidget(
+                                                                  controller:
+                                                                      tempProductController
+                                                                          .unitCtr,
                                                                   hintText:
                                                                       'UNIT',
                                                                   title: 'UNIT',
@@ -251,19 +253,26 @@ class TableListviewWidget extends StatelessWidget {
                                                           DataContainerWidget(
                                                         index: index,
                                                         width: 100,
-                                                        headerTitle: data[
-                                                            'quantityinStock'],
+                                                        headerTitle:
+                                                            data['unit'],
                                                       ),
                                                     ),
                                               data['companyName'] == ''
                                                   ? const CompanyORBrandEditWidget()
                                                   : GestureDetector(
                                                       onTap: () {
+                                                        tempProductController
+                                                                .companyNameCtr
+                                                                .text =
+                                                            data['companyName'];
                                                         customShowDilogBox(
                                                             context: context,
                                                             title: 'Brand Name',
                                                             children: [
                                                               TextFormFiledContainerWidget(
+                                                                  controller:
+                                                                      tempProductController
+                                                                          .companyNameCtr,
                                                                   hintText:
                                                                       'Brand Name',
                                                                   title:
@@ -273,7 +282,14 @@ class TableListviewWidget extends StatelessWidget {
                                                             actiontext:
                                                                 'UPDATE',
                                                             actiononTapfuction:
-                                                                () async {},
+                                                                () async {
+                                                              tempProductController.companyNameEdit(
+                                                                  tempProductController
+                                                                      .companyNameCtr
+                                                                      .text,
+                                                                  data['docId'],
+                                                                  context);
+                                                            },
                                                             doyouwantActionButton:
                                                                 true);
                                                       },
@@ -289,11 +305,19 @@ class TableListviewWidget extends StatelessWidget {
                                                   ? const QTYEditWidget()
                                                   : GestureDetector(
                                                       onTap: () {
+                                                        tempProductController
+                                                                .quantityCtr
+                                                                .text =
+                                                            data[
+                                                                'quantityinStock'];
                                                         customShowDilogBox(
                                                             context: context,
                                                             title: 'Quantity',
                                                             children: [
                                                               TextFormFiledContainerWidget(
+                                                                  controller:
+                                                                      tempProductController
+                                                                          .quantityCtr,
                                                                   hintText:
                                                                       'Quantity',
                                                                   title:
@@ -303,7 +327,14 @@ class TableListviewWidget extends StatelessWidget {
                                                             actiontext:
                                                                 'UPDATE',
                                                             actiononTapfuction:
-                                                                () async {},
+                                                                () async {
+                                                              tempProductController.quantityEdit(
+                                                                  tempProductController
+                                                                      .quantityCtr
+                                                                      .text,
+                                                                  data['docId'],
+                                                                  context);
+                                                            },
                                                             doyouwantActionButton:
                                                                 true);
                                                       },
@@ -311,7 +342,8 @@ class TableListviewWidget extends StatelessWidget {
                                                           DataContainerWidget(
                                                         index: index,
                                                         width: 50,
-                                                        headerTitle: '100',
+                                                        headerTitle: data[
+                                                            'quantityinStock'],
                                                       ),
                                                     ),
                                               data['packageType'] == ''

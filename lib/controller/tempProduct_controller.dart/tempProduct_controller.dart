@@ -7,6 +7,8 @@ class TempProductController extends GetxController {
   final fireStore = FirebaseFirestore.instance;
 
   TextEditingController productNameCtr = TextEditingController();
+  TextEditingController unitCtr = TextEditingController();
+  TextEditingController companyNameCtr = TextEditingController();
 
   RxBool barcodebool = false.obs;
   RxBool productnamebool = false.obs;
@@ -21,15 +23,24 @@ class TempProductController extends GetxController {
   barcodeEdit(String text, String docId, BuildContext context) async {
     final data = {'barcodeNumber': text};
 
-    await fireStore.collection('temporaryCollection').doc(docId).update(data);
-    showToast(msg: "Barcode changed");
-    Navigator.pop(context);
+    await fireStore
+        .collection('temporaryCollection')
+        .doc(docId)
+        .update(data)
+        .then((value) async {
+      Get.back();
+      showToast(msg: "Barcode changed");
+    });
   }
 
   productNameEdit(String text, String docId, BuildContext context) async {
     final data = {'productname': text};
 
-    await fireStore.collection('temporaryCollection').doc(docId).update(data);
+    await fireStore
+        .collection('temporaryCollection')
+        .doc(docId)
+        .update(data)
+        .then((value) async {});
     showToast(msg: "Product name changed");
 
     Navigator.pop(context);
@@ -54,9 +65,14 @@ class TempProductController extends GetxController {
   unitEdit(String text, String docId, BuildContext context) async {
     final data = {'unit': text};
 
-    await fireStore.collection('temporaryCollection').doc(docId).update(data);
-    showToast(msg: "unit changed");
-    Navigator.pop(context);
+    await fireStore
+        .collection('temporaryCollection')
+        .doc(docId)
+        .update(data)
+        .then((value) async {
+      Get.back();
+      showToast(msg: "unit changed");
+    });
   }
 
   companyNameEdit(String text, String docId, BuildContext context) async {

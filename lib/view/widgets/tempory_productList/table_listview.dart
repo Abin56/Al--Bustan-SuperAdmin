@@ -235,7 +235,7 @@ class TableListviewWidget extends StatelessWidget {
                                                                 'UPDATE',
                                                             actiononTapfuction:
                                                                 () async {
-                                                              tempProductController
+                                                              await tempProductController
                                                                   .unitEdit(
                                                                       tempProductController
                                                                           .unitCtr
@@ -294,6 +294,7 @@ class TableListviewWidget extends StatelessWidget {
                                                             title: 'Quantity',
                                                             children: [
                                                               TextFormFiledContainerWidget(
+                                                                
                                                                   hintText:
                                                                       'Quantity',
                                                                   title:
@@ -303,7 +304,9 @@ class TableListviewWidget extends StatelessWidget {
                                                             actiontext:
                                                                 'UPDATE',
                                                             actiononTapfuction:
-                                                                () async {},
+                                                                () async {
+                                                                  
+                                                                },
                                                             doyouwantActionButton:
                                                                 true);
                                                       },

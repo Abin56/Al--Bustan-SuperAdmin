@@ -74,7 +74,7 @@ class TableListviewWidget extends StatelessWidget {
                                 ListViewTableHeaderWidget(
                                     width: 100, headerTitle: 'PACKAGE TYPE'),
                                 ListViewTableHeaderWidget(
-                                    width: 100, headerTitle: 'Out PRICE'),
+                                    width: 100, headerTitle: 'IN PRICE'),
                                 ListViewTableHeaderWidget(
                                     width: 100, headerTitle: 'OUT PRICE'),
                                 ListViewTableHeaderWidget(
@@ -116,7 +116,8 @@ class TableListviewWidget extends StatelessWidget {
                                                           data['barcodeNumber'],
                                                     ),
                                               data['productname'] == ''
-                                                  ? const ProductNameEditWidget()
+                                                  ? ProductNameEditWidget(
+                                                      data: data)
                                                   : GestureDetector(
                                                       onTap: () {
                                                         tempProductController
@@ -142,12 +143,13 @@ class TableListviewWidget extends StatelessWidget {
                                                                 'UPDATE',
                                                             actiononTapfuction:
                                                                 () async {
-                                                              tempProductController.productNameEdit(
-                                                                  tempProductController
-                                                                      .productNameCtr
-                                                                      .text,
-                                                                  data['docId'],
-                                                                  context);
+                                                              tempProductController
+                                                                  .productNameEdit(
+                                                                tempProductController
+                                                                    .productNameCtr
+                                                                    .text,
+                                                                data['docId'],
+                                                              );
                                                             },
                                                             doyouwantActionButton:
                                                                 true);
@@ -214,7 +216,9 @@ class TableListviewWidget extends StatelessWidget {
                                                       ),
                                                     ),
                                               data['unit'] == ''
-                                                  ? const UnitNameEditWidget()
+                                                  ? UnitNameEditWidget(
+                                                      data: data,
+                                                    )
                                                   : GestureDetector(
                                                       onTap: () {
                                                         tempProductController
@@ -239,12 +243,11 @@ class TableListviewWidget extends StatelessWidget {
                                                                 () async {
                                                               tempProductController
                                                                   .unitEdit(
-                                                                      tempProductController
-                                                                          .unitCtr
-                                                                          .text,
-                                                                      data[
-                                                                          "docId"],
-                                                                      context);
+                                                                tempProductController
+                                                                    .unitCtr
+                                                                    .text,
+                                                                data["docId"],
+                                                              );
                                                             },
                                                             doyouwantActionButton:
                                                                 true);
@@ -258,7 +261,9 @@ class TableListviewWidget extends StatelessWidget {
                                                       ),
                                                     ),
                                               data['companyName'] == ''
-                                                  ? const CompanyORBrandEditWidget()
+                                                  ? CompanyORBrandEditWidget(
+                                                      data: data,
+                                                    )
                                                   : GestureDetector(
                                                       onTap: () {
                                                         tempProductController
@@ -283,12 +288,13 @@ class TableListviewWidget extends StatelessWidget {
                                                                 'UPDATE',
                                                             actiononTapfuction:
                                                                 () async {
-                                                              tempProductController.companyNameEdit(
-                                                                  tempProductController
-                                                                      .companyNameCtr
-                                                                      .text,
-                                                                  data['docId'],
-                                                                  context);
+                                                              tempProductController
+                                                                  .companyNameEdit(
+                                                                tempProductController
+                                                                    .companyNameCtr
+                                                                    .text,
+                                                                data['docId'],
+                                                              );
                                                             },
                                                             doyouwantActionButton:
                                                                 true);
@@ -302,7 +308,9 @@ class TableListviewWidget extends StatelessWidget {
                                                       ),
                                                     ),
                                               data['quantityinStock'] == ''
-                                                  ? const QTYEditWidget()
+                                                  ? QTYEditWidget(
+                                                      data: data,
+                                                    )
                                                   : GestureDetector(
                                                       onTap: () {
                                                         tempProductController
@@ -328,12 +336,13 @@ class TableListviewWidget extends StatelessWidget {
                                                                 'UPDATE',
                                                             actiononTapfuction:
                                                                 () async {
-                                                              tempProductController.quantityEdit(
-                                                                  tempProductController
-                                                                      .quantityCtr
-                                                                      .text,
-                                                                  data['docId'],
-                                                                  context);
+                                                              tempProductController
+                                                                  .quantityEdit(
+                                                                tempProductController
+                                                                    .quantityCtr
+                                                                    .text,
+                                                                data['docId'],
+                                                              );
                                                             },
                                                             doyouwantActionButton:
                                                                 true);
@@ -400,14 +409,23 @@ class TableListviewWidget extends StatelessWidget {
                                                       ),
                                                     ),
                                               data['inPrice'] == ''
-                                                  ? const InPriceSetupWidget()
+                                                  ? InPriceSetupWidget(
+                                                      data: data,
+                                                    )
                                                   : GestureDetector(
                                                       onTap: () {
+                                                        tempProductController
+                                                                .inPriceCtr
+                                                                .text =
+                                                            data['inPrice'];
                                                         customShowDilogBox(
                                                             context: context,
                                                             title: 'In Price',
                                                             children: [
                                                               TextFormFiledContainerWidget(
+                                                                  controller:
+                                                                      tempProductController
+                                                                          .inPriceCtr,
                                                                   hintText:
                                                                       'In Price',
                                                                   title:
@@ -417,37 +435,14 @@ class TableListviewWidget extends StatelessWidget {
                                                             actiontext:
                                                                 'UPDATE',
                                                             actiononTapfuction:
-                                                                () async {},
-                                                            doyouwantActionButton:
-                                                                true);
-                                                      },
-                                                      child:
-                                                          DataContainerWidget(
-                                                        index: index,
-                                                        width: 100,
-                                                        headerTitle:
-                                                            data['outPrice'],
-                                                      ),
-                                                    ),
-                                              data['outPrice'] == ''
-                                                  ? const OutPriceSetupWidget()
-                                                  : GestureDetector(
-                                                      onTap: () {
-                                                        customShowDilogBox(
-                                                            context: context,
-                                                            title: 'Out Price',
-                                                            children: [
-                                                              TextFormFiledContainerWidget(
-                                                                  hintText:
-                                                                      'Out Price',
-                                                                  title:
-                                                                      'Out Price',
-                                                                  width: 200)
-                                                            ],
-                                                            actiontext:
-                                                                'UPDATE',
-                                                            actiononTapfuction:
-                                                                () async {},
+                                                                () async {
+                                                              tempProductController.productInPriceEdit(
+                                                                  tempProductController
+                                                                      .inPriceCtr
+                                                                      .text,
+                                                                  data[
+                                                                      'docId']);
+                                                            },
                                                             doyouwantActionButton:
                                                                 true);
                                                       },
@@ -457,6 +452,52 @@ class TableListviewWidget extends StatelessWidget {
                                                         width: 100,
                                                         headerTitle:
                                                             data['inPrice'],
+                                                      ),
+                                                    ),
+                                              data['outPrice'] == ''
+                                                  ? OutPriceSetupWidget(
+                                                      data: data,
+                                                    )
+                                                  : GestureDetector(
+                                                      onTap: () {
+                                                        tempProductController
+                                                                .outPriceCtr
+                                                                .text =
+                                                            data['outPrice'];
+                                                        customShowDilogBox(
+                                                            context: context,
+                                                            title: 'Out Price',
+                                                            children: [
+                                                              TextFormFiledContainerWidget(
+                                                                  controller:
+                                                                      tempProductController
+                                                                          .outPriceCtr,
+                                                                  hintText:
+                                                                      'Out Price',
+                                                                  title:
+                                                                      'Out Price',
+                                                                  width: 200)
+                                                            ],
+                                                            actiontext:
+                                                                'UPDATE',
+                                                            actiononTapfuction:
+                                                                () async {
+                                                              tempProductController.productOutPriceEdit(
+                                                                  tempProductController
+                                                                      .outPriceCtr
+                                                                      .text,
+                                                                  data[
+                                                                      'docId']);
+                                                            },
+                                                            doyouwantActionButton:
+                                                                true);
+                                                      },
+                                                      child:
+                                                          DataContainerWidget(
+                                                        index: index,
+                                                        width: 100,
+                                                        headerTitle:
+                                                            data['outPrice'],
                                                       ),
                                                     ),
                                               GestureDetector(

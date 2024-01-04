@@ -10,6 +10,8 @@ class TempProductController extends GetxController {
   TextEditingController unitCtr = TextEditingController();
   TextEditingController companyNameCtr = TextEditingController();
   TextEditingController quantityCtr = TextEditingController();
+  TextEditingController inPriceCtr = TextEditingController();
+  TextEditingController outPriceCtr = TextEditingController();
 
   RxBool barcodebool = false.obs;
   RxBool productnamebool = false.obs;
@@ -29,13 +31,17 @@ class TempProductController extends GetxController {
     Navigator.pop(context);
   }
 
-  productNameEdit(String text, String docId, BuildContext context) async {
+  productNameEdit(String text, String docId) async {
     final data = {'productname': text};
 
-    await fireStore.collection('temporaryCollection').doc(docId).update(data);
-    showToast(msg: "Product name changed");
-
-    Navigator.pop(context);
+    await fireStore
+        .collection('temporaryCollection')
+        .doc(docId)
+        .update(data)
+        .then((value) {
+      Get.back();
+      showToast(msg: "Product name changed");
+    });
   }
 
   productCategoryEdit(String text, String docId, BuildContext context) async {
@@ -46,28 +52,57 @@ class TempProductController extends GetxController {
     Navigator.pop(context);
   }
 
-  productPriceEdit(String text, String docId, BuildContext context) async {
-    final data = {'price': text};
+  productInPriceEdit(String text, String docId) async {
+    final data = {'inPrice': text};
 
-    await fireStore.collection('temporaryCollection').doc(docId).update(data);
-    showToast(msg: "Price changed");
-    Navigator.pop(context);
+    await fireStore
+        .collection('temporaryCollection')
+        .doc(docId)
+        .update(data)
+        .then((value) {
+      showToast(msg: "In price changed");
+      Get.back();
+    });
   }
 
-  unitEdit(String text, String docId, BuildContext context) async {
+  productOutPriceEdit(String text, String docId) async {
+    final data = {'outPrice': text};
+
+    await fireStore
+        .collection('temporaryCollection')
+        .doc(docId)
+        .update(data)
+        .then((value) {
+      showToast(msg: "Out price changed");
+      Get.back();
+    });
+  }
+
+  unitEdit(String text, String docId) async {
     final data = {'unit': text};
 
-    await fireStore.collection('temporaryCollection').doc(docId).update(data);
-    showToast(msg: "unit changed");
-    Navigator.pop(context);
+    await fireStore
+        .collection('temporaryCollection')
+        .doc(docId)
+        .update(data)
+        .then((value) {
+      Get.back();
+      showToast(msg: "Unit changed");
+      unitCtr.clear();
+    });
   }
 
-  companyNameEdit(String text, String docId, BuildContext context) async {
+  companyNameEdit(String text, String docId) async {
     final data = {'companyName': text};
 
-    await fireStore.collection('temporaryCollection').doc(docId).update(data);
-    showToast(msg: "Brand name changed");
-    Navigator.pop(context);
+    await fireStore
+        .collection('temporaryCollection')
+        .doc(docId)
+        .update(data)
+        .then((value) {
+      Get.back();
+      showToast(msg: "Brand name changed");
+    });
   }
 
   packageTypeEdit(String text, String docId, BuildContext context) async {
@@ -78,12 +113,17 @@ class TempProductController extends GetxController {
     Navigator.pop(context);
   }
 
-  quantityEdit(String text, String docId, BuildContext context) async {
+  quantityEdit(String text, String docId) async {
     final data = {'quantityinStock': text};
 
-    await fireStore.collection('temporaryCollection').doc(docId).update(data);
-    showToast(msg: "Quantity changed");
-    Navigator.pop(context);
+    await fireStore
+        .collection('temporaryCollection')
+        .doc(docId)
+        .update(data)
+        .then((value) {
+      Get.back();
+      showToast(msg: "Quantity changed");
+    });
   }
 
   deleteTemProduct(String docId, BuildContext context) async {

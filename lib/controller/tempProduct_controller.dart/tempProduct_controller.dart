@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 class TempProductController extends GetxController {
   final fireStore = FirebaseFirestore.instance;
 
+  TextEditingController productNameCtr = TextEditingController();
+
   RxBool barcodebool = false.obs;
   RxBool productnamebool = false.obs;
   RxBool categorybool = false.obs;

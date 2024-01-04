@@ -119,12 +119,19 @@ class TableListviewWidget extends StatelessWidget {
                                                   ? const ProductNameEditWidget()
                                                   : GestureDetector(
                                                       onTap: () {
+                                                        tempProductController
+                                                                .productNameCtr
+                                                                .text =
+                                                            data['productname'];
                                                         customShowDilogBox(
                                                             context: context,
                                                             title:
                                                                 'Product Name',
                                                             children: [
                                                               TextFormFiledContainerWidget(
+                                                                  controller:
+                                                                      tempProductController
+                                                                          .productNameCtr,
                                                                   hintText:
                                                                       'Product Name',
                                                                   title:
@@ -134,7 +141,14 @@ class TableListviewWidget extends StatelessWidget {
                                                             actiontext:
                                                                 'UPDATE',
                                                             actiononTapfuction:
-                                                                () async {},
+                                                                () async {
+                                                              tempProductController.productNameEdit(
+                                                                  tempProductController
+                                                                      .productNameCtr
+                                                                      .text,
+                                                                  data['docId'],
+                                                                  context);
+                                                            },
                                                             doyouwantActionButton:
                                                                 true);
                                                       },
@@ -203,6 +217,10 @@ class TableListviewWidget extends StatelessWidget {
                                                   ? const UnitNameEditWidget()
                                                   : GestureDetector(
                                                       onTap: () {
+                                                        tempProductController
+                                                                .unitCtr.text =
+                                                            data[
+                                                                'quantityinStock'];
                                                         customShowDilogBox(
                                                             context: context,
                                                             title: 'UNIT',
@@ -216,7 +234,16 @@ class TableListviewWidget extends StatelessWidget {
                                                             actiontext:
                                                                 'UPDATE',
                                                             actiononTapfuction:
-                                                                () async {},
+                                                                () async {
+                                                              tempProductController
+                                                                  .unitEdit(
+                                                                      tempProductController
+                                                                          .unitCtr
+                                                                          .text,
+                                                                      data[
+                                                                          "docId"],
+                                                                      context);
+                                                            },
                                                             doyouwantActionButton:
                                                                 true);
                                                       },

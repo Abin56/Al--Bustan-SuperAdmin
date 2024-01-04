@@ -69,6 +69,18 @@ class DrawerSelectedPagesSection extends StatelessWidget {
                 title: 'Add Store request',
               ),
             ),
+            ListTile(
+              tileColor: selectedIndex == 7
+                  ? themeColorBlue.withOpacity(0.1)
+                  : Colors.transparent,
+              onTap: () {
+                index = 7;
+                onTap.call(index);
+              },
+              title: DashboardTextFontWidget(
+                title: 'Excel Data',
+              ),
+            ),
           ],
         ),
         sHeight10,
@@ -104,11 +116,11 @@ class DrawerSelectedPagesSection extends StatelessWidget {
               ),
             ),
             ListTile(
-              tileColor: selectedIndex == 4
+              tileColor: selectedIndex == 6
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
               onTap: () {
-                index = 4;
+                index = 6;
                 onTap.call(index);
               },
               title: DashboardTextFontWidget(

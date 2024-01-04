@@ -91,10 +91,22 @@ class StoreController extends GetxController {
     for (int i = 0; i < dataList.length; i++) {
       ProductAddingModel data = ProductAddingModel.fromMap(dataList[i]);
       String docID = data.docId;
-      await fireStore
-          .collection('pendingProducts')
-          .doc(docID)
-          .set(data.toMap());
+      if (data.barcodeNumber != "" &&
+          data.productname != "" &&
+          data.categoryName != "" &&
+          data.categoryID != "") {
+        await fireStore
+            .collection('pendingProducts')
+            .doc(docID)
+            .set(data.toMap())
+            .then((value) async {
+          await fireStore
+              .collection('temporaryCollection')
+              .doc(data.docId)
+              .delete();
+          showToast(msg: "Added");
+        });
+      }
     }
   }
 }

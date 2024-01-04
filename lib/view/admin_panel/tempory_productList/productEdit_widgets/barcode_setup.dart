@@ -1,13 +1,23 @@
+import 'package:canteen_superadmin_website/controller/tempProduct_controller.dart/tempProduct_controller.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
+import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
+import 'package:canteen_superadmin_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BarcodeSetup extends StatelessWidget {
   final int index;
-  const BarcodeSetup({
+  BarcodeSetup({
     Key? key,
     required this.index,
+    required this.data,
   }) : super(key: key);
+
+  final getTemp = Get.put(TempProductController());
+  final DocumentSnapshot data;
 
   @override
   Widget build(BuildContext context) {
@@ -22,37 +32,63 @@ class BarcodeSetup extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Container(
-            width: 80,
-            decoration: const BoxDecoration(
-              color: themeColorBlue,
-              borderRadius: BorderRadius.horizontal(),
-            ),
-            height: 25,
-            child: Center(
-              child: GooglePoppinsWidgets(
-                textAlign: TextAlign.center,
-                color: cWhite,
-                fontWeight: FontWeight.bold,
-                text: "Type",
-                fontsize: 10,
+          GestureDetector(
+            onTap: () {
+              customShowDilogBox(
+                  context: context,
+                  title: "Barcode",
+                  children: [
+                    TextFormFiledContainerWidget(
+                      hintText: 'Barcode',
+                      title: 'Barcode',
+                      width: 200,
+                      controller: getTemp.barcodeCtr,
+                    )
+                  ],
+                  actiononTapfuction: () {
+                    getTemp.barcodeEdit(
+                        getTemp.barcodeCtr.text.trim(), data['docId']);
+                  },
+                  doyouwantActionButton: true);
+            },
+            child: Container(
+              width: 80,
+              decoration: const BoxDecoration(
+                color: themeColorBlue,
+                borderRadius: BorderRadius.horizontal(),
+              ),
+              height: 25,
+              child: Center(
+                child: GooglePoppinsWidgets(
+                  textAlign: TextAlign.center,
+                  color: cWhite,
+                  fontWeight: FontWeight.bold,
+                  text: "Type",
+                  fontsize: 10,
+                ),
               ),
             ),
           ),
-          Container(
-            width: 85,
-            decoration: const BoxDecoration(
-              color: themeColorBlue,
-              borderRadius: BorderRadius.horizontal(),
-            ),
-            height: 25,
-            child: Center(
-              child: GooglePoppinsWidgets(
-                textAlign: TextAlign.center,
-                color: cWhite,
-                fontWeight: FontWeight.bold,
-                text: "Auto Genrate",
-                fontsize: 10,
+          GestureDetector(
+            onTap: () {
+              String barcode = getRandomString(20);
+              getTemp.barcodeEdit(barcode, data['docId']);
+            },
+            child: Container(
+              width: 85,
+              decoration: const BoxDecoration(
+                color: themeColorBlue,
+                borderRadius: BorderRadius.horizontal(),
+              ),
+              height: 25,
+              child: Center(
+                child: GooglePoppinsWidgets(
+                  textAlign: TextAlign.center,
+                  color: cWhite,
+                  fontWeight: FontWeight.bold,
+                  text: "Auto Genrate",
+                  fontsize: 10,
+                ),
               ),
             ),
           ),

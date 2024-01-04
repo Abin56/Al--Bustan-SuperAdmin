@@ -10,10 +10,9 @@ class CategorySetUpWidget extends StatelessWidget {
   final TempProductController tempProductController =
       Get.put(TempProductController());
   final int index;
-  CategorySetUpWidget({
-    Key? key,
-    required this.index,
-  }) : super(key: key);
+  final data;
+  CategorySetUpWidget({Key? key, required this.index, required this.data})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +38,8 @@ class CategorySetUpWidget extends StatelessWidget {
                 value.categoryName;
             tempProductController.productCategoryID.value = value.docid;
           }
+          tempProductController.productCategoryEdit(
+              value!.categoryName, value.docid, data['docId']);
         },
         dropdownDecoratorProps: DropDownDecoratorProps(
             baseStyle: GoogleFonts.poppins(

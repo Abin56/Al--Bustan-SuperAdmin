@@ -77,12 +77,12 @@ class ExcelController extends GetxController {
                     unit: firstRow[2]?.value.toString() == "null"
                         ? ""
                         : firstRow[2]!.value.toString(),
-                    packageType: firstRow[3]?.value.toString() == "null"
-                        ? ""
-                        : firstRow[3]!.value.toString(),
-                    companyName: firstRow[5]?.value.toString() == "null"
+                    packageType: firstRow[5]?.value.toString() == "null"
                         ? ""
                         : firstRow[5]!.value.toString(),
+                    companyName: firstRow[3]?.value.toString() == "null"
+                        ? ""
+                        : firstRow[3]!.value.toString(),
                     returnType: '',
                     time: time);
 

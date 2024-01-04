@@ -13,6 +13,8 @@ class TempProductController extends GetxController {
   TextEditingController unitCtr = TextEditingController();
   TextEditingController companyNameCtr = TextEditingController();
   TextEditingController quantityCtr = TextEditingController();
+  TextEditingController barcodeCtr = TextEditingController();
+
   List<PackageTypeModel> packageTypeModel = [];
   RxString packageTypeName = ''.obs;
   RxString packageTypeID = ''.obs;
@@ -74,12 +76,14 @@ class TempProductController extends GetxController {
   RxBool inPricebool = false.obs;
   RxBool outPriceool = false.obs;
 
-  barcodeEdit(String text, String docId, BuildContext context) async {
+  barcodeEdit(String text, String docId) async {
     final data = {'barcodeNumber': text};
 
-    await fireStore.collection('temporaryCollection').doc(docId).update(data);
-    showToast(msg: "Barcode changed");
-    Navigator.pop(context);
+    await fireStore.collection('temporaryCollection').doc(docId).update(data).then((value) {
+      showToast(msg: "Barcode changed");
+      Get.back();
+    });
+    
   }
 
   productNameEdit(String text, String docId) async {
@@ -97,12 +101,17 @@ class TempProductController extends GetxController {
     });
   }
 
-  productCategoryEdit(String text, String docId, BuildContext context) async {
-    final data = {'categoryName': text};
+  productCategoryEdit(String text, String categoryId, String docId) async {
+    final data = {'categoryName': text, 'categoryID': categoryId};
 
-    await fireStore.collection('temporaryCollection').doc(docId).update(data);
-    showToast(msg: "Product category changed");
-    Navigator.pop(context);
+    await fireStore
+        .collection('temporaryCollection')
+        .doc(docId)
+        .update(data)
+        .then((value) {
+      showToast(msg: "Product category changed");
+      Get.back();
+    });
   }
 
   productInPriceEdit(String text, String docId) async {
@@ -160,12 +169,17 @@ class TempProductController extends GetxController {
     });
   }
 
-  packageTypeEdit(String text, String docId, BuildContext context) async {
-    final data = {'packageType': text};
+  packageTypeEdit(String text, String docId) async {
+    final data = {'packageType': text,};
 
-    await fireStore.collection('temporaryCollection').doc(docId).update(data);
-    showToast(msg: "PackageType changed");
-    Navigator.pop(context);
+    await fireStore
+        .collection('temporaryCollection')
+        .doc(docId)
+        .update(data)
+        .then((value) {
+      showToast(msg: "PackageType changed");
+      Get.back();
+    });
   }
 
   quantityEdit(String text, String docId) async {

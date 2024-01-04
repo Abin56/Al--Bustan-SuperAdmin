@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:canteen_superadmin_website/controller/store_controller.dart';
 import 'package:canteen_superadmin_website/model/category_model.dart';
 import 'package:canteen_superadmin_website/model/packagetype_model.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/productEdit_widgets/barcode_setup.dart';
@@ -11,6 +12,7 @@ import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/
 import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/productEdit_widgets/qty_setup.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/productEdit_widgets/return_setup.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/productEdit_widgets/unit_setup.dart';
+import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';
@@ -26,6 +28,8 @@ class TableListviewWidget extends StatelessWidget {
   final TempProductController tempProductController =
       Get.put(TempProductController());
   TableListviewWidget({super.key});
+
+  final getCtr = Get.put(StoreController());
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +52,34 @@ class TableListviewWidget extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Column(
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Row(children: [
+                        GooglePoppinsWidgets(
+                            text: "Temporary List", fontsize: 20),
+                        sWidtht40,
+                        MaterialButton(
+                          onPressed: () {
+                            getCtr.addTempProductToDB(getCtr.tempProductList);
+                          },
+                          child: Container(
+                            height: 40,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: cGreen),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Center(
+                                child: GooglePoppinsWidgets(
+                                    text: "Add to Product List",
+                                    fontsize: 14,
+                                    color: cWhite),
+                              ),
+                            ),
+                          ),
+                        )
+                      ]),
+                    ),
                     Expanded(
                         child: SizedBox(
                       width: 1485,
@@ -96,7 +128,9 @@ class TableListviewWidget extends StatelessWidget {
                                     // scrollDirection: Axis.horizontal,
                                     itemBuilder:
                                         (BuildContext context, int index) {
+                                      getCtr.tempProductList = snap.data!.docs;
                                       final data = snap.data!.docs[index];
+
                                       return Padding(
                                         padding: const EdgeInsets.only(
                                             top: 0, left: 0),
@@ -110,7 +144,8 @@ class TableListviewWidget extends StatelessWidget {
                                                 headerTitle: '${index + 1}',
                                               ),
                                               data['barcodeNumber'] == ''
-                                                  ? BarcodeSetup(index: index)
+                                                  ? BarcodeSetup(
+                                                      data: data, index: index)
                                                   : DataContainerWidget(
                                                       index: index,
                                                       width: 200,
@@ -167,6 +202,7 @@ class TableListviewWidget extends StatelessWidget {
                                               data['categoryName'] == '' ||
                                                       data['categoryID'] == ''
                                                   ? CategorySetUpWidget(
+                                                      data: data,
                                                       index: index,
                                                     )
                                                   : GestureDetector(
@@ -221,6 +257,14 @@ class TableListviewWidget extends StatelessWidget {
                                                                       tempProductController
                                                                           .productCategoryID
                                                                           .value = value.docid;
+
+                                                                      tempProductController.productCategoryEdit(
+                                                                          value
+                                                                              .categoryName,
+                                                                          value
+                                                                              .docid,
+                                                                          data[
+                                                                              'docId']);
                                                                     }
                                                                   },
                                                                   dropdownDecoratorProps: DropDownDecoratorProps(
@@ -390,7 +434,7 @@ class TableListviewWidget extends StatelessWidget {
                                                     ),
                                               data['packageType'] == ''
                                                   ? PackageSetUpWidget(
-                                                      index: index)
+                                                      data: data, index: index)
                                                   : GestureDetector(
                                                       onTap: () {
                                                         customShowDilogBox(
@@ -444,6 +488,12 @@ class TableListviewWidget extends StatelessWidget {
                                                                       tempProductController
                                                                           .packageTypeID
                                                                           .value = value.docid;
+
+                                                                      tempProductController.packageTypeEdit(
+                                                                          value
+                                                                              .typevalue,
+                                                                          data[
+                                                                              'docId']);
                                                                     }
                                                                   },
                                                                   dropdownDecoratorProps: DropDownDecoratorProps(
@@ -456,12 +506,8 @@ class TableListviewWidget extends StatelessWidget {
                                                                 )),
                                                               ),
                                                             ],
-                                                            actiontext:
-                                                                'UPDATE',
-                                                            actiononTapfuction:
-                                                                () async {},
                                                             doyouwantActionButton:
-                                                                true);
+                                                                false);
                                                       },
                                                       child:
                                                           DataContainerWidget(

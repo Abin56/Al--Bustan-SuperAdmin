@@ -10,9 +10,11 @@ class PackageSetUpWidget extends StatelessWidget {
   final TempProductController tempProductController =
       Get.put(TempProductController());
   final int index;
+  final data;
   PackageSetUpWidget({
     Key? key,
     required this.index,
+    required this.data,
   }) : super(key: key);
 
   @override
@@ -37,6 +39,9 @@ class PackageSetUpWidget extends StatelessWidget {
           if (value != null) {
             tempProductController.packageTypeName.value = value.typevalue;
             tempProductController.packageTypeID.value = value.docid;
+
+            tempProductController.packageTypeEdit(
+                value.typevalue, data['docId']);
           }
         },
         dropdownDecoratorProps: DropDownDecoratorProps(

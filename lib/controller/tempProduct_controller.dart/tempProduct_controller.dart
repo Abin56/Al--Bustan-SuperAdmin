@@ -60,6 +60,7 @@ class TempProductController extends GetxController {
     }
     return returnTypeModel;
   }
+
   TextEditingController inPriceCtr = TextEditingController();
   TextEditingController outPriceCtr = TextEditingController();
 
@@ -86,8 +87,6 @@ class TempProductController extends GetxController {
 
     await fireStore.collection('temporaryCollection').doc(docId).update(data);
     showToast(msg: "Product name changed");
-
-    Navigator.pop(context);
     await fireStore
         .collection('temporaryCollection')
         .doc(docId)
@@ -137,7 +136,6 @@ class TempProductController extends GetxController {
 
     await fireStore.collection('temporaryCollection').doc(docId).update(data);
     showToast(msg: "unit changed");
-    Navigator.pop(context);
     await fireStore
         .collection('temporaryCollection')
         .doc(docId)

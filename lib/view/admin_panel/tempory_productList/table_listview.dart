@@ -1,24 +1,26 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:canteen_superadmin_website/model/category_model.dart';
+import 'package:canteen_superadmin_website/model/packagetype_model.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/productEdit_widgets/barcode_setup.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/productEdit_widgets/campany_setup.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/productEdit_widgets/category_setup.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/productEdit_widgets/inprice_setup.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/productEdit_widgets/outprice_setup.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/productEdit_widgets/packagetype_setup.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/productEdit_widgets/product_name.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/productEdit_widgets/qty_setup.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/productEdit_widgets/return_setup.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/productEdit_widgets/unit_setup.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
-import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/campany_setup.dart';
-import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/category_setup.dart';
-import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/inprice_setup.dart';
-import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/outprice_setup.dart';
-import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/packagetype_setup.dart';
-import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/qty_setup.dart';
-import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/return_setup.dart';
-import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/unit_setup.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:canteen_superadmin_website/controller/tempProduct_controller.dart/tempProduct_controller.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
-import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/barcode_setup.dart';
-import 'package:canteen_superadmin_website/view/widgets/tempory_productList/productEdit_widgets/product_name.dart';
 import 'package:canteen_superadmin_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TableListviewWidget extends StatelessWidget {
   final TempProductController tempProductController =
@@ -191,12 +193,43 @@ class TableListviewWidget extends StatelessWidget {
                                                                         color: cGrey
                                                                             .withOpacity(0.2))),
                                                                 child: Center(
-                                                                    child:
-                                                                        DropdownSearch(
-                                                                  items: const [
-                                                                    'Vegtable',
-                                                                    'fruits'
-                                                                  ],
+                                                                    child: DropdownSearch<
+                                                                        ProductCategoryModel>(
+                                                                  autoValidateMode:
+                                                                      AutovalidateMode
+                                                                          .always,
+                                                                  asyncItems:
+                                                                      (value) {
+                                                                    tempProductController
+                                                                        .productCategoryModel
+                                                                        .clear();
+
+                                                                    return tempProductController
+                                                                        .fetchProductCategoryModel();
+                                                                  },
+                                                                  itemAsString:
+                                                                      (value) =>
+                                                                          value
+                                                                              .categoryName,
+                                                                  onChanged:
+                                                                      (value) async {
+                                                                    if (value !=
+                                                                        null) {
+                                                                      tempProductController
+                                                                          .productCategoryName
+                                                                          .value = value.categoryName;
+                                                                      tempProductController
+                                                                          .productCategoryID
+                                                                          .value = value.docid;
+                                                                    }
+                                                                  },
+                                                                  dropdownDecoratorProps: DropDownDecoratorProps(
+                                                                      baseStyle: GoogleFonts.poppins(
+                                                                          fontSize:
+                                                                              13,
+                                                                          color: Colors
+                                                                              .black
+                                                                              .withOpacity(0.7))),
                                                                 )),
                                                               )
                                                             ],
@@ -383,13 +416,43 @@ class TableListviewWidget extends StatelessWidget {
                                                                         color: cGrey
                                                                             .withOpacity(0.2))),
                                                                 child: Center(
-                                                                    child:
-                                                                        DropdownSearch(
-                                                                  items: const [
-                                                                    'Pieces',
-                                                                    'Packet',
-                                                                    'Cartoon'
-                                                                  ],
+                                                                    child: DropdownSearch<
+                                                                        PackageTypeModel>(
+                                                                  autoValidateMode:
+                                                                      AutovalidateMode
+                                                                          .always,
+                                                                  asyncItems:
+                                                                      (value) {
+                                                                    tempProductController
+                                                                        .packageTypeModel
+                                                                        .clear();
+
+                                                                    return tempProductController
+                                                                        .fetchPackagetypeModel();
+                                                                  },
+                                                                  itemAsString:
+                                                                      (value) =>
+                                                                          value
+                                                                              .typevalue,
+                                                                  onChanged:
+                                                                      (value) async {
+                                                                    if (value !=
+                                                                        null) {
+                                                                      tempProductController
+                                                                          .packageTypeName
+                                                                          .value = value.typevalue;
+                                                                      tempProductController
+                                                                          .packageTypeID
+                                                                          .value = value.docid;
+                                                                    }
+                                                                  },
+                                                                  dropdownDecoratorProps: DropDownDecoratorProps(
+                                                                      baseStyle: GoogleFonts.poppins(
+                                                                          fontSize:
+                                                                              13,
+                                                                          color: Colors
+                                                                              .black
+                                                                              .withOpacity(0.7))),
                                                                 )),
                                                               ),
                                                             ],

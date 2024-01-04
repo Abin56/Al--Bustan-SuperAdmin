@@ -2,7 +2,7 @@
 
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
-import 'package:canteen_superadmin_website/view/widgets/tempory_productList/textformFiled_widget/textFormFiled_.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/textformFiled_widget/textFormFiled_.dart';
 import 'package:flutter/material.dart';
 
 class ProductNameEditWidget extends StatelessWidget {

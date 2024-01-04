@@ -9,7 +9,7 @@ import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/dashboard_container.dart';
-import 'package:canteen_superadmin_website/view/widgets/tempory_productList/table_listview.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/table_listview.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 

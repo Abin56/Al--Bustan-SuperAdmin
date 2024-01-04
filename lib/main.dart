@@ -1,6 +1,5 @@
 import 'package:canteen_superadmin_website/firebase_options.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/admin_panel.dart';
-import 'package:canteen_superadmin_website/view/widgets/tempory_productList/table_listview.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/table_listview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Center(child: AdminHomeScreen()),
+        body: Center(child: TableListviewWidget()),
       ),
     );
   }

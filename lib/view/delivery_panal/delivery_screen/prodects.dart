@@ -1,7 +1,11 @@
+import 'package:canteen_superadmin_website/controller/delivery_controller/cart_controller.dart';
+import 'package:canteen_superadmin_website/model/delivery_model.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/container_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProductScreen extends StatelessWidget {
   const ProductScreen({super.key});
@@ -44,12 +48,14 @@ class ProductScreen extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: products.length,
-              itemBuilder: (context, index) {
-                final product = products[index];
+              itemCount: DeliveryModel.product.length,
+              itemBuilder: (BuildContext context, index) {
+                final cartController = Get.put(CartController());
+                final product = DeliveryModel.product[index];
                 return Padding(
                   padding: const EdgeInsets.all(10),
                   child: Column(
+                    key: key,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -67,7 +73,7 @@ class ProductScreen extends StatelessWidget {
                             width: size.width * 0.1,
                           ),
                           Text(
-                            product.name,
+                            product.productname,
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -87,7 +93,7 @@ class ProductScreen extends StatelessWidget {
                             width: size.width * 0.1,
                           ),
                           Text(
-                            '\$${product.singlePrice.toStringAsFixed(2)}',
+                            '\$${product.productprice.toString()}',
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -97,7 +103,10 @@ class ProductScreen extends StatelessWidget {
                             width: size.width * 0.1,
                           ),
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              cartController.addProductToCart(
+                                  DeliveryModel.product[index]);
+                            },
                             icon: const Icon(
                               Icons.shopping_bag,
                               color: AppColors.greyColor,
@@ -132,121 +141,7 @@ class ProductScreen extends StatelessWidget {
                         children: [
                           SizedBox(
                             width: size.width * 0.3,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: products.length,
-                              itemBuilder: (context, index) {
-                                final product = products[index];
-                                return Container(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    children: [
-                                      Image.network(
-                                        product.imageUrl,
-                                        width: 60,
-                                        height: 60,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              product.name,
-                                              style: const TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            Row(
-                                              children: [
-                                                const SizedBox(width: 5),
-                                                Text(
-                                                  '\$${product.singlePrice}',
-                                                ),
-                                                SizedBox(
-                                                  width: size.width * 0.03,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    IconButton(
-                                                      icon: const Icon(
-                                                          Icons.remove),
-                                                      onPressed: () {
-                                                        // Handle decrease count
-                                                      },
-                                                    ),
-                                                    const Text(
-                                                        '0'), // Replace with your count variable
-                                                    IconButton(
-                                                      icon:
-                                                          const Icon(Icons.add),
-                                                      onPressed: () {
-                                                        // Handle increase count
-                                                      },
-                                                    ),
-                                                    SizedBox(
-                                                      width: size.width * 0.04,
-                                                    ),
-                                                    Container(
-                                                      decoration: BoxDecoration(
-                                                        border: Border.all(
-                                                          color: AppColors
-                                                              .blackColor,
-                                                        ),
-                                                      ),
-                                                      height: 50,
-                                                      width: 90,
-                                                      child: TextField(
-                                                        style: const TextStyle(
-                                                          fontSize: 16.0,
-                                                          color: Colors.black,
-                                                        ),
-                                                        decoration:
-                                                            InputDecoration(
-                                                          hintText: "01",
-                                                          border:
-                                                              OutlineInputBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0),
-                                                            borderSide:
-                                                                BorderSide.none,
-                                                          ),
-                                                        ),
-                                                        cursorHeight:
-                                                            30, // Customized cursor height
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          const SizedBox(height: 5),
-                                          Text(
-                                            '\$${product.totalPrice.toStringAsFixed(2)}',
-                                            overflow: TextOverflow.ellipsis,
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
+                            child: CartShowDilog(size: size),
                           ),
                         ],
                         doyouwantActionButton: true,
@@ -272,30 +167,133 @@ class ProductScreen extends StatelessWidget {
   }
 }
 
-class Product {
-  final String name;
-  final String imageUrl;
-  final double singlePrice;
-  final double totalPrice;
+class CartShowDilog extends StatelessWidget {
+  final CollectionReference data =
+      FirebaseFirestore.instance.collection("userCart");
+  final CartController c = Get.put(CartController());
+  CartShowDilog({
+    super.key,
+    required this.size,
+  });
 
-  Product(
-      {required this.name,
-      required this.imageUrl,
-      required this.singlePrice,
-      required this.totalPrice});
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: FirebaseFirestore.instance.collection('userCart').snapshots(),
+      builder: (context, snapshot) {
+        return ListView.builder(
+          shrinkWrap: true,
+          itemCount: snapshot.data!.docs.length,
+          itemBuilder: (context, index) {
+            final product = DeliveryModel.product[index];
+            final data = snapshot.data!.docs[index];
+            return Container(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Image.network(
+                    data['productimage'],
+                    width: 60,
+                    height: 60,
+                    fit: BoxFit.cover,
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          product.productname,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            const SizedBox(width: 5),
+                            Text(data['productname']),
+                            SizedBox(
+                              width: size.width * 0.03,
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: IconButton(
+                                    icon: const Icon(Icons.remove),
+                                    onPressed: () {
+                                      c.decrement();
+                                    },
+                                  ),
+                                ),
+                                Obx(
+                                  () => Text(
+                                    "${c.cart.toString()}",
+                                    style: TextStyle(
+                                      fontSize: 30,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: AppColors.blackColor,
+                                    ),
+                                  ),
+                                  height: 50,
+                                  width: 90,
+                                  child: TextField(
+                                    style: const TextStyle(
+                                      fontSize: 16.0,
+                                      color: Colors.black,
+                                    ),
+                                    decoration: InputDecoration(
+                                      hintText: "01",
+                                      border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        borderSide: BorderSide.none,
+                                      ),
+                                    ),
+                                    cursorHeight:
+                                        30, // Customized cursor height
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: IconButton(
+                                    icon: const Icon(Icons.add),
+                                    onPressed: () {
+                                      c.increment();
+                                    },
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: size.width * 0.06,
+                                ),
+                                Text(
+                                  data['productprice'],
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
 }
-
-List products = [
-  Product(
-      name: 'Product A',
-      imageUrl:
-          'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8fA%3D%3D',
-      singlePrice: 45,
-      totalPrice: 100.0),
-  Product(
-      name: 'Product B',
-      imageUrl:
-          'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D',
-      singlePrice: 38,
-      totalPrice: 50.0),
-];

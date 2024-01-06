@@ -103,8 +103,9 @@ List<Widget> pages = [
   StoreRequetWidget(),
   const ProductDetails(),
   const DeliveryScreen(),
-  const ProductScreen(),
+  ProductScreen(),
   const DeliveryScreen(),
+  // const ProductScreen(),
   Text(sideMenu[2]),
   // const ProductScreen(),
   Center(

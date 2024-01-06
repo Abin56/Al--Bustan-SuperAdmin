@@ -4,7 +4,6 @@ import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class ProductTempWidget extends StatelessWidget {
@@ -13,7 +12,6 @@ class ProductTempWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sizeW = MediaQuery.of(context).size.width;
     final sizeH = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.all(20.0),

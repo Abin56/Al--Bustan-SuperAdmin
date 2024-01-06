@@ -49,7 +49,7 @@ class StoreRequetWidget extends StatelessWidget {
                       child: Row(
                         children: [
                           const ImageWidget(
-                              image: 'assets/drawer_images/inventory.png'),
+                              image: 'web_images/drawer_images/inventory.png'),
                           sWidtht10,
                           GooglePoppinsWidgets(
                             text: 'Add Store Request',
@@ -63,7 +63,6 @@ class StoreRequetWidget extends StatelessWidget {
                             child: const CupertinoSearchTextField(),
                           ),
                           sWidtht10,
-                          
                         ],
                       ),
                     ),

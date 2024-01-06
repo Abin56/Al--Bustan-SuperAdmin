@@ -46,7 +46,7 @@ class InventoryWidget extends StatelessWidget {
                       child: Row(
                         children: [
                           const ImageWidget(
-                              image: 'assets/drawer_images/inventory.png'),
+                              image: 'web_images/drawer_images/inventory.png'),
                           sWidtht10,
                           GooglePoppinsWidgets(
                             text: 'Invetory Management',
@@ -220,7 +220,7 @@ class InventoryWidget extends StatelessWidget {
 //                     child: Row(
 //                       children: [
 //                         const ImageWidget(
-//                             image: 'assets/drawer_images/inventory.png'),
+//                             image: 'web_images/drawer_images/inventory.png'),
 //                         sWidtht10,
 //                         GooglePoppinsWidgets(
 //                           text: 'Invetory Management',

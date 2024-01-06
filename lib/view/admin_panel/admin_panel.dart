@@ -51,7 +51,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                 SizedBox(
                                   height: 60,
                                   child: Image.asset(
-                                    'assets/AL - Bustan.png',
+                                    'web_images/AL - Bustan.png',
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -213,7 +213,7 @@ List<String> sideMenu = [
 //                                 SizedBox(
 //                                   height: 60,
 //                                   child: Image.asset(
-//                                     'assets/AL - Bustan.png',
+//                                     'web_images/AL - Bustan.png',
 //                                     fit: BoxFit.fill,
 //                                   ),
 //                                 ),

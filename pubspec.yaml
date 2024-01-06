@@ -78,18 +78,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/drawer_images/dashboard.png
-    - assets/drawer_images/inventory.png
-    - assets/drawer_images/invoice.png
-    - assets/drawer_images/product-return.png
-    - assets/drawer_images/purchase.png
-    - assets/drawer_images/sale.png
-    - assets/drawer_images/bill.png
-    - assets/drawer_images/customer.png
-    - assets/drawer_images/supplier.png
-    - assets/AL - Bustan.png
-    - assets/user.png
-    - assets/images/
+    - web_images/drawer_images/
+    - web_images/
+    - web_images/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

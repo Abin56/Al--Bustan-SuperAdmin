@@ -241,7 +241,7 @@ class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
                 child: Row(children: [
                   const CircleAvatar(
                     radius: 15,
-                    backgroundImage: AssetImage('assets/user.png'),
+                    backgroundImage: AssetImage('web_images/user.png'),
                   ),
                   sWidtht10,
                   GooglePoppinsWidgets(text: "AL BUSTAN", fontsize: 11),

@@ -58,7 +58,10 @@ class TableListviewWidget extends StatelessWidget {
                       padding: const EdgeInsets.all(20.0),
                       child: Row(children: [
                         GooglePoppinsWidgets(
-                            text: "Temporary List", fontsize: 20),
+                          text: "Temporary List",
+                          fontsize: 20,
+                          fontWeight: FontWeight.w500,
+                        ),
                         sWidtht40,
                         MaterialButton(
                           onPressed: () {

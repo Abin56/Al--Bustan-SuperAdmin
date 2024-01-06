@@ -280,6 +280,54 @@ class DrawerSelectedPagesSection extends StatelessWidget {
           // ],
         ),
         sHeight10,
+        // >
+        ExpansionTile(
+          leading: const DashBoardIconWidget(
+              image: 'assets/images/delivery panel.jpg'),
+          title: DashboardTextFontWidget(
+            title: 'Delivery Panal',
+          ),
+          children: <Widget>[
+            ListTile(
+              tileColor: selectedIndex == 5
+                  ? themeColorBlue.withOpacity(0.1)
+                  : Colors.transparent,
+              onTap: () {
+                index = 5;
+                onTap.call(index);
+              },
+              title: DashboardTextFontWidget(
+                title: 'Create Order',
+              ),
+            ),
+            ListTile(
+              tileColor: selectedIndex == 6
+                  ? themeColorBlue.withOpacity(0.1)
+                  : Colors.transparent,
+              onTap: () {
+                index = 6;
+                onTap.call(index);
+              },
+              title: DashboardTextFontWidget(
+                title: 'Final orders',
+              ),
+            ),
+            ListTile(
+              tileColor: selectedIndex == 7
+                  ? themeColorBlue.withOpacity(0.1)
+                  : Colors.transparent,
+              onTap: () {
+                index = 7;
+                onTap.call(index);
+              },
+              title: DashboardTextFontWidget(
+                title: 'Order Status',
+              ),
+            ),
+          ],
+        ),
+        // >>
+        sHeight10,
         ExpansionTile(
           leading: const DashBoardIconWidget(
               image: 'web_images/drawer_images/bill.png'),

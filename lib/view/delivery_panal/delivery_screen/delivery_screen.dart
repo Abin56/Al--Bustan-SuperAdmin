@@ -1,13 +1,12 @@
-import 'package:canteen_superadmin_website/view/admin_panel/delivery_screen/widgets/custom_button.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/delivery_screen/widgets/delivery_container_widget.dart';
+import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/widgets/delivery_container_widget.dart';
 import 'package:canteen_superadmin_website/view/textstysle/textstyle.dart';
+import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 
 class DeliveryScreen extends StatelessWidget {
-  final List<Map<String, String>> products;
-  const DeliveryScreen({super.key, required this.products});
+  const DeliveryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +23,38 @@ class DeliveryScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               //  <<<<<<< CustomButton >>>>>>>>>
-              CustomButton(
-                text: "text",
-                onPressed: () => showPopup(context),
+
+              ElevatedButton(
+                onPressed: () => customShowDilogBox(
+                  context: context,
+                  title: "title",
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('Close'),
+                    ),
+                  ],
+                  doyouwantActionButton: true,
+                ),
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: AppColors.greenColor,
+                  backgroundColor: AppColors.lightGreyColor,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 32.0, vertical: 16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24.0),
+                  ),
+                  elevation: 5.0,
+                  shadowColor: Colors.grey.withOpacity(0.5),
+                ),
+                child: const Text(
+                  'Click Me!',
+                  style: TextStyle(fontSize: 18.0),
+                ),
               ),
+
               //  <<<<<<< DropdownSearch >>>>>>>>>
               Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -91,7 +118,7 @@ class DeliveryScreen extends StatelessWidget {
           //  <<<<<<< list(table) >>>>>>>>>
           Container(
             decoration: const BoxDecoration(
-              color: AppColors.redColor,
+              color: AppColors.greenColor,
             ),
             child: const Padding(
               padding: EdgeInsets.all(8.0),
@@ -221,7 +248,7 @@ class DeliveryScreen extends StatelessWidget {
                             child: Center(
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: AppColors.redColor,
+                                  color: AppColors.greyColor,
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: const Padding(
@@ -272,26 +299,6 @@ class DeliveryScreen extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  void showPopup(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('aaaaaaaaaaa'),
-          content: const Text('kj cxb;kj  '),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Close'),
-            ),
-          ],
-        );
-      },
     );
   }
 }

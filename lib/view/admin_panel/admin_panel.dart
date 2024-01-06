@@ -1,5 +1,4 @@
 import 'package:canteen_superadmin_website/view/admin_panel/admin_appBar.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/delivery_screen/delivery_screen.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/drawer_pages/drawer_pages.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/product_temporary_list.dart';
@@ -7,6 +6,7 @@ import 'package:canteen_superadmin_website/view/admin_panel/inventory/store_requ
 import 'package:canteen_superadmin_website/view/admin_panel/product%20details/product_details.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
+import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/delivery_screen.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/dashboard_container.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/table_listview.dart';
@@ -101,9 +101,7 @@ List<Widget> pages = [
   InventoryWidget(),
   StoreRequetWidget(),
   const ProductDetails(),
-  const DeliveryScreen(
-    products: [],
-  ),
+  const DeliveryScreen(),
   Text(sideMenu[2]),
   const ProductDetails(),
   Center(

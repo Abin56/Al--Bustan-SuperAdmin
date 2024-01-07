@@ -1,4 +1,5 @@
 import 'package:canteen_superadmin_website/controller/store_controller.dart';
+import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:canteen_superadmin_website/model/product_model.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/widget/storekeeper_details.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
@@ -75,10 +76,7 @@ class InventoryWidget extends StatelessWidget {
                                                   BorderRadius.circular(10))),
                                     )
                                   ],
-                                  actiononTapfuction: () {
-                                    getStroreCtr.addCategory(
-                                        categoryCtr.text, context);
-                                  },
+                                  actiononTapfuction: () {},
                                   doyouwantActionButton: true);
                             },
                             child: Container(
@@ -152,8 +150,9 @@ class InventoryWidget extends StatelessWidget {
                                         itemBuilder:
                                             (BuildContext context, int index) {
                                           final productData =
-                                              ProductAddingModel.fromMap(
-                                                  snapshot.data!.docs[index]);
+                                              AllProductDetailModel.fromMap(
+                                                  snapshot.data!.docs[index]
+                                                      .data());
                                           return InventoryTileWidget(
                                               index: index,
                                               itemCode:
@@ -165,8 +164,8 @@ class InventoryWidget extends StatelessWidget {
                                               purchasDate: dateConveter(
                                                   DateTime.parse(
                                                       productData.expiryDate)),
-                                              stock:
-                                                  productData.quantityinStock);
+                                              stock: productData.quantityinStock
+                                                  .toString());
                                         },
                                         separatorBuilder:
                                             (BuildContext context, int index) {

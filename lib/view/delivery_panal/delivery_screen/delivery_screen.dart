@@ -1,12 +1,24 @@
+import 'package:canteen_superadmin_website/controller/delivery_controller/delivery_controller.dart';
+import 'package:canteen_superadmin_website/controller/employee_controller/employee_controller.dart';
+import 'package:canteen_superadmin_website/model/employe_createprofile_model.dart';
+import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/widgets/delivery_container_widget.dart';
+import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/textstysle/textstyle.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DeliveryScreen extends StatelessWidget {
-  const DeliveryScreen({super.key});
+  DeliveryScreen({super.key});
+
+  final employeeController = Get.put(EmployeeController());
+  final getDeliveryCtr = Get.put(DeliveryController());
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +148,7 @@ class DeliveryScreen extends StatelessWidget {
                   Expanded(
                     child: Center(
                       child: Text(
-                        "Order Name",
+                        "Order Quantity",
                         style: AppTextStyles.textStyle1,
                       ),
                     ),
@@ -144,15 +156,7 @@ class DeliveryScreen extends StatelessWidget {
                   Expanded(
                     child: Center(
                       child: Text(
-                        "Customer Name",
-                        style: AppTextStyles.textStyle1,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Text(
-                        "Location",
+                        "Order Time",
                         style: AppTextStyles.textStyle1,
                       ),
                     ),
@@ -187,115 +191,173 @@ class DeliveryScreen extends StatelessWidget {
           ),
 
           Expanded(
-            child: ListView.builder(
-              // itemCount: products.length,
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                // final product = products[index];
-                return Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Center(
-                              child: Text(
-                                (index + 1).toString(),
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTextStyles.deliveryTextStyle1,
-                              ),
-                            ),
-                          ),
-                          const Expanded(
-                            flex: 1,
-                            child: Center(
-                              child: Text(
-                                "name",
-                                // product['name'] ?? '',
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTextStyles.deliveryTextStyle1,
-                              ),
-                            ),
-                          ),
-                          const Expanded(
-                            flex: 1,
-                            child: Center(
-                              child: Text(
-                                "apple",
-                                // product['productName'] ?? '',
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTextStyles.deliveryTextStyle1,
-                              ),
-                            ),
-                          ),
-                          const Expanded(
-                            flex: 1,
-                            child: Center(
-                              child: Text(
-                                "123 Main St, City",
-                                // product['deliveredtime'] ?? '',
-
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTextStyles.deliveryTextStyle1,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: Center(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: AppColors.greyColor,
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(3),
-                                  child: Text(
-                                    "Pending",
-                                    overflow: TextOverflow.ellipsis,
-                                    style:
-                                        AppTextStyles.pendingDeliveryTextStyle1,
+            child: StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection('deliveryAssignList')
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (snapshot.data!.docs.isEmpty) {
+                    return Center(
+                      child:
+                          GooglePoppinsWidgets(text: "No data", fontsize: 15),
+                    );
+                  } else if (!snapshot.hasData) {
+                    return Center(
+                      child:
+                          GooglePoppinsWidgets(text: "No data", fontsize: 15),
+                    );
+                  } else {
+                    return ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        final data = snapshot.data!.docs[index];
+                        return Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Center(
+                                      child: Text(
+                                        data['orderId'],
+                                        overflow: TextOverflow.ellipsis,
+                                        style: AppTextStyles.deliveryTextStyle1,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Center(
+                                      child: Text(
+                                        data['orderCount'].toString(),
+                                        overflow: TextOverflow.ellipsis,
+                                        style: AppTextStyles.deliveryTextStyle1,
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Center(
+                                      child: Text(
+                                        dateConveter(
+                                          DateTime.parse(data['time']),
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                        style: AppTextStyles.deliveryTextStyle1,
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Center(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: AppColors.greyColor,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        child: Padding(
+                                          padding: EdgeInsets.all(3),
+                                          child: data['assignStatus'] == false
+                                              ? SizedBox(
+                                                  height: 60,
+                                                  child: DropdownSearch<
+                                                      EmployeeProfileCreateModel>(
+                                                    autoValidateMode:
+                                                        AutovalidateMode.always,
+                                                    asyncItems: (value) {
+                                                      employeeController
+                                                          .employeeList
+                                                          .clear();
+
+                                                      return employeeController
+                                                          .fetchEmployees();
+                                                    },
+                                                    itemAsString: (value) =>
+                                                        value.name,
+                                                    onChanged: (value) async {
+                                                      // employeeController.employeeUID.value = true;
+                                                      if (value != null) {
+                                                        employeeController
+                                                                .employeeUID
+                                                                .value =
+                                                            value.docid;
+                                                        employeeController
+                                                                .employeeName =
+                                                            value.name;
+                                                      }
+                                                      final employeeID = Get.find<
+                                                              EmployeeController>()
+                                                          .employeeUID;
+                                                      final emplopeeName = Get.find<
+                                                              EmployeeController>()
+                                                          .employeeName;
+                                                      getDeliveryCtr
+                                                          .createDeliveryOrderToEmployee(
+                                                              employeeName:
+                                                                  emplopeeName,
+                                                              employeeId:
+                                                                  employeeID
+                                                                      .value,
+                                                              deliverydata:
+                                                                  data);
+                                                    },
+                                                    dropdownDecoratorProps:
+                                                        DropDownDecoratorProps(
+                                                      baseStyle:
+                                                          GoogleFonts.poppins(
+                                                        fontSize: 13,
+                                                        color: Colors.black
+                                                            .withOpacity(0.7),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )
+                                              : Text('Pending'),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const Expanded(
+                                    flex: 1,
+                                    child: Center(
+                                      child: Text(
+                                        // product['deliveredtime'] ?? '',
+                                        "11.30",
+                                        overflow: TextOverflow.ellipsis,
+                                        style: AppTextStyles.deliveryTextStyle1,
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Center(
+                                      child: Text(
+                                        data['price'].toString(),
+                                        overflow: TextOverflow.ellipsis,
+                                        style: AppTextStyles.deliveryTextStyle1,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ),
-                          const Expanded(
-                            flex: 1,
-                            child: Center(
-                              child: Text(
-                                // product['deliveredtime'] ?? '',
-                                "11.30",
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTextStyles.deliveryTextStyle1,
-                              ),
-                            ),
-                          ),
-                          const Expanded(
-                            flex: 1,
-                            child: Center(
-                              child: Text(
-                                // product['price'] ?? '22',
-                                "120",
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTextStyles.deliveryTextStyle1,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Divider(
-                      color: Colors.grey.shade200,
-                      height: 3,
-                    )
-                  ],
-                );
-              },
-            ),
+                            Divider(
+                              color: Colors.grey.shade200,
+                              height: 3,
+                            )
+                          ],
+                        );
+                      },
+                    );
+                  }
+                }),
           ),
         ],
       ),

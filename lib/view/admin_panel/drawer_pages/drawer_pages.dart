@@ -81,6 +81,42 @@ class DrawerSelectedPagesSection extends StatelessWidget {
                 title: 'Excel Data',
               ),
             ),
+            ListTile(
+              tileColor: selectedIndex == 3
+                  ? themeColorBlue.withOpacity(0.1)
+                  : Colors.transparent,
+              onTap: () {
+                index = 3;
+                onTap.call(index);
+              },
+              title: DashboardTextFontWidget(
+                title: 'Category',
+              ),
+            ),
+            ListTile(
+              tileColor: selectedIndex == 4
+                  ? themeColorBlue.withOpacity(0.1)
+                  : Colors.transparent,
+              onTap: () {
+                index = 4;
+                onTap.call(index);
+              },
+              title: DashboardTextFontWidget(
+                title: 'Subcategory',
+              ),
+            ),
+            ListTile(
+              tileColor: selectedIndex == 5
+                  ? themeColorBlue.withOpacity(0.1)
+                  : Colors.transparent,
+              onTap: () {
+                index = 5;
+                onTap.call(index);
+              },
+              title: DashboardTextFontWidget(
+                title: 'Quantity',
+              ),
+            ),
           ],
         ),
         sHeight10,
@@ -289,11 +325,11 @@ class DrawerSelectedPagesSection extends StatelessWidget {
           ),
           children: <Widget>[
             ListTile(
-              tileColor: selectedIndex == 5
+              tileColor: selectedIndex == 8
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
               onTap: () {
-                index = 5;
+                index = 8;
                 onTap.call(index);
               },
               title: DashboardTextFontWidget(
@@ -301,11 +337,11 @@ class DrawerSelectedPagesSection extends StatelessWidget {
               ),
             ),
             ListTile(
-              tileColor: selectedIndex == 6
+              tileColor: selectedIndex == 9
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
               onTap: () {
-                index = 6;
+                index = 9;
                 onTap.call(index);
               },
               title: DashboardTextFontWidget(

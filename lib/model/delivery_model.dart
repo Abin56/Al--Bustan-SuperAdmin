@@ -1,42 +1,75 @@
-class DeliveryModel {
-  final String productname;
-  final String productprice;
-  final String imageUrl;
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
 
+class DeliveryModel {
+  String orderId;
+  int orderCount;
+  String status;
+  String time;
   DeliveryModel({
-    required this.productname,
-    required this.productprice,
-    required this.imageUrl,
+    required this.orderId,
+    required this.orderCount,
+    required this.status,
+    required this.time,
   });
 
-  factory DeliveryModel.fromJson(Map<String, dynamic> json) {
+  DeliveryModel copyWith({
+    String? orderId,
+    int? orderCount,
+    String? status,
+    String? time,
+  }) {
     return DeliveryModel(
-      productname: json['productname'] ?? '',
-      productprice: (json['productprice'] ?? 0).toDouble(),
-      imageUrl: json['imageUrl'] ?? '',
+      orderId: orderId ?? this.orderId,
+      orderCount: orderCount ?? this.orderCount,
+      status: status ?? this.status,
+      time: time ?? this.time,
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'productname': productname,
-      'productprice': productprice,
-      'imageUrl': imageUrl,
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'orderId': orderId,
+      'orderCount': orderCount,
+      'status': status,
+      'time': time,
     };
   }
 
-  static List<DeliveryModel> product = [
-    DeliveryModel(
-      productname: 'a',
-      productprice: "10",
-      imageUrl:
-          'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8fA%3D%3D',
-    ),
-    DeliveryModel(
-      productname: 'b',
-      productprice: "12",
-      imageUrl:
-          'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D',
-    ),
-  ];
+  factory DeliveryModel.fromMap(Map<String, dynamic> map) {
+    return DeliveryModel(
+      orderId: map['orderId'] ?? '',
+      orderCount: map['orderCount'] ?? '',
+      status: map['status'] ?? '',
+      time: map['time'] ?? '',
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory DeliveryModel.fromJson(String source) =>
+      DeliveryModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() {
+    return 'DeliveryModel(orderId: $orderId, orderCount: $orderCount, status: $status, time: $time)';
+  }
+
+  @override
+  bool operator ==(covariant DeliveryModel other) {
+    if (identical(this, other)) return true;
+
+    return other.orderId == orderId &&
+        other.orderCount == orderCount &&
+        other.status == status &&
+        other.time == time;
+  }
+
+  @override
+  int get hashCode {
+    return orderId.hashCode ^
+        orderCount.hashCode ^
+        status.hashCode ^
+        time.hashCode;
+  }
 }

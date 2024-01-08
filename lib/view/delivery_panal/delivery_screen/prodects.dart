@@ -18,111 +18,112 @@ class ProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return CustomContainer(
-      height: size.height - 66,
-      width: size.width,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: SizedBox(
-              height: size.height * 0.045,
-              width: size.width * 0.78,
-              child: Row(
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: CustomContainer(
+        height: size.height - 66,
+        width: size.width,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 50,
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Search...',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    IconButton(
+                      icon: const Icon(Icons.search),
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+              ),
+              const DeliveryHeadWidget(),
+              Expanded(
+                child: StreamBuilder(
+                    stream: getDeliveryCtr.firestore
+                        .collection("AllProduct")
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (snapshot.data!.docs.isEmpty) {
+                        return Center(
+                          child: GooglePoppinsWidgets(
+                              text: "No data", fontsize: 15),
+                        );
+                      } else if (!snapshot.hasData) {
+                        return Center(
+                          child: GooglePoppinsWidgets(
+                              text: "No data", fontsize: 15),
+                        );
+                      } else {
+                        return ListView.separated(
+                          itemCount: snapshot.data!.docs.length,
+                          separatorBuilder: (context, index) {
+                            return const Divider();
+                          },
+                          itemBuilder: (BuildContext context, index) {
+                            final data = AllProductDetailModel.fromMap(
+                                snapshot.data!.docs[index].data());
+                            return DeliveryProductTile(
+                              data: data,
+                            );
+                          },
+                        );
+                      }
+                    }),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  const Expanded(
-                    child: TextField(
-                      // controller: ,
-                      decoration: InputDecoration(
-                        hintText: 'Search...',
-                        border: OutlineInputBorder(),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 10, bottom: 10),
+                      child: FloatingActionButton.extended(
+                        onPressed: () {
+                          // <<<<  showDialog  >>>>>>>
+                          customShowDilogBox(
+                            context: context,
+                            title: "Cart",
+                            children: [CartWiget()],
+                            actiononTapfuction: () async {
+                              final newlist =
+                                  await getDeliveryCtr.getCartList();
+                              getDeliveryCtr.cartToDeliveryOrder();
+                            },
+                            doyouwantActionButton: true,
+                          );
+                        },
+                        backgroundColor: Colors.green,
+                        label: const Text(
+                          'Go To Cart',
+                          // selectionColor: AppColors.blackColor,
+                        ),
+                        icon: const Icon(
+                          Icons.add,
+                          color: AppColors.whiteColor,
+                        ),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  IconButton(
-                    icon: const Icon(Icons.search),
-                    onPressed: () {
-                      // print('Searching for: ${_searchController.text}');
-                    },
-                  ),
                 ],
-              ),
-            ),
-          ),
-          const DeliveryHeadWidget(),
-          Expanded(
-            child: StreamBuilder(
-                stream: getDeliveryCtr.firestore
-                    .collection("AllProduct")
-                    .snapshots(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (snapshot.data!.docs.isEmpty) {
-                    return Center(
-                      child:
-                          GooglePoppinsWidgets(text: "No data", fontsize: 15),
-                    );
-                  } else if (!snapshot.hasData) {
-                    return Center(
-                      child:
-                          GooglePoppinsWidgets(text: "No data", fontsize: 15),
-                    );
-                  } else {
-                    return ListView.separated(
-                      itemCount: snapshot.data!.docs.length,
-                      separatorBuilder: (context, index) {
-                        return const Divider();
-                      },
-                      itemBuilder: (BuildContext context, index) {
-                        final data = AllProductDetailModel.fromMap(
-                            snapshot.data!.docs[index].data());
-                        return DeliveryProductTile(
-                          data: data,
-                        );
-                      },
-                    );
-                  }
-                }),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 10, bottom: 10),
-                  child: FloatingActionButton.extended(
-                    onPressed: () {
-                      // <<<<  showDialog  >>>>>>>
-                      customShowDilogBox(
-                        context: context,
-                        title: "Cart",
-                        children: [CartWiget()],
-                        actiononTapfuction: () async {
-                          final newlist = await getDeliveryCtr.getCartList();
-                          getDeliveryCtr.cartToDeliveryOrder();
-                        },
-                        doyouwantActionButton: true,
-                      );
-                    },
-                    backgroundColor: Colors.green,
-                    label: const Text(
-                      'Go To Cart',
-                      // selectionColor: AppColors.blackColor,
-                    ),
-                    icon: const Icon(
-                      Icons.add,
-                      color: AppColors.whiteColor,
-                    ),
-                  ),
-                ),
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -385,31 +386,30 @@ class CartWiget extends StatelessWidget {
                               ],
                             )),
                         Expanded(
-                            flex: 1,
-                            child: Column(
-                              children: [
-                                GooglePoppinsWidgets(
-                                    text: "Available Qty", fontsize: 16),
-                                GooglePoppinsWidgets(
-                                    text: data.availablequantityinStock
-                                        .toString(),
-                                    fontsize: 16),
-                                Obx(() {
-                                  return Column(
-                                    children: [
-                                      GooglePoppinsWidgets(
-                                          text: data.totalAmount.toString(),
-                                          fontsize: 16),
-                                      GooglePoppinsWidgets(
-                                          text: getSingleDeliveyCtr
-                                              .totalAmount.value
-                                              .toString(),
-                                          fontsize: 16)
-                                    ],
-                                  );
-                                })
-                              ],
-                            ))
+                          flex: 1,
+                          child: Column(
+                            children: [
+                              GooglePoppinsWidgets(
+                                  text: "Available Qty", fontsize: 16),
+                              GooglePoppinsWidgets(
+                                  text:
+                                      data.availablequantityinStock.toString(),
+                                  fontsize: 16),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Column(
+                            children: [
+                              GooglePoppinsWidgets(
+                                  text: "Totat Amount", fontsize: 16),
+                              GooglePoppinsWidgets(
+                                  text: data.totalAmount.toString(),
+                                  fontsize: 16),
+                            ],
+                          ),
+                        )
                       ],
                     );
                   },

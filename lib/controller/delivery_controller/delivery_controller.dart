@@ -1,6 +1,7 @@
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:canteen_superadmin_website/model/cart_model.dart';
 import 'package:canteen_superadmin_website/view/constant/const.dart';
+import 'package:canteen_superadmin_website/view/widgets/id_generator/id_generator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
@@ -9,14 +10,9 @@ class DeliveryController extends GetxController {
   final firestore = FirebaseFirestore.instance;
 
   RxInt quantity = 0.obs;
-  RxInt singleItemTotalAmount = 0.obs;
-  RxInt totalAmount = 0.obs;
+  // RxInt singleItemTotalAmount = 0.obs;
+  // RxInt totalAmount = 0.obs;
 
-  // TextEditingController quantityCtr = TextEditingController();
-
-  // addQuantity() {
-  //   quantity.value = quantity.value + 1;
-  // }
   addQuantity(CartModel data) {
     if (data.quantity < data.availablequantityinStock) {
       int qty = data.quantity + 1;
@@ -31,11 +27,6 @@ class DeliveryController extends GetxController {
     }
   }
 
-  // lessQuantity() {
-  //   if (quantity.value > 0) {
-  //     quantity.value = quantity.value - 1;
-  //   }
-  // }
   lessQuantity(CartModel data) {
     if (data.quantity > 0) {
       int qty = data.quantity - 1;
@@ -91,41 +82,10 @@ class DeliveryController extends GetxController {
         .set(data.toMap());
   }
 
-  // cartToDeliveryOrder(List<AllProductDetailModel> allCartData) async {
-  //   // fuction for products in carts in going to another list deliver list for assign//
-  //   int amount = 0;
-  //   final uuid = const Uuid().v1();
-  //   for (int i = 0; i < allCartData.length; i++) {
-  //     final uuid2 = const Uuid().v1();
-  //     firestore
-  //         .collection("deliveryAssignList")
-  //         .doc(uuid)
-  //         .collection("orderProducts")
-  //         .doc(uuid2)
-  //         .set(allCartData[i].toMap());
-  //   }
-  //   final dataList = await firestore.collection('tempCart').get();
-  //   for (var element in dataList.docs) {
-  //     int datavalue = element['amount'];
-  //     amount = amount + datavalue;
-  //   }
-  //   final time = DateTime.now();
-  //   final data = {
-  //     'time': time,
-  //     "docId": uuid,
-  //     "orderCount": allCartData.length,
-  //     "orderId": uuid,
-  //     "assignStatus": false,
-  //     "price": amount
-  //   };
-  //   firestore.collection("deliveryAssignList").doc(uuid).set(data);
-  //   showToast(msg: "Delivery Request added");
-  //   Get.back();
-  // }
-
   cartToDeliveryOrder() async {
     int amount = 0;
-    final uuid = const Uuid().v1();
+    String id = idGenerator();
+    final orderid = '#' + id;
     final cartProductS =
         await firestore.collectionGroup('CartProductDetails').get();
     final cartProductsList = cartProductS.docs
@@ -135,7 +95,7 @@ class DeliveryController extends GetxController {
       final uuid2 = const Uuid().v1();
       firestore
           .collection("deliveryAssignList")
-          .doc(uuid)
+          .doc(orderid)
           .collection("orderProducts")
           .doc(uuid2)
           .set(cartProductsList[i].toMap());
@@ -151,15 +111,15 @@ class DeliveryController extends GetxController {
 
     final data = {
       'time': time,
-      "docId": uuid,
+      "docId": orderid,
       "orderCount": cartProductsList.length,
-      "orderId": uuid,
+      "orderId": orderid,
       "assignStatus": false,
       "price": amount,
       "employeeName": '',
       "employeeId": ''
     };
-    firestore.collection("deliveryAssignList").doc(uuid).set(data);
+    firestore.collection("deliveryAssignList").doc(orderid).set(data);
     showToast(msg: "Delivery Request added");
     Get.back();
 
@@ -176,11 +136,6 @@ class DeliveryController extends GetxController {
           .delete();
     }
   }
-
-  // addtoTempCart(int quantity, int amount, docId) {
-  //   final data = {"quantity": quantity, "amount": amount, "docId": docId};
-  //   firestore.collection('tempCart').doc(docId).set(data);
-  // }
 
   Future<List<CartModel>> getCartList() async {
     final data = await firestore.collection('DeliveryCart').get();

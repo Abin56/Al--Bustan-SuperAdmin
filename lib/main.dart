@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: WelcomeScreen(),
-        // home: Scaffold(body: DeliveryScreen())
-        );
+      debugShowCheckedModeBanner: false,
+      home: WelcomeScreen(),
+      // home: Scaffold(body: ProductScreen()),
+    );
   }
 }

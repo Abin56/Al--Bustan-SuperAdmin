@@ -22,6 +22,13 @@ class DeliveryController extends GetxController {
         'quantity': qty,
       };
       firestore.collection('DeliveryCart').doc(data.docId).update(qtydata);
+
+      firestore
+          .collection('DeliveryCart')
+          .doc(data.docId)
+          .collection("CartProductDetails")
+          .doc(data.productDetailsDocId)
+          .update({'quantityinStock': qty});
     } else {
       showToast(msg: "Maximum quantity added");
     }
@@ -36,6 +43,12 @@ class DeliveryController extends GetxController {
         'quantity': qty,
       };
       firestore.collection('DeliveryCart').doc(data.docId).update(qtydata);
+      firestore
+          .collection('DeliveryCart')
+          .doc(data.docId)
+          .collection("CartProductDetails")
+          .doc(data.productDetailsDocId)
+          .update({'quantityinStock': qty});
     } else {
       showToast(msg: "Please add quantity");
     }
@@ -50,6 +63,12 @@ class DeliveryController extends GetxController {
         'quantity': qty,
       };
       firestore.collection('DeliveryCart').doc(data.docId).update(qtydata);
+      firestore
+          .collection('DeliveryCart')
+          .doc(data.docId)
+          .collection("CartProductDetails")
+          .doc(data.productDetailsDocId)
+          .update({'quantityinStock': qty});
     } else {
       showToast(msg: "Please enter valid quantity");
     }
@@ -80,6 +99,12 @@ class DeliveryController extends GetxController {
         .collection("CartProductDetails")
         .doc(data.docId)
         .set(data.toMap());
+    firestore
+        .collection('DeliveryCart')
+        .doc(uuid)
+        .collection("CartProductDetails")
+        .doc(data.docId)
+        .update({'quantityinStock': 0});
   }
 
   cartToDeliveryOrder() async {
@@ -115,6 +140,7 @@ class DeliveryController extends GetxController {
       "orderCount": cartProductsList.length,
       "orderId": orderid,
       "assignStatus": false,
+      "isDelivered": false,
       "price": amount,
       "employeeName": '',
       "employeeId": ''

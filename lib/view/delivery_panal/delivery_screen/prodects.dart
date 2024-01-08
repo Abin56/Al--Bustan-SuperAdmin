@@ -196,8 +196,8 @@ class DeliveryProductTile extends StatelessWidget {
             children: [
               Expanded(
                 child: SizedBox(
-                  width: size.width * 0.01,
-                  height: size.height * 0.2,
+                  width: size.width * 0.005,
+                  height: size.height * 0.1,
                   // decoration: BoxDecoration(),
                   child: Image.network(
                     'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8fA%3D%3D',
@@ -297,126 +297,137 @@ class CartWiget extends StatelessWidget {
                 child: GooglePoppinsWidgets(text: "No data", fontsize: 15),
               );
             } else {
-              return ListView.separated(
-                  itemBuilder: (context, index) {
-                    List<TextEditingController> controllers = List.generate(
-                      snapshot.data!.docs.length,
-                      (index) => TextEditingController(),
-                    );
-                    final data =
-                        CartModel.fromMap(snapshot.data!.docs[index].data());
-                    controllers[index].text = data.quantity.toString();
+              return Column(
+                children: [
+                  CartHeadWidget(),
+                  Expanded(
+                    child: ListView.separated(
+                        itemBuilder: (context, index) {
+                          List<TextEditingController> controllers =
+                              List.generate(
+                            snapshot.data!.docs.length,
+                            (index) => TextEditingController(),
+                          );
+                          final data = CartModel.fromMap(
+                              snapshot.data!.docs[index].data());
+                          controllers[index].text = data.quantity.toString();
 
-                    return Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Center(
-                              child: GooglePoppinsWidgets(
-                                  text: data.productname, fontsize: 16)),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            height: 60,
-                            decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                        'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8fA%3D%3D'))),
-                          ),
-                        ),
-                        Expanded(
-                            flex: 2,
+                          return Container(
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    getSingleDeliveyCtr.lessQuantity(data);
-                                  },
+                                Expanded(
+                                  flex: 1,
                                   child: Container(
-                                    height: SizeW * 0.02,
-                                    width: SizeW * 0.02,
-                                    decoration: BoxDecoration(
-                                        color: cWhite,
-                                        borderRadius: BorderRadius.circular(10),
-                                        boxShadow: const [
-                                          BoxShadow(blurRadius: 0.5),
-                                        ]),
-                                    child: Center(
+                                    height: 60,
+                                    decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                            image: NetworkImage(
+                                                'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8fA%3D%3D'),
+                                            fit: BoxFit.cover)),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Center(
                                       child: GooglePoppinsWidgets(
-                                          text: "-", fontsize: 16),
-                                    ),
-                                  ),
+                                          text: data.productname,
+                                          fontsize: 16)),
                                 ),
-                                sWidtht10,
-                                SizedBox(
-                                    height: SizeW * 0.03,
-                                    width: SizeW * 0.05,
-                                    child: TextField(
-                                      onChanged: (value) {
-                                        getSingleDeliveyCtr.onChangeFuction(
-                                            data, value);
-                                      },
-                                      keyboardType: TextInputType.number,
-                                      controller: controllers[index],
-                                      decoration: const InputDecoration(
-                                          border: OutlineInputBorder()),
+                                Expanded(
+                                    flex: 2,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            getSingleDeliveyCtr
+                                                .lessQuantity(data);
+                                          },
+                                          child: Container(
+                                            height: SizeW * 0.02,
+                                            width: SizeW * 0.02,
+                                            decoration: BoxDecoration(
+                                                color: cWhite,
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                boxShadow: const [
+                                                  BoxShadow(blurRadius: 0.5),
+                                                ]),
+                                            child: Center(
+                                              child: GooglePoppinsWidgets(
+                                                  text: "-", fontsize: 16),
+                                            ),
+                                          ),
+                                        ),
+                                        sWidtht10,
+                                        SizedBox(
+                                            height: SizeW * 0.03,
+                                            width: SizeW * 0.04,
+                                            child: TextField(
+                                              onChanged: (value) {
+                                                getSingleDeliveyCtr
+                                                    .onChangeFuction(
+                                                        data, value);
+                                              },
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: controllers[index],
+                                              decoration: const InputDecoration(
+                                                  border: OutlineInputBorder()),
+                                            )),
+                                        sWidtht10,
+                                        GestureDetector(
+                                          onTap: () {
+                                            getSingleDeliveyCtr
+                                                .addQuantity(data);
+                                          },
+                                          child: Container(
+                                            height: SizeW * 0.02,
+                                            width: SizeW * 0.02,
+                                            decoration: BoxDecoration(
+                                                color: cWhite,
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                boxShadow: const [
+                                                  BoxShadow(blurRadius: 0.5),
+                                                ]),
+                                            child: iconWidget(
+                                                icon: Icons.add,
+                                                color: cBlack,
+                                                size: 16),
+                                          ),
+                                        ),
+                                      ],
                                     )),
-                                sWidtht10,
-                                GestureDetector(
-                                  onTap: () {
-                                    getSingleDeliveyCtr.addQuantity(data);
-                                  },
-                                  child: Container(
-                                    height: SizeW * 0.02,
-                                    width: SizeW * 0.02,
-                                    decoration: BoxDecoration(
-                                        color: cWhite,
-                                        borderRadius: BorderRadius.circular(10),
-                                        boxShadow: const [
-                                          BoxShadow(blurRadius: 0.5),
-                                        ]),
-                                    child: iconWidget(
-                                        icon: Icons.add,
-                                        color: cBlack,
-                                        size: 16),
+                                Expanded(
+                                  flex: 1,
+                                  child: Center(
+                                    child: GooglePoppinsWidgets(
+                                        text: data.availablequantityinStock
+                                            .toString(),
+                                        fontsize: 16),
                                   ),
                                 ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Center(
+                                    child: GooglePoppinsWidgets(
+                                        text: data.totalAmount.toString(),
+                                        fontsize: 16),
+                                  ),
+                                )
                               ],
-                            )),
-                        Expanded(
-                          flex: 1,
-                          child: Column(
-                            children: [
-                              GooglePoppinsWidgets(
-                                  text: "Available Qty", fontsize: 16),
-                              GooglePoppinsWidgets(
-                                  text:
-                                      data.availablequantityinStock.toString(),
-                                  fontsize: 16),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Column(
-                            children: [
-                              GooglePoppinsWidgets(
-                                  text: "Totat Amount", fontsize: 16),
-                              GooglePoppinsWidgets(
-                                  text: data.totalAmount.toString(),
-                                  fontsize: 16),
-                            ],
-                          ),
-                        )
-                      ],
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return const Divider();
-                  },
-                  itemCount: snapshot.data!.docs.length);
+                            ),
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return const Divider();
+                        },
+                        itemCount: snapshot.data!.docs.length),
+                  ),
+                ],
+              );
             }
           }),
     );
@@ -432,6 +443,71 @@ class CartWiget extends StatelessWidget {
 //   Widget build(BuildContext context) {
 //     final SizeW = MediaQuery.of(context).size.width;
 //     getDeliveyCtr.quantityCtr.text = data.quantity.toString();
-//     return 
+//     return
 //   }
 // }
+
+class CartHeadWidget extends StatelessWidget {
+  const CartHeadWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Center(
+              child: GooglePoppinsWidgets(
+                text: "Image",
+                fontsize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Center(
+              child: GooglePoppinsWidgets(
+                text: "Name",
+                fontsize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Center(
+              child: GooglePoppinsWidgets(
+                text: "Qty",
+                fontsize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Center(
+              child: GooglePoppinsWidgets(
+                text: "Available Qty",
+                fontsize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Center(
+              child: GooglePoppinsWidgets(
+                text: "Amount",
+                fontsize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

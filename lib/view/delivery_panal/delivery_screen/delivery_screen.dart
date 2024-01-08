@@ -276,48 +276,52 @@ class DeliveryScreen extends StatelessWidget {
                                                   BorderRadius.circular(5),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsets.all(3),
-                                              child: data['assignStatus'] ==
-                                                      false
-                                                  ? SizedBox(
-                                                      height: 60,
-                                                      child: DropdownSearch<
-                                                          EmployeeProfileCreateModel>(
-                                                        autoValidateMode:
-                                                            AutovalidateMode
-                                                                .always,
-                                                        asyncItems: (value) {
-                                                          employeeController
-                                                              .employeeList
-                                                              .clear();
+                                              padding: const EdgeInsets.all(3),
+                                              child: data['isDelivered'] == true
+                                                  ? const Text("Delivered")
+                                                  : data['assignStatus'] ==
+                                                          false
+                                                      ? SizedBox(
+                                                          height: 60,
+                                                          child: DropdownSearch<
+                                                              EmployeeProfileCreateModel>(
+                                                            autoValidateMode:
+                                                                AutovalidateMode
+                                                                    .always,
+                                                            asyncItems:
+                                                                (value) {
+                                                              employeeController
+                                                                  .employeeList
+                                                                  .clear();
 
-                                                          return employeeController
-                                                              .fetchEmployees();
-                                                        },
-                                                        itemAsString: (value) =>
-                                                            value.name,
-                                                        onChanged:
-                                                            (value) async {
-                                                          // employeeController.employeeUID.value = true;
-                                                          if (value != null) {
-                                                            employeeController
-                                                                    .employeeUID
-                                                                    .value =
-                                                                value.docid;
-                                                            employeeController
-                                                                    .employeeName =
-                                                                value.name;
-                                                          }
-                                                          final employeeID =
-                                                              Get.find<
-                                                                      EmployeeController>()
-                                                                  .employeeUID;
-                                                          final emplopeeName =
-                                                              Get.find<
-                                                                      EmployeeController>()
-                                                                  .employeeName;
-                                                          getDeliveryCtr
-                                                              .createDeliveryOrderToEmployee(
+                                                              return employeeController
+                                                                  .fetchEmployees();
+                                                            },
+                                                            itemAsString:
+                                                                (value) =>
+                                                                    value.name,
+                                                            onChanged:
+                                                                (value) async {
+                                                              // employeeController.employeeUID.value = true;
+                                                              if (value !=
+                                                                  null) {
+                                                                employeeController
+                                                                        .employeeUID
+                                                                        .value =
+                                                                    value.docid;
+                                                                employeeController
+                                                                        .employeeName =
+                                                                    value.name;
+                                                              }
+                                                              final employeeID =
+                                                                  Get.find<
+                                                                          EmployeeController>()
+                                                                      .employeeUID;
+                                                              final emplopeeName =
+                                                                  Get.find<
+                                                                          EmployeeController>()
+                                                                      .employeeName;
+                                                              getDeliveryCtr.createDeliveryOrderToEmployee(
                                                                   employeeName:
                                                                       emplopeeName,
                                                                   employeeId:
@@ -325,20 +329,58 @@ class DeliveryScreen extends StatelessWidget {
                                                                           .value,
                                                                   deliverydata:
                                                                       data);
-                                                        },
-                                                        dropdownDecoratorProps:
-                                                            DropDownDecoratorProps(
-                                                          baseStyle: GoogleFonts
-                                                              .poppins(
-                                                            fontSize: 13,
-                                                            color: Colors.black
-                                                                .withOpacity(
-                                                                    0.7),
+                                                            },
+                                                            dropdownDecoratorProps:
+                                                                DropDownDecoratorProps(
+                                                              baseStyle:
+                                                                  GoogleFonts
+                                                                      .poppins(
+                                                                fontSize: 13,
+                                                                color: Colors
+                                                                    .black
+                                                                    .withOpacity(
+                                                                        0.7),
+                                                              ),
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  : Text('Pending'),
+                                                        )
+                                                      : StreamBuilder(
+                                                          stream: FirebaseFirestore
+                                                              .instance
+                                                              .collection(
+                                                                  'EmployeeProfile')
+                                                              .doc(data[
+                                                                  'employeeId'])
+                                                              .collection(
+                                                                  'DeliveryRequest')
+                                                              .doc(data[
+                                                                  'orderId'])
+                                                              .collection(
+                                                                  'productsDetails')
+                                                              .snapshots(),
+                                                          builder: (context,
+                                                              statussnap) {
+                                                            if (snapshot
+                                                                .hasData) {
+                                                              if (statussnap
+                                                                      .connectionState ==
+                                                                  ConnectionState
+                                                                      .waiting) {
+                                                                return const SizedBox();
+                                                              } else if (statussnap
+                                                                  .data!
+                                                                  .docs
+                                                                  .isEmpty) {
+                                                                return const Text(
+                                                                    "Pickuped");
+                                                              } else {
+                                                                return const Text(
+                                                                    'Pending');
+                                                              }
+                                                            } else {
+                                                              return const Text('');
+                                                            }
+                                                          }),
                                             ),
                                           ),
                                         ),

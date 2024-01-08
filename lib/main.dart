@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: WelcomeScreen(),
-      // home: Scaffold(body: ProductScreen()),
+      // home: Scaffold(body: CartWiget()),
     );
   }
 }

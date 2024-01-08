@@ -9,7 +9,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+    // webProvider: ReCaptchaV3Provider('recaptcha-v3-site-key'),
   runApp(const MyApp());
 }
 

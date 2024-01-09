@@ -5,7 +5,6 @@ import 'package:canteen_superadmin_website/view/constant/constant.validate.dart'
 import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/widgets/delivery_container_widget.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/textstysle/textstyle.dart';
-import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -21,126 +20,46 @@ class DeliveryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final String? selectedValue;
     Size size = MediaQuery.of(context).size;
 
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: DeliveryContainer(
-        height: size.height,
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: 1,
+          ),
+        ),
+        height: size.height * 0.88,
         width: size.width,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     //  <<<<<<< CustomButton >>>>>>>>>
-
-              //     ElevatedButton(
-              //       onPressed: () => customShowDilogBox(
-              //         context: context,
-              //         title: "title",
-              //         children: [
-              //           TextButton(
-              //             onPressed: () {
-              //               Navigator.of(context).pop();
-              //             },
-              //             child: const Text('Close'),
-              //           ),
-              //         ],
-              //         doyouwantActionButton: true,
-              //       ),
-              //       style: ElevatedButton.styleFrom(
-              //         foregroundColor: AppColors.greenColor,
-              //         backgroundColor: AppColors.lightGreyColor,
-              //         padding: const EdgeInsets.symmetric(
-              //             horizontal: 32.0, vertical: 16.0),
-              //         shape: RoundedRectangleBorder(
-              //           borderRadius: BorderRadius.circular(24.0),
-              //         ),
-              //         elevation: 5.0,
-              //         shadowColor: Colors.grey.withOpacity(0.5),
-              //       ),
-              //       child: const Text(
-              //         'Click Me!',
-              //         style: TextStyle(fontSize: 18.0),
-              //       ),
-              //     ),
-
-              //     //  <<<<<<< DropdownSearch >>>>>>>>>
-              //     Padding(
-              //         padding: const EdgeInsets.all(8.0),
-              //         child: Container(
-              //           height: 40,
-              //           width: 250,
-              //           decoration: BoxDecoration(
-              //             gradient: const LinearGradient(
-              //               begin: Alignment.topLeft,
-              //               end: Alignment.bottomRight,
-              //               colors: [
-              //                 Color.fromARGB(255, 217, 226, 241),
-              //                 Color.fromARGB(255, 217, 226, 241)
-              //               ],
-              //             ),
-              //             borderRadius: BorderRadius.circular(10),
-              //             boxShadow: [
-              //               BoxShadow(
-              //                 color: const Color.fromARGB(255, 255, 244, 244)
-              //                     .withOpacity(0.3),
-              //                 offset: const Offset(2.0, 2.0),
-              //                 blurRadius: 8.0,
-              //                 spreadRadius: 2.0,
-              //               ),
-              //             ],
-              //           ),
-              //           child: DropdownSearch<String>(
-              //             popupProps: PopupProps.menu(
-              //               showSelectedItems: true,
-              //               disabledItemFn: (String s) => s.startsWith('I'),
-              //             ),
-              //             items: const [
-              //               "Brazil",
-              //               "Italia",
-              //               "Tunisia",
-              //               'Canada'
-              //             ],
-              //             dropdownDecoratorProps: const DropDownDecoratorProps(
-              //               dropdownSearchDecoration: InputDecoration(
-              //                 labelText: "Select Menu",
-              //                 counterStyle: TextStyle(
-              //                   fontSize: 30,
-              //                   fontWeight: FontWeight.bold,
-              //                 ),
-              //                 labelStyle: TextStyle(color: Colors.black),
-              //                 enabledBorder: UnderlineInputBorder(
-              //                   borderSide:
-              //                       BorderSide(color: Colors.transparent),
-              //                 ),
-              //                 focusedBorder: UnderlineInputBorder(
-              //                   borderSide:
-              //                       BorderSide(color: Colors.transparent),
-              //                 ),
-              //                 hintText: "Select a country",
-              //                 hintStyle: TextStyle(color: Colors.white70),
-              //                 suffixIcon: Icon(Icons.arrow_drop_down,
-              //                     color: Colors.black),
-              //               ),
-              //             ),
-              //             onChanged: (value) {
-              //               print(value);
-              //             },
-              //             selectedItem: "Brazil",
-              //           ),
-              //         )),
-              //   ],
-              // ),
               //  <<<<<<< list(table) >>>>>>>>>
               Container(
-                decoration: const BoxDecoration(
-                  color: AppColors.greenColor,
+                decoration: BoxDecoration(
+                  // color: AppColors.greenColor,
+                  gradient: const LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    stops: [
+                      0.1,
+                      0.4,
+                      0.6,
+                      0.9,
+                    ],
+                    colors: [
+                      Color(0xFF35B2A2),
+                      Color(0xFF11967F),
+                      Color(0xFF06876A),
+                      Color(0xFF036952),
+                    ],
+                  ),
+                  border: Border.all(
+                    width: 1,
+                  ),
                 ),
                 child: const Padding(
                   padding: EdgeInsets.all(8.0),
@@ -271,14 +190,33 @@ class DeliveryScreen extends StatelessWidget {
                                         child: Center(
                                           child: Container(
                                             decoration: BoxDecoration(
-                                              color: AppColors.greyColor,
+                                              color: data['isDelivered'] == true
+                                                  ? Colors.green
+                                                  : (data['assignStatus'] ==
+                                                          false
+                                                      ? Colors.amber
+                                                      : AppColors.indigoColor),
                                               borderRadius:
                                                   BorderRadius.circular(5),
+                                              border: Border.all(
+                                                width: 1,
+                                              ),
                                             ),
                                             child: Padding(
                                               padding: const EdgeInsets.all(3),
                                               child: data['isDelivered'] == true
-                                                  ? const Text("Delivered")
+                                                  ? const Padding(
+                                                      padding:
+                                                          EdgeInsets.all(6.0),
+                                                      child: Text(
+                                                        "Delivered",
+                                                        style: TextStyle(
+                                                          color: AppColors
+                                                              .whiteColor,
+                                                          fontSize: 18,
+                                                        ),
+                                                      ),
+                                                    )
                                                   : data['assignStatus'] ==
                                                           false
                                                       ? SizedBox(
@@ -293,7 +231,6 @@ class DeliveryScreen extends StatelessWidget {
                                                               employeeController
                                                                   .employeeList
                                                                   .clear();
-
                                                               return employeeController
                                                                   .fetchEmployees();
                                                             },
@@ -302,7 +239,6 @@ class DeliveryScreen extends StatelessWidget {
                                                                     value.name,
                                                             onChanged:
                                                                 (value) async {
-                                                              // employeeController.employeeUID.value = true;
                                                               if (value !=
                                                                   null) {
                                                                 employeeController
@@ -321,14 +257,16 @@ class DeliveryScreen extends StatelessWidget {
                                                                   Get.find<
                                                                           EmployeeController>()
                                                                       .employeeName;
-                                                              getDeliveryCtr.createDeliveryOrderToEmployee(
-                                                                  employeeName:
-                                                                      emplopeeName,
-                                                                  employeeId:
-                                                                      employeeID
-                                                                          .value,
-                                                                  deliverydata:
-                                                                      data);
+                                                              getDeliveryCtr
+                                                                  .createDeliveryOrderToEmployee(
+                                                                employeeName:
+                                                                    emplopeeName,
+                                                                employeeId:
+                                                                    employeeID
+                                                                        .value,
+                                                                deliverydata:
+                                                                    data,
+                                                              );
                                                             },
                                                             dropdownDecoratorProps:
                                                                 DropDownDecoratorProps(
@@ -339,7 +277,7 @@ class DeliveryScreen extends StatelessWidget {
                                                                 color: Colors
                                                                     .black
                                                                     .withOpacity(
-                                                                        0.7),
+                                                                        0.5),
                                                               ),
                                                             ),
                                                           ),
@@ -371,20 +309,177 @@ class DeliveryScreen extends StatelessWidget {
                                                                   .data!
                                                                   .docs
                                                                   .isEmpty) {
-                                                                return const Text(
-                                                                    "Pickuped");
+                                                                return const Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              6.0),
+                                                                  child: Text(
+                                                                    "Pickuped",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: AppColors
+                                                                          .whiteColor,
+                                                                      fontSize:
+                                                                          18,
+                                                                    ),
+                                                                  ),
+                                                                );
                                                               } else {
-                                                                return const Text(
-                                                                    'Pending');
+                                                                return const Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              6.0),
+                                                                  child: Text(
+                                                                    'Pending',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: AppColors
+                                                                          .whiteColor,
+                                                                      fontSize:
+                                                                          18,
+                                                                    ),
+                                                                  ),
+                                                                );
                                                               }
                                                             } else {
-                                                              return const Text('');
+                                                              return const Text(
+                                                                  '');
                                                             }
-                                                          }),
+                                                          },
+                                                        ),
                                             ),
                                           ),
                                         ),
                                       ),
+
+                                      // Expanded(
+                                      //   flex: 1,
+                                      //   child: Center(
+                                      //     child: Container(
+                                      //       decoration: BoxDecoration(
+                                      //         color: AppColors.greyColor,
+                                      //         borderRadius:
+                                      //             BorderRadius.circular(5),
+                                      //       ),
+                                      //       child: Padding(
+                                      //         padding: const EdgeInsets.all(3),
+                                      //         child: data['isDelivered'] == true
+                                      //             ? const Text(
+                                      //                 "Delivered",
+                                      //                 style: TextStyle(
+                                      //                   color: AppColors
+                                      //                       .whiteColor,
+                                      //                 ),
+                                      //               )
+                                      //             : data['assignStatus'] ==
+                                      //                     false
+                                      //                 ? SizedBox(
+                                      //                     height: 60,
+                                      //                     child: DropdownSearch<
+                                      //                         EmployeeProfileCreateModel>(
+                                      //                       autoValidateMode:
+                                      //                           AutovalidateMode
+                                      //                               .always,
+                                      //                       asyncItems:
+                                      //                           (value) {
+                                      //                         employeeController
+                                      //                             .employeeList
+                                      //                             .clear();
+
+                                      //                         return employeeController
+                                      //                             .fetchEmployees();
+                                      //                       },
+                                      //                       itemAsString:
+                                      //                           (value) =>
+                                      //                               value.name,
+                                      //                       onChanged:
+                                      //                           (value) async {
+                                      //                         // employeeController.employeeUID.value = true;
+                                      //                         if (value !=
+                                      //                             null) {
+                                      //                           employeeController
+                                      //                                   .employeeUID
+                                      //                                   .value =
+                                      //                               value.docid;
+                                      //                           employeeController
+                                      //                                   .employeeName =
+                                      //                               value.name;
+                                      //                         }
+                                      //                         final employeeID =
+                                      //                             Get.find<
+                                      //                                     EmployeeController>()
+                                      //                                 .employeeUID;
+                                      //                         final emplopeeName =
+                                      //                             Get.find<
+                                      //                                     EmployeeController>()
+                                      //                                 .employeeName;
+                                      //                         getDeliveryCtr.createDeliveryOrderToEmployee(
+                                      //                             employeeName:
+                                      //                                 emplopeeName,
+                                      //                             employeeId:
+                                      //                                 employeeID
+                                      //                                     .value,
+                                      //                             deliverydata:
+                                      //                                 data);
+                                      //                       },
+                                      //                       dropdownDecoratorProps:
+                                      //                           DropDownDecoratorProps(
+                                      //                         baseStyle:
+                                      //                             GoogleFonts
+                                      //                                 .poppins(
+                                      //                           fontSize: 13,
+                                      //                           color: Colors
+                                      //                               .black
+                                      //                               .withOpacity(
+                                      //                                   0.7),
+                                      //                         ),
+                                      //                       ),
+                                      //                     ),
+                                      //                   )
+                                      //                 : StreamBuilder(
+                                      //                     stream: FirebaseFirestore
+                                      //                         .instance
+                                      //                         .collection(
+                                      //                             'EmployeeProfile')
+                                      //                         .doc(data[
+                                      //                             'employeeId'])
+                                      //                         .collection(
+                                      //                             'DeliveryRequest')
+                                      //                         .doc(data[
+                                      //                             'orderId'])
+                                      //                         .collection(
+                                      //                             'productsDetails')
+                                      //                         .snapshots(),
+                                      //                     builder: (context,
+                                      //                         statussnap) {
+                                      //                       if (snapshot
+                                      //                           .hasData) {
+                                      //                         if (statussnap
+                                      //                                 .connectionState ==
+                                      //                             ConnectionState
+                                      //                                 .waiting) {
+                                      //                           return const SizedBox();
+                                      //                         } else if (statussnap
+                                      //                             .data!
+                                      //                             .docs
+                                      //                             .isEmpty) {
+                                      //                           return const Text(
+                                      //                               "Pickuped");
+                                      //                         } else {
+                                      //                           return const Text(
+                                      //                               'Pending');
+                                      //                         }
+                                      //                       } else {
+                                      //                         return const Text(
+                                      //                             '');
+                                      //                       }
+                                      //                     }),
+                                      //       ),
+                                      //     ),
+                                      //   ),
+                                      // ),
                                       const Expanded(
                                         flex: 1,
                                         child: Center(

@@ -13,6 +13,18 @@ const String linearGradientRedClr =
     "linear-gradient(to right, #FF0000, #FF7878)"; //show toast package suppory only string linear gradient
 
 class AppColors {
+  // static const bgColor = BoxDecoration(
+  //   gradient: LinearGradient(
+  //     begin: Alignment.topRight,
+  //     end: Alignment.bottomLeft,
+  //     colors: [
+  //       Color(0xFF35B2A2),
+  //       Color(0xFF11967F),
+  //       Color(0xFF06876A),
+  //       Color(0xFF036952),
+  //     ],
+  //   ),
+  // );
   static const backGroundColor = Color(0xFFF8F9FD);
   static const transparentColor = Colors.transparent;
   static const whiteColor = Colors.white;

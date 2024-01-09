@@ -81,6 +81,42 @@ class DrawerSelectedPagesSection extends StatelessWidget {
                 title: 'Excel Data',
               ),
             ),
+            ListTile(
+              tileColor: selectedIndex == 3
+                  ? themeColorBlue.withOpacity(0.1)
+                  : Colors.transparent,
+              onTap: () {
+                index = 3;
+                onTap.call(index);
+              },
+              title: DashboardTextFontWidget(
+                title: 'Category',
+              ),
+            ),
+            ListTile(
+              tileColor: selectedIndex == 4
+                  ? themeColorBlue.withOpacity(0.1)
+                  : Colors.transparent,
+              onTap: () {
+                index = 4;
+                onTap.call(index);
+              },
+              title: DashboardTextFontWidget(
+                title: 'Subcategory',
+              ),
+            ),
+            ListTile(
+              tileColor: selectedIndex == 5
+                  ? themeColorBlue.withOpacity(0.1)
+                  : Colors.transparent,
+              onTap: () {
+                index = 5;
+                onTap.call(index);
+              },
+              title: DashboardTextFontWidget(
+                title: 'Quantity',
+              ),
+            ),
           ],
         ),
         sHeight10,
@@ -283,17 +319,17 @@ class DrawerSelectedPagesSection extends StatelessWidget {
         // >
         ExpansionTile(
           leading: const DashBoardIconWidget(
-              image: 'assets/images/delivery panel.jpg'),
+              image: 'web_images/drawer_images/supplier.png'),
           title: DashboardTextFontWidget(
             title: 'Delivery Panal',
           ),
           children: <Widget>[
             ListTile(
-              tileColor: selectedIndex == 4
+              tileColor: selectedIndex == 8
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
               onTap: () {
-                index = 4;
+                index = 8;
                 onTap.call(index);
               },
               title: DashboardTextFontWidget(
@@ -301,29 +337,29 @@ class DrawerSelectedPagesSection extends StatelessWidget {
               ),
             ),
             ListTile(
-              tileColor: selectedIndex == 5
+              tileColor: selectedIndex == 9
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
               onTap: () {
-                index = 5;
+                index = 9;
                 onTap.call(index);
               },
               title: DashboardTextFontWidget(
                 title: 'Final orders',
               ),
             ),
-            ListTile(
-              tileColor: selectedIndex == 7
-                  ? themeColorBlue.withOpacity(0.1)
-                  : Colors.transparent,
-              onTap: () {
-                index = 7;
-                onTap.call(index);
-              },
-              title: DashboardTextFontWidget(
-                title: 'Order Status',
-              ),
-            ),
+            // ListTile(
+            //   tileColor: selectedIndex == 7
+            //       ? themeColorBlue.withOpacity(0.1)
+            //       : Colors.transparent,
+            //   onTap: () {
+            //     index = 7;
+            //     onTap.call(index);
+            //   },
+            //   title: DashboardTextFontWidget(
+            //     title: 'Order Status',
+            //   ),
+            // ),
           ],
         ),
         // >>
@@ -419,77 +455,77 @@ class DrawerSelectedPagesSection extends StatelessWidget {
           //   ),
           // ],
         ),
-        sHeight10,
-        ExpansionTile(
-          leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/supplier.png'),
-          textColor: Colors.amber,
-          title: DashboardTextFontWidget(
-            title: 'Supplier',
-          ),
-          // children: <Widget>[
-          //   ListTile(
-          //     tileColor: selectedIndex == 21
-          //         ? themeColorBlue.withOpacity(0.1)
-          //         : Colors.transparent,
-          //     onTap: () {
-          //       index = 21;
-          //       onTap.call(index);
-          //     },
-          //     title: DashboardTextFontWidget(
-          //       title: 'PTA',
-          //     ),
-          //   ),
-          //   ListTile(
-          //     tileColor: selectedIndex == 22
-          //         ? themeColorBlue.withOpacity(0.1)
-          //         : Colors.transparent,
-          //     onTap: () {
-          //       index = 22;
-          //       onTap.call(index);
-          //     },
-          //     title: DashboardTextFontWidget(
-          //       title: 'Mothers PTA',
-          //     ),
-          //   ),
-          //   ListTile(
-          //     tileColor: selectedIndex == 23
-          //         ? themeColorBlue.withOpacity(0.1)
-          //         : Colors.transparent,
-          //     onTap: () {
-          //       index = 23;
-          //       onTap.call(index);
-          //     },
-          //     title: DashboardTextFontWidget(
-          //       title: 'Parents Meeting',
-          //     ),
-          //   ),
-          //   ListTile(
-          //     tileColor: selectedIndex == 24
-          //         ? themeColorBlue.withOpacity(0.1)
-          //         : Colors.transparent,
-          //     onTap: () {
-          //       index = 24;
-          //       onTap.call(index);
-          //     },
-          //     title: DashboardTextFontWidget(
-          //       title: 'Teachers Meeting',
-          //     ),
-          //   ),
-          //   ListTile(
-          //     tileColor: selectedIndex == 25
-          //         ? themeColorBlue.withOpacity(0.1)
-          //         : Colors.transparent,
-          //     onTap: () {
-          //       index = 25;
-          //       onTap.call(index);
-          //     },
-          //     title: DashboardTextFontWidget(
-          //       title: 'Custom Meeting',
-          //     ),
-          //   ),
-          // ],
-        ),
+        // sHeight10,
+        // ExpansionTile(
+        //   leading: const DashBoardIconWidget(
+        //       image: 'web_images/drawer_images/supplier.png'),
+        //   textColor: Colors.amber,
+        //   title: DashboardTextFontWidget(
+        //     title: 'Supplier',
+        //   ),
+        // children: <Widget>[
+        //   ListTile(
+        //     tileColor: selectedIndex == 21
+        //         ? themeColorBlue.withOpacity(0.1)
+        //         : Colors.transparent,
+        //     onTap: () {
+        //       index = 21;
+        //       onTap.call(index);
+        //     },
+        //     title: DashboardTextFontWidget(
+        //       title: 'PTA',
+        //     ),
+        //   ),
+        //   ListTile(
+        //     tileColor: selectedIndex == 22
+        //         ? themeColorBlue.withOpacity(0.1)
+        //         : Colors.transparent,
+        //     onTap: () {
+        //       index = 22;
+        //       onTap.call(index);
+        //     },
+        //     title: DashboardTextFontWidget(
+        //       title: 'Mothers PTA',
+        //     ),
+        //   ),
+        //   ListTile(
+        //     tileColor: selectedIndex == 23
+        //         ? themeColorBlue.withOpacity(0.1)
+        //         : Colors.transparent,
+        //     onTap: () {
+        //       index = 23;
+        //       onTap.call(index);
+        //     },
+        //     title: DashboardTextFontWidget(
+        //       title: 'Parents Meeting',
+        //     ),
+        //   ),
+        //   ListTile(
+        //     tileColor: selectedIndex == 24
+        //         ? themeColorBlue.withOpacity(0.1)
+        //         : Colors.transparent,
+        //     onTap: () {
+        //       index = 24;
+        //       onTap.call(index);
+        //     },
+        //     title: DashboardTextFontWidget(
+        //       title: 'Teachers Meeting',
+        //     ),
+        //   ),
+        //   ListTile(
+        //     tileColor: selectedIndex == 25
+        //         ? themeColorBlue.withOpacity(0.1)
+        //         : Colors.transparent,
+        //     onTap: () {
+        //       index = 25;
+        //       onTap.call(index);
+        //     },
+        //     title: DashboardTextFontWidget(
+        //       title: 'Custom Meeting',
+        //     ),
+        //   ),
+        // ],
+        // ),
         // sHeight10,
         // ListTile(
         //   leading: SizedBox(

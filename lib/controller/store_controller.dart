@@ -15,6 +15,10 @@ class StoreController extends GetxController {
 
   List<DocumentSnapshot> tempProductList = [];
 
+  TextEditingController categoryCtr = TextEditingController();
+  TextEditingController subcategotyCtr = TextEditingController();
+  TextEditingController quantityCtr = TextEditingController();
+
   Future<List<ProductCategoryModel>> fetchProductCategory() async {
     final firebase =
         await FirebaseFirestore.instance.collection('ProductCategory').get();
@@ -34,7 +38,7 @@ class StoreController extends GetxController {
     return data;
   }
 
-  addCategory(String category, BuildContext context) async {
+  addCategory(String category) async {
     final uuid = const Uuid().v1();
     String docName = category + uuid;
 
@@ -44,8 +48,64 @@ class StoreController extends GetxController {
         .doc(docName)
         .set(data)
         .then((value) {
-      showToast(msg: "Category Add");
-      Navigator.pop(context);
+      showToast(msg: "New Category Added");
+      Get.back();
+      categoryCtr.clear();
+    });
+  }
+
+  editCategory(String category, String docId) async {
+    final data = {"categoryName": category};
+    fireStore
+        .collection("ProductCategory")
+        .doc(docId)
+        .update(data)
+        .then((value) {
+      showToast(msg: "Category Updated");
+      Get.back();
+      categoryCtr.clear();
+    });
+  }
+
+  addSubCategory(String subcategory) async {
+    final uuid = const Uuid().v1();
+    String docName = subcategory + uuid;
+
+    final data = {"docid": docName, "subcategoryName": subcategory};
+    fireStore.collection("Subcategory").doc(docName).set(data).then((value) {
+      showToast(msg: "New Subcategory Added");
+      Get.back();
+      subcategotyCtr.clear();
+    });
+  }
+
+  editSubcategory(String subcategory, String docId) async {
+    final data = {"subcategoryName": subcategory};
+    fireStore.collection("Subcategory").doc(docId).update(data).then((value) {
+      showToast(msg: "Subcategory Updated");
+      Get.back();
+      subcategotyCtr.clear();
+    });
+  }
+
+  addQuantity(String quantitytypeName) async {
+    final uuid = const Uuid().v1();
+    String docName = quantitytypeName + uuid;
+
+    final data = {"docid": docName, "quantityTypeName": quantitytypeName};
+    fireStore.collection("quantityType").doc(docName).set(data).then((value) {
+      showToast(msg: "New Quantity type Added");
+      Get.back();
+      quantityCtr.clear();
+    });
+  }
+
+  editQuantity(String category, String docId) async {
+    final data = {"quantityTypeName": category};
+    fireStore.collection("quantityType").doc(docId).update(data).then((value) {
+      showToast(msg: "Quantity Type Updated");
+      Get.back();
+      quantityCtr.clear();
     });
   }
 

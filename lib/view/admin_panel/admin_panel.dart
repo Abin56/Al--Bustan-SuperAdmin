@@ -1,16 +1,19 @@
 import 'package:canteen_superadmin_website/view/admin_panel/admin_appBar.dart';
-import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/delivery_screen.dart';
-import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/prodects.dart';
-
 import 'package:canteen_superadmin_website/view/admin_panel/drawer_pages/drawer_pages.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/inventory/category_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/product_temporary_list.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/inventory/quantity_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/store_request.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/inventory/subcategory_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/product%20details/product_details.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
+import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/delivery_screen.dart';
+import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/prodects.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/dashboard_container.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/table_listview.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 
@@ -52,7 +55,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                 SizedBox(
                                   height: 60,
                                   child: Image.asset(
-                                    'assets/AL - Bustan.png',
+                                    'web_images/AL - Bustan.png',
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -101,24 +104,18 @@ List<Widget> pages = [
   const DashboardContainer(),
   InventoryWidget(),
   StoreRequetWidget(),
-  const ProductDetails(),
-  const DeliveryScreen(),
-  ProductScreen(),
-  const DeliveryScreen(),
-  // const ProductScreen(),
-  Text(sideMenu[2]),
-  // const ProductScreen(),
+  CategoryWidget(),
+  SubCategoryWidget(),
+  QuantityWidget(),
   Center(
-    child: ProductTempWidget(),
+    child: TableListviewWidget(),
+  ),
+  Center(child: ProductTempWidget()),
+  Center(
+    child: ProductScreen(),
   ),
   Center(
-    child: Text(sideMenu[4]),
-  ),
-  Center(
-    child: Text(sideMenu[5]),
-  ),
-  Center(
-    child: Text(sideMenu[6]),
+    child: DeliveryScreen(),
   ),
   Center(
     child: Text(sideMenu[7]),
@@ -217,7 +214,7 @@ List<String> sideMenu = [
 //                                 SizedBox(
 //                                   height: 60,
 //                                   child: Image.asset(
-//                                     'assets/AL - Bustan.png',
+//                                     'web_images/AL - Bustan.png',
 //                                     fit: BoxFit.fill,
 //                                   ),
 //                                 ),

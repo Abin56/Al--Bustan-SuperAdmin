@@ -1,4 +1,7 @@
 import 'package:canteen_superadmin_website/firebase_options.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/inventory/category_widget.dart';
+import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/delivery_screen.dart';
+import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/prodects.dart';
 import 'package:canteen_superadmin_website/view/welcome_screen/welcome_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +21,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: WelcomeScreen(),
+      // home: Scaffold(body: CartWiget()),
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:canteen_superadmin_website/view/constant/const.dart';
 import 'package:canteen_superadmin_website/view/widgets/id_generator/id_generator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
 
 class DeliveryController extends GetxController {
@@ -215,4 +216,18 @@ class DeliveryController extends GetxController {
           .set(productlist[i].toMap());
     }
   }
+
+  // imagePicker() async {
+  //   final pickedImage =
+  //       await ImagePicker().pickImage(source: ImageSource.gallery);
+  //   if (pickedImage != null) {
+  //     // Check if the picked image has a PNG extension
+  //     if (pickedImage.name.toLowerCase().endsWith('.png')) {
+  //       showToast(msg: 'Selected a PNG image.');
+  //     } else {
+  //       // Show a message or handle the case when a non-PNG image is selected
+  //       showToast(msg: 'Please select a PNG image.');
+  //     }
+  //   }
+  // }
 }

@@ -140,7 +140,7 @@ class ProductScreen extends StatelessWidget {
                         title: "Cart",
                         children: [
                           SizedBox(
-                            width: size.width * 0.3,
+                            width: size.width * 0.25,
                             child: CartShowDilog(size: size),
                           ),
                         ],
@@ -170,7 +170,6 @@ class ProductScreen extends StatelessWidget {
 class CartShowDilog extends StatelessWidget {
   final CollectionReference data =
       FirebaseFirestore.instance.collection("userCart");
-  final CartController c = Get.put(CartController());
   CartShowDilog({
     super.key,
     required this.size,
@@ -219,22 +218,11 @@ class CartShowDilog extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: IconButton(
-                                    icon: const Icon(Icons.remove),
-                                    onPressed: () {
-                                      c.decrement();
-                                    },
-                                  ),
-                                ),
-                                Obx(
-                                  () => Text(
-                                    "${c.cart.toString()}",
-                                    style: TextStyle(
-                                      fontSize: 30,
-                                    ),
-                                  ),
+                                IconButton(
+                                  icon: const Icon(Icons.remove),
+                                  onPressed: () {
+                                    // Handle decrease count
+                                  },
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
@@ -261,17 +249,14 @@ class CartShowDilog extends StatelessWidget {
                                         30, // Customized cursor height
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: IconButton(
-                                    icon: const Icon(Icons.add),
-                                    onPressed: () {
-                                      c.increment();
-                                    },
-                                  ),
+                                IconButton(
+                                  icon: const Icon(Icons.add),
+                                  onPressed: () {
+                                    // Handle increase count
+                                  },
                                 ),
                                 SizedBox(
-                                  width: size.width * 0.06,
+                                  width: size.width * 0.04,
                                 ),
                                 Text(
                                   data['productprice'],

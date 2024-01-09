@@ -31,7 +31,8 @@ class ExcelController extends GetxController {
               final uuid = const Uuid().v1();
               String time = DateTime.now().toString();
               List<Data?>? firstRow = table.rows[i];
-//fetching data from excel cells
+
+              //fetching data from excel cells
 
               // final data = ProductAddingModel(
               //     docId: uuid,
@@ -92,6 +93,7 @@ class ExcelController extends GetxController {
                     .set(data.toMap());
               }
             }
+
             isLoading.value = false;
             showToast(msg: 'Sheet added');
           } else {
@@ -109,7 +111,7 @@ class ExcelController extends GetxController {
 
   Future<Excel?> extractDataFromExcel() async {
     /// Use FilePicker to pick files in Flutter Web
-    ///
+
     try {
       FilePickerResult? pickedFile = await FilePicker.platform.pickFiles(
         type: FileType.custom,

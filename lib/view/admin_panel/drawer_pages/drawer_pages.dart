@@ -289,11 +289,11 @@ class DrawerSelectedPagesSection extends StatelessWidget {
           ),
           children: <Widget>[
             ListTile(
-              tileColor: selectedIndex == 5
+              tileColor: selectedIndex == 4
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
               onTap: () {
-                index = 5;
+                index = 4;
                 onTap.call(index);
               },
               title: DashboardTextFontWidget(
@@ -301,11 +301,11 @@ class DrawerSelectedPagesSection extends StatelessWidget {
               ),
             ),
             ListTile(
-              tileColor: selectedIndex == 6
+              tileColor: selectedIndex == 5
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
               onTap: () {
-                index = 6;
+                index = 5;
                 onTap.call(index);
               },
               title: DashboardTextFontWidget(

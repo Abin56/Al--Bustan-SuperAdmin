@@ -92,8 +92,8 @@ class StoreController extends GetxController {
     final uuid = const Uuid().v1();
     String docName = quantitytypeName + uuid;
 
-    final data = {"docid": docName, "quantityTypeName": quantitytypeName};
-    fireStore.collection("quantityType").doc(docName).set(data).then((value) {
+    final data = {"docid": docName, "value": quantitytypeName};
+    fireStore.collection("UnitCategory").doc(docName).set(data).then((value) {
       showToast(msg: "New Quantity type Added");
       Get.back();
       quantityCtr.clear();
@@ -101,8 +101,8 @@ class StoreController extends GetxController {
   }
 
   editQuantity(String category, String docId) async {
-    final data = {"quantityTypeName": category};
-    fireStore.collection("quantityType").doc(docId).update(data).then((value) {
+    final data = {"value": category};
+    fireStore.collection("UnitCategory").doc(docId).update(data).then((value) {
       showToast(msg: "Quantity Type Updated");
       Get.back();
       quantityCtr.clear();

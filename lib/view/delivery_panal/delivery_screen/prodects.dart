@@ -149,7 +149,7 @@ class ProductScreen extends StatelessWidget {
                               children: [CartWiget()],
                               actiononTapfuction: () async {
                                 // final newlist =
-                                    await getDeliveryCtr.getCartList();
+                                await getDeliveryCtr.getCartList();
                                 getDeliveryCtr.cartToDeliveryOrder();
                               },
                               doyouwantActionButton: true,
@@ -454,14 +454,14 @@ class DeliveryProductTile extends StatelessWidget {
 class CartWiget extends StatelessWidget {
   CartWiget({super.key});
   final getDeliveryCtr = Get.put(DeliveryController());
- final DeliveryController getSingleDeliveyCtr = DeliveryController();
- final int amount = 0;
+  final DeliveryController getSingleDeliveyCtr = DeliveryController();
+  final int amount = 0;
   @override
   Widget build(BuildContext context) {
     final SizeW = MediaQuery.of(context).size.width;
     final SizeH = MediaQuery.of(context).size.height;
 
-    return Container(
+    return SizedBox(
       width: SizeW * 0.44,
       height: SizeH * 0.4,
       child: StreamBuilder(

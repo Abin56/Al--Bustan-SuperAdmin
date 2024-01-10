@@ -76,7 +76,7 @@ class DeliveryController extends GetxController {
   }
 
   addToCart(AllProductDetailModel data) {
-    final uuid = Uuid().v1();
+    final uuid = const Uuid().v1();
     final cartdata = {
       "productDetailsDocId": data.docId,
       "barcodeNumber": data.barcodeNumber,
@@ -113,7 +113,7 @@ class DeliveryController extends GetxController {
     if (cartlistLength.docs.isNotEmpty) {
       int amount = 0;
       String id = idGenerator();
-      final orderid = '#' + id;
+      final orderid = '#$id';
       final cartProductS =
           await firestore.collectionGroup('CartProductDetails').get();
       final cartProductsList = cartProductS.docs

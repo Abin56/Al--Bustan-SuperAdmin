@@ -14,9 +14,9 @@ class WelcomeScreen extends StatelessWidget {
         actions: [
           InkWell(
             onTap: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => const AdminHomeScreen(),
-              ));
+              // Navigator.of(context).pushReplacement(MaterialPageRoute(
+              //   // builder: (context) => const AdminHomeScreen(),
+              // ));
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 10, left: 20, right: 20),

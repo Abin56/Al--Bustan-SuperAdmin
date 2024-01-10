@@ -16,17 +16,17 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseAppCheck.instance
-      .activate(
-    webProvider: ReCaptchaV3Provider('recaptcha-v3-site-key'),
-  )
-      .catchError((e) {
-    log(e.toString());
-  });
+  // await FirebaseAppCheck.instance
+  //     .activate(
+  //   webProvider: ReCaptchaV3Provider('recaptcha-v3-site-key'),
+  // )
+  //     .catchError((e) {
+  //   log(e.toString());
+  // });
 
-  await FirebaseAppCheck.instance.getToken().catchError((e) {
-    log(e.toString());
-  });
+  // await FirebaseAppCheck.instance.getToken().catchError((e) {
+  //   log(e.toString());
+  // });
   runApp(const MyApp());
 }
 

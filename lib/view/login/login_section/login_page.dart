@@ -1,9 +1,11 @@
+import 'package:canteen_superadmin_website/view/admin_panel/admin_panel.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/login_textformfeild.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/loginsubmitbutton.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginSection extends StatefulWidget {
   const LoginSection({super.key});
@@ -132,17 +134,29 @@ class _LoginSectionState extends State<LoginSection> {
                                       Padding(
                                         padding: const EdgeInsets.only(
                                             top: 10, bottom: 0, right: 40),
-                                        child: loginWidget[6],
+                                        child: GestureDetector(
+                                            onTap: () {},
+                                            child: loginWidget[6]),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
                                             top: 10, bottom: 0, right: 40),
-                                        child: loginWidget[7],
+                                        child: GestureDetector(
+                                            onTap: () {
+                                              Get.to(const AdminHomeScreen(
+                                                  navvalue: 'storeadmin'));
+                                            },
+                                            child: loginWidget[7]),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
                                             top: 10, bottom: 0, right: 40),
-                                        child: loginWidget[8],
+                                        child: GestureDetector(
+                                            onTap: () {
+                                              Get.to(const AdminHomeScreen(
+                                                  navvalue: 'deliveryadmin'));
+                                            },
+                                            child: loginWidget[8]),
                                       ),
                                     ],
                                   ),
@@ -165,12 +179,13 @@ class _LoginSectionState extends State<LoginSection> {
 }
 
 class LoginContainerWidget extends StatelessWidget {
- final String value;
+  final String value;
   final String imagepath;
   LoginContainerWidget({
     required this.text,
     super.key,
-    required this.imagepath, required this.value,
+    required this.imagepath,
+    required this.value,
   });
   String text;
   @override
@@ -270,17 +285,17 @@ List<Widget> loginWidget = [
   //   ],
   // ), ///////////////////////////////////////////////////////7
   LoginContainerWidget(
-    value: '',
+    value: 'superadmin',
     imagepath: 'web_images/super_Admin.jpg',
     text: 'SUPER ADMIN',
   ), //////////////////////////////////////////////////////////////8
   LoginContainerWidget(
-    value: '',
+    value: 'storeadmin',
     imagepath: 'web_images/store_Admin.jpg',
     text: 'STORE ADMIN',
   ), //////////////////////////////////////////////////////////////////9
   LoginContainerWidget(
-    value: '',
+    value: 'deliveryadmin',
     imagepath: 'web_images/delivery_admin.jpg',
     text: 'DELIVERY ADMIN',
   ), /////////////////////////////////////////////////////////////////////////////10

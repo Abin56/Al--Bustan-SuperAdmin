@@ -1,4 +1,6 @@
 import 'package:canteen_superadmin_website/view/admin_panel/admin_appBar.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_dashboard.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/drawer_page_delivery_admin.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/drawer_pages/drawer_pages.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/category_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
@@ -7,6 +9,8 @@ import 'package:canteen_superadmin_website/view/admin_panel/inventory/quantity_w
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/store_request.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/subcategory_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/product%20details/product_details.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/drawer_page_store_admin.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/store_dashboard.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/delivery_screen.dart';
@@ -80,7 +84,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                             ),
                           ),
                           sHeight10,
-                          DrawerSelectedPagesSection(
+                          StoreDrawerSelectedPagesSection(
                             selectedIndex: selectedIndex,
                             onTap: (index) {
                               setState(() {
@@ -107,6 +111,8 @@ List<Widget> pages = [
   CategoryWidget(),
   SubCategoryWidget(),
   QuantityWidget(),
+  DeliveryDashboardContainer(),
+  StoreDashboardContainer(),
   Center(
     child: TableListviewWidget(),
   ),

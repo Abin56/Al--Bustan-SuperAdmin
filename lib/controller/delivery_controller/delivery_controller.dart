@@ -4,6 +4,7 @@ import 'package:canteen_superadmin_website/view/constant/const.dart';
 import 'package:canteen_superadmin_website/view/widgets/id_generator/id_generator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
 
 class DeliveryController extends GetxController {
@@ -57,7 +58,7 @@ class DeliveryController extends GetxController {
   onChangeFuction(CartModel data, String value) {
     final qty = int.parse(value);
     int totalAmount = data.outPrice * qty;
-    if (qty > 0 && qty < data.availablequantityinStock) {
+    if (qty > 0 && qty <= data.availablequantityinStock) {
       final qtydata = {
         'totalAmount': totalAmount,
         'quantity': qty,
@@ -108,58 +109,63 @@ class DeliveryController extends GetxController {
   }
 
   cartToDeliveryOrder() async {
-    int amount = 0;
-    String id = idGenerator();
-    final orderid = '#' + id;
-    final cartProductS =
-        await firestore.collectionGroup('CartProductDetails').get();
-    final cartProductsList = cartProductS.docs
-        .map((e) => AllProductDetailModel.fromMap(e.data()))
-        .toList();
-    for (int i = 0; i < cartProductsList.length; i++) {
-      final uuid2 = const Uuid().v1();
-      firestore
-          .collection("deliveryAssignList")
-          .doc(orderid)
-          .collection("orderProducts")
-          .doc(uuid2)
-          .set(cartProductsList[i].toMap());
-    }
+    final cartlistLength = await firestore.collection('DeliveryCart').get();
+    if (cartlistLength.docs.isNotEmpty) {
+      int amount = 0;
+      String id = idGenerator();
+      final orderid = '#' + id;
+      final cartProductS =
+          await firestore.collectionGroup('CartProductDetails').get();
+      final cartProductsList = cartProductS.docs
+          .map((e) => AllProductDetailModel.fromMap(e.data()))
+          .toList();
+      for (int i = 0; i < cartProductsList.length; i++) {
+        final uuid2 = const Uuid().v1();
+        firestore
+            .collection("deliveryAssignList")
+            .doc(orderid)
+            .collection("orderProducts")
+            .doc(uuid2)
+            .set(cartProductsList[i].toMap());
+      }
 
-    final time = DateTime.now().toString();
+      final time = DateTime.now().toString();
 
-    final cartdetailsList = await getCartList();
+      final cartdetailsList = await getCartList();
 
-    for (var element in cartdetailsList) {
-      amount = amount + element.totalAmount;
-    }
+      for (var element in cartdetailsList) {
+        amount = amount + element.totalAmount;
+      }
 
-    final data = {
-      'time': time,
-      "docId": orderid,
-      "orderCount": cartProductsList.length,
-      "orderId": orderid,
-      "assignStatus": false,
-      "isDelivered": false,
-      "price": amount,
-      "employeeName": '',
-      "employeeId": ''
-    };
-    firestore.collection("deliveryAssignList").doc(orderid).set(data);
-    showToast(msg: "Delivery Request added");
-    Get.back();
+      final data = {
+        'time': time,
+        "docId": orderid,
+        "orderCount": cartProductsList.length,
+        "orderId": orderid,
+        "assignStatus": false,
+        "isDelivered": false,
+        "price": amount,
+        "employeeName": '',
+        "employeeId": ''
+      };
+      firestore.collection("deliveryAssignList").doc(orderid).set(data);
+      showToast(msg: "Delivery Request added");
+      Get.back();
 
-    for (int i = 0; i < cartdetailsList.length; i++) {
-      firestore
-          .collection('DeliveryCart')
-          .doc(cartdetailsList[i].docId)
-          .collection('CartProductDetails')
-          .doc(cartdetailsList[i].productDetailsDocId)
-          .delete();
-      firestore
-          .collection('DeliveryCart')
-          .doc(cartdetailsList[i].docId)
-          .delete();
+      for (int i = 0; i < cartdetailsList.length; i++) {
+        firestore
+            .collection('DeliveryCart')
+            .doc(cartdetailsList[i].docId)
+            .collection('CartProductDetails')
+            .doc(cartdetailsList[i].productDetailsDocId)
+            .delete();
+        firestore
+            .collection('DeliveryCart')
+            .doc(cartdetailsList[i].docId)
+            .delete();
+      }
+    } else {
+      showToast(msg: "Please Add Product");
     }
   }
 
@@ -215,4 +221,18 @@ class DeliveryController extends GetxController {
           .set(productlist[i].toMap());
     }
   }
+
+  // imagePicker() async {
+  //   final pickedImage =
+  //       await ImagePicker().pickImage(source: ImageSource.gallery);
+  //   if (pickedImage != null) {
+  //     // Check if the picked image has a PNG extension
+  //     if (pickedImage.name.toLowerCase().endsWith('.png')) {
+  //       showToast(msg: 'Selected a PNG image.');
+  //     } else {
+  //       // Show a message or handle the case when a non-PNG image is selected
+  //       showToast(msg: 'Please select a PNG image.');
+  //     }
+  //   }
+  // }
 }

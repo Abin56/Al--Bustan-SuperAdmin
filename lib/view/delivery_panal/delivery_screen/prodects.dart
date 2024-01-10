@@ -4,6 +4,7 @@ import 'package:canteen_superadmin_website/model/cart_model.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/view/textstysle/textstyle.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/container_widget.dart';
 
@@ -20,8 +21,13 @@ class ProductScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: CustomContainer(
-        height: size.height - 66,
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: 1,
+          ),
+        ),
+        height: size.height * 0.88,
         width: size.width,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -29,25 +35,53 @@ class ProductScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: 50,
-                width: double.infinity,
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Search...',
-                          border: OutlineInputBorder(),
+                  height: 50,
+                  width: double.infinity,
+                  child: SizedBox(
+                    height: 50,
+                    width: double.infinity,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(width: 1),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.3),
+                                  spreadRadius: 1,
+                                  blurRadius: 5,
+                                  offset: const Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                      hintText: '   Search...',
+                                      hintStyle: TextStyle(
+                                          color: Colors.grey.withOpacity(0.6)),
+                                      border: InputBorder.none,
+                                    ),
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.search,
+                                      color: Colors.grey),
+                                  onPressed: () {},
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                    const SizedBox(width: 8),
-                    IconButton(
-                      icon: const Icon(Icons.search),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
+                  )),
+              SizedBox(
+                height: size.height * 0.02,
               ),
               const DeliveryHeadWidget(),
               Expanded(
@@ -92,31 +126,77 @@ class ProductScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 10),
                     child: Padding(
                       padding: const EdgeInsets.only(right: 10, bottom: 10),
-                      child: FloatingActionButton.extended(
-                        onPressed: () {
-                          // <<<<  showDialog  >>>>>>>
-                          customShowDilogBox(
-                            context: context,
-                            title: "Cart",
-                            children: [CartWiget()],
-                            actiononTapfuction: () async {
-                              final newlist =
-                                  await getDeliveryCtr.getCartList();
-                              getDeliveryCtr.cartToDeliveryOrder();
-                            },
-                            doyouwantActionButton: true,
-                          );
-                        },
-                        backgroundColor: Colors.green,
-                        label: const Text(
-                          'Go To Cart',
-                          // selectionColor: AppColors.blackColor,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [
+                              Color(0xFF35B2A2),
+                              Color(0xFF11967F),
+                              Color(0xFF06876A),
+                              Color(0xFF036952),
+                            ],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                          ),
+                          borderRadius: BorderRadius.circular(
+                              8.0), // Adjust the radius as needed
                         ),
-                        icon: const Icon(
-                          Icons.add,
-                          color: AppColors.whiteColor,
+                        child: FloatingActionButton.extended(
+                          onPressed: () {
+                            // <<<<  showDialog  >>>>>>>
+                            customShowDilogBox(
+                              context: context,
+                              title: "Cart",
+                              children: [CartWiget()],
+                              actiononTapfuction: () async {
+                                final newlist =
+                                    await getDeliveryCtr.getCartList();
+                                getDeliveryCtr.cartToDeliveryOrder();
+                              },
+                              doyouwantActionButton: true,
+                            );
+                          },
+                          backgroundColor: Colors.transparent,
+                          label: const Text(
+                            'Go To Cart',
+                            style: TextStyle(
+                              color: AppColors.whiteColor,
+                            ),
+                          ),
+                          icon: const Icon(
+                            Icons.add,
+                            color: AppColors.whiteColor,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
                         ),
                       ),
+                      // child: FloatingActionButton.extended(
+                      //   onPressed: () {
+                      //     // <<<<  showDialog  >>>>>>>
+                      //     customShowDilogBox(
+                      //       context: context,
+                      //       title: "Cart",
+                      //       children: [CartWiget()],
+                      //       actiononTapfuction: () async {
+                      //         final newlist =
+                      //             await getDeliveryCtr.getCartList();
+                      //         getDeliveryCtr.cartToDeliveryOrder();
+                      //       },
+                      //       doyouwantActionButton: true,
+                      //     );
+                      //   },
+                      //   backgroundColor: Colors.green,
+                      //   label: const Text(
+                      //     'Go To Cart',
+                      //     // selectionColor: AppColors.blackColor,
+                      //   ),
+                      //   icon: const Icon(
+                      //     Icons.add,
+                      //     color: AppColors.whiteColor,
+                      //   ),
+                      // ),
                     ),
                   ),
                 ],
@@ -134,34 +214,119 @@ class DeliveryHeadWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      height: 80,
-      width: double.infinity,
-      child: Row(
-        children: [
-          SingleHeadWidget(
-            headName: "Product ID",
+    return Column(
+      children: [
+        // Your added Container with gradient decoration
+        Container(
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              stops: [0.1, 0.4, 0.6, 0.9],
+              colors: [
+                Color(0xFF35B2A2),
+                Color(0xFF11967F),
+                Color(0xFF06876A),
+                Color(0xFF036952),
+              ],
+            ),
+            border: Border.all(width: 1),
           ),
-          SingleHeadWidget(
-            headName: "Product Name",
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      "Product ID",
+                      style: AppTextStyles.textStyle1,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      "Product Name",
+                      style: AppTextStyles.textStyle1,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      "Quantity",
+                      style: AppTextStyles.textStyle1,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      "In price",
+                      style: AppTextStyles.textStyle1,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      "Out Price",
+                      style: AppTextStyles.textStyle1,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      "Action",
+                      style: AppTextStyles.textStyle1,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-          SingleHeadWidget(
-            headName: "Quantity",
-          ),
-          SingleHeadWidget(
-            headName: "In price",
-          ),
-          SingleHeadWidget(
-            headName: "Out Price",
-          ),
-          SingleHeadWidget(
-            headName: "Action",
-          )
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
+
+// class DeliveryHeadWidget extends StatelessWidget {
+//   const DeliveryHeadWidget({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return const SizedBox(
+//       height: 80,
+//       width: double.infinity,
+//       child: Row(
+//         children: [
+//           SingleHeadWidget(
+//             headName: "Product ID",
+//           ),
+//           SingleHeadWidget(
+//             headName: "Product Name",
+//           ),
+//           SingleHeadWidget(
+//             headName: "Quantity",
+//           ),
+//           SingleHeadWidget(
+//             headName: "In price",
+//           ),
+//           SingleHeadWidget(
+//             headName: "Out Price",
+//           ),
+//           SingleHeadWidget(
+//             headName: "Action",
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 class SingleHeadWidget extends StatelessWidget {
   const SingleHeadWidget({super.key, required this.headName});
@@ -196,12 +361,30 @@ class DeliveryProductTile extends StatelessWidget {
             children: [
               Expanded(
                 child: SizedBox(
-                  width: size.width * 0.005,
-                  height: size.height * 0.1,
-                  // decoration: BoxDecoration(),
-                  child: Image.network(
-                    'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8fA%3D%3D',
-                    fit: BoxFit.cover,
+                  width: size.width * 0.026,
+                  height: size.height * 0.14,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey[300]!,
+                          width: 2.0,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.3),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: Image.network(
+                        'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8fA%3D%3D',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -280,8 +463,8 @@ class CartWiget extends StatelessWidget {
     final SizeH = MediaQuery.of(context).size.height;
 
     return Container(
-      width: SizeW * 0.4,
-      height: SizeH * 0.3,
+      width: SizeW * 0.44,
+      height: SizeH * 0.4,
       child: StreamBuilder(
           stream:
               getDeliveryCtr.firestore.collection('DeliveryCart').snapshots(),
@@ -299,7 +482,7 @@ class CartWiget extends StatelessWidget {
             } else {
               return Column(
                 children: [
-                  CartHeadWidget(),
+                  const CartHeadWidget(),
                   Expanded(
                     child: ListView.separated(
                         itemBuilder: (context, index) {
@@ -311,114 +494,204 @@ class CartWiget extends StatelessWidget {
                           final data = CartModel.fromMap(
                               snapshot.data!.docs[index].data());
                           controllers[index].text = data.quantity.toString();
+                          Size size = MediaQuery.of(context).size;
 
-                          return Container(
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    height: 60,
-                                    decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                            image: NetworkImage(
-                                                'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8fA%3D%3D'),
-                                            fit: BoxFit.cover)),
+                          return Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: SizedBox(
+                                  width: size.width * 0.026,
+                                  height: size.height * 0.14,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: Colors.grey[300]!,
+                                          width: 2.0,
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.3),
+                                            spreadRadius: 2,
+                                            blurRadius: 5,
+                                            offset: const Offset(0, 3),
+                                          ),
+                                        ],
+                                      ),
+                                      child: Image.network(
+                                        'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8fA%3D%3D',
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Center(
-                                      child: GooglePoppinsWidgets(
-                                          text: data.productname,
-                                          fontsize: 16)),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Center(
+                                  child: GooglePoppinsWidgets(
+                                    text: data.productname,
+                                    fontsize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                                Expanded(
-                                    flex: 2,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        GestureDetector(
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    // GestureDetector(
+                                    //   onTap: () {
+                                    //     getSingleDeliveyCtr.lessQuantity(data);
+                                    //   },
+                                    // child: Container(
+                                    //   height: SizeW * 0.02,
+                                    //   width: SizeW * 0.02,
+                                    //   decoration: BoxDecoration(
+                                    //     color: cWhite,
+                                    //     borderRadius:
+
+                                    //         BorderRadius.circular(10),
+                                    //     boxShadow: const [
+                                    //       BoxShadow(blurRadius: 0.5),
+                                    //     ],
+                                    //   ),
+                                    //   child: Center(
+                                    //     child: GooglePoppinsWidgets(
+                                    //       text: "-",
+                                    //       fontsize: 16,
+                                    //     ),
+                                    //   ),
+                                    // ),
+                                    Container(
+                                      height: SizeW *
+                                          0.02, // Adjusted height for better visibility
+                                      width: SizeW *
+                                          0.02, // Adjusted width for better visibility
+                                      decoration: BoxDecoration(
+                                        gradient: const LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                          colors: [
+                                            Color(0xFF35B2A2),
+                                            Color(0xFF11967F),
+                                            Color(0xFF06876A),
+                                            Color(0xFF036952),
+                                          ],
+                                        ),
+                                        borderRadius: BorderRadius.circular(12),
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            color: Colors.grey,
+                                            blurRadius: 2,
+                                            spreadRadius: 0.1,
+                                          ),
+                                        ],
+                                      ),
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        child: InkWell(
                                           onTap: () {
                                             getSingleDeliveyCtr
                                                 .lessQuantity(data);
                                           },
-                                          child: Container(
-                                            height: SizeW * 0.02,
-                                            width: SizeW * 0.02,
-                                            decoration: BoxDecoration(
-                                                color: cWhite,
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                boxShadow: const [
-                                                  BoxShadow(blurRadius: 0.5),
-                                                ]),
-                                            child: Center(
-                                              child: GooglePoppinsWidgets(
-                                                  text: "-", fontsize: 16),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                          child: const Center(
+                                            child: Icon(
+                                              Icons.remove,
+                                              color: Colors.white,
+                                              size: 20,
                                             ),
                                           ),
                                         ),
-                                        sWidtht10,
-                                        SizedBox(
-                                            height: SizeW * 0.03,
-                                            width: SizeW * 0.04,
-                                            child: TextField(
-                                              onChanged: (value) {
-                                                getSingleDeliveyCtr
-                                                    .onChangeFuction(
-                                                        data, value);
-                                              },
-                                              keyboardType:
-                                                  TextInputType.number,
-                                              controller: controllers[index],
-                                              decoration: const InputDecoration(
-                                                  border: OutlineInputBorder()),
-                                            )),
-                                        sWidtht10,
-                                        GestureDetector(
+                                      ),
+                                    ),
+                                    // ),
+                                    sWidtht10,
+                                    SizedBox(
+                                      height: SizeW * 0.03,
+                                      width: SizeW * 0.03,
+                                      child: TextField(
+                                        textAlign: TextAlign.center,
+                                        onChanged: (value) {
+                                          getSingleDeliveyCtr.onChangeFuction(
+                                              data, value);
+                                        },
+                                        keyboardType: TextInputType.number,
+                                        controller: controllers[index],
+                                        decoration: const InputDecoration(
+                                            border: OutlineInputBorder()),
+                                      ),
+                                    ),
+                                    sWidtht10,
+
+                                    Container(
+                                      height: SizeW * 0.02,
+                                      width: SizeW * 0.02,
+                                      decoration: BoxDecoration(
+                                        gradient: const LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                          colors: [
+                                            Color(0xFF35B2A2),
+                                            Color(0xFF11967F),
+                                            Color(0xFF06876A),
+                                            Color(0xFF036952),
+                                          ],
+                                        ),
+                                        borderRadius: BorderRadius.circular(12),
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            color: Colors.grey,
+                                            blurRadius: 2,
+                                            spreadRadius: 0.1,
+                                          ),
+                                        ],
+                                      ),
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        child: InkWell(
                                           onTap: () {
                                             getSingleDeliveyCtr
                                                 .addQuantity(data);
                                           },
-                                          child: Container(
-                                            height: SizeW * 0.02,
-                                            width: SizeW * 0.02,
-                                            decoration: BoxDecoration(
-                                                color: cWhite,
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                boxShadow: const [
-                                                  BoxShadow(blurRadius: 0.5),
-                                                ]),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                          child: Center(
                                             child: iconWidget(
-                                                icon: Icons.add,
-                                                color: cBlack,
-                                                size: 16),
+                                              icon: Icons.add,
+                                              color: Colors.white,
+                                              size: 20,
+                                            ),
                                           ),
                                         ),
-                                      ],
-                                    )),
-                                Expanded(
-                                  flex: 1,
-                                  child: Center(
-                                    child: GooglePoppinsWidgets(
-                                        text: data.availablequantityinStock
-                                            .toString(),
-                                        fontsize: 16),
-                                  ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Center(
-                                    child: GooglePoppinsWidgets(
-                                        text: data.totalAmount.toString(),
-                                        fontsize: 16),
-                                  ),
-                                )
-                              ],
-                            ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Center(
+                                  child: GooglePoppinsWidgets(
+                                      text: data.availablequantityinStock
+                                          .toString(),
+                                      fontsize: 16),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Center(
+                                  child: GooglePoppinsWidgets(
+                                      text: data.totalAmount.toString(),
+                                      fontsize: 16),
+                                ),
+                              )
+                            ],
                           );
                         },
                         separatorBuilder: (context, index) {
@@ -453,60 +726,57 @@ class CartHeadWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 1,
-            child: Center(
-              child: GooglePoppinsWidgets(
-                text: "Image",
-                fontsize: 16,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [
+              Color(0xFF35B2A2),
+              Color(0xFF11967F),
+              Color(0xFF06876A),
+              Color(0xFF036952),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
-          Expanded(
-            flex: 1,
-            child: Center(
-              child: GooglePoppinsWidgets(
-                text: "Name",
-                fontsize: 16,
-                fontWeight: FontWeight.w500,
-              ),
+          // borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
             ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _buildColumnHeader("Image", 16, Colors.white),
+              _buildColumnHeader("Name", 16, Colors.white),
+              _buildColumnHeader("Qty", 16, Colors.white),
+              _buildColumnHeader("Available Qty", 16, Colors.white),
+              _buildColumnHeader("Amount", 16, Colors.white),
+            ],
           ),
-          Expanded(
-            flex: 2,
-            child: Center(
-              child: GooglePoppinsWidgets(
-                text: "Qty",
-                fontsize: 16,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildColumnHeader(String text, double fontSize, Color textColor) {
+    return Expanded(
+      child: Center(
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: fontSize,
+            fontWeight: FontWeight.w600,
+            color: textColor,
           ),
-          Expanded(
-            flex: 1,
-            child: Center(
-              child: GooglePoppinsWidgets(
-                text: "Available Qty",
-                fontsize: 16,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Center(
-              child: GooglePoppinsWidgets(
-                text: "Amount",
-                fontsize: 16,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

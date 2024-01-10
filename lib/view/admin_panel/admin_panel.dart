@@ -84,7 +84,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                             ),
                           ),
                           sHeight10,
-                          StoreDrawerSelectedPagesSection(
+                          DeliveryDrawerSelectedPagesSection(
                             selectedIndex: selectedIndex,
                             onTap: (index) {
                               setState(() {

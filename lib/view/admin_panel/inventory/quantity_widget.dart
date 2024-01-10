@@ -1,12 +1,10 @@
 import 'package:canteen_superadmin_website/controller/store_controller.dart';
 import 'package:canteen_superadmin_website/model/quantity_model.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/inventory/category_widget.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:canteen_superadmin_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +14,7 @@ class QuantityWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sizeW = MediaQuery.of(context).size.width;
+    // final sizeW = MediaQuery.of(context).size.width;
     final sizeH = MediaQuery.of(context).size.height;
 
     return Padding(

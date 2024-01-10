@@ -1,18 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
-
 import 'package:canteen_superadmin_website/view/admin_panel/admin_appBar.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_dashboard.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/drawer_page_delivery_admin.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/drawer_pages/drawer_pages.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/category_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/product_temporary_list.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/quantity_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/store_request.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/subcategory_widget.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/product%20details/product_details.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/drawer_page_store_admin.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/store_dashboard.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/table_listview.dart';

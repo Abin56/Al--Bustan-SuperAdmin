@@ -18,7 +18,7 @@ class DashboardContainer extends StatelessWidget {
 
     List<Widget> dashboardcontent = [
       Padding(
-        padding: const EdgeInsets.only(right: 10,bottom: 10,left: 10),
+        padding: const EdgeInsets.only(right: 10, bottom: 10, left: 10),
         child: CustomContainer(
           height: 230,
           width: double.infinity,
@@ -44,7 +44,7 @@ class DashboardContainer extends StatelessWidget {
                     ),
                   ],
                 ),
-                 Expanded(
+                Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -56,9 +56,11 @@ class DashboardContainer extends StatelessWidget {
                             icon: Icons.shopify_rounded,
                             iconColor: AppColors.lightGreenColor,
                             title: "Total Purchase",
-                          value: "712",
+                            value: "712",
                           ),
-                         ResponsiveWebSite.isMobile(context)?const Spacer():const Text(''),
+                          ResponsiveWebSite.isMobile(context)
+                              ? const Spacer()
+                              : const Text(''),
                           const DashboardItem(
                             icon: Icons.cancel,
                             iconColor: AppColors.yellowColor,
@@ -68,8 +70,8 @@ class DashboardContainer extends StatelessWidget {
                           ),
                         ],
                       ),
-                       Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           const DashboardItem(
                             icon: Icons.rotate_90_degrees_ccw_sharp,
@@ -78,7 +80,9 @@ class DashboardContainer extends StatelessWidget {
                             value: "132",
                             bgColor: AppColors.lightRedColor,
                           ),
-                            ResponsiveWebSite.isMobile(context)?const Spacer():const Text(''),
+                          ResponsiveWebSite.isMobile(context)
+                              ? const Spacer()
+                              : const Text(''),
                           const Padding(
                             padding: EdgeInsets.only(right: 30),
                             child: DashboardItem(
@@ -100,7 +104,10 @@ class DashboardContainer extends StatelessWidget {
         ),
       ), //...................................... [1]
       Padding(
-        padding: const EdgeInsets.only(right: 10,bottom: 10,),
+        padding: const EdgeInsets.only(
+          right: 10,
+          bottom: 10,
+        ),
         child: CustomContainer(
           height: 230,
           width: double.infinity,
@@ -125,13 +132,12 @@ class DashboardContainer extends StatelessWidget {
                     )
                   ],
                 ),
-                 Expanded(
+                Expanded(
                   child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           const DashboardItem(
                             bgColor: AppColors.orangeColor,
@@ -140,7 +146,9 @@ class DashboardContainer extends StatelessWidget {
                             title: "Total Stock",
                             value: "12",
                           ),
-                          ResponsiveWebSite.isMobile(context)?const Spacer():const Text(''),
+                          ResponsiveWebSite.isMobile(context)
+                              ? const Spacer()
+                              : const Text(''),
                           const DashboardItem(
                             icon: Icons.book,
                             iconColor: AppColors.yellowColor,
@@ -151,8 +159,7 @@ class DashboardContainer extends StatelessWidget {
                         ],
                       ),
                       Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           const DashboardItem(
                             icon: Icons.receipt_long_rounded,
@@ -161,7 +168,9 @@ class DashboardContainer extends StatelessWidget {
                             value: "",
                             bgColor: AppColors.lightPinkColor,
                           ),
-                          ResponsiveWebSite.isMobile(context)?const Spacer():const Text(''),
+                          ResponsiveWebSite.isMobile(context)
+                              ? const Spacer()
+                              : const Text(''),
                           const Padding(
                             padding: EdgeInsets.only(right: 25),
                             child: DashboardItem(
@@ -182,10 +191,10 @@ class DashboardContainer extends StatelessWidget {
           ),
         ),
       ), //...............................................[2]
-       Padding(
-         padding: const EdgeInsets.only(left: 10),
-         child: CustomContainer(
-          height: ResponsiveWebSite.isMobile(context)?250:350,
+      Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: CustomContainer(
+          height: ResponsiveWebSite.isMobile(context) ? 250 : 350,
           width: double.infinity,
           child: const Padding(
             padding: EdgeInsets.all(10),
@@ -196,15 +205,15 @@ class DashboardContainer extends StatelessWidget {
               iconData2: Icons.trolley,
             ),
           ),
-               ),
-       ), //................................[1][0]
+        ),
+      ), //................................[1][0]
       CustomContainer(
-        height: ResponsiveWebSite.isMobile(context)?250:350,
+        height: ResponsiveWebSite.isMobile(context) ? 250 : 350,
         width: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(14),
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -303,7 +312,7 @@ class DashboardContainer extends StatelessWidget {
         ),
       ), //...................................[1][1]
       CustomContainer(
-        height: ResponsiveWebSite.isMobile(context)?250:350,
+        height: ResponsiveWebSite.isMobile(context) ? 250 : 350,
         width: double.infinity,
         child: const Padding(
           padding: EdgeInsets.all(0),
@@ -315,7 +324,7 @@ class DashboardContainer extends StatelessWidget {
         ),
       ),
     ];
-   
+
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -329,12 +338,11 @@ class DashboardContainer extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 10),
                       child: dashboardcontent[1],
                     ),
-                    
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: dashboardcontent[2],
-                      
-                    ),Padding(
+                    ),
+                    Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: dashboardcontent[3],
                     ),
@@ -345,14 +353,14 @@ class DashboardContainer extends StatelessWidget {
                   ],
                 )
               : Column(
-                children: [
-                  Row(
+                  children: [
+                    Row(
                       children: [
                         Expanded(flex: 1, child: dashboardcontent[0]),
                         Expanded(flex: 1, child: dashboardcontent[1]),
                         // Expanded(flex: 1, child: dashboardcontent[2]),
                         // Expanded(flex: 1, child: dashboardcontent[3]),
-                        
+
                         // Expanded(
                         //     flex: 1,
                         //     child: Padding(
@@ -361,12 +369,12 @@ class DashboardContainer extends StatelessWidget {
                         //     ))
                       ],
                     ),
-                     Row(
+                    Row(
                       children: [
                         // Expanded(flex: 1, child: dashboardcontent[0]),
                         // Expanded(flex: 1, child: dashboardcontent[1]),
                         Expanded(flex: 1, child: dashboardcontent[2]),
-                         
+
                         Expanded(
                             flex: 1,
                             child: Padding(
@@ -381,8 +389,8 @@ class DashboardContainer extends StatelessWidget {
                             ))
                       ],
                     ),
-                ],
-              ),
+                  ],
+                ),
           // ResponsiveWebSite.isMobile(context)
           //     ? Column(
           //         children: [

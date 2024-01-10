@@ -133,18 +133,19 @@ class ScendRowoneWidget extends StatelessWidget {
   final IconData icon;
   final String title;
   final IconData iconData1;
-  
+
   const ScendRowoneWidget({
     super.key,
     required this.title,
     required this.icon,
     required this.iconData1,
-    
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [ Padding(
+    return Column(
+      children: [
+        Padding(
           padding: const EdgeInsets.only(left: 14),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,44 +165,46 @@ class ScendRowoneWidget extends StatelessWidget {
             ],
           ),
         ),
-         Container(
-              height: 140,
-              width: 140,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 242, 242, 245),
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  color: AppColors.lightGreyColor,
-                  width: 1.0,
+        Container(
+          height: 140,
+          width: 140,
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 242, 242, 245),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: AppColors.lightGreyColor,
+              width: 1.0,
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  iconData1,
+                  color: AppColors.greenColor,
+                  size: 40,
                 ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Icon(
-                      iconData1,
-                      color: AppColors.greenColor,
-                      size: 40,
-                    ),
-                    const Text(
-                      "No of Canteen",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const Text(
-                      "89",
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                  ],
+                const Text(
+                  "No of Canteen",
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
-            ),],);
+                const Text(
+                  "89",
+                  style: TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

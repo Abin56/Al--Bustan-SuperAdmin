@@ -22,14 +22,14 @@ class ProductQuantityModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'docid': docid,
-      'quantityTypeName': quantityTypeName,
+      'value': quantityTypeName,
     };
   }
 
   factory ProductQuantityModel.fromMap(Map<String, dynamic> map) {
     return ProductQuantityModel(
       docid: map['docid'] ?? '',
-      quantityTypeName: map['quantityTypeName'] ?? '',
+      quantityTypeName: map['value'] ?? '',
     );
   }
 
@@ -40,7 +40,7 @@ class ProductQuantityModel {
 
   @override
   String toString() =>
-      'ProductCategoryModel(docid: $docid, quantityTypeName: $quantityTypeName)';
+      'ProductCategoryModel(docid: $docid, value: $quantityTypeName)';
 
   @override
   bool operator ==(covariant ProductQuantityModel other) {

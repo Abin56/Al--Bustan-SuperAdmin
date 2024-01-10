@@ -1,6 +1,5 @@
 import 'package:canteen_superadmin_website/controller/store_controller.dart';
 import 'package:canteen_superadmin_website/model/quantity_model.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/inventory/category_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/widget/custom_button.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
@@ -16,7 +15,7 @@ class QuantityWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final sizeW = MediaQuery.of(context).size.width;
+    final sizeW = MediaQuery.of(context).size.width;
     final sizeH = MediaQuery.of(context).size.height;
 
     return Padding(
@@ -24,7 +23,7 @@ class QuantityWidget extends StatelessWidget {
       child: Container(
         height: sizeH * 0.89,
         width: double.infinity,
-        decoration: BoxDecoration(color: cWhite, boxShadow: const [
+        decoration: const BoxDecoration(color: cWhite, boxShadow: [
           BoxShadow(blurRadius: 0.5),
         ]),
         child: Column(
@@ -38,7 +37,7 @@ class QuantityWidget extends StatelessWidget {
                     fontsize: 20,
                     fontWeight: FontWeight.w500,
                   ),
-                  Spacer(),
+                  const Spacer(),
                   CustomGradientButton(
                     height: sizeH * 0.05,
                     width: sizeW * 0.1,

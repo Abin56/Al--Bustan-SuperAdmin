@@ -108,7 +108,7 @@ class QuantityWidget extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: StreamBuilder(
                   stream: getStroreCtr.fireStore
-                      .collection('quantityType')
+                      .collection('UnitCategory')
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {

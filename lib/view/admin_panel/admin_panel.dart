@@ -13,8 +13,8 @@ import 'package:canteen_superadmin_website/view/admin_panel/store_admin/drawer_p
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/store_dashboard.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
-import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/delivery_screen.dart';
-import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/prodects.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_order.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_prodects.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/dashboard_container.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/table_listview.dart';
@@ -84,7 +84,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                             ),
                           ),
                           sHeight10,
-                          StoreDrawerSelectedPagesSection(
+                          DeliveryDrawerSelectedPagesSection(
                             selectedIndex: selectedIndex,
                             onTap: (index) {
                               setState(() {

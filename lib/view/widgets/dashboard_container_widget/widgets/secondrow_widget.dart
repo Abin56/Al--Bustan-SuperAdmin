@@ -21,7 +21,7 @@ class ScendRowWidget extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 14),
+          padding: const EdgeInsets.only(left: 34, right: 34, bottom: 20),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -40,22 +40,22 @@ class ScendRowWidget extends StatelessWidget {
             ],
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              height: 140,
-              width: 140,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 242, 242, 245),
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  color: AppColors.lightGreyColor,
-                  width: 1.0,
+        Padding(
+          padding: const EdgeInsets.only(left: 40, right: 40),
+          child: Row(
+            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
+                height: 140,
+                width: 140,
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 242, 242, 245),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: AppColors.lightGreyColor,
+                    width: 1.0,
+                  ),
                 ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -81,48 +81,50 @@ class ScendRowWidget extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-            sWidtht5,
-            Container(
-              height: 140,
-              width: 140,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 242, 242, 245),
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  color: AppColors.lightGreyColor,
-                  width: 1.0,
+              // ignore: prefer_const_constructors
+              Spacer(),
+              sWidtht5,
+              Container(
+                height: 140,
+                width: 140,
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 242, 242, 245),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: AppColors.lightGreyColor,
+                    width: 1.0,
+                  ),
                 ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Icon(
-                      iconData2,
-                      color: AppColors.greenColor,
-                      size: 40,
-                    ),
-                    const Text(
-                      "To be Deliver",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        iconData2,
+                        color: AppColors.greenColor,
+                        size: 40,
                       ),
-                    ),
-                    const Text(
-                      "09",
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w900,
+                      const Text(
+                        "To be Deliver",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                  ],
+                      const Text(
+                        "09",
+                        style: TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         )
       ],
     );
@@ -146,9 +148,13 @@ class ScendRowoneWidget extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 14),
+          padding: const EdgeInsets.only(
+            left: 30,
+            right: 30,
+            top: 10,
+            bottom: 20,
+          ),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
@@ -176,32 +182,29 @@ class ScendRowoneWidget extends StatelessWidget {
               width: 1.0,
             ),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(
-                  iconData1,
-                  color: AppColors.greenColor,
-                  size: 40,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                iconData1,
+                color: AppColors.greenColor,
+                size: 40,
+              ),
+              const Text(
+                "No of Canteen",
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
                 ),
-                const Text(
-                  "No of Canteen",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
+              ),
+              const Text(
+                "89",
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.w900,
                 ),
-                const Text(
-                  "89",
-                  style: TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ],

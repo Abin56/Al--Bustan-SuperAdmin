@@ -26,74 +26,96 @@ class StoreDashboardContainer extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    const Text(
-                      "Purchase Overview",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 50, right: 50, bottom: 20),
+                  child: Row(
+                    children: [
+                      const Text(
+                        "Purchase Overview",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                    const Spacer(),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.more_vert_outlined,
+                      const Spacer(),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.more_vert_outlined,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Expanded(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    // mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          const DashboardItem(
-                            bgColor: AppColors.greenColor,
-                            icon: Icons.shopify_rounded,
-                            iconColor: AppColors.lightGreenColor,
-                            title: "Total Purchase",
-                            value: "712",
-                          ),
-                          ResponsiveWebSite.isMobile(context)
-                              ? const Spacer()
-                              : const Text(''),
-                          const DashboardItem(
-                            icon: Icons.cancel,
-                            iconColor: AppColors.yellowColor,
-                            title: "Cancel Order",
-                            value: "132",
-                            bgColor: AppColors.lightYellowColor,
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          const DashboardItem(
-                            icon: Icons.rotate_90_degrees_ccw_sharp,
-                            iconColor: AppColors.redColor,
-                            title: "Return",
-                            value: "132",
-                            bgColor: AppColors.lightRedColor,
-                          ),
-                          ResponsiveWebSite.isMobile(context)
-                              ? const Spacer()
-                              : const Text(''),
-                          const Padding(
-                            padding: EdgeInsets.only(right: 30),
-                            child: DashboardItem(
-                              icon: Icons.auto_graph_rounded,
-                              iconColor: AppColors.indigoColor,
-                              title: "Cost",
-                              value: "132",
-                              bgColor: AppColors.lightIndigoColors,
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 60, right: 60, bottom: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const Expanded(
+                              child: DashboardItem(
+                                bgColor: AppColors.greenColor,
+                                icon: Icons.shopify_rounded,
+                                iconColor: AppColors.lightGreenColor,
+                                title: "Total Purchase",
+                                value: "712",
+                              ),
                             ),
-                          ),
-                        ],
+                            ResponsiveWebSite.isMobile(context)
+                                ? const Spacer()
+                                : const Text(''),
+                            const Spacer(),
+                            const Expanded(
+                              child: DashboardItem(
+                                icon: Icons.cancel,
+                                iconColor: AppColors.yellowColor,
+                                title: "Cancel Order",
+                                value: "132",
+                                bgColor: AppColors.lightYellowColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 60, right: 60),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Expanded(
+                                  child: DashboardItem(
+                                    icon: Icons.rotate_90_degrees_ccw_sharp,
+                                    iconColor: AppColors.redColor,
+                                    title: "Return",
+                                    value: "132",
+                                    bgColor: AppColors.lightRedColor,
+                                  ),
+                                ),
+                                ResponsiveWebSite.isMobile(context)
+                                    ? const Spacer()
+                                    : const Text(''),
+                                const Spacer(),
+                                const Expanded(
+                                  child: DashboardItem(
+                                    icon: Icons.auto_graph_rounded,
+                                    iconColor: AppColors.indigoColor,
+                                    title: "Cost",
+                                    value: "132",
+                                    bgColor: AppColors.lightIndigoColors,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -103,6 +125,7 @@ class StoreDashboardContainer extends StatelessWidget {
           ),
         ),
       ), //...................................... [1]
+
       Padding(
         padding: const EdgeInsets.only(
           right: 10,
@@ -112,76 +135,99 @@ class StoreDashboardContainer extends StatelessWidget {
           height: 230,
           width: double.infinity,
           child: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    const Text(
-                      "Stock Overview",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 50, right: 50, bottom: 20),
+                  child: Row(
+                    children: [
+                      const Text(
+                        "Stock Overview",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.more_vert_outlined,
+                      const Spacer(),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.more_vert_outlined,
+                        ),
                       ),
-                    )
-                  ],
+                    ],
+                  ),
                 ),
                 Expanded(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    // mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          const DashboardItem(
-                            bgColor: AppColors.orangeColor,
-                            icon: Icons.shopify_rounded,
-                            iconColor: AppColors.lightOrangeColor,
-                            title: "Total Stock",
-                            value: "12",
-                          ),
-                          ResponsiveWebSite.isMobile(context)
-                              ? const Spacer()
-                              : const Text(''),
-                          const DashboardItem(
-                            icon: Icons.book,
-                            iconColor: AppColors.yellowColor,
-                            title: "Purchase Pending",
-                            value: "02",
-                            bgColor: AppColors.lightYellowColor,
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          const DashboardItem(
-                            icon: Icons.receipt_long_rounded,
-                            iconColor: AppColors.pinkColor,
-                            title: "Will be Record",
-                            value: "",
-                            bgColor: AppColors.lightPinkColor,
-                          ),
-                          ResponsiveWebSite.isMobile(context)
-                              ? const Spacer()
-                              : const Text(''),
-                          const Padding(
-                            padding: EdgeInsets.only(right: 25),
-                            child: DashboardItem(
-                              icon: Icons.notification_important,
-                              iconColor: AppColors.indigoColor,
-                              title: "Request Alert",
-                              value: "05",
-                              bgColor: AppColors.lightIndigoColors,
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 60, right: 60, bottom: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const Expanded(
+                              child: DashboardItem(
+                                bgColor: AppColors.orangeColor,
+                                icon: Icons.shopify_rounded,
+                                iconColor: AppColors.lightOrangeColor,
+                                title: "Total Stock",
+                                value: "12",
+                              ),
                             ),
-                          ),
-                        ],
+                            ResponsiveWebSite.isMobile(context)
+                                ? const Spacer()
+                                : const Text(''),
+                            const Spacer(),
+                            const Expanded(
+                              child: DashboardItem(
+                                icon: Icons.book,
+                                iconColor: AppColors.yellowColor,
+                                title: "Purchase Pending",
+                                value: "02",
+                                bgColor: AppColors.lightYellowColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 60, right: 60),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Expanded(
+                                  child: DashboardItem(
+                                    icon: Icons.receipt_long_rounded,
+                                    iconColor: AppColors.pinkColor,
+                                    title: "Will be Record",
+                                    value: "01",
+                                    bgColor: AppColors.lightPinkColor,
+                                  ),
+                                ),
+                                ResponsiveWebSite.isMobile(context)
+                                    ? const Spacer()
+                                    : const Text(''),
+                                const Spacer(),
+                                const Expanded(
+                                  child: DashboardItem(
+                                    icon: Icons.notification_important,
+                                    iconColor: AppColors.indigoColor,
+                                    title: "Request Alert",
+                                    value: "05",
+                                    bgColor: AppColors.lightIndigoColors,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

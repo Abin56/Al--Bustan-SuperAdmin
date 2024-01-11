@@ -360,13 +360,10 @@ class StoreDashboardContainer extends StatelessWidget {
       CustomContainer(
         height: ResponsiveWebSite.isMobile(context) ? 250 : 350,
         width: double.infinity,
-        child: const Padding(
-          padding: EdgeInsets.all(0),
-          child: ScendRowoneWidget(
-            iconData1: Icons.home_work_outlined,
-            title: "Canteens",
-            icon: Icons.more_vert_outlined,
-          ),
+        child: const ScendRowoneWidget(
+          iconData1: Icons.home_work_outlined,
+          title: "Canteens",
+          icon: Icons.more_vert_outlined,
         ),
       ),
     ];

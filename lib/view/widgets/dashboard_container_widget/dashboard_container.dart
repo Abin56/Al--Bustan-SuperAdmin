@@ -311,15 +311,18 @@ class DashboardContainer extends StatelessWidget {
           ),
         ),
       ), //...................................[1][1]
-      CustomContainer(
-        height: ResponsiveWebSite.isMobile(context) ? 250 : 350,
-        width: double.infinity,
-        child: const Padding(
-          padding: EdgeInsets.all(0),
-          child: ScendRowoneWidget(
-            iconData1: Icons.home_work_outlined,
-            title: "Canteens",
-            icon: Icons.more_vert_outlined,
+      Padding(
+        padding: const EdgeInsets.only(right: 10),
+        child: CustomContainer(
+          height: ResponsiveWebSite.isMobile(context) ? 250 : 350,
+          width: double.infinity,
+          child: const Padding(
+            padding: EdgeInsets.all(0),
+            child: ScendRowoneWidget(
+              iconData1: Icons.home_work_outlined,
+              title: "Canteens",
+              icon: Icons.more_vert_outlined,
+            ),
           ),
         ),
       ),

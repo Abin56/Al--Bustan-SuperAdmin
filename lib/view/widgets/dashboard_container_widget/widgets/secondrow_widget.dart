@@ -147,7 +147,7 @@ class ScendRowoneWidget extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(
-            left: 30,
+            left: 10,
             right: 30,
             top: 10,
             bottom: 20,

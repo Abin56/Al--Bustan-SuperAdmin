@@ -1,9 +1,11 @@
+import 'package:canteen_superadmin_website/view/admin_panel/admin_panel.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/login_textformfeild.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/loginsubmitbutton.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginSection extends StatefulWidget {
   const LoginSection({super.key});
@@ -17,12 +19,14 @@ class _LoginSectionState extends State<LoginSection> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: cWhite,
       body: SingleChildScrollView(
         child: Container(
           child: ResponsiveWebSite.isMobile(context)
               ? Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 10),
@@ -77,107 +81,95 @@ class _LoginSectionState extends State<LoginSection> {
                             child: Padding(
                               padding: const EdgeInsets.only(
                                   top: 10, left: 10, right: 10),
-                              child: loginWidget[9],
+                              child: loginWidget[8],
                             ),
                           ),
                         ],
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 10),
-                        child: loginWidget[10],
+                        child: loginWidget[9],
                       ),
                     ],
                   ),
                 )
               : Padding(
-                  padding: const EdgeInsets.only(top: 60),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Expanded(
-                              flex: ResponsiveWebSite.isTablet(context) ? 2 : 4,
-                              child: Padding(
-                                padding: const EdgeInsets.all(20),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  child: Container(
-                                    height: 550,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                          image: AssetImage(
-                                            'web_images/images/albustan2.jpg',
-                                          ),
-                                          fit: BoxFit.fill),
-                                    ),
-                                  ),
+                  padding: const EdgeInsets.only(top: 10),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 40, top: 100),
+                          child: SizedBox(
+                            height: 1000,
+                            child: Column(
+                              children: [
+                                loginWidget[0],
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: loginWidget[1],
                                 ),
-                              )),
-                          Expanded(
-                              flex: 2,
-                              child: Padding(
-                                padding: const EdgeInsets.only(right: 40),
-                                child: SizedBox(
-                                  height: 550,
-                                  child: Column(
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: loginWidget[2],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 20),
+                                  child: loginWidget[3],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: loginWidget[4],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 20),
+                                  child: loginWidget[5],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 20, bottom: 20),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      loginWidget[0],
                                       Padding(
-                                        padding: const EdgeInsets.only(top: 10),
-                                        child: loginWidget[1],
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 10),
-                                        child: loginWidget[2],
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 20),
-                                        child: loginWidget[3],
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 10),
-                                        child: loginWidget[4],
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 20),
-                                        child: loginWidget[5],
+                                        padding: const EdgeInsets.only(
+                                            top: 10, bottom: 0, right: 40),
+                                        child: GestureDetector(
+                                            onTap: () {},
+                                            child: loginWidget[6]),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                            top: 10, bottom: 10),
-                                        child: loginWidget[6],
+                                            top: 10, bottom: 0, right: 40),
+                                        child: GestureDetector(
+                                            onTap: () {
+                                              Get.to(const AdminHomeScreen(
+                                                  navvalue: 'storeadmin'));
+                                            },
+                                            child: loginWidget[7]),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.only(top: 20),
-                                        child: Row(
-                                          children: [
-                                            Expanded(child: loginWidget[7]),
-                                            Expanded(
-                                                child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10),
-                                              child: loginWidget[8],
-                                            )),
-                                            Expanded(
-                                                child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10),
-                                              child: loginWidget[9],
-                                            )),
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        child: loginWidget[10],
+                                        padding: const EdgeInsets.only(
+                                            top: 10, bottom: 0, right: 40),
+                                        child: GestureDetector(
+                                            onTap: () {
+                                              Get.to(const AdminHomeScreen(
+                                                  navvalue: 'deliveryadmin'));
+                                            },
+                                            child: loginWidget[8]),
                                       ),
                                     ],
                                   ),
                                 ),
-                              ))
-                        ],
-                      )
-                    ],
+                                Container(
+                                  child: loginWidget[9],
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
         ),
@@ -186,22 +178,46 @@ class _LoginSectionState extends State<LoginSection> {
   }
 }
 
-class loginContainerWidget extends StatelessWidget {
-  loginContainerWidget({
+class LoginContainerWidget extends StatelessWidget {
+  final String value;
+  final String imagepath;
+  LoginContainerWidget({
     required this.text,
     super.key,
+    required this.imagepath,
+    required this.value,
   });
   String text;
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 40,
-        width: 50,
+        height: 125,
+        width: 125,
         decoration: BoxDecoration(
+          color: cWhite,
+          shape: BoxShape.circle,
           border: Border.all(color: cGrey.withOpacity(0.5)),
-          borderRadius: const BorderRadius.all(Radius.circular(4)),
         ),
-        child: Center(child: GooglePoppinsWidgets(text: text, fontsize: 12)));
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              backgroundColor: cWhite,
+              radius: 30,
+              child: Image.asset(imagepath),
+            ),
+            // const CircleAvatar(
+            //   radius: 100,
+            //   backgroundImage: AssetImage('web_images/super_Admin (1).jpg'),
+            // ),
+            Center(
+                child: GooglePoppinsWidgets(
+              text: text,
+              fontsize: 11,
+              fontWeight: FontWeight.bold,
+            )),
+          ],
+        ));
   }
 }
 
@@ -247,35 +263,41 @@ List<Widget> loginWidget = [
     title: 'Enter password',
   ), //////////////////////////////////////////////////5
   LoginButtonContainerWidget(
-      width: 600, text: 'Sign me in', height: 50, fontSize: 18, onTap: () {}),
+      width: 600, text: 'LOG IN', height: 50, fontSize: 18, onTap: () {}),
   ///////////////////////////////////////////////////////////////6
-  Row(
-    children: [
-      const Expanded(
-          child: Padding(
-        padding: EdgeInsets.only(left: 100),
-        child: Divider(
-          color: Colors.grey,
-        ),
-      )),
-      GooglePoppinsWidgets(text: 'Continue with', fontsize: 12, color: cGrey),
-      const Expanded(
-          child: Padding(
-        padding: EdgeInsets.only(right: 100),
-        child: Divider(
-          color: Colors.grey,
-        ),
-      ))
-    ],
-  ), ///////////////////////////////////////////////////////7
-  loginContainerWidget(
-    text: 'Admin',
+  // Row(
+  //   children: [
+  //     const Expanded(
+  //         child: Padding(
+  //       padding: EdgeInsets.only(left: 100),
+  //       child: Divider(
+  //         color: Colors.grey,
+  //       ),
+  //     )),
+  //     // GooglePoppinsWidgets(text: 'Continue with', fontsize: 12, color: cGrey),
+  //     // const Expanded(
+  //     //     child: Padding(
+  //     //   padding: EdgeInsets.only(right: 100),
+  //     //   child: Divider(
+  //     //     color: Colors.grey,
+  //     //   ),
+  //     // ))
+  //   ],
+  // ), ///////////////////////////////////////////////////////7
+  LoginContainerWidget(
+    value: 'superadmin',
+    imagepath: 'web_images/super_Admin.jpg',
+    text: 'SUPER ADMIN',
   ), //////////////////////////////////////////////////////////////8
-  loginContainerWidget(
-    text: ' Store\nAdmin',
+  LoginContainerWidget(
+    value: 'storeadmin',
+    imagepath: 'web_images/store_Admin.jpg',
+    text: 'STORE ADMIN',
   ), //////////////////////////////////////////////////////////////////9
-  loginContainerWidget(
-    text: 'Delivery\n Admin',
+  LoginContainerWidget(
+    value: 'deliveryadmin',
+    imagepath: 'web_images/delivery_admin.jpg',
+    text: 'DELIVERY ADMIN',
   ), /////////////////////////////////////////////////////////////////////////////10
   Row(
     mainAxisAlignment: MainAxisAlignment.center,

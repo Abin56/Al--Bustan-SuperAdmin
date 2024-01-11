@@ -3,7 +3,7 @@ import 'package:canteen_superadmin_website/controller/excel_controller/excel_con
 import 'package:canteen_superadmin_website/controller/store_controller.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:canteen_superadmin_website/model/employe_createprofile_model.dart';
-import 'package:canteen_superadmin_website/model/product_model.dart';
+// import 'package:canteen_superadmin_website/model/product_model.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';

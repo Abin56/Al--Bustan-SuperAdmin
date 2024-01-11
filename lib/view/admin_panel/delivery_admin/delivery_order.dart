@@ -2,7 +2,6 @@ import 'package:canteen_superadmin_website/controller/delivery_controller/delive
 import 'package:canteen_superadmin_website/controller/employee_controller/employee_controller.dart';
 import 'package:canteen_superadmin_website/model/employe_createprofile_model.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
-import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/widgets/delivery_container_widget.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/textstysle/textstyle.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

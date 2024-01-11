@@ -150,7 +150,7 @@ class StoreController extends GetxController {
   addTempProductToDB(List<DocumentSnapshot> dataList) async {
     for (int i = 0; i < dataList.length; i++) {
       ProductAddingModel data = ProductAddingModel.fromMap(dataList[i]);
-      String docID = data.docId;
+      // String docID = data.docId;
       if (data.barcodeNumber != "" &&
           data.productname != "" &&
           data.categoryName != "" &&

@@ -1,29 +1,32 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/material.dart';
+import 'package:sidebar_drawer/sidebar_drawer.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/admin_appBar.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_dashboard.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_request.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/drawer_page_delivery_admin.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/drawer_pages/drawer_pages.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/category_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/product_temporary_list.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/quantity_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/store_request.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/subcategory_widget.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/product%20details/product_details.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/drawer_page_store_admin.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/store_dashboard.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/table_listview.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_order.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_prodects.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/dashboard_container.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/table_listview.dart';
-import 'package:flutter/material.dart';
-import 'package:sidebar_drawer/sidebar_drawer.dart';
 
 class AdminHomeScreen extends StatefulWidget {
-  const AdminHomeScreen({super.key});
+  final String navvalue;
+  const AdminHomeScreen({
+    Key? key,
+    required this.navvalue,
+  }) : super(key: key);
 
   @override
   State<AdminHomeScreen> createState() => _AdminHomeScreenState();
@@ -85,14 +88,23 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                             ),
                           ),
                           sHeight10,
-                          DeliveryDrawerSelectedPagesSection(
-                            selectedIndex: selectedIndex,
-                            onTap: (index) {
-                              setState(() {
-                                selectedIndex = index;
-                              });
-                            },
-                          )
+                          widget.navvalue == 'storeadmin'
+                              ? StoreDrawerSelectedPagesSection(
+                                  selectedIndex: selectedIndex,
+                                  onTap: (index) {
+                                    setState(() {
+                                      selectedIndex = index;
+                                    });
+                                  },
+                                )
+                              : DeliveryDrawerSelectedPagesSection(
+                                  selectedIndex: selectedIndex,
+                                  onTap: (index) {
+                                    setState(() {
+                                      selectedIndex = index;
+                                    });
+                                  },
+                                )
                         ],
                       ),
                     ),

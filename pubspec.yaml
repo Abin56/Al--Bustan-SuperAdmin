@@ -48,6 +48,7 @@ dependencies:
   uuid:
   text_scroll:
   get:
+  firebase_app_check:
   sidebar_drawer:
   fluttertoast:
   syncfusion_flutter_charts: ^21.2.4

@@ -1,4 +1,3 @@
-import 'package:canteen_superadmin_website/view/admin_panel/admin_panel.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +13,9 @@ class WelcomeScreen extends StatelessWidget {
         actions: [
           InkWell(
             onTap: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => const AdminHomeScreen(),
-              ));
+              // Navigator.of(context).pushReplacement(MaterialPageRoute(
+              //   // builder: (context) => const AdminHomeScreen(),
+              // ));
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 10, left: 20, right: 20),

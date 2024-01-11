@@ -6,7 +6,6 @@ import 'package:canteen_superadmin_website/view/constant/constant.validate.dart'
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/textstysle/textstyle.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
-import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/container_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -149,8 +148,8 @@ class ProductScreen extends StatelessWidget {
                               title: "Cart",
                               children: [CartWiget()],
                               actiononTapfuction: () async {
-                                final newlist =
-                                    await getDeliveryCtr.getCartList();
+                                // final newlist =
+                                await getDeliveryCtr.getCartList();
                                 getDeliveryCtr.cartToDeliveryOrder();
                               },
                               doyouwantActionButton: true,
@@ -455,14 +454,14 @@ class DeliveryProductTile extends StatelessWidget {
 class CartWiget extends StatelessWidget {
   CartWiget({super.key});
   final getDeliveryCtr = Get.put(DeliveryController());
-  DeliveryController getSingleDeliveyCtr = DeliveryController();
-  int amount = 0;
+  final DeliveryController getSingleDeliveyCtr = DeliveryController();
+  final int amount = 0;
   @override
   Widget build(BuildContext context) {
     final SizeW = MediaQuery.of(context).size.width;
     final SizeH = MediaQuery.of(context).size.height;
 
-    return Container(
+    return SizedBox(
       width: SizeW * 0.44,
       height: SizeH * 0.4,
       child: StreamBuilder(

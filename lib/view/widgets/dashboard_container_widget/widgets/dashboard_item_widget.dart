@@ -23,7 +23,7 @@ class DashboardItem extends StatelessWidget {
       children: [
         Container(
           width: 40,
-          height: 40, 
+          height: 40,
           decoration: BoxDecoration(
             color: bgColor,
             borderRadius: BorderRadius.circular(16),
@@ -49,10 +49,10 @@ class DashboardItem extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
             ),
-        const    SizedBox(height: 5),
+            const SizedBox(height: 5),
             Text(
               value,
-              style:const TextStyle(
+              style: const TextStyle(
                 fontSize: 26,
                 fontWeight: FontWeight.w900,
               ),

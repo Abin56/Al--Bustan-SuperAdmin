@@ -1,12 +1,11 @@
 import 'package:canteen_superadmin_website/controller/store_controller.dart';
 import 'package:canteen_superadmin_website/model/quantity_model.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/inventory/category_widget.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/inventory/widget/custom_button.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:canteen_superadmin_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,16 +19,13 @@ class QuantityWidget extends StatelessWidget {
     final sizeH = MediaQuery.of(context).size.height;
 
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(16),
       child: Container(
-        height: sizeH * 0.85,
+        height: sizeH * 0.89,
         width: double.infinity,
-        decoration: BoxDecoration(
-            color: cWhite,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: const [
-              BoxShadow(blurRadius: 0.5),
-            ]),
+        decoration: const BoxDecoration(color: cWhite, boxShadow: [
+          BoxShadow(blurRadius: 0.5),
+        ]),
         child: Column(
           children: [
             Padding(
@@ -41,9 +37,11 @@ class QuantityWidget extends StatelessWidget {
                     fontsize: 20,
                     fontWeight: FontWeight.w500,
                   ),
-                  Spacer(),
-                  GestureDetector(
-                    onTap: () {
+                  const Spacer(),
+                  CustomGradientButton(
+                    height: sizeH * 0.05,
+                    width: sizeW * 0.1,
+                    onPressed: () {
                       customShowDilogBox(
                           context: context,
                           title: 'Add Quantity',
@@ -60,25 +58,7 @@ class QuantityWidget extends StatelessWidget {
                           },
                           doyouwantActionButton: true);
                     },
-                    child: Container(
-                      height: 40,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: cGreen),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 0, horizontal: 20),
-                            child: GooglePoppinsWidgets(
-                                text: "Add Quantity",
-                                fontsize: 14,
-                                color: cWhite),
-                          ),
-                        ),
-                      ),
-                    ),
+                    text: 'Add Quantity',
                   ),
                 ],
               ),
@@ -132,37 +112,48 @@ class QuantityTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      // color: AppColors.backGroundColor,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: cLateGrey,
-        borderRadius: BorderRadius.circular(10),
-      ),
+          color: AppColors.backGroundColor,
+          border: Border.all(width: 1, color: Colors.black45)
+          // borderRadius: BorderRadius.circular(10),
+          ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Row(
           children: [
-            GooglePoppinsWidgets(text: data.quantityTypeName, fontsize: 16),
+            GooglePoppinsWidgets(
+              text: data.quantityTypeName,
+              fontsize: 16,
+            ),
             const Spacer(),
             IconButton(
-                onPressed: () {
-                  getStroreCtr.quantityCtr.text = data.quantityTypeName;
-                  customShowDilogBox(
-                      context: context,
-                      title: 'Edit Category',
-                      children: [
-                        TextFormFiledContainerWidget(
-                            controller: getStroreCtr.quantityCtr,
-                            hintText: "Quantity",
-                            title: "Quantity",
-                            width: 200)
-                      ],
-                      actiononTapfuction: () {
-                        getStroreCtr.editQuantity(
-                            getStroreCtr.quantityCtr.text, data.docid);
-                      },
-                      doyouwantActionButton: true);
-                },
-                icon: iconWidget(icon: Icons.edit, color: cBlack, size: 16))
+              onPressed: () {
+                getStroreCtr.quantityCtr.text = data.quantityTypeName;
+                customShowDilogBox(
+                    context: context,
+                    title: 'Edit Category',
+                    children: [
+                      TextFormFiledContainerWidget(
+                        controller: getStroreCtr.quantityCtr,
+                        hintText: "Quantity",
+                        title: "Quantity",
+                        width: 200,
+                      )
+                    ],
+                    actiononTapfuction: () {
+                      getStroreCtr.editQuantity(
+                          getStroreCtr.quantityCtr.text, data.docid);
+                    },
+                    doyouwantActionButton: true);
+              },
+              icon: iconWidget(
+                icon: Icons.edit_note_outlined,
+                color: cBlack,
+                size: 26,
+              ),
+            )
           ],
         ),
       ),

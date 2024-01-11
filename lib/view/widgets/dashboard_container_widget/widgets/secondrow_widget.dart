@@ -21,9 +21,8 @@ class ScendRowWidget extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 34, right: 34, bottom: 20),
+          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
@@ -41,9 +40,8 @@ class ScendRowWidget extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 40, right: 40),
+          padding: const EdgeInsets.only(left: 50, right: 50),
           child: Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
                 height: 140,
@@ -57,7 +55,7 @@ class ScendRowWidget extends StatelessWidget {
                   ),
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Icon(
                       iconData1,
@@ -83,7 +81,7 @@ class ScendRowWidget extends StatelessWidget {
               ),
               // ignore: prefer_const_constructors
               Spacer(),
-              sWidtht5,
+
               Container(
                 height: 140,
                 width: 140,
@@ -96,9 +94,9 @@ class ScendRowWidget extends StatelessWidget {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Icon(
                         iconData2,
@@ -185,10 +183,13 @@ class ScendRowoneWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(
-                iconData1,
-                color: AppColors.greenColor,
-                size: 40,
+              Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: Icon(
+                  iconData1,
+                  color: AppColors.greenColor,
+                  size: 40,
+                ),
               ),
               const Text(
                 "No of Canteen",

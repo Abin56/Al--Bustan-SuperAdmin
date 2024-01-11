@@ -52,14 +52,14 @@ class DashboardItem extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            // const SizedBox(height: 5),
-            // Text(
-            //   value,
-            //   style: const TextStyle(
-            //     fontSize: 26,
-            //     fontWeight: FontWeight.w900,
-            //   ),
-            // ),
+            const SizedBox(height: 5),
+            Text(
+              value,
+              style: const TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
           ],
         ),
       ],

@@ -60,7 +60,7 @@ class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
     return PreferredSize(
       preferredSize: const Size.fromHeight(100.0),
       child: Container(
-        color: Colors.white24,
+        color: AppColors.backGroundColor,
         height: 70,
         width: double.infinity,
         child: Row(
@@ -72,8 +72,8 @@ class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
                   height: 40,
                   width: 40,
                   decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(14)),
-                      color: cLateGrey),
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                      color: AppColors.backGroundColor),
                   child: const DrawerIcon(),
                 ),
               ],
@@ -82,9 +82,12 @@ class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
             SizedBox(
               height: 40,
               width: sizeW * 0.3,
-              child: const CupertinoSearchTextField(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
+              child: CupertinoSearchTextField(
                 placeholder: 'Search anything',
+                decoration: BoxDecoration(
+                  color: AppColors.lightGreyColor,
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                ),
               ),
             ),
             const Spacer(),

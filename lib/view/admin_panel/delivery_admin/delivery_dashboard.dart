@@ -17,86 +17,92 @@ class DeliveryDashboardContainer extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     List<Widget> dashboardcontent = [
-      CustomContainer(
-        height: 230,
-        width: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  const Text(
-                    "Purchase Overview",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
+      Padding(
+        padding: const EdgeInsets.only(right: 10, bottom: 10, left: 10),
+        child: CustomContainer(
+          height: 230,
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 50, right: 50),
+                  child: Row(
+                    children: [
+                      const Text(
+                        "Purchase Overview",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const Spacer(),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.more_vert_outlined,
+                        ),
+                      ),
+                    ],
                   ),
-                  const Spacer(),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.more_vert_outlined,
-                    ),
-                  ),
-                ],
-              ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        const DashboardItem(
-                          bgColor: AppColors.greenColor,
-                          icon: Icons.shopify_rounded,
-                          iconColor: AppColors.lightGreenColor,
-                          title: "Total Purchase",
-                          value: "712",
-                        ),
-                        ResponsiveWebSite.isMobile(context)
-                            ? const Spacer()
-                            : const Text(''),
-                        const DashboardItem(
-                          icon: Icons.cancel,
-                          iconColor: AppColors.yellowColor,
-                          title: "Cancel Order",
-                          value: "132",
-                          bgColor: AppColors.lightYellowColor,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        const DashboardItem(
-                          icon: Icons.rotate_90_degrees_ccw_sharp,
-                          iconColor: AppColors.redColor,
-                          title: "Return",
-                          value: "132",
-                          bgColor: AppColors.lightRedColor,
-                        ),
-                        ResponsiveWebSite.isMobile(context)
-                            ? const Spacer()
-                            : const Text(''),
-                        const Padding(
-                          padding: EdgeInsets.only(right: 30),
-                          child: DashboardItem(
-                            icon: Icons.auto_graph_rounded,
-                            iconColor: AppColors.indigoColor,
-                            title: "Cost",
-                            value: "132",
-                            bgColor: AppColors.lightIndigoColors,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
                 ),
-              ),
-            ],
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const DashboardItem(
+                            bgColor: AppColors.greenColor,
+                            icon: Icons.shopify_rounded,
+                            iconColor: AppColors.lightGreenColor,
+                            title: "Total Purchase",
+                            value: "712",
+                          ),
+                          ResponsiveWebSite.isMobile(context)
+                              ? const Spacer()
+                              : const Text(''),
+                          const DashboardItem(
+                            icon: Icons.cancel,
+                            iconColor: AppColors.yellowColor,
+                            title: "Cancel Order",
+                            value: "13",
+                            bgColor: AppColors.lightYellowColor,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const DashboardItem(
+                            icon: Icons.rotate_90_degrees_ccw_sharp,
+                            iconColor: AppColors.redColor,
+                            title: "  Return      ",
+                            value: "82",
+                            bgColor: AppColors.lightRedColor,
+                          ),
+                          ResponsiveWebSite.isMobile(context)
+                              ? const Spacer()
+                              : const Text(''),
+                          const Padding(
+                            padding: EdgeInsets.only(right: 30),
+                            child: DashboardItem(
+                              icon: Icons.auto_graph_rounded,
+                              iconColor: AppColors.indigoColor,
+                              title: "   Cost   ",
+                              value: "672",
+                              bgColor: AppColors.lightIndigoColors,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ), //...................................... [1]
@@ -112,22 +118,26 @@ class DeliveryDashboardContainer extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    const Text(
-                      "Stock Overview",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
+                Padding(
+                  padding: const EdgeInsets.only(left: 50, right: 50),
+                  child: Row(
+                    children: [
+                      const Text(
+                        "Stock Overview",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.more_vert_outlined,
-                      ),
-                    )
-                  ],
+                      const Spacer(),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.more_vert_outlined,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 Expanded(
                   child: Column(
@@ -161,8 +171,8 @@ class DeliveryDashboardContainer extends StatelessWidget {
                           const DashboardItem(
                             icon: Icons.receipt_long_rounded,
                             iconColor: AppColors.pinkColor,
-                            title: "Will be Record",
-                            value: "",
+                            title: "Will be Received",
+                            value: "0",
                             bgColor: AppColors.lightPinkColor,
                           ),
                           ResponsiveWebSite.isMobile(context)
@@ -312,7 +322,7 @@ class DeliveryDashboardContainer extends StatelessWidget {
         height: ResponsiveWebSite.isMobile(context) ? 250 : 350,
         width: double.infinity,
         child: const Padding(
-          padding: EdgeInsets.all(0),
+          padding: EdgeInsets.all(10),
           child: ScendRowoneWidget(
             iconData1: Icons.home_work_outlined,
             title: "Canteens",
@@ -375,7 +385,8 @@ class DeliveryDashboardContainer extends StatelessWidget {
                         Expanded(
                             flex: 1,
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 10),
+                              padding:
+                                  const EdgeInsets.only(left: 10, right: 10),
                               child: dashboardcontent[3],
                             )),
                         Expanded(

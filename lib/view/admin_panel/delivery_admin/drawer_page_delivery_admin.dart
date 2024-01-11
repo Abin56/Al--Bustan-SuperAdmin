@@ -94,12 +94,14 @@ class DeliveryDrawerSelectedPagesSection extends StatelessWidget {
                     return SizedBox();
                   } else {
                     return CircleAvatar(
-                      backgroundColor: cGreen,
+                      backgroundColor: cred,
                       radius: 12,
                       child: Center(
                         child: GooglePoppinsWidgets(
-                            text: snapshot.data!.docs.length.toString(),
-                            fontsize: 11),
+                          text: snapshot.data!.docs.length.toString(),
+                          fontsize: 11,
+                          color: cWhite,
+                        ),
                       ),
                     );
                   }

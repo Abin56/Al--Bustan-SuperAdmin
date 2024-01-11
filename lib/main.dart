@@ -3,6 +3,7 @@ import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/deliv
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/category_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_order.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_prodects.dart';
+import 'package:canteen_superadmin_website/view/login/login_section/login_page.dart';
 import 'package:canteen_superadmin_website/view/welcome_screen/welcome_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -22,10 +23,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomeScreen(),
+      home: LoginSection(),
       // home: Scaffold(body: DeliveryRequest()),
     );
   }

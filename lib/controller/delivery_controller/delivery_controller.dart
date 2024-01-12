@@ -188,13 +188,7 @@ class DeliveryController extends GetxController {
       required String employeeId,
       required DocumentSnapshot deliverydata}) async {
     final time = DateTime.now().toString();
-    //delivery details//
-    final data = {
-      'orderId': deliverydata['orderId'],
-      'orderCount': deliverydata['orderCount'],
-      'time': time,
-      'status': 'Pending'
-    };
+
     //employees details//
     final employeeData = {
       "employeeName": employeeName,
@@ -202,10 +196,18 @@ class DeliveryController extends GetxController {
       'assignStatus': true
     };
     //employees details updated in delivery request detilas//
-    firestore
+    await firestore
         .collection('deliveryAssignList')
         .doc(deliverydata['orderId'])
         .update(employeeData);
+
+    //delivery details//
+    final data = {
+      'orderId': deliverydata['orderId'],
+      'orderCount': deliverydata['orderCount'],
+      'time': time,
+      'status': 'Pending'
+    };
 
     //delivery request details stored in employees collection//
     firestore

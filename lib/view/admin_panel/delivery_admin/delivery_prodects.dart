@@ -6,6 +6,7 @@ import 'package:canteen_superadmin_website/view/constant/constant.validate.dart'
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/textstysle/textstyle.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
+import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/container_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -148,8 +149,8 @@ class ProductScreen extends StatelessWidget {
                               title: "Cart",
                               children: [CartWiget()],
                               actiononTapfuction: () async {
-                                // final newlist =
-                                await getDeliveryCtr.getCartList();
+                                final newlist =
+                                    await getDeliveryCtr.getCartList();
                                 getDeliveryCtr.cartToDeliveryOrder();
                               },
                               doyouwantActionButton: true,
@@ -239,7 +240,7 @@ class DeliveryHeadWidget extends StatelessWidget {
                 Expanded(
                   child: Center(
                     child: Text(
-                      "Product ID",
+                      "Image",
                       style: AppTextStyles.textStyle1,
                     ),
                   ),
@@ -358,32 +359,13 @@ class DeliveryProductTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Expanded(
-                child: SizedBox(
-                  width: size.width * 0.026,
-                  height: size.height * 0.14,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.grey[300]!,
-                          width: 2.0,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.3),
-                            spreadRadius: 2,
-                            blurRadius: 5,
-                            offset: const Offset(0, 3),
-                          ),
-                        ],
-                      ),
-                      child: Image.network(
-                        'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8fA%3D%3D',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+              const Expanded(
+                child: CircleAvatar(
+                  radius: 24.0,
+                  backgroundColor: Colors
+                      .transparent, // Set the background color to transparent
+                  backgroundImage: NetworkImage(
+                    'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8fA%3D%3D',
                   ),
                 ),
               ),
@@ -454,14 +436,14 @@ class DeliveryProductTile extends StatelessWidget {
 class CartWiget extends StatelessWidget {
   CartWiget({super.key});
   final getDeliveryCtr = Get.put(DeliveryController());
-  final DeliveryController getSingleDeliveyCtr = DeliveryController();
-  final int amount = 0;
+  DeliveryController getSingleDeliveyCtr = DeliveryController();
+  int amount = 0;
   @override
   Widget build(BuildContext context) {
     final SizeW = MediaQuery.of(context).size.width;
     final SizeH = MediaQuery.of(context).size.height;
 
-    return SizedBox(
+    return Container(
       width: SizeW * 0.44,
       height: SizeH * 0.4,
       child: StreamBuilder(
@@ -500,8 +482,8 @@ class CartWiget extends StatelessWidget {
                               Expanded(
                                 flex: 1,
                                 child: SizedBox(
-                                  width: size.width * 0.026,
-                                  height: size.height * 0.14,
+                                  width: size.width * 0.01,
+                                  height: size.height * 0.1,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(12.0),
                                     child: Container(
@@ -532,8 +514,8 @@ class CartWiget extends StatelessWidget {
                                 child: Center(
                                   child: GooglePoppinsWidgets(
                                     text: data.productname,
-                                    fontsize: 18,
-                                    fontWeight: FontWeight.bold,
+                                    fontsize: 16,
+                                    fontWeight: FontWeight.w500,
                                   ),
                                 ),
                               ),
@@ -753,11 +735,11 @@ class CartHeadWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildColumnHeader("Image", 16, Colors.white),
-              _buildColumnHeader("Name", 16, Colors.white),
-              _buildColumnHeader("Qty", 16, Colors.white),
-              _buildColumnHeader("Available Qty", 16, Colors.white),
-              _buildColumnHeader("Amount", 16, Colors.white),
+              _buildColumnHeader("Image", 14, Colors.white),
+              _buildColumnHeader("Name", 14, Colors.white),
+              _buildColumnHeader("Qty", 14, Colors.white),
+              _buildColumnHeader("Available Qty", 14, Colors.white),
+              _buildColumnHeader("Amount", 14, Colors.white),
             ],
           ),
         ),
@@ -772,7 +754,7 @@ class CartHeadWidget extends StatelessWidget {
           text,
           style: TextStyle(
             fontSize: fontSize,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w500,
             color: textColor,
           ),
         ),

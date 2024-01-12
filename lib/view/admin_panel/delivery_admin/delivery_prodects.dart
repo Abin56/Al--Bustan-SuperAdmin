@@ -240,7 +240,7 @@ class DeliveryHeadWidget extends StatelessWidget {
                 Expanded(
                   child: Center(
                     child: Text(
-                      "Product ID",
+                      "Image",
                       style: AppTextStyles.textStyle1,
                     ),
                   ),

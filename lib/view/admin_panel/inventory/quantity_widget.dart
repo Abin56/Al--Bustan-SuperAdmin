@@ -1,13 +1,11 @@
 import 'package:canteen_superadmin_website/controller/store_controller.dart';
 import 'package:canteen_superadmin_website/model/quantity_model.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/inventory/category_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/inventory/widget/custom_button.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:canteen_superadmin_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +23,7 @@ class QuantityWidget extends StatelessWidget {
       child: Container(
         height: sizeH * 0.89,
         width: double.infinity,
-        decoration: BoxDecoration(color: cWhite, boxShadow: const [
+        decoration: const BoxDecoration(color: cWhite, boxShadow: [
           BoxShadow(blurRadius: 0.5),
         ]),
         child: Column(
@@ -39,7 +37,7 @@ class QuantityWidget extends StatelessWidget {
                     fontsize: 20,
                     fontWeight: FontWeight.w500,
                   ),
-                  Spacer(),
+                  const Spacer(),
                   CustomGradientButton(
                     height: sizeH * 0.05,
                     width: sizeW * 0.1,
@@ -62,51 +60,13 @@ class QuantityWidget extends StatelessWidget {
                     },
                     text: 'Add Quantity',
                   ),
-                  // GestureDetector(
-                  //   onTap: () {
-                  // customShowDilogBox(
-                  //     context: context,
-                  //     title: 'Add Quantity',
-                  //     children: [
-                  //       TextFormFiledContainerWidget(
-                  //           controller: getStroreCtr.quantityCtr,
-                  //           hintText: "Quantity",
-                  //           title: "Quantity",
-                  //           width: 200)
-                  //     ],
-                  //     actiononTapfuction: () {
-                  //       getStroreCtr
-                  //           .addQuantity(getStroreCtr.quantityCtr.text);
-                  //     },
-                  //     doyouwantActionButton: true);
-                  //   },
-                  //   child: Container(
-                  //     height: 40,
-                  //     decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(10),
-                  //         color: cGreen),
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.all(8.0),
-                  //       child: Center(
-                  //         child: Padding(
-                  //           padding: const EdgeInsets.symmetric(
-                  //               vertical: 0, horizontal: 20),
-                  //           child: GooglePoppinsWidgets(
-                  //               text: "Add Quantity",
-                  //               fontsize: 14,
-                  //               color: cWhite),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
             ),
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: StreamBuilder(
+                child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: StreamBuilder(
                   stream: getStroreCtr.fireStore
                       .collection('UnitCategory')
                       .snapshots(),
@@ -125,23 +85,19 @@ class QuantityWidget extends StatelessWidget {
                       );
                     }
                     return ListView.separated(
-                      itemBuilder: (context, index) {
-                        final data = ProductQuantityModel.fromMap(
-                          snapshot.data!.docs[index].data(),
-                        );
-                        return QuantityTile(
-                          data: data,
-                        );
-                      },
-                      separatorBuilder: (context, index) {
-                        return sHeight10;
-                      },
-                      itemCount: snapshot.data!.docs.length,
-                    );
-                  },
-                ),
-              ),
-            ),
+                        itemBuilder: (context, index) {
+                          final data = ProductQuantityModel.fromMap(
+                              snapshot.data!.docs[index].data());
+                          return QuantityTile(
+                            data: data,
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return sHeight10;
+                        },
+                        itemCount: snapshot.data!.docs.length);
+                  }),
+            ))
           ],
         ),
       ),

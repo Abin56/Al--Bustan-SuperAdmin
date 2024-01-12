@@ -1,9 +1,14 @@
+import 'dart:math';
+
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:canteen_superadmin_website/model/cart_model.dart';
+import 'package:canteen_superadmin_website/model/employee_request_model.dart';
 import 'package:canteen_superadmin_website/view/constant/const.dart';
 import 'package:canteen_superadmin_website/view/widgets/id_generator/id_generator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
 
@@ -122,12 +127,12 @@ class DeliveryController extends GetxController {
           .toList();
       //product details added to deliveryAssignList collection//
       for (int i = 0; i < cartProductsList.length; i++) {
-        final uuid2 = const Uuid().v1();
+        // final uuid2 = const Uuid().v1();
         firestore
             .collection("deliveryAssignList")
             .doc(orderid)
             .collection("orderProducts")
-            .doc(uuid2)
+            .doc(cartProductsList[i].docId)
             .set(cartProductsList[i].toMap());
       }
       //for getting time//
@@ -183,13 +188,7 @@ class DeliveryController extends GetxController {
       required String employeeId,
       required DocumentSnapshot deliverydata}) async {
     final time = DateTime.now().toString();
-    //delivery details//
-    final data = {
-      'orderId': deliverydata['orderId'],
-      'orderCount': deliverydata['orderCount'],
-      'time': time,
-      'status': 'Pending'
-    };
+
     //employees details//
     final employeeData = {
       "employeeName": employeeName,
@@ -197,10 +196,18 @@ class DeliveryController extends GetxController {
       'assignStatus': true
     };
     //employees details updated in delivery request detilas//
-    firestore
+    await firestore
         .collection('deliveryAssignList')
         .doc(deliverydata['orderId'])
         .update(employeeData);
+
+    //delivery details//
+    final data = {
+      'orderId': deliverydata['orderId'],
+      'orderCount': deliverydata['orderCount'],
+      'time': time,
+      'status': 'Pending'
+    };
 
     //delivery request details stored in employees collection//
     firestore
@@ -232,6 +239,79 @@ class DeliveryController extends GetxController {
     }
   }
 
+  confirmEmployeeRequest(EmployeeRequestModel requestdata) async {
+    String id = idGenerator();
+    final orderid = '#' + id;
+
+    final data = {
+      'time': requestdata.time,
+      "docId": orderid,
+      "orderCount": requestdata.orderCount,
+      "orderId": orderid,
+      "assignStatus": false,
+      "isDelivered": false,
+      "price": requestdata.amount,
+      "employeeName": requestdata.emplopeeName,
+      "employeeId": requestdata.emplopeeId
+    };
+    final requestedProductList = await firestore
+        .collection('EmployeeDeliveryRequest')
+        .doc(requestdata.docid)
+        .collection('RequestProductDetails')
+        .get();
+    for (var element in requestedProductList.docs) {
+      firestore
+          .collection("deliveryAssignList")
+          .doc(orderid)
+          .collection('orderProducts')
+          .doc(element['docId'])
+          .set(element.data());
+    }
+    firestore.collection("deliveryAssignList").doc(orderid).set(data);
+    showToast(msg: "Delivery Request added");
+    Get.back();
+    //delete after request confirm//
+    final employeeProductList = await firestore
+        .collection('EmployeeDeliveryRequest')
+        .doc(requestdata.docid)
+        .collection('RequestProductDetails')
+        .get();
+    for (var element in employeeProductList.docs) {
+      firestore
+          .collection('EmployeeDeliveryRequest')
+          .doc(requestdata.docid)
+          .collection('RequestProductDetails')
+          .doc(element['docId'])
+          .delete();
+    }
+    firestore
+        .collection('EmployeeDeliveryRequest')
+        .doc(requestdata.docid)
+        .delete();
+  }
+
+  cancelEmployeeRequest(EmployeeRequestModel requestdata) async {
+    //delete after request confirm//
+    final employeeProductList = await firestore
+        .collection('EmployeeDeliveryRequest')
+        .doc(requestdata.docid)
+        .collection('RequestProductDetails')
+        .get();
+    for (var element in employeeProductList.docs) {
+      firestore
+          .collection('EmployeeDeliveryRequest')
+          .doc(requestdata.docid)
+          .collection('RequestProductDetails')
+          .doc(element['docId'])
+          .delete();
+    }
+    await firestore
+        .collection('EmployeeDeliveryRequest')
+        .doc(requestdata.docid)
+        .delete();
+  }
+}
+
   // imagePicker() async {
   //   final pickedImage =
   //       await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -245,4 +325,4 @@ class DeliveryController extends GetxController {
   //     }
   //   }
   // }
-}
+

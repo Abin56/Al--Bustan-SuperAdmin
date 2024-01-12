@@ -83,6 +83,7 @@ class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
               height: 40,
               width: sizeW * 0.3,
               child: CupertinoSearchTextField(
+              child: const CupertinoSearchTextField(
                 placeholder: 'Search anything',
                 decoration: BoxDecoration(
                   color: AppColors.lightGreyColor,

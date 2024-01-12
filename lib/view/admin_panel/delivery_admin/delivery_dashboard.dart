@@ -18,7 +18,7 @@ class DeliveryDashboardContainer extends StatelessWidget {
 
     List<Widget> dashboardcontent = [
       Padding(
-        padding: const EdgeInsets.only(right: 10, bottom: 10, left: 10),
+        padding: const EdgeInsets.only(right: 5, bottom: 10, left: 5),
         child: CustomContainer(
           height: 230,
           width: double.infinity,
@@ -27,7 +27,7 @@ class DeliveryDashboardContainer extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 50, right: 50),
+                  padding: const EdgeInsets.only(left: 38, right: 38),
                   child: Row(
                     children: [
                       const Text(
@@ -119,7 +119,7 @@ class DeliveryDashboardContainer extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 50, right: 50),
+                  padding: const EdgeInsets.only(left: 30, right: 30),
                   child: Row(
                     children: [
                       const Text(

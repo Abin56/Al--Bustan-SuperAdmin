@@ -2,7 +2,6 @@ import 'package:canteen_superadmin_website/controller/delivery_controller/delive
 import 'package:canteen_superadmin_website/controller/employee_controller/employee_controller.dart';
 import 'package:canteen_superadmin_website/model/employe_createprofile_model.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
-import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/widgets/delivery_container_widget.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/textstysle/textstyle.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -203,24 +202,19 @@ class DeliveryScreen extends StatelessWidget {
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(3),
+                                              padding: const EdgeInsets.all(2),
                                               child: data['isDelivered'] == true
-                                                  ? const Padding(
-                                                      padding:
-                                                          EdgeInsets.all(6.0),
-                                                      child: Text(
-                                                        "Delivered",
-                                                        style: TextStyle(
-                                                          color: AppColors
-                                                              .whiteColor,
-                                                          fontSize: 18,
-                                                        ),
+                                                  ? const Text(
+                                                      "Delivered",
+                                                      style: TextStyle(
+                                                        color: AppColors
+                                                            .whiteColor,
                                                       ),
                                                     )
                                                   : data['assignStatus'] ==
                                                           false
                                                       ? SizedBox(
-                                                          height: 60,
+                                                          height: 40,
                                                           child: DropdownSearch<
                                                               EmployeeProfileCreateModel>(
                                                             autoValidateMode:
@@ -273,7 +267,7 @@ class DeliveryScreen extends StatelessWidget {
                                                               baseStyle:
                                                                   GoogleFonts
                                                                       .poppins(
-                                                                fontSize: 13,
+                                                                // fontSize: 13,
                                                                 color: Colors
                                                                     .black
                                                                     .withOpacity(
@@ -309,36 +303,28 @@ class DeliveryScreen extends StatelessWidget {
                                                                   .data!
                                                                   .docs
                                                                   .isEmpty) {
-                                                                return const Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .all(
-                                                                              6.0),
-                                                                  child: Text(
-                                                                    "Pickuped",
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: AppColors
-                                                                          .whiteColor,
-                                                                      fontSize:
-                                                                          18,
-                                                                    ),
+                                                                return const Text(
+                                                                  "Pickuped",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: AppColors
+                                                                        .whiteColor,
                                                                   ),
                                                                 );
                                                               } else {
                                                                 return const Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .all(
-                                                                              6.0),
+                                                                  padding: EdgeInsets
+                                                                      .symmetric(
+                                                                          horizontal:
+                                                                              6),
                                                                   child: Text(
                                                                     'Pending',
                                                                     style:
                                                                         TextStyle(
                                                                       color: AppColors
                                                                           .whiteColor,
-                                                                      fontSize:
-                                                                          18,
+                                                                      // fontSize:
+                                                                      //     18,
                                                                     ),
                                                                   ),
                                                                 );
@@ -355,7 +341,7 @@ class DeliveryScreen extends StatelessWidget {
                                       ),
 
                                       // Expanded(
-                                      //   flex: 1,
+                                      //   flex: 1,/
                                       //   child: Center(
                                       //     child: Container(
                                       //       decoration: BoxDecoration(
@@ -498,8 +484,8 @@ class DeliveryScreen extends StatelessWidget {
                                           child: Text(
                                             data['price'].toString(),
                                             overflow: TextOverflow.ellipsis,
-                                            style: AppTextStyles
-                                                .deliveryTextStyle1,
+                                            // style: AppTextStyles
+                                            //     .deliveryTextStyle1,
                                           ),
                                         ),
                                       ),

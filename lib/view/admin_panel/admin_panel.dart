@@ -29,7 +29,7 @@ class AdminHomeScreen extends StatefulWidget {
 }
 
 class _AdminHomeScreenState extends State<AdminHomeScreen> {
-  int selectedIndex = 6;
+  int selectedIndex = 7;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

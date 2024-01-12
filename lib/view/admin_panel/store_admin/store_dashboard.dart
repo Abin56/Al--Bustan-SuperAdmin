@@ -18,7 +18,7 @@ class StoreDashboardContainer extends StatelessWidget {
 
     List<Widget> dashboardcontent = [
       Padding(
-        padding: const EdgeInsets.only(right: 10, bottom: 10, left: 10),
+        padding: const EdgeInsets.only(right: 10, bottom: 10, left: 16),
         child: CustomContainer(
           height: 230,
           width: double.infinity,

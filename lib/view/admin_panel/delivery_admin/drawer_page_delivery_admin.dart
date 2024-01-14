@@ -108,6 +108,18 @@ class DeliveryDrawerSelectedPagesSection extends StatelessWidget {
                 },
               ),
             ),
+            // ListTile(
+            //   tileColor: selectedIndex == 11
+            //       ? themeColorBlue.withOpacity(0.1)
+            //       : Colors.transparent,
+            //   onTap: () {
+            //     index = 11;
+            //     onTap.call(index);
+            //   },
+            //   title: DashboardTextFontWidget(
+            //     title: 'Delivered List',
+            //   ),
+            // ),
           ],
         ),
 

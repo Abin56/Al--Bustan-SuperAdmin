@@ -34,6 +34,14 @@ class AdminHomeScreen extends StatefulWidget {
 
 class _AdminHomeScreenState extends State<AdminHomeScreen> {
   int selectedIndex = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    selectedIndex = widget.navvalue == 'storeadmin' ? 7 : 6;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +51,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
             body: ListView(
               children: [
                 const AppBarAdminPanel(),
-                pages[selectedIndex],
+                // pages[widget.navvalue == 'storeadmin' ? 7 : 6],
+                pages[selectedIndex]
               ],
             ),
             drawer: ListView(
@@ -124,8 +133,8 @@ List<Widget> pages = [
   CategoryWidget(),
   SubCategoryWidget(),
   QuantityWidget(),
-  const DeliveryDashboardContainer(),
-  const StoreDashboardContainer(),
+  DeliveryDashboardContainer(),
+  StoreDashboardContainer(),
   Center(
     child: TableListviewWidget(),
   ),

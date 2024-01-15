@@ -60,7 +60,7 @@ class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
     return PreferredSize(
       preferredSize: const Size.fromHeight(100.0),
       child: Container(
-        color: AppColors.backGroundColor,
+        color: Colors.white24,
         height: 70,
         width: double.infinity,
         child: Row(
@@ -83,7 +83,6 @@ class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
               height: 40,
               width: sizeW * 0.3,
               child: CupertinoSearchTextField(
-              child: const CupertinoSearchTextField(
                 placeholder: 'Search anything',
                 decoration: BoxDecoration(
                   color: AppColors.lightGreyColor,

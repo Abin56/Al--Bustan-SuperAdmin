@@ -53,22 +53,26 @@ class Chart extends StatelessWidget {
           yValueMapper: (TestEntity entity, _) => entity.y),
     ];
 
-    return SfCartesianChart(
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: SfCartesianChart(
         plotAreaBorderWidth: 0,
         primaryXAxis: CategoryAxis(
-          majorGridLines: MajorGridLines(width: 0),
-          axisLine: AxisLine(width: 0),
+          majorGridLines: const MajorGridLines(width: 0),
+          axisLine: const AxisLine(width: 0),
         ),
         palette: const [
           Color(0xFF5B8FF9),
           Color(0xFFE8684A),
         ],
         primaryYAxis: NumericAxis(
-            axisLine: AxisLine(width: 0),
+            axisLine: const AxisLine(width: 0),
             labelFormat: '{value} %',
-            majorTickLines: MajorTickLines(size: 0)),
+            majorTickLines: const MajorTickLines(size: 0)),
         legend: Legend(isVisible: true),
-        series: buildCacheRate);
+        series: buildCacheRate,
+      ),
+    );
   }
 }
 

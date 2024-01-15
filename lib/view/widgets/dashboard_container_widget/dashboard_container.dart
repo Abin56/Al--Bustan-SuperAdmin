@@ -196,14 +196,18 @@ class DashboardContainer extends StatelessWidget {
         child: CustomContainer(
           height: ResponsiveWebSite.isMobile(context) ? 250 : 350,
           width: double.infinity,
-          child: const Padding(
+          child: Padding(
             padding: EdgeInsets.all(10),
-            child: ScendRowWidget(
-              iconData1: Icons.border_all_rounded,
-              title: "Orders",
-              icon: Icons.more_vert_outlined,
-              iconData2: Icons.trolley,
+            child: Container(
+              height: 30,
+              width: 40,
             ),
+            // child: ScendRowWidget(
+            //   iconData1: Icons.border_all_rounded,
+            //   title: "Orders",
+            //   icon: Icons.more_vert_outlined,
+            //   iconData2: Icons.trolley,
+            // ),
           ),
         ),
       ), //................................[1][0]

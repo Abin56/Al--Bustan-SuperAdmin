@@ -1,13 +1,17 @@
-import 'package:canteen_superadmin_website/controller/profile_controller/profile_controller.dart';
+import 'package:canteen_superadmin_website/controller/suppliers_controller/suppliers_controller.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/inventory/widget/custom_button.dart';
+import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/button_container_widget/button_container_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SuppliersProfile extends StatelessWidget {
-  final suppliercontroller = Get.put(Profilecontroller());
+  final suppliercontroller = Get.put(SuppliersControllers());
   SuppliersProfile({super.key});
 
   GlobalKey<FormState> fkey = GlobalKey<FormState>();
@@ -21,103 +25,140 @@ class SuppliersProfile extends StatelessWidget {
               height: double.infinity,
               child: Image(
                 image: NetworkImage(
-                    "https://www.shutterstock.com/image-photo/middle-eastern-arabic-dishes-assorted-600nw-563091901.jpg"),
+                    "https://cdn3d.iconscout.com/3d/premium/thumb/courier-boy-8094292-6478869.png?f=webp"),
               )),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Text(
-                    "SUPPLIERS",
-                    style: TextStyle(fontWeight: FontWeight.w800, fontSize: 25),
-                  ),
-                  const Text("Create an account", style: TextStyle()),
-                  TextFormFiledContainerWidget(
-                      validator: checkFieldEmpty,
-                      controller: suppliercontroller.schoolnamecontroller,
-                      hintText: 'Enter your suppliers name',
-                      title: "Suppliers Name",
-                      width: 300),
-                  TextFormFiledContainerWidget(
-                      validator: checkFieldEmpty,
-                      controller: suppliercontroller.schoolnamecontroller,
-                      hintText: 'Enter the Canteen Id',
-                      title: "Supplier Id ",
-                      width: 300),
-                  TextFormFiledContainerWidget(
-                      validator: checkFieldEmpty,
-                      controller: suppliercontroller.addresscontroller,
-                      hintText: 'Enter your  address',
-                      title: " Address",
-                      width: 300),
-                  TextFormFiledContainerWidget(
-                      validator: checkFieldEmpty,
-                      controller: suppliercontroller.personcontactcontroller,
-                      hintText: 'Enter the phone number',
-                      title: "Contact Person",
-                      width: 300),
-                  TextFormFiledContainerWidget(
-                      validator: checkFieldEmpty,
-                      controller: suppliercontroller.albustancontactcontroller,
-                      hintText: 'Enter the Product List',
-                      title: "Products",
-                      width: 300),
-                  Row(
-                    children: [
-                      // TextFormField( ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          right: 10,
-                        ),
-                        child: TextFormFiledContainerWidget(
-                            validator: checkFieldEmpty,
-                            controller:
-                                suppliercontroller.workingtimecontroller,
-                            hintText: 'Starting time',
-                            title: "Working Time",
-                            width: 145),
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text(
+                  "SUPPLIERS",
+                  style: TextStyle(fontWeight: FontWeight.w800, fontSize: 25),
+                ),
+                const Text("Create an account", style: TextStyle()),
+                TextFormFiledContainerWidget(
+                    validator: checkFieldEmpty,
+                    controller: suppliercontroller.suppliersnamecontroller,
+                    hintText: 'Enter your suppliers name',
+                    title: "Suppliers Name",
+                    width: 300),
+                TextFormFiledContainerWidget(
+                    validator: checkFieldEmpty,
+                    controller: suppliercontroller.suppliersidcontroller,
+                    hintText: 'Enter the Canteen Id',
+                    title: "Supplier Id ",
+                    width: 300),
+                TextFormFiledContainerWidget(
+                    validator: checkFieldEmpty,
+                    controller: suppliercontroller.suppliersaddresscontroller,
+                    hintText: 'Enter your  address',
+                    title: " Address",
+                    width: 300),
+                TextFormFiledContainerWidget(
+                    validator: checkFieldEmpty,
+                    controller: suppliercontroller.contactPersoncontroller,
+                    hintText: 'Enter the phone number',
+                    title: "Contact Person",
+                    width: 300),
+                TextFormFiledContainerWidget(
+                    validator: checkFieldEmpty,
+                    controller: suppliercontroller.suppliersProductscontroller,
+                    hintText: 'Enter the Product List',
+                    title: "Products",
+                    width: 300),
+                Row(
+                  children: [
+                    // TextFormField( ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        right: 10,
                       ),
-                      TextFormFiledContainerWidget(
+                      child: TextFormFiledContainerWidget(
                           validator: checkFieldEmpty,
-                          controller: suppliercontroller.workingtimecontroller,
-                          hintText: 'Ending time',
-                          title: "",
+                          controller:
+                              suppliercontroller.workstartTimectscontroller,
+                          hintText: 'Starting time',
+                          title: "Working Time",
                           width: 145),
-                    ],
-                  ),
-                  // TextFormFiledContainerWidget(
-                  //     validator: checkFieldEmpty,
-                  //     controller: canteencontroller.schoolnamecontroller,
-                  //     hintText: 'Image',
-                  //     title: "Upload Image",
-                  //     width: 300),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("Upload Image"),
-                  ),
-                  Container(
-                    height: 100,
-                    width: 200,
-                    decoration:
-                        BoxDecoration(border: Border.all(color: Colors.black)),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: ButtonContainerWidget(
-                        text: "Save",
-                        width: 100,
-                        height: 40,
-                        fontSize: 18,
-                        onTap: () {
-                          //print("Arun");
-                          //canteencontroller.singUp();
+                    ),
+                    TextFormFiledContainerWidget(
+                        validator: checkFieldEmpty,
+                        controller: suppliercontroller.workEndTimectscontroller,
+                        hintText: 'Ending time',
+                        title: "",
+                        width: 145),
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("Upload Image"),
+                ),
+                Obx(() {
+                  Uint8List? imageData =
+                      suppliercontroller.suppliersImage.value;
+                  return imageData != null
+                      ? Image.memory(
+                          imageData,
+                          height: 150,
+                          width: 250,
+                          fit: BoxFit.cover,
+                        )
+                      : Container(
+                          height: 150,
+                          width: 250,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            color: AppColors.lightGreyColor,
+                          ),
+                          child: const Center(
+                            child: Text(
+                              "No Image",
+                              style: TextStyle(
+                                color: AppColors.greyColor,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        );
+                }),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Obx(
+                        () {
+                          return CustomGradientButton(
+                            text: Get.find<SuppliersControllers>()
+                                    .imagePicked
+                                    .value
+                                ? "Ok"
+                                : "Pick Image",
+                            height: 40,
+                            width: 100,
+                            onPressed: () async {
+                              SuppliersControllers suppliersController =
+                                  Get.find();
 
-                          // if (fkey.currentState!.validate()) {}
-                        }),
-                  )
-                ]),
+                              Uint8List? pickedImage =
+                                  await suppliersController.pickCameraImage();
+                              if (pickedImage != null) {
+                                suppliersController.suppliersImage.value =
+                                    pickedImage;
+                              }
+
+                              suppliersController.addSuppliers();
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ],
       ),
@@ -206,6 +247,52 @@ class TextFormFiledContainerWidget extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class SuppliersListStream extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream:
+          FirebaseFirestore.instance.collection('SuppliersList').snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        }
+
+        if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        }
+
+        List<DocumentSnapshot> documents = snapshot.data!.docs;
+
+        return ListView.builder(
+          itemCount: documents.length,
+          itemBuilder: (context, index) {
+            var supplierData = documents[index].data() as Map<String, dynamic>;
+
+            // Displaying all details in a ListTile
+            return ListTile(
+              title: Text("Supplier Name: ${supplierData['suppliersName']}"),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Supplier ID: ${supplierData['suppliersId']}"),
+                  Text("Address: ${supplierData['suppliersAddress']}"),
+                  Text("Contact Person: ${supplierData['contactPerson']}"),
+                  Text("Products: ${supplierData['suppliersProducts']}"),
+                  Text("Work Start Time: ${supplierData['workstartTime']}"),
+                  Text("Work End Time: ${supplierData['workEndTime']}"),
+                  // Add more fields as needed
+                ],
+              ),
+              // Add more customization if necessary
+            );
+          },
+        );
+      },
     );
   }
 }

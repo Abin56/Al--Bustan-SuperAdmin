@@ -1,3 +1,4 @@
+import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/canteen_add_widget.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/chart_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/container_widget.dart';
@@ -6,6 +7,7 @@ import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widg
 import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DashboardContainer extends StatelessWidget {
   const DashboardContainer({
@@ -196,18 +198,14 @@ class DashboardContainer extends StatelessWidget {
         child: CustomContainer(
           height: ResponsiveWebSite.isMobile(context) ? 250 : 350,
           width: double.infinity,
-          child: Padding(
+          child: const Padding(
             padding: EdgeInsets.all(10),
-            child: Container(
-              height: 30,
-              width: 40,
+            child: ScendRowWidget(
+              iconData1: Icons.border_all_rounded,
+              title: "Orders",
+              icon: Icons.more_vert_outlined,
+              iconData2: Icons.trolley,
             ),
-            // child: ScendRowWidget(
-            //   iconData1: Icons.border_all_rounded,
-            //   title: "Orders",
-            //   icon: Icons.more_vert_outlined,
-            //   iconData2: Icons.trolley,
-            // ),
           ),
         ),
       ), //................................[1][0]
@@ -315,18 +313,18 @@ class DashboardContainer extends StatelessWidget {
           ),
         ),
       ), //...................................[1][1]
-      Padding(
-        padding: const EdgeInsets.only(right: 10),
-        child: CustomContainer(
-          height: ResponsiveWebSite.isMobile(context) ? 250 : 350,
-          width: double.infinity,
-          child: const Padding(
-            padding: EdgeInsets.all(0),
-            child: ScendRowoneWidget(
-              iconData1: Icons.home_work_outlined,
-              title: "Canteens",
-              icon: Icons.more_vert_outlined,
-            ),
+      CustomContainer(
+        height: ResponsiveWebSite.isMobile(context) ? 250 : 350,
+        width: double.infinity,
+        child: Padding(
+          padding: EdgeInsets.all(0),
+          child: ScendRowoneWidget(
+            iconData1: Icons.home_work_outlined,
+            title: "Canteens",
+            navigate: () {
+              Get.to(CanteenProfile());
+            },
+            icon: Icons.more_vert_outlined,
           ),
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:canteen_superadmin_website/controller/delivery_controller/delivery_controller.dart';
 import 'package:canteen_superadmin_website/controller/employee_controller/employee_controller.dart';
 import 'package:canteen_superadmin_website/model/employe_createprofile_model.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/inventory/widget/custom_button.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/textstysle/textstyle.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class DeliveryScreen extends StatelessWidget {
   DeliveryScreen({super.key});
@@ -84,7 +86,7 @@ class DeliveryScreen extends StatelessWidget {
                       Expanded(
                         child: Center(
                           child: Text(
-                            "Order Time",
+                            "Order Date",
                             style: AppTextStyles.textStyle1,
                           ),
                         ),
@@ -100,7 +102,7 @@ class DeliveryScreen extends StatelessWidget {
                       Expanded(
                         child: Center(
                           child: Text(
-                            "Delivered Time",
+                            " Order Time",
                             style: AppTextStyles.textStyle1,
                           ),
                         ),
@@ -109,6 +111,14 @@ class DeliveryScreen extends StatelessWidget {
                         child: Center(
                           child: Text(
                             "Price",
+                            style: AppTextStyles.textStyle1,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            "",
                             style: AppTextStyles.textStyle1,
                           ),
                         ),
@@ -304,7 +314,7 @@ class DeliveryScreen extends StatelessWidget {
                                                                   .docs
                                                                   .isEmpty) {
                                                                 return const Text(
-                                                                  "Pickuped",
+                                                                  "Picked up",
                                                                   style:
                                                                       TextStyle(
                                                                     color: AppColors
@@ -466,12 +476,15 @@ class DeliveryScreen extends StatelessWidget {
                                       //     ),
                                       //   ),
                                       // ),
-                                      const Expanded(
+                                      Expanded(
                                         flex: 1,
                                         child: Center(
                                           child: Text(
-                                            // product['deliveredtime'] ?? '',
-                                            "11.30",
+                                            timeConvert(data['time']),
+                                            // dateConveter(
+                                            //     DateTime.parse(data['time'])),
+
+                                            // "11.30",
                                             overflow: TextOverflow.ellipsis,
                                             style: AppTextStyles
                                                 .deliveryTextStyle1,
@@ -489,6 +502,18 @@ class DeliveryScreen extends StatelessWidget {
                                           ),
                                         ),
                                       ),
+                                      data['assignStatus'] == true
+                                          ? Expanded(
+                                              child: Center(
+                                                child: CustomGradientButton(
+                                                  height: size.height * 0.05,
+                                                  width: size.width * 0.06,
+                                                  onPressed: () {},
+                                                  text: 'Print',
+                                                ),
+                                              ),
+                                            )
+                                          : const Expanded(child: SizedBox())
                                     ],
                                   ),
                                 ),
@@ -509,4 +534,10 @@ class DeliveryScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+String timeConvert(String timestampString) {
+  DateTime timestamp = DateTime.parse(timestampString);
+  String formattedTime = DateFormat.jm().format(timestamp);
+  return formattedTime;
 }

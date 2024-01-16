@@ -79,11 +79,14 @@ class TempProductController extends GetxController {
   barcodeEdit(String text, String docId) async {
     final data = {'barcodeNumber': text};
 
-    await fireStore.collection('temporaryCollection').doc(docId).update(data).then((value) {
+    await fireStore
+        .collection('temporaryCollection')
+        .doc(docId)
+        .update(data)
+        .then((value) {
       showToast(msg: "Barcode changed");
       Get.back();
     });
-    
   }
 
   productNameEdit(String text, String docId) async {
@@ -170,7 +173,9 @@ class TempProductController extends GetxController {
   }
 
   packageTypeEdit(String text, String docId) async {
-    final data = {'packageType': text,};
+    final data = {
+      'packageType': text,
+    };
 
     await fireStore
         .collection('temporaryCollection')

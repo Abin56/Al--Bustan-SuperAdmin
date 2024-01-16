@@ -70,10 +70,12 @@ class InventoryWidget extends StatelessWidget {
                                     TextField(
                                       controller: categoryCtr,
                                       decoration: InputDecoration(
-                                          hintText: 'Category',
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10))),
+                                        hintText: 'Category',
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                      ),
                                     )
                                   ],
                                   actiononTapfuction: () {},
@@ -84,15 +86,15 @@ class InventoryWidget extends StatelessWidget {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: cGreen),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Center(
-                                  child: GooglePoppinsWidgets(
-                                      text: "Add Category",
-                                      fontsize: 14,
-                                      color: cWhite),
-                                ),
-                              ),
+                              // child: Padding(
+                              //   padding: const EdgeInsets.all(8.0),
+                              //   child: Center(
+                              //     child: GooglePoppinsWidgets(
+                              //         text: "Add Category",
+                              //         fontsize: 14,
+                              //         color: cWhite),
+                              //   ),
+                              // ),
                             ),
                           )
                         ],

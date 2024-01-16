@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class AppTextStyles {
   static const textStyle1 = TextStyle(
     color: AppColors.whiteColor,
-    fontSize: 18,
-    fontWeight: FontWeight.bold,
+    // fontSize: 18,
+    // fontWeight: FontWeight.bold,
   );
   static const deliveryTextStyle1 = TextStyle(
     fontSize: 16,

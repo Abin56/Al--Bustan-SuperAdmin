@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:canteen_superadmin_website/model/suppliers_model.dart';
 import 'package:canteen_superadmin_website/view/core/core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -56,6 +54,60 @@ class SuppliersControllers extends GetxController {
     } catch (e) {
       print('Error adding suppliers: $e');
     }
+  }
+// <<<<<  editSuppliers >>>>>>
+
+  editSuppliers(String docId) async {
+    try {
+      DocumentSnapshot<Map<String, dynamic>> supplierDoc =
+          await firestore.collection('SuppliersList').doc(docId).get();
+
+      if (supplierDoc.exists) {
+        Map<String, dynamic> existingData = supplierDoc.data()!;
+
+        suppliersnamecontroller.text = existingData['suppliersName'];
+        suppliersidcontroller.text = existingData['suppliersId'];
+        suppliersaddresscontroller.text = existingData['suppliersAddress'];
+        contactPersoncontroller.text = existingData['contactPerson'];
+        suppliersProductscontroller.text = existingData['suppliersProducts'];
+        workstartTimectscontroller.text = existingData['workstartTime'];
+        workEndTimectscontroller.text = existingData['workEndTime'];
+
+        await firestore.collection('SuppliersList').doc(docId).update({
+          'suppliersName': suppliersnamecontroller.text,
+          'suppliersId': suppliersidcontroller.text,
+          'suppliersAddress': suppliersaddresscontroller.text,
+          'contactPerson': contactPersoncontroller.text,
+          'suppliersProducts': suppliersProductscontroller.text,
+          'workstartTime': workstartTimectscontroller.text,
+          'workEndTime': workEndTimectscontroller.text,
+        });
+
+        suppliersnamecontroller.clear();
+        suppliersidcontroller.clear();
+        suppliersaddresscontroller.clear();
+        contactPersoncontroller.clear();
+        suppliersProductscontroller.clear();
+        workstartTimectscontroller.clear();
+        workEndTimectscontroller.clear();
+
+        print('Supplier edited successfully');
+      } else {
+        print('Supplier not found');
+      }
+    } catch (e) {
+      print('Error editing supplier: $e');
+    }
+  }
+
+  // <<<<<<<< deleteSuppliers  >>>>>>>>>>
+
+  deleteSuppliers(String docId) async {
+    await FirebaseFirestore.instance
+        .collection('SuppliersList')
+        .doc(docId)
+        .delete();
+    print('Supplier deleted successfully');
   }
 
   // for Picking images from gallery //

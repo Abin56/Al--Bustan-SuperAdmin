@@ -3,7 +3,6 @@ import 'package:canteen_superadmin_website/view/admin_panel/inventory/widget/cus
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
-import 'package:canteen_superadmin_website/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -91,7 +90,7 @@ class SuppliersProfile extends StatelessWidget {
                         width: 145),
                   ],
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text("Upload Image"),
                 ),
@@ -252,6 +251,8 @@ class TextFormFiledContainerWidget extends StatelessWidget {
 }
 
 class SuppliersListStream extends StatelessWidget {
+  const SuppliersListStream({super.key});
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -259,7 +260,7 @@ class SuppliersListStream extends StatelessWidget {
           FirebaseFirestore.instance.collection('SuppliersList').snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         }
 
         if (snapshot.hasError) {
@@ -273,7 +274,6 @@ class SuppliersListStream extends StatelessWidget {
           itemBuilder: (context, index) {
             var supplierData = documents[index].data() as Map<String, dynamic>;
 
-            // Displaying all details in a ListTile
             return ListTile(
               title: Text("Supplier Name: ${supplierData['suppliersName']}"),
               subtitle: Column(
@@ -285,10 +285,8 @@ class SuppliersListStream extends StatelessWidget {
                   Text("Products: ${supplierData['suppliersProducts']}"),
                   Text("Work Start Time: ${supplierData['workstartTime']}"),
                   Text("Work End Time: ${supplierData['workEndTime']}"),
-                  // Add more fields as needed
                 ],
               ),
-              // Add more customization if necessary
             );
           },
         );

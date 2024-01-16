@@ -1,8 +1,10 @@
+import 'package:canteen_superadmin_website/controller/suppliers_controller/suppliers_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:canteen_superadmin_website/model/suppliers_model.dart';
 import 'package:canteen_superadmin_website/view/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
+import 'package:get/instance_manager.dart';
 
 class SuppliersScendRowoneWidget extends StatelessWidget {
   final IconData icon;
@@ -101,6 +103,37 @@ class SuppliersScendRowoneWidget extends StatelessWidget {
                               fontsize: 14,
                               textAlign: TextAlign.center,
                             ),
+                            Row(
+                              children: [
+                                // <<<<<<<<<< delete  >>>>>>>>>>
+                                IconButton(
+                                  onPressed: () async {
+                                    SuppliersControllers suppliersController =
+                                        Get.put(SuppliersControllers());
+
+                                    await suppliersController
+                                        .deleteSuppliers(SuppliersData.docId);
+                                  },
+                                  icon: const Icon(Icons.delete),
+                                ),
+
+                                // <<<<<<<<<< edit  >>>>>>>>>>
+                                IconButton(
+                                  onPressed: () {
+                                    // Navigator.push(
+                                    //   context,
+                                    //   MaterialPageRoute(
+                                    //     builder: (context) =>
+                                    //         EditSuppliersScreen(
+                                    //       docId: SuppliersData.docId,
+                                    //     ),
+                                    //   ),
+                                    // );
+                                  },
+                                  icon: const Icon(Icons.edit),
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       ),

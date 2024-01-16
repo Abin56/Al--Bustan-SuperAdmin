@@ -2,8 +2,8 @@ import 'package:canteen_superadmin_website/controller/suppliers_controller/suppl
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:canteen_superadmin_website/model/suppliers_model.dart';
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
-import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:get/instance_manager.dart';
 
 class SuppliersScendRowoneWidget extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:canteen_superadmin_website/controller/canteen_controller/canteen_controller.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/inventory/widget/custom_button.dart';
-import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
+import 'package:canteen_superadmin_website/view/widgets/button_container_widget/custom_button.dart';
+import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
 import 'package:flutter/material.dart';

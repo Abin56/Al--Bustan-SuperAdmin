@@ -1,7 +1,7 @@
 import 'package:canteen_superadmin_website/controller/store_dashboard_controller/store_dash_board_controller.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/supplier_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/suppliers_scendrowone_widget.dart';
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/chart_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/container_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/dashboard_item_widget.dart';

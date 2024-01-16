@@ -1,8 +1,8 @@
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../fonts/google_poppins.dart';
+import '../../../core/fonts/google_poppins.dart';
 import '../../widgets/responsive/responsive.dart';
 
 // ignore: must_be_immutable

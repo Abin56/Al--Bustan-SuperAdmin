@@ -1,5 +1,5 @@
 import 'package:canteen_superadmin_website/firebase_options.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/inventory/category_widget.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/category_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_order.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_prodects.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/login_page.dart';

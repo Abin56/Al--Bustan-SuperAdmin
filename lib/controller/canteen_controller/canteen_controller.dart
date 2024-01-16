@@ -2,8 +2,8 @@ import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:canteen_superadmin_website/model/canteen_model.dart';
-import 'package:canteen_superadmin_website/view/constant/const.dart';
-import 'package:canteen_superadmin_website/view/core/core.dart';
+import 'package:canteen_superadmin_website/core/constant/const.dart';
+import 'package:canteen_superadmin_website/core/core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';

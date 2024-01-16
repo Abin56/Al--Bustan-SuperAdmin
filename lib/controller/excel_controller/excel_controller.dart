@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:canteen_superadmin_website/model/product_model.dart';
-import 'package:canteen_superadmin_website/view/constant/const.dart';
+import 'package:canteen_superadmin_website/core/constant/const.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:excel/excel.dart';
 import 'package:file_picker/file_picker.dart';

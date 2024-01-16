@@ -11,16 +11,19 @@ class SuppliersModel {
   String workstartTime;
   String workEndTime;
   String image;
-  SuppliersModel(
-      {required this.docId,
-      required this.suppliersName,
-      required this.suppliersId,
-      required this.suppliersAddress,
-      required this.contactPerson,
-      required this.suppliersProducts,
-      required this.workstartTime,
-      required this.workEndTime,
-      required this.image});
+  bool isEnabled;
+  SuppliersModel({
+    required this.docId,
+    required this.suppliersName,
+    required this.suppliersId,
+    required this.suppliersAddress,
+    required this.contactPerson,
+    required this.suppliersProducts,
+    required this.workstartTime,
+    required this.workEndTime,
+    required this.image,
+    required this.isEnabled,
+  });
 
   SuppliersModel copyWith({
     String? docId,
@@ -32,6 +35,7 @@ class SuppliersModel {
     String? workstartTime,
     String? workEndTime,
     String? image,
+    bool? isEnabled,
   }) {
     return SuppliersModel(
       docId: docId ?? this.docId,
@@ -43,6 +47,7 @@ class SuppliersModel {
       workstartTime: workstartTime ?? this.workstartTime,
       workEndTime: workEndTime ?? this.workEndTime,
       image: image ?? this.image,
+      isEnabled: isEnabled ?? this.isEnabled,
     );
   }
 
@@ -56,7 +61,8 @@ class SuppliersModel {
       'suppliersProducts': suppliersProducts,
       'workstartTime': workstartTime,
       'workEndTime': workEndTime,
-      'image': image
+      'image': image,
+      'isEnabled': isEnabled,
     };
   }
 
@@ -71,6 +77,7 @@ class SuppliersModel {
       workstartTime: map['workstartTime'] ?? '',
       workEndTime: map['workEndTime'] ?? '',
       image: map['image'] ?? '',
+      isEnabled: map['isEnabled'] ?? true,
     );
   }
 
@@ -81,7 +88,7 @@ class SuppliersModel {
 
   @override
   String toString() {
-    return 'CanteenModel(docId: $docId, suppliersName: $suppliersName, suppliersId: $suppliersId, suppliersAddress: $suppliersAddress, contactPerson: $contactPerson, suppliersProducts: $suppliersProducts,workstartTime:$workstartTime,workEndTime:$workEndTime,image:$image)';
+    return 'CanteenModel(docId: $docId, suppliersName: $suppliersName, suppliersId: $suppliersId, suppliersAddress: $suppliersAddress, contactPerson: $contactPerson, suppliersProducts: $suppliersProducts,workstartTime:$workstartTime,workEndTime:$workEndTime,image:$image,isEnabled: $isEnabled)';
   }
 
   @override
@@ -96,7 +103,8 @@ class SuppliersModel {
         other.suppliersProducts == suppliersProducts &&
         other.workstartTime == workstartTime &&
         other.workEndTime == workEndTime &&
-        other.image == image;
+        other.image == image &&
+        other.isEnabled == isEnabled;
   }
 
   @override
@@ -109,6 +117,7 @@ class SuppliersModel {
         suppliersProducts.hashCode ^
         workstartTime.hashCode ^
         workEndTime.hashCode ^
-        image.hashCode;
+        image.hashCode ^
+        isEnabled.hashCode;
   }
 }

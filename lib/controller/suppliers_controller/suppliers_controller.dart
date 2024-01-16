@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:canteen_superadmin_website/model/suppliers_model.dart';
 import 'package:canteen_superadmin_website/core/core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -12,6 +14,7 @@ import 'package:uuid/uuid.dart';
 class SuppliersControllers extends GetxController {
   final firestore = FirebaseFirestore.instance;
   RxBool imagePicked = false.obs;
+
   Rx<Uint8List?> suppliersImage = Rx<Uint8List?>(null);
 
   TextEditingController suppliersnamecontroller = TextEditingController();
@@ -41,6 +44,7 @@ class SuppliersControllers extends GetxController {
         workstartTime: workstartTimectscontroller.text,
         workEndTime: workEndTimectscontroller.text,
         image: image,
+        isEnabled: true,
       );
       final data = suppliersModel.toMap();
       await firestore.collection('SuppliersList').doc(uuid).set(data);
@@ -55,6 +59,23 @@ class SuppliersControllers extends GetxController {
       print('Error adding suppliers: $e');
     }
   }
+
+  // <<<<<  editSuppliers >>>>>>
+  disableSupplier(String docId, bool currentStatus) async {
+    try {
+      await firestore.collection('SuppliersList').doc(docId).update({
+        'isEnabled': !currentStatus,
+      });
+      if (!currentStatus) {
+        print('Supplier disabled successfully');
+      } else {
+        print('Supplier enabled successfully');
+      }
+    } catch (e) {
+      print('Error toggling supplier status: $e');
+    }
+  }
+
 // <<<<<  editSuppliers >>>>>>
 
   editSuppliers(String docId) async {
@@ -63,15 +84,15 @@ class SuppliersControllers extends GetxController {
           await firestore.collection('SuppliersList').doc(docId).get();
 
       if (supplierDoc.exists) {
-        Map<String, dynamic> existingData = supplierDoc.data()!;
+        print("1111");
+        log(supplierDoc.toString());
 
-        suppliersnamecontroller.text = existingData['suppliersName'];
-        suppliersidcontroller.text = existingData['suppliersId'];
-        suppliersaddresscontroller.text = existingData['suppliersAddress'];
-        contactPersoncontroller.text = existingData['contactPerson'];
-        suppliersProductscontroller.text = existingData['suppliersProducts'];
-        workstartTimectscontroller.text = existingData['workstartTime'];
-        workEndTimectscontroller.text = existingData['workEndTime'];
+        if (suppliersImage.value != null) {
+          String newImage = await uploapImageToFirebase(suppliersImage.value!);
+          await firestore.collection('SuppliersList').doc(docId).update({
+            'image': newImage,
+          });
+        }
 
         await firestore.collection('SuppliersList').doc(docId).update({
           'suppliersName': suppliersnamecontroller.text,

@@ -1,4 +1,5 @@
 import 'package:canteen_superadmin_website/controller/suppliers_controller/suppliers_controller.dart';
+import 'package:canteen_superadmin_website/model/suppliers_model.dart';
 import 'package:canteen_superadmin_website/view/widgets/button_container_widget/custom_button.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
@@ -11,21 +12,41 @@ import 'package:google_fonts/google_fonts.dart';
 
 class SuppliersProfile extends StatelessWidget {
   final suppliercontroller = Get.put(SuppliersControllers());
-  SuppliersProfile({super.key});
+  final SuppliersModel? existingSupplier;
+
+  SuppliersProfile({super.key, this.existingSupplier});
 
   GlobalKey<FormState> fkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    if (existingSupplier != null) {
+      suppliercontroller.suppliersnamecontroller.text =
+          existingSupplier!.suppliersName;
+      suppliercontroller.suppliersidcontroller.text =
+          existingSupplier!.suppliersId;
+      suppliercontroller.suppliersaddresscontroller.text =
+          existingSupplier!.suppliersAddress;
+      suppliercontroller.contactPersoncontroller.text =
+          existingSupplier!.contactPerson;
+      suppliercontroller.suppliersProductscontroller.text =
+          existingSupplier!.suppliersProducts;
+      suppliercontroller.workstartTimectscontroller.text =
+          existingSupplier!.workstartTime;
+      suppliercontroller.workEndTimectscontroller.text =
+          existingSupplier!.workEndTime;
+    }
+
     return Scaffold(
       body: Row(
         children: [
           const SizedBox(
-              height: double.infinity,
-              child: Image(
-                image: NetworkImage(
-                    "https://cdn3d.iconscout.com/3d/premium/thumb/courier-boy-8094292-6478869.png?f=webp"),
-              )),
+            height: double.infinity,
+            child: Image(
+              image: NetworkImage(
+                  "https://cdn3d.iconscout.com/3d/premium/thumb/courier-boy-8094292-6478869.png?f=webp"),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: Column(
@@ -52,7 +73,7 @@ class SuppliersProfile extends StatelessWidget {
                 TextFormFiledContainerWidget(
                     validator: checkFieldEmpty,
                     controller: suppliercontroller.suppliersaddresscontroller,
-                    hintText: 'Enter your  address',
+                    hintText: 'Enter your address',
                     title: " Address",
                     width: 300),
                 TextFormFiledContainerWidget(
@@ -69,7 +90,6 @@ class SuppliersProfile extends StatelessWidget {
                     width: 300),
                 Row(
                   children: [
-                    // TextFormField( ),
                     Padding(
                       padding: const EdgeInsets.only(
                         right: 10,
@@ -94,68 +114,63 @@ class SuppliersProfile extends StatelessWidget {
                   padding: EdgeInsets.all(8.0),
                   child: Text("Upload Image"),
                 ),
-                Obx(() {
-                  Uint8List? imageData =
-                      suppliercontroller.suppliersImage.value;
-                  return imageData != null
-                      ? Image.memory(
-                          imageData,
-                          height: 150,
-                          width: 250,
-                          fit: BoxFit.cover,
-                        )
-                      : Container(
-                          height: 150,
-                          width: 250,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            color: AppColors.lightGreyColor,
-                          ),
-                          child: const Center(
-                            child: Text(
-                              "No Image",
-                              style: TextStyle(
-                                color: AppColors.greyColor,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                GestureDetector(
+                  onTap: () async {
+                    SuppliersControllers suppliersController = Get.find();
+                    Uint8List? pickedImage =
+                        await suppliersController.pickCameraImage();
+                    if (pickedImage != null) {
+                      suppliersController.suppliersImage.value = pickedImage;
+                    }
+                  },
+                  child: Obx(
+                    () {
+                      Uint8List? imageData =
+                          suppliercontroller.suppliersImage.value;
+                      return Container(
+                        height: 150,
+                        width: 250,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          color: AppColors.lightGreyColor,
+                        ),
+                        child: imageData != null
+                            ? Image.memory(
+                                imageData,
+                                height: 150,
+                                width: 250,
+                                fit: BoxFit.cover,
+                              )
+                            : const Center(
+                                child: Text(
+                                  "Tap to select an image",
+                                  style: TextStyle(
+                                    color: AppColors.greyColor,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                        );
-                }),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: Obx(
-                        () {
-                          return CustomGradientButton(
-                            text: Get.find<SuppliersControllers>()
-                                    .imagePicked
-                                    .value
-                                ? "Ok"
-                                : "Pick Image",
-                            height: 40,
-                            width: 100,
-                            onPressed: () async {
-                              SuppliersControllers suppliersController =
-                                  Get.find();
+                      );
+                    },
+                  ),
+                ),
+                CustomGradientButton(
+                  text: "Ok",
+                  height: 40,
+                  width: 100,
+                  onPressed: () async {
+                    SuppliersControllers suppliersController = Get.find();
 
-                              Uint8List? pickedImage =
-                                  await suppliersController.pickCameraImage();
-                              if (pickedImage != null) {
-                                suppliersController.suppliersImage.value =
-                                    pickedImage;
-                              }
-
-                              suppliersController.addSuppliers();
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                )
+                    if (existingSupplier == null) {
+                      suppliersController.addSuppliers();
+                    } else {
+                      suppliersController.editSuppliers(
+                        existingSupplier!.docId,
+                      );
+                    }
+                  },
+                ),
               ],
             ),
           ),

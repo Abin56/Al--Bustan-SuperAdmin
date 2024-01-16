@@ -1,16 +1,15 @@
-import 'package:canteen_superadmin_website/controller/suppliers_controller/suppliers_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:canteen_superadmin_website/model/suppliers_model.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
-import 'package:get/instance_manager.dart';
 
 class SuppliersScendRowoneWidget extends StatelessWidget {
   final IconData icon;
   final String title;
   final IconData iconData1;
   final VoidCallback navigate;
+  final VoidCallback onpressedViewAll;
 
   const SuppliersScendRowoneWidget({
     Key? key,
@@ -18,6 +17,7 @@ class SuppliersScendRowoneWidget extends StatelessWidget {
     required this.icon,
     required this.iconData1,
     required this.navigate,
+    required this.onpressedViewAll,
   }) : super(key: key);
 
   @override
@@ -37,6 +37,12 @@ class SuppliersScendRowoneWidget extends StatelessWidget {
                 ),
               ),
               const Spacer(),
+              TextButton(
+                onPressed: onpressedViewAll,
+                child: const Text(
+                  "view all",
+                ),
+              ),
               IconButton(
                 onPressed: navigate,
                 icon: const Icon(Icons.add),
@@ -103,37 +109,6 @@ class SuppliersScendRowoneWidget extends StatelessWidget {
                               fontsize: 14,
                               textAlign: TextAlign.center,
                             ),
-                            Row(
-                              children: [
-                                // <<<<<<<<<< delete  >>>>>>>>>>
-                                IconButton(
-                                  onPressed: () async {
-                                    SuppliersControllers suppliersController =
-                                        Get.put(SuppliersControllers());
-
-                                    await suppliersController
-                                        .deleteSuppliers(SuppliersData.docId);
-                                  },
-                                  icon: const Icon(Icons.delete),
-                                ),
-
-                                // <<<<<<<<<< edit  >>>>>>>>>>
-                                IconButton(
-                                  onPressed: () {
-                                    // Navigator.push(
-                                    //   context,
-                                    //   MaterialPageRoute(
-                                    //     builder: (context) =>
-                                    //         EditSuppliersScreen(
-                                    //       docId: SuppliersData.docId,
-                                    //     ),
-                                    //   ),
-                                    // );
-                                  },
-                                  icon: const Icon(Icons.edit),
-                                ),
-                              ],
-                            )
                           ],
                         ),
                       ),

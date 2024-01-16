@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/all_stock_details_widget.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/super_admin/super_admin_dashboard.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/super_admin/super_admin_drawer.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/super_admin/super_admin_dashboard.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/super_admin/super_admin_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/admin_appBar.dart';

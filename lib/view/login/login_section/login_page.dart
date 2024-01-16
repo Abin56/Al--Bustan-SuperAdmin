@@ -1,5 +1,5 @@
 import 'package:canteen_superadmin_website/view/admin_panel/admin_panel.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/super_admin/super_admin_panel.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/super_admin/super_admin_panel.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/login_textformfeild.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/loginsubmitbutton.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';

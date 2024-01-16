@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 
-import 'package:flutter/material.dart';
-import 'package:canteen_superadmin_website/core/colors/colors.dart';
 
 class CustomContainer extends StatelessWidget {
   final double height;

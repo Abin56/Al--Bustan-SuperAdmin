@@ -13,7 +13,7 @@ class SuppliersProfile extends StatelessWidget {
   final suppliercontroller = Get.put(SuppliersControllers());
   SuppliersProfile({super.key});
 
-  GlobalKey<FormState> fkey = GlobalKey<FormState>();
+  final GlobalKey<FormState> fkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -165,6 +165,7 @@ class SuppliersProfile extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class TextFormFiledContainerWidget extends StatelessWidget {
   TextEditingController? controller = TextEditingController();
   final String title;
@@ -172,12 +173,12 @@ class TextFormFiledContainerWidget extends StatelessWidget {
   final double width;
 
   Function(String)? onChanged;
-  Iterable<String>? autofillHints;
-  FocusNode? focusNode;
-  String? Function(String?)? validator;
+  final Iterable<String>? autofillHints;
+  final FocusNode? focusNode;
+  final String? Function(String?)? validator;
   Function()? onTap;
-  TextInputType? keyboardType;
-  bool? enabled;
+  final TextInputType? keyboardType;
+  final bool? enabled;
   TextFormFiledContainerWidget({
     required this.hintText,
     required this.title,

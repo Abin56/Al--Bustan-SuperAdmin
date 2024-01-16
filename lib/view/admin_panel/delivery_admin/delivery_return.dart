@@ -1,13 +1,13 @@
 import 'package:canteen_superadmin_website/controller/delivery_controller/delivery_controller.dart';
 import 'package:canteen_superadmin_website/controller/employee_controller/employee_controller.dart';
 import 'package:canteen_superadmin_website/model/employe_createprofile_model.dart';
-import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
-import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
+import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/textstysle/textstyle.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -202,24 +202,19 @@ class DeliveryScreen extends StatelessWidget {
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(3),
+                                              padding: const EdgeInsets.all(2),
                                               child: data['isDelivered'] == true
-                                                  ? const Padding(
-                                                      padding:
-                                                          EdgeInsets.all(6.0),
-                                                      child: Text(
-                                                        "Delivered",
-                                                        style: TextStyle(
-                                                          color: AppColors
-                                                              .whiteColor,
-                                                          fontSize: 18,
-                                                        ),
+                                                  ? const Text(
+                                                      "Delivered",
+                                                      style: TextStyle(
+                                                        color: AppColors
+                                                            .whiteColor,
                                                       ),
                                                     )
                                                   : data['assignStatus'] ==
                                                           false
                                                       ? SizedBox(
-                                                          height: 60,
+                                                          height: 40,
                                                           child: DropdownSearch<
                                                               EmployeeProfileCreateModel>(
                                                             autoValidateMode:
@@ -272,7 +267,7 @@ class DeliveryScreen extends StatelessWidget {
                                                               baseStyle:
                                                                   GoogleFonts
                                                                       .poppins(
-                                                                fontSize: 13,
+                                                                // fontSize: 13,
                                                                 color: Colors
                                                                     .black
                                                                     .withOpacity(
@@ -308,36 +303,28 @@ class DeliveryScreen extends StatelessWidget {
                                                                   .data!
                                                                   .docs
                                                                   .isEmpty) {
-                                                                return const Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .all(
-                                                                              6.0),
-                                                                  child: Text(
-                                                                    "Pickuped",
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: AppColors
-                                                                          .whiteColor,
-                                                                      fontSize:
-                                                                          18,
-                                                                    ),
+                                                                return const Text(
+                                                                  "Pickuped",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: AppColors
+                                                                        .whiteColor,
                                                                   ),
                                                                 );
                                                               } else {
                                                                 return const Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .all(
-                                                                              6.0),
+                                                                  padding: EdgeInsets
+                                                                      .symmetric(
+                                                                          horizontal:
+                                                                              6),
                                                                   child: Text(
                                                                     'Pending',
                                                                     style:
                                                                         TextStyle(
                                                                       color: AppColors
                                                                           .whiteColor,
-                                                                      fontSize:
-                                                                          18,
+                                                                      // fontSize:
+                                                                      //     18,
                                                                     ),
                                                                   ),
                                                                 );
@@ -352,133 +339,6 @@ class DeliveryScreen extends StatelessWidget {
                                           ),
                                         ),
                                       ),
-
-                                      // Expanded(
-                                      //   flex: 1,
-                                      //   child: Center(
-                                      //     child: Container(
-                                      //       decoration: BoxDecoration(
-                                      //         color: AppColors.greyColor,
-                                      //         borderRadius:
-                                      //             BorderRadius.circular(5),
-                                      //       ),
-                                      //       child: Padding(
-                                      //         padding: const EdgeInsets.all(3),
-                                      //         child: data['isDelivered'] == true
-                                      //             ? const Text(
-                                      //                 "Delivered",
-                                      //                 style: TextStyle(
-                                      //                   color: AppColors
-                                      //                       .whiteColor,
-                                      //                 ),
-                                      //               )
-                                      //             : data['assignStatus'] ==
-                                      //                     false
-                                      //                 ? SizedBox(
-                                      //                     height: 60,
-                                      //                     child: DropdownSearch<
-                                      //                         EmployeeProfileCreateModel>(
-                                      //                       autoValidateMode:
-                                      //                           AutovalidateMode
-                                      //                               .always,
-                                      //                       asyncItems:
-                                      //                           (value) {
-                                      //                         employeeController
-                                      //                             .employeeList
-                                      //                             .clear();
-
-                                      //                         return employeeController
-                                      //                             .fetchEmployees();
-                                      //                       },
-                                      //                       itemAsString:
-                                      //                           (value) =>
-                                      //                               value.name,
-                                      //                       onChanged:
-                                      //                           (value) async {
-                                      //                         // employeeController.employeeUID.value = true;
-                                      //                         if (value !=
-                                      //                             null) {
-                                      //                           employeeController
-                                      //                                   .employeeUID
-                                      //                                   .value =
-                                      //                               value.docid;
-                                      //                           employeeController
-                                      //                                   .employeeName =
-                                      //                               value.name;
-                                      //                         }
-                                      //                         final employeeID =
-                                      //                             Get.find<
-                                      //                                     EmployeeController>()
-                                      //                                 .employeeUID;
-                                      //                         final emplopeeName =
-                                      //                             Get.find<
-                                      //                                     EmployeeController>()
-                                      //                                 .employeeName;
-                                      //                         getDeliveryCtr.createDeliveryOrderToEmployee(
-                                      //                             employeeName:
-                                      //                                 emplopeeName,
-                                      //                             employeeId:
-                                      //                                 employeeID
-                                      //                                     .value,
-                                      //                             deliverydata:
-                                      //                                 data);
-                                      //                       },
-                                      //                       dropdownDecoratorProps:
-                                      //                           DropDownDecoratorProps(
-                                      //                         baseStyle:
-                                      //                             GoogleFonts
-                                      //                                 .poppins(
-                                      //                           fontSize: 13,
-                                      //                           color: Colors
-                                      //                               .black
-                                      //                               .withOpacity(
-                                      //                                   0.7),
-                                      //                         ),
-                                      //                       ),
-                                      //                     ),
-                                      //                   )
-                                      //                 : StreamBuilder(
-                                      //                     stream: FirebaseFirestore
-                                      //                         .instance
-                                      //                         .collection(
-                                      //                             'EmployeeProfile')
-                                      //                         .doc(data[
-                                      //                             'employeeId'])
-                                      //                         .collection(
-                                      //                             'DeliveryRequest')
-                                      //                         .doc(data[
-                                      //                             'orderId'])
-                                      //                         .collection(
-                                      //                             'productsDetails')
-                                      //                         .snapshots(),
-                                      //                     builder: (context,
-                                      //                         statussnap) {
-                                      //                       if (snapshot
-                                      //                           .hasData) {
-                                      //                         if (statussnap
-                                      //                                 .connectionState ==
-                                      //                             ConnectionState
-                                      //                                 .waiting) {
-                                      //                           return const SizedBox();
-                                      //                         } else if (statussnap
-                                      //                             .data!
-                                      //                             .docs
-                                      //                             .isEmpty) {
-                                      //                           return const Text(
-                                      //                               "Pickuped");
-                                      //                         } else {
-                                      //                           return const Text(
-                                      //                               'Pending');
-                                      //                         }
-                                      //                       } else {
-                                      //                         return const Text(
-                                      //                             '');
-                                      //                       }
-                                      //                     }),
-                                      //       ),
-                                      //     ),
-                                      //   ),
-                                      // ),
                                       const Expanded(
                                         flex: 1,
                                         child: Center(
@@ -497,8 +357,8 @@ class DeliveryScreen extends StatelessWidget {
                                           child: Text(
                                             data['price'].toString(),
                                             overflow: TextOverflow.ellipsis,
-                                            style: AppTextStyles
-                                                .deliveryTextStyle1,
+                                            // style: AppTextStyles
+                                            //     .deliveryTextStyle1,
                                           ),
                                         ),
                                       ),

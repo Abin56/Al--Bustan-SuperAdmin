@@ -1,8 +1,8 @@
 import 'package:canteen_superadmin_website/view/admin_panel/admin_panel.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/login_textformfeild.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/loginsubmitbutton.dart';
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
-import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

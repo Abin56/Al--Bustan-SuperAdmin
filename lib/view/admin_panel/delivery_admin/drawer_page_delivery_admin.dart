@@ -1,7 +1,9 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
-import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
+import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class DeliveryDrawerSelectedPagesSection extends StatelessWidget {
@@ -68,6 +70,56 @@ class DeliveryDrawerSelectedPagesSection extends StatelessWidget {
                 title: 'Final orders',
               ),
             ),
+            ListTile(
+              tileColor: selectedIndex == 12
+                  ? themeColorBlue.withOpacity(0.1)
+                  : Colors.transparent,
+              onTap: () {
+                index = 12;
+                onTap.call(index);
+              },
+              title: DashboardTextFontWidget(
+                title: 'Delivery request',
+              ),
+              trailing: StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection('EmployeeDeliveryRequest')
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return SizedBox();
+                  } else if (snapshot.data!.docs.isEmpty) {
+                    return SizedBox();
+                  } else if (!snapshot.hasData) {
+                    return SizedBox();
+                  } else {
+                    return CircleAvatar(
+                      backgroundColor: cred,
+                      radius: 12,
+                      child: Center(
+                        child: GooglePoppinsWidgets(
+                          text: snapshot.data!.docs.length.toString(),
+                          fontsize: 11,
+                          color: cWhite,
+                        ),
+                      ),
+                    );
+                  }
+                },
+              ),
+            ),
+            // ListTile(
+            //   tileColor: selectedIndex == 11
+            //       ? themeColorBlue.withOpacity(0.1)
+            //       : Colors.transparent,
+            //   onTap: () {
+            //     index = 11;
+            //     onTap.call(index);
+            //   },
+            //   title: DashboardTextFontWidget(
+            //     title: 'Delivered List',
+            //   ),
+            // ),
           ],
         ),
 

@@ -11,6 +11,7 @@ class GooglePoppinsWidgets extends StatelessWidget {
   TextAlign? textAlign;
   double? textScaleFactor;
   TextDecoration? decoration;
+
   GooglePoppinsWidgets({
     required this.text,
     required this.fontsize,

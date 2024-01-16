@@ -1,6 +1,6 @@
 import 'package:canteen_superadmin_website/controller/tempProduct_controller.dart/tempProduct_controller.dart';
 import 'package:canteen_superadmin_website/model/return_model.dart';
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

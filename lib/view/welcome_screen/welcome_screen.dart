@@ -1,5 +1,5 @@
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
-import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {

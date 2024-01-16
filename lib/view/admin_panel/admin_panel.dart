@@ -3,21 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/admin_appBar.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_dashboard.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_request.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/drawer_page_delivery_admin.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/inventory/category_widget.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/inventory/product_temporary_list.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/inventory/quantity_widget.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/inventory/store_request.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/inventory/subcategory_widget.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/category_widget.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/invetory_sreen.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/product_temporary_list.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/quantity_widget.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/store_request.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/subcategory_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/drawer_page_store_admin.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/store_dashboard.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/table_listview.dart';
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
-import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
-import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/delivery_screen.dart';
-import 'package:canteen_superadmin_website/view/delivery_panal/delivery_screen/prodects.dart';
-import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_order.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_prodects.dart';
+import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/dashboard_container.dart';
 
 class AdminHomeScreen extends StatefulWidget {
@@ -33,6 +34,14 @@ class AdminHomeScreen extends StatefulWidget {
 
 class _AdminHomeScreenState extends State<AdminHomeScreen> {
   int selectedIndex = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    selectedIndex = widget.navvalue == 'storeadmin' ? 7 : 6;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +51,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
             body: ListView(
               children: [
                 const AppBarAdminPanel(),
-                pages[selectedIndex],
+                // pages[widget.navvalue == 'storeadmin' ? 7 : 6],
+                pages[selectedIndex]
               ],
             ),
             drawer: ListView(
@@ -123,8 +133,8 @@ List<Widget> pages = [
   CategoryWidget(),
   SubCategoryWidget(),
   QuantityWidget(),
-  const DeliveryDashboardContainer(),
-  const StoreDashboardContainer(),
+  DeliveryDashboardContainer(),
+  StoreDashboardContainer(),
   Center(
     child: TableListviewWidget(),
   ),
@@ -135,9 +145,7 @@ List<Widget> pages = [
   Center(
     child: DeliveryScreen(),
   ),
-  Center(
-    child: Text(sideMenu[7]),
-  ),
+  const Center(child: DeliveryRequest()),
   Center(
     child: Text(sideMenu[8]),
   ),

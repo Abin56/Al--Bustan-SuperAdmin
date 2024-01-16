@@ -1,9 +1,10 @@
-import 'package:canteen_superadmin_website/controller/store_controller.dart';
+import 'package:canteen_superadmin_website/controller/store_controller/store_controller.dart';
+import 'package:canteen_superadmin_website/controller/store_dashboard_controller/store_dash_board_controller.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/inventory/widget/storekeeper_details.dart';
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
-import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
-import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/storekeeper_details.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
+import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -69,10 +70,12 @@ class InventoryWidget extends StatelessWidget {
                                     TextField(
                                       controller: categoryCtr,
                                       decoration: InputDecoration(
-                                          hintText: 'Category',
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10))),
+                                        hintText: 'Category',
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                      ),
                                     )
                                   ],
                                   actiononTapfuction: () {},
@@ -83,15 +86,15 @@ class InventoryWidget extends StatelessWidget {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: cGreen),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Center(
-                                  child: GooglePoppinsWidgets(
-                                      text: "Add Category",
-                                      fontsize: 14,
-                                      color: cWhite),
-                                ),
-                              ),
+                              // child: Padding(
+                              //   padding: const EdgeInsets.all(8.0),
+                              //   child: Center(
+                              //     child: GooglePoppinsWidgets(
+                              //         text: "Add Category",
+                              //         fontsize: 14,
+                              //         color: cWhite),
+                              //   ),
+                              // ),
                             ),
                           )
                         ],
@@ -380,9 +383,7 @@ class InventoryTileWidget extends StatelessWidget {
                       customShowDilogBox(
                           context: context,
                           title: "Shopkeeper Datails",
-                          children: [
-                            const Expanded(child: StoreKeeperDatailsWidget())
-                          ],
+                          children: [StoreKeeperDatailsWidget()],
                           doyouwantActionButton: true);
                       // ShowDialogWidget(context, StoreKeeperDatailsWidget());
                     },

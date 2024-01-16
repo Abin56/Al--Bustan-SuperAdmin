@@ -1,7 +1,7 @@
 import 'package:canteen_superadmin_website/model/category_model.dart';
 import 'package:canteen_superadmin_website/model/packagetype_model.dart';
 import 'package:canteen_superadmin_website/model/return_model.dart';
-import 'package:canteen_superadmin_website/view/constant/const.dart';
+import 'package:canteen_superadmin_website/core/constant/const.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -79,11 +79,14 @@ class TempProductController extends GetxController {
   barcodeEdit(String text, String docId) async {
     final data = {'barcodeNumber': text};
 
-    await fireStore.collection('temporaryCollection').doc(docId).update(data).then((value) {
+    await fireStore
+        .collection('temporaryCollection')
+        .doc(docId)
+        .update(data)
+        .then((value) {
       showToast(msg: "Barcode changed");
       Get.back();
     });
-    
   }
 
   productNameEdit(String text, String docId) async {
@@ -170,7 +173,9 @@ class TempProductController extends GetxController {
   }
 
   packageTypeEdit(String text, String docId) async {
-    final data = {'packageType': text,};
+    final data = {
+      'packageType': text,
+    };
 
     await fireStore
         .collection('temporaryCollection')

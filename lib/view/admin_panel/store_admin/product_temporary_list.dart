@@ -1,8 +1,8 @@
-import 'package:canteen_superadmin_website/controller/store_controller.dart';
+import 'package:canteen_superadmin_website/controller/store_controller/store_controller.dart';
 import 'package:canteen_superadmin_website/model/product_model.dart';
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
-import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
-import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
+import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

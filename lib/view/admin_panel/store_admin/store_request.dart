@@ -1,13 +1,13 @@
 import 'package:canteen_superadmin_website/controller/employee_controller/employee_controller.dart';
 import 'package:canteen_superadmin_website/controller/excel_controller/excel_controller.dart';
-import 'package:canteen_superadmin_website/controller/store_controller.dart';
+import 'package:canteen_superadmin_website/controller/store_controller/store_controller.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:canteen_superadmin_website/model/employe_createprofile_model.dart';
 // import 'package:canteen_superadmin_website/model/product_model.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/inventory/invetory_sreen.dart';
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
-import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
-import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/invetory_sreen.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
+import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';

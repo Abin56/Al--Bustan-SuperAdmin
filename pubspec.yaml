@@ -42,7 +42,7 @@ dependencies:
   firebase_storage:
   google_fonts:
   google_sign_in:
-  image_picker:
+  image_picker: ^1.0.7
   lottie:
   shared_preferences:
   uuid:

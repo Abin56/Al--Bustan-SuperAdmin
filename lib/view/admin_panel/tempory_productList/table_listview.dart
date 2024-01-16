@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:canteen_superadmin_website/controller/excel_controller/excel_controller.dart';
-import 'package:canteen_superadmin_website/controller/store_controller.dart';
+import 'package:canteen_superadmin_website/controller/store_controller/store_controller.dart';
 import 'package:canteen_superadmin_website/model/category_model.dart';
 import 'package:canteen_superadmin_website/model/packagetype_model.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/productEdit_widgets/barcode_setup.dart';
@@ -13,14 +13,14 @@ import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/
 import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/productEdit_widgets/qty_setup.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/productEdit_widgets/return_setup.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/productEdit_widgets/unit_setup.dart';
-import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
-import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
+import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:canteen_superadmin_website/controller/tempProduct_controller.dart/tempProduct_controller.dart';
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:canteen_superadmin_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
 import 'package:google_fonts/google_fonts.dart';

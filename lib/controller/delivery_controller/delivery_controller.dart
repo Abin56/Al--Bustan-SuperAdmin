@@ -1,10 +1,10 @@
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:canteen_superadmin_website/model/cart_model.dart';
-import 'package:canteen_superadmin_website/view/constant/const.dart';
+import 'package:canteen_superadmin_website/model/employee_request_model.dart';
+import 'package:canteen_superadmin_website/core/constant/const.dart';
 import 'package:canteen_superadmin_website/view/widgets/id_generator/id_generator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-// import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
 
 class DeliveryController extends GetxController {
@@ -76,7 +76,7 @@ class DeliveryController extends GetxController {
   }
 
   addToCart(AllProductDetailModel data) {
-    final uuid = const Uuid().v1();
+    final uuid = Uuid().v1();
     final cartdata = {
       "productDetailsDocId": data.docId,
       "barcodeNumber": data.barcodeNumber,
@@ -109,30 +109,32 @@ class DeliveryController extends GetxController {
   }
 
   cartToDeliveryOrder() async {
+    //for getting count of cart details if cark empty the request not add//
     final cartlistLength = await firestore.collection('DeliveryCart').get();
     if (cartlistLength.docs.isNotEmpty) {
       int amount = 0;
       String id = idGenerator();
-      final orderid = '#$id';
+      final orderid = '#' + id;
       final cartProductS =
           await firestore.collectionGroup('CartProductDetails').get();
       final cartProductsList = cartProductS.docs
           .map((e) => AllProductDetailModel.fromMap(e.data()))
           .toList();
+      //product details added to deliveryAssignList collection//
       for (int i = 0; i < cartProductsList.length; i++) {
-        final uuid2 = const Uuid().v1();
+        // final uuid2 = const Uuid().v1();
         firestore
             .collection("deliveryAssignList")
             .doc(orderid)
             .collection("orderProducts")
-            .doc(uuid2)
+            .doc(cartProductsList[i].docId)
             .set(cartProductsList[i].toMap());
       }
-
+      //for getting time//
       final time = DateTime.now().toString();
-
+      //for getting cart details //
       final cartdetailsList = await getCartList();
-
+      // after getting cart details the amount added for getting total amount//
       for (var element in cartdetailsList) {
         amount = amount + element.totalAmount;
       }
@@ -148,10 +150,11 @@ class DeliveryController extends GetxController {
         "employeeName": '',
         "employeeId": ''
       };
+      //for adding delivery deatils in deliveryAssignlist collection//
       firestore.collection("deliveryAssignList").doc(orderid).set(data);
       showToast(msg: "Delivery Request added");
       Get.back();
-
+      //for deleting cart details after making delivery request//
       for (int i = 0; i < cartdetailsList.length; i++) {
         firestore
             .collection('DeliveryCart')
@@ -175,41 +178,50 @@ class DeliveryController extends GetxController {
   }
 
   createDeliveryOrderToEmployee(
+      //for creating request to employee by assigning//
       {required String employeeName,
       required String employeeId,
       required DocumentSnapshot deliverydata}) async {
     final time = DateTime.now().toString();
+
+    //employees details//
+    final employeeData = {
+      "employeeName": employeeName,
+      "employeeId": employeeId,
+      'assignStatus': true
+    };
+    //employees details updated in delivery request detilas//
+    await firestore
+        .collection('deliveryAssignList')
+        .doc(deliverydata['orderId'])
+        .update(employeeData);
+
+    //delivery details//
     final data = {
       'orderId': deliverydata['orderId'],
       'orderCount': deliverydata['orderCount'],
       'time': time,
       'status': 'Pending'
     };
-    final employeeData = {
-      "employeeName": employeeName,
-      "employeeId": employeeId,
-      'assignStatus': true
-    };
-    firestore
-        .collection('deliveryAssignList')
-        .doc(deliverydata['orderId'])
-        .update(employeeData);
 
+    //delivery request details stored in employees collection//
     firestore
         .collection('EmployeeProfile')
         .doc(employeeId)
         .collection(('DeliveryRequest'))
         .doc(deliverydata['orderId'])
         .set(data);
+    //for getting product detials list from deliveryAssignList collection//
     final productDetailsList = await firestore
         .collection('deliveryAssignList')
         .doc(deliverydata['orderId'])
         .collection('orderProducts')
         .get();
+    //converted into product model//
     final productlist = productDetailsList.docs
         .map((e) => AllProductDetailModel.fromMap(e.data()))
         .toList();
-
+    //for add product details in employees collection//
     for (int i = 0; i < productlist.length; i++) {
       firestore
           .collection('EmployeeProfile')
@@ -221,6 +233,79 @@ class DeliveryController extends GetxController {
           .set(productlist[i].toMap());
     }
   }
+
+  confirmEmployeeRequest(EmployeeRequestModel requestdata) async {
+    String id = idGenerator();
+    final orderid = '#' + id;
+
+    final data = {
+      'time': requestdata.time,
+      "docId": orderid,
+      "orderCount": requestdata.orderCount,
+      "orderId": orderid,
+      "assignStatus": false,
+      "isDelivered": false,
+      "price": requestdata.amount,
+      "employeeName": requestdata.emplopeeName,
+      "employeeId": requestdata.emplopeeId
+    };
+    final requestedProductList = await firestore
+        .collection('EmployeeDeliveryRequest')
+        .doc(requestdata.docid)
+        .collection('RequestProductDetails')
+        .get();
+    for (var element in requestedProductList.docs) {
+      firestore
+          .collection("deliveryAssignList")
+          .doc(orderid)
+          .collection('orderProducts')
+          .doc(element['docId'])
+          .set(element.data());
+    }
+    firestore.collection("deliveryAssignList").doc(orderid).set(data);
+    showToast(msg: "Delivery Request added");
+    Get.back();
+    //delete after request confirm//
+    final employeeProductList = await firestore
+        .collection('EmployeeDeliveryRequest')
+        .doc(requestdata.docid)
+        .collection('RequestProductDetails')
+        .get();
+    for (var element in employeeProductList.docs) {
+      firestore
+          .collection('EmployeeDeliveryRequest')
+          .doc(requestdata.docid)
+          .collection('RequestProductDetails')
+          .doc(element['docId'])
+          .delete();
+    }
+    firestore
+        .collection('EmployeeDeliveryRequest')
+        .doc(requestdata.docid)
+        .delete();
+  }
+
+  cancelEmployeeRequest(EmployeeRequestModel requestdata) async {
+    //delete after request confirm//
+    final employeeProductList = await firestore
+        .collection('EmployeeDeliveryRequest')
+        .doc(requestdata.docid)
+        .collection('RequestProductDetails')
+        .get();
+    for (var element in employeeProductList.docs) {
+      firestore
+          .collection('EmployeeDeliveryRequest')
+          .doc(requestdata.docid)
+          .collection('RequestProductDetails')
+          .doc(element['docId'])
+          .delete();
+    }
+    await firestore
+        .collection('EmployeeDeliveryRequest')
+        .doc(requestdata.docid)
+        .delete();
+  }
+}
 
   // imagePicker() async {
   //   final pickedImage =
@@ -235,4 +320,4 @@ class DeliveryController extends GetxController {
   //     }
   //   }
   // }
-}
+

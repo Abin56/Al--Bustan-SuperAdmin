@@ -1,4 +1,5 @@
-import 'package:canteen_superadmin_website/controller/profile_controller/profile_controller.dart';
+import 'package:canteen_superadmin_website/controller/canteen_controller/canteen_controller.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/inventory/widget/custom_button.dart';
 import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
@@ -6,10 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CanteenProfile extends StatelessWidget {
-  final canteencontroller = Get.put(Profilecontroller());
+  // final canteencontroller = Get.put(Profilecontroller());
   CanteenProfile({super.key});
 
   GlobalKey<FormState> fkey = GlobalKey<FormState>();
+  final canteenCtr = Get.put(CanteenController());
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +22,20 @@ class CanteenProfile extends StatelessWidget {
           padding: const EdgeInsets.all(12.0),
           child: Row(
             children: [
-              const SizedBox(
-                  height: double.infinity,
-                  child: Image(
-                    image: NetworkImage(
-                        "https://www.shutterstock.com/image-photo/middle-eastern-arabic-dishes-assorted-600nw-563091901.jpg"),
-                  )),
+              Obx(
+                () => canteenCtr.canteenImage.value != null
+                    ? SizedBox(
+                        height: double.infinity,
+                        child: Image(
+                            image: MemoryImage(canteenCtr.canteenImage.value!)))
+                    : const SizedBox(
+                        height: double.infinity,
+                        child: Image(
+                          image: NetworkImage(
+                              "https://www.shutterstock.com/image-photo/middle-eastern-arabic-dishes-assorted-600nw-563091901.jpg"),
+                        ),
+                      ),
+              ),
               Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -38,31 +48,31 @@ class CanteenProfile extends StatelessWidget {
                     const Text("Create an account", style: TextStyle()),
                     TextFormFiledContainerWidget(
                         validator: checkFieldEmpty,
-                        controller: canteencontroller.schoolnamecontroller,
+                        controller: canteenCtr.schoolNameCtr,
                         hintText: 'Enter your school name',
                         title: "School Name",
                         width: 300),
                     TextFormFiledContainerWidget(
                         validator: checkFieldEmpty,
-                        controller: canteencontroller.schoolnamecontroller,
+                        controller: canteenCtr.canteenIdCtr,
                         hintText: 'Enter the Canteen Id',
                         title: "Canteen Id ",
                         width: 300),
                     TextFormFiledContainerWidget(
                         validator: checkFieldEmpty,
-                        controller: canteencontroller.addresscontroller,
+                        controller: canteenCtr.schoolAddressCtr,
                         hintText: 'Enter the school address',
                         title: "School Address",
                         width: 300),
                     TextFormFiledContainerWidget(
                         validator: checkFieldEmpty,
-                        controller: canteencontroller.personcontactcontroller,
+                        controller: canteenCtr.contactPersonCtr,
                         hintText: 'Enter the phone number',
                         title: "Contact Person",
                         width: 300),
                     TextFormFiledContainerWidget(
                         validator: checkFieldEmpty,
-                        controller: canteencontroller.albustancontactcontroller,
+                        controller: canteenCtr.albustanPersonCtr,
                         hintText: 'Enter the phone number',
                         title: "Albustan Person",
                         width: 300),
@@ -75,15 +85,14 @@ class CanteenProfile extends StatelessWidget {
                           ),
                           child: TextFormFiledContainerWidget(
                               validator: checkFieldEmpty,
-                              controller:
-                                  canteencontroller.workingtimecontroller,
+                              controller: canteenCtr.workstartTimeCtr,
                               hintText: 'Starting time',
                               title: "Working Time",
                               width: 145),
                         ),
                         TextFormFiledContainerWidget(
                             validator: checkFieldEmpty,
-                            controller: canteencontroller.workingtimecontroller,
+                            controller: canteenCtr.workEndTimeCtr,
                             hintText: 'Ending time',
                             title: "",
                             width: 145),
@@ -99,11 +108,17 @@ class CanteenProfile extends StatelessWidget {
                       padding: EdgeInsets.all(8.0),
                       child: Text("Upload Image"),
                     ),
-                    Container(
-                      height: 100,
-                      width: 200,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black)),
+                    Obx(
+                      () => CustomGradientButton(
+                          text: canteenCtr.canteenImage.value == null
+                              ? 'Choose Image'
+                              : "Change Image",
+                          height: 50,
+                          width: 300,
+                          onPressed: () async {
+                            canteenCtr.canteenImage.value =
+                                await canteenCtr.pickImage();
+                          }),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 8),
@@ -113,10 +128,12 @@ class CanteenProfile extends StatelessWidget {
                           height: 40,
                           fontSize: 18,
                           onTap: () {
-                            //print("Arun");
-                            //canteencontroller.singUp();
-
-                            // if (fkey.currentState!.validate()) {}
+                            if (fkey.currentState?.validate() ?? false) {
+                              // If the form is valid, process the data.
+                              // You can perform actions here, like submitting the data to a server.
+                              // For now, just print the entered value.
+                              canteenCtr.addCanteen();
+                            }
                           }),
                     )
                   ]),

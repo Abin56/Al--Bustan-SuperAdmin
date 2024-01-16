@@ -4,10 +4,10 @@ import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:flutter/material.dart';
 
-class StoreDrawerSelectedPagesSection extends StatelessWidget {
+class SuperAdminDrawerSelectedPagesSection extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onTap;
-  StoreDrawerSelectedPagesSection({
+  SuperAdminDrawerSelectedPagesSection({
     required this.selectedIndex,
     required this.onTap,
     super.key,

@@ -1,4 +1,5 @@
 import 'package:canteen_superadmin_website/view/admin_panel/admin_panel.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/super_admin/super_admin_panel.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/login_textformfeild.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/loginsubmitbutton.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
@@ -135,7 +136,10 @@ class _LoginSectionState extends State<LoginSection> {
                                         padding: const EdgeInsets.only(
                                             top: 10, bottom: 0, right: 40),
                                         child: GestureDetector(
-                                            onTap: () {},
+                                            onTap: () {
+                                              Get.to(
+                                                  SuperAdminAdminHomeScreen());
+                                            },
                                             child: loginWidget[6]),
                                       ),
                                       Padding(

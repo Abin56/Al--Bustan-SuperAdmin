@@ -50,7 +50,7 @@ class InventoryWidget extends StatelessWidget {
                               image: 'web_images/drawer_images/inventory.png'),
                           sWidtht10,
                           GooglePoppinsWidgets(
-                            text: 'Invetory Management',
+                            text: 'Available Stock',
                             fontsize: 20,
                             fontWeight: FontWeight.w500,
                           ),

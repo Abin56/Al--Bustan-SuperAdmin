@@ -1,8 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/status_screen/delivery_status.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/status_screen/pending_status.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/status_screen/pending_status/pickuped_status.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/all_stock_details_widget.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/super_admin/super_admin_dashboard.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/super_admin/super_admin_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/admin_appBar.dart';
@@ -25,26 +24,17 @@ import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/deliv
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/dashboard_container.dart';
 
-class AdminHomeScreen extends StatefulWidget {
-  final String navvalue;
-  const AdminHomeScreen({
+class SuperAdminAdminHomeScreen extends StatefulWidget {
+  const SuperAdminAdminHomeScreen({
     Key? key,
-    required this.navvalue,
   }) : super(key: key);
 
   @override
-  State<AdminHomeScreen> createState() => _AdminHomeScreenState();
+  State<SuperAdminAdminHomeScreen> createState() => _AdminHomeScreenState();
 }
 
-class _AdminHomeScreenState extends State<AdminHomeScreen> {
+class _AdminHomeScreenState extends State<SuperAdminAdminHomeScreen> {
   int selectedIndex = 0;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    selectedIndex = widget.navvalue == 'storeadmin' ? 7 : 6;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,11 +43,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
       body: SafeArea(
         child: SidebarDrawer(
             body: ListView(
-              children: [
-                AppBarAdminPanel(),
-                // pages[widget.navvalue == 'storeadmin' ? 7 : 6],
-                pages[selectedIndex]
-              ],
+              children: [AppBarAdminPanel(), pages[selectedIndex]],
             ),
             drawer: ListView(
               children: [
@@ -95,10 +81,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: GooglePoppinsWidgets(
-                                      text: widget.navvalue == "storeadmin"
-                                          ? "Store Admin"
-                                          : 'Delivery Admin',
-                                      fontsize: 18),
+                                      text: 'Super Admin', fontsize: 18),
                                 ),
                               ],
                             ),
@@ -115,23 +98,14 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                             ),
                           ),
                           sHeight10,
-                          widget.navvalue == 'storeadmin'
-                              ? StoreDrawerSelectedPagesSection(
-                                  selectedIndex: selectedIndex,
-                                  onTap: (index) {
-                                    setState(() {
-                                      selectedIndex = index;
-                                    });
-                                  },
-                                )
-                              : DeliveryDrawerSelectedPagesSection(
-                                  selectedIndex: selectedIndex,
-                                  onTap: (index) {
-                                    setState(() {
-                                      selectedIndex = index;
-                                    });
-                                  },
-                                )
+                          SuperAdminDrawerSelectedPagesSection(
+                            selectedIndex: selectedIndex,
+                            onTap: (index) {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                            },
+                          )
                         ],
                       ),
                     ),
@@ -145,26 +119,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
 }
 
 List<Widget> pages = [
-  const DashboardContainer(), //..1
-  InventoryWidget(), //..2
-  StoreRequetWidget(), //..3
-  CategoryWidget(), //..4
-  SubCategoryWidget(), //..5
-  QuantityWidget(), //..6
-  DeliveryDashboardContainer(), //..7
-  StoreDashboardContainer(), //..8
-  TableListviewWidget(), //..9
-  ProductTempWidget(), //..10
-  ProductScreen(), //..11
-  DeliveryScreen(), //..12
-  const DeliveryRequest(),//..13
-  const PendingOrdersStatusScreen(),//..14
-  const PickedOrdersStatusScreen(),//..15
-  const DeliveryStatusScreen(),//..16
-  Center(
-    child: Text(sideMenu[8]),
-  ),
-  const DashboardContainer(),
+  SuperAdminDashboardContainer(),
+  // const DashboardContainer(),
   InventoryWidget(),
   StoreRequetWidget(),
   CategoryWidget(),
@@ -184,9 +140,7 @@ List<Widget> pages = [
   ),
   const Center(child: DeliveryRequest()),
   AllStockDetailsWidget(),
-  Center(
-    child: Text(sideMenu[9]),
-  ),
+  SuperAdminDashboardContainer(),
   Center(
     child: Text(sideMenu[10]),
   ),

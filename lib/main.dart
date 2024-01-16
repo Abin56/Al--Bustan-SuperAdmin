@@ -25,9 +25,9 @@ class MyApp extends StatelessWidget {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
       // home: LoginSection(),
-      home: Scaffold(
-          backgroundColor: cWhite,
-          body: Center(child: PickedOrdersStatusScreen())),
+      // home: Scaffold(
+      //     backgroundColor: cWhite,
+      //     body: Center(child: PickedOrdersStatusScreen())),
     );
   }
 }

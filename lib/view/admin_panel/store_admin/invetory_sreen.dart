@@ -5,6 +5,7 @@ import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
+// import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -382,7 +383,7 @@ class InventoryTileWidget extends StatelessWidget {
                       customShowDilogBox(
                           context: context,
                           title: "Shopkeeper Datails",
-                          children: [StoreKeeperDatailsWidget()],
+                          children: [const StoreKeeperDatailsWidget()],
                           doyouwantActionButton: true);
                       // ShowDialogWidget(context, StoreKeeperDatailsWidget());
                     },
@@ -409,21 +410,18 @@ class ListViewTableHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 1,
-      child: Container(
-        height: 50,
-        // width: width,
-        decoration: BoxDecoration(
-            color: cLateGrey,
-            border: Border.symmetric(
-              horizontal: BorderSide(color: cBlack.withOpacity(0.5)),
-            )),
-        child: Center(
-          child: Text(
-            headerTitle,
-            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
-          ),
+    return Container(
+      height: 50,
+      // width: width,
+      decoration: BoxDecoration(
+          color: cLateGrey,
+          border: Border.symmetric(
+            horizontal: BorderSide(color: cBlack.withOpacity(0.5)),
+          )),
+      child: Center(
+        child: Text(
+          headerTitle,
+          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
         ),
       ),
     );
@@ -451,8 +449,8 @@ class DataContainerWidget extends StatelessWidget {
     return Container(
       height: height,
       width: width,
-      decoration: const BoxDecoration(
-        color: cWhite,
+      decoration: BoxDecoration(
+        color: color,
       ),
       child: Center(
         child: Text(

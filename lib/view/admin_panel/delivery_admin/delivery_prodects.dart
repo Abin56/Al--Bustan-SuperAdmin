@@ -338,7 +338,7 @@ class SingleHeadWidget extends StatelessWidget {
       child: GooglePoppinsWidgets(
         text: headName,
         fontsize: 20,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w500,
       ),
     ));
   }

@@ -6,7 +6,6 @@ import 'package:canteen_superadmin_website/core/constant/constant.validate.dart'
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/textstysle/textstyle.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
-import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/container_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -149,7 +148,7 @@ class ProductScreen extends StatelessWidget {
                               title: "Cart",
                               children: [CartWiget()],
                               actiononTapfuction: () async {
-                                final newlist =
+                                // final newlist =
                                     await getDeliveryCtr.getCartList();
                                 getDeliveryCtr.cartToDeliveryOrder();
                               },
@@ -350,7 +349,7 @@ class DeliveryProductTile extends StatelessWidget {
   final AllProductDetailModel data;
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+//  final   Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Column(
@@ -436,14 +435,14 @@ class DeliveryProductTile extends StatelessWidget {
 class CartWiget extends StatelessWidget {
   CartWiget({super.key});
   final getDeliveryCtr = Get.put(DeliveryController());
-  DeliveryController getSingleDeliveyCtr = DeliveryController();
-  int amount = 0;
+  final DeliveryController getSingleDeliveyCtr = DeliveryController();
+  final int amount = 0;
   @override
   Widget build(BuildContext context) {
     final SizeW = MediaQuery.of(context).size.width;
     final SizeH = MediaQuery.of(context).size.height;
 
-    return Container(
+    return SizedBox(
       width: SizeW * 0.44,
       height: SizeH * 0.4,
       child: StreamBuilder(

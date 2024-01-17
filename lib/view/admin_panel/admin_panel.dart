@@ -1,4 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/status_screen/delivery_status.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/status_screen/pending_status.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/status_screen/pending_status/pickuped_status.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/all_stock_details_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
@@ -142,6 +145,25 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
 }
 
 List<Widget> pages = [
+  const DashboardContainer(), //..1
+  InventoryWidget(), //..2
+  StoreRequetWidget(), //..3
+  CategoryWidget(), //..4
+  SubCategoryWidget(), //..5
+  QuantityWidget(), //..6
+  DeliveryDashboardContainer(), //..7
+  StoreDashboardContainer(), //..8
+  TableListviewWidget(), //..9
+  ProductTempWidget(), //..10
+  ProductScreen(), //..11
+  DeliveryScreen(), //..12
+  const DeliveryRequest(),//..13
+  const PendingOrdersStatusScreen(),//..14
+  const PickedOrdersStatusScreen(),//..15
+  const DeliveryStatusScreen(),//..16
+  Center(
+    child: Text(sideMenu[8]),
+  ),
   const DashboardContainer(),
   InventoryWidget(),
   StoreRequetWidget(),

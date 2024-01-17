@@ -1,6 +1,6 @@
 import 'package:canteen_superadmin_website/firebase_options.dart';
-import 'package:canteen_superadmin_website/view/admins/store_Admin/storeadmin_panel.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/super_adminpanel.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/warehouse_adminpanel.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,7 +21,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SuperAdminPanelScreen(),
+      home: WareHouseAdminPanelScreen(),
+      // home: Scaffold(
+      //   body: Center(
+      //     child: PickedOrdersStatusScreen(),
+      //   ),
+      // ),
     );
   }
 }

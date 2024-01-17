@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:canteen_superadmin_website/view/admins/delivery_Admin/drawer/drawer.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/appbar/app_bar.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/drawer/drawer.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +69,10 @@ class _SuperAdminPanelScreenState extends State<SuperAdminPanelScreen> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: GooglePoppinsWidgets(
-                                      text: 'Super Admin', fontsize: 18),
+                                    text: 'SUPER ADMIN',
+                                    fontsize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ],
                             ),

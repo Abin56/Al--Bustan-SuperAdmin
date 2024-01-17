@@ -90,8 +90,18 @@ class SuppliersViewPage extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text(suppliersData.workstartTime),
-                                  Text(suppliersData.workEndTime),
+                                  Row(
+                                    children: [
+                                      const Text("Start time : "),
+                                      Text(suppliersData.workstartTime),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Text("End time : "),
+                                      Text(suppliersData.workEndTime),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ),
@@ -120,8 +130,8 @@ class SuppliersViewPage extends StatelessWidget {
                                       );
                                     },
                                     icon: const Icon(
-                                      Icons.edit,
-                                      color: AppColors.greyColor,
+                                      Icons.edit_note_sharp,
+                                      color: Colors.blue,
                                     ),
                                   ),
                                   IconButton(

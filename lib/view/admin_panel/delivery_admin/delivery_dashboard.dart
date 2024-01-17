@@ -4,6 +4,7 @@ import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/cante
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/canteen_all_list.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/chart_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/container_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/dashboard_item_widget.dart';
@@ -440,6 +441,14 @@ class CanteenScendRowoneWidget extends StatelessWidget {
                 ),
               ),
               const Spacer(),
+              TextButton(
+                onPressed: () {
+                  Get.to(CanteenViewPage());
+                },
+                child: const Text(
+                  "view all",
+                ),
+              ),
               IconButton(
                 onPressed: navigate,
                 icon: const Icon(Icons.add),

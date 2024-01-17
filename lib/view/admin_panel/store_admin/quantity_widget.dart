@@ -86,7 +86,7 @@ class QuantityWidget extends StatelessWidget {
                     }
                     return ListView.separated(
                         itemBuilder: (context, index) {
-                          final data = ProductQuantityModel.fromMap(
+                          final data = UnitCategoryModel.fromMap(
                               snapshot.data!.docs[index].data());
                           return QuantityTile(
                             data: data,
@@ -108,7 +108,7 @@ class QuantityWidget extends StatelessWidget {
 class QuantityTile extends StatelessWidget {
   QuantityTile({super.key, required this.data});
   final getStroreCtr = Get.put(StoreController());
-  final ProductQuantityModel data;
+  final UnitCategoryModel data;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -124,13 +124,13 @@ class QuantityTile extends StatelessWidget {
         child: Row(
           children: [
             GooglePoppinsWidgets(
-              text: data.quantityTypeName,
+              text: data.unitCategoryName,
               fontsize: 16,
             ),
             const Spacer(),
             IconButton(
               onPressed: () {
-                getStroreCtr.quantityCtr.text = data.quantityTypeName;
+                getStroreCtr.quantityCtr.text = data.unitCategoryName;
                 customShowDilogBox(
                     context: context,
                     title: 'Edit Category',

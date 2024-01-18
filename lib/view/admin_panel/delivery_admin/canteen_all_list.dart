@@ -8,7 +8,9 @@ import 'package:flutter/material.dart';
 class CanteenViewPage extends StatelessWidget {
   final SuppliersControllers suppliersController = SuppliersControllers();
 
-  CanteenViewPage({super.key});
+  CanteenViewPage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -135,6 +137,7 @@ class CanteenViewPage extends StatelessWidget {
 
                     return DataTable(
                       columnSpacing: 10,
+                      // ignore: deprecated_member_use
                       dataRowHeight: 80,
                       headingRowColor: MaterialStateColor.resolveWith(
                         (states) => AppColors.greyColor,

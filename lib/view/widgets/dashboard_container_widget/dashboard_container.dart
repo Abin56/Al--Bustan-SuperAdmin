@@ -1,4 +1,4 @@
-import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/canteen_add_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/canteen_add_widget.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/chart_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/container_widget.dart';

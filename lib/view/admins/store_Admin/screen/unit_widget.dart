@@ -9,8 +9,8 @@ import 'package:canteen_superadmin_website/view/widgets/textform%20feild%20Widge
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class QuantityWidget extends StatelessWidget {
-  QuantityWidget({super.key});
+class UnitWidget extends StatelessWidget {
+  UnitWidget({super.key});
   final getStroreCtr = Get.put(StoreController());
 
   @override
@@ -19,18 +19,21 @@ class QuantityWidget extends StatelessWidget {
     final sizeH = MediaQuery.of(context).size.height;
 
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(20),
       child: Container(
-        height: sizeH * 0.89,
+        height: sizeH - 110,
         width: double.infinity,
-        decoration: const BoxDecoration(color: cWhite, boxShadow: [
-          BoxShadow(blurRadius: 0.5),
-        ]),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Row(
+        decoration: BoxDecoration(
+            color: cWhite,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const [
+              BoxShadow(blurRadius: 0.5),
+            ]),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              Row(
                 children: [
                   GooglePoppinsWidgets(
                     text: "Quantity",
@@ -62,43 +65,43 @@ class QuantityWidget extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            Expanded(
-                child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: StreamBuilder(
-                  stream: getStroreCtr.fireStore
-                      .collection('UnitCategory')
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
-                    } else if (snapshot.data!.docs.isEmpty) {
-                      return Center(
-                        child:
-                            GooglePoppinsWidgets(text: "No data", fontsize: 15),
-                      );
-                    } else if (!snapshot.hasData) {
-                      return Center(
-                        child:
-                            GooglePoppinsWidgets(text: "No data", fontsize: 15),
-                      );
-                    }
-                    return ListView.separated(
-                        itemBuilder: (context, index) {
-                          final data = UnitCategoryModel.fromMap(
-                              snapshot.data!.docs[index].data());
-                          return QuantityTile(
-                            data: data,
+              sHeight20,
+              Expanded(
+                  child: StreamBuilder(
+                      stream: getStroreCtr.fireStore
+                          .collection('UnitCategory')
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        } else if (snapshot.data!.docs.isEmpty) {
+                          return Center(
+                            child: GooglePoppinsWidgets(
+                                text: "No data", fontsize: 15),
                           );
-                        },
-                        separatorBuilder: (context, index) {
-                          return sHeight10;
-                        },
-                        itemCount: snapshot.data!.docs.length);
-                  }),
-            ))
-          ],
+                        } else if (!snapshot.hasData) {
+                          return Center(
+                            child: GooglePoppinsWidgets(
+                                text: "No data", fontsize: 15),
+                          );
+                        }
+                        return ListView.separated(
+                            itemBuilder: (context, index) {
+                              final data = UnitCategoryModel.fromMap(
+                                  snapshot.data!.docs[index].data());
+                              return QuantityTile(
+                                data: data,
+                              );
+                            },
+                            separatorBuilder: (context, index) {
+                              return sHeight10;
+                            },
+                            itemCount: snapshot.data!.docs.length);
+                      }))
+            ],
+          ),
         ),
       ),
     );
@@ -120,7 +123,7 @@ class QuantityTile extends StatelessWidget {
           // borderRadius: BorderRadius.circular(10),
           ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         child: Row(
           children: [
             GooglePoppinsWidgets(

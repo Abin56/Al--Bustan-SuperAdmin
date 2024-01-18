@@ -6,22 +6,22 @@ import 'package:canteen_superadmin_website/view/admin_panel/store_admin/all_stoc
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/admin_appBar.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_dashboard.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_request.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_dashboard.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_request.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/drawer_page_delivery_admin.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/category_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/category_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/product_temporary_list.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/quantity_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/unit_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/store_request.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/subcategory_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/subcategory_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/drawer_page_store_admin.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/store_dashboard.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/store_dashboard.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/table_listview.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_order.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_prodects.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_order.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_prodects.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/dashboard_container.dart';
 
@@ -150,17 +150,17 @@ List<Widget> pages = [
   StoreRequetWidget(), //..3
   CategoryWidget(), //..4
   SubCategoryWidget(), //..5
-  QuantityWidget(), //..6
+  UnitWidget(), //..6
   DeliveryDashboardContainer(), //..7
   StoreDashboardContainer(), //..8
   TableListviewWidget(), //..9
   ProductTempWidget(), //..10
   ProductScreen(), //..11
   DeliveryScreen(), //..12
-  const DeliveryRequest(),//..13
-  const PendingOrdersStatusScreen(),//..14
-  const PickedOrdersStatusScreen(),//..15
-  const DeliveryStatusScreen(),//..16
+  const DeliveryRequest(), //..13
+  const PendingOrdersStatusScreen(), //..14
+  const PickedOrdersStatusScreen(), //..15
+  const DeliveryStatusScreen(), //..16
   Center(
     child: Text(sideMenu[8]),
   ),
@@ -169,7 +169,7 @@ List<Widget> pages = [
   StoreRequetWidget(),
   CategoryWidget(),
   SubCategoryWidget(),
-  QuantityWidget(),
+  UnitWidget(),
   DeliveryDashboardContainer(),
   StoreDashboardContainer(),
   Center(

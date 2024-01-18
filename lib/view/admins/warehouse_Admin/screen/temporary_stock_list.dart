@@ -9,8 +9,8 @@ import 'package:canteen_superadmin_website/view/widgets/button_container_widget/
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AllStockDetailsWidget extends StatelessWidget {
-  AllStockDetailsWidget({super.key});
+class TemporaryStockWidget extends StatelessWidget {
+  TemporaryStockWidget({super.key});
 
   final excelCtr = Get.put(ExcelController());
 
@@ -31,25 +31,9 @@ class AllStockDetailsWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GooglePoppinsWidgets(
-                    text: "All Stock",
+                    text: "Temporary Stock List",
                     fontsize: 25,
                     fontWeight: FontWeight.w500,
-                  ),
-                  CustomGradientButton(
-                    text: "Upload Excel",
-                    height: 40,
-                    width: 200,
-                    onPressed: () {
-                      excelCtr.uploadExcelFunction2();
-                    },
-                  ),
-                  CustomGradientButton(
-                    text: "Scan to Add",
-                    height: 40,
-                    width: 200,
-                    onPressed: () {
-                      excelCtr.uploadExcelFunction2();
-                    },
                   ),
                 ],
               ),
@@ -97,7 +81,8 @@ class AllStockDetailsWidget extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: StreamBuilder(
-                  stream: dataserver.collection("AllStock").snapshots(),
+                  stream:
+                      dataserver.collection("TemporaryStockList").snapshots(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const Center(child: CircularProgressIndicator());
@@ -133,7 +118,7 @@ class AllStockDetailsWidget extends StatelessWidget {
                               StockDdetailsWidget(
                                   text: productData.packageType, flex: 2),
                               StockDdetailsWidget(
-                                  text: productData.categoryName, flex: 2),
+                                  text: productData.companyName, flex: 2),
                             ],
                           );
                         },

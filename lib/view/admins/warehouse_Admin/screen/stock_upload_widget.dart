@@ -11,6 +11,7 @@ import 'package:canteen_superadmin_website/model/category_model.dart';
 import 'package:canteen_superadmin_website/model/packagetype_model.dart';
 import 'package:canteen_superadmin_website/model/quantity_model.dart';
 import 'package:canteen_superadmin_website/model/subcategory_model.dart';
+import 'package:canteen_superadmin_website/model/suppliers_model.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/all_stock_details_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/button_container_widget/custom_button.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
@@ -19,12 +20,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class StockUpdateWidget extends StatelessWidget {
-  StockUpdateWidget({super.key});
+class StockUploadWidget extends StatelessWidget {
+  StockUploadWidget({super.key});
 
   final excelCtr = Get.put(ExcelController());
   final wearhouseCtr = Get.put(WearHouseController());
-  GlobalKey<FormState> fkey = GlobalKey<FormState>();
+  final GlobalKey<FormState> fkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class StockUpdateWidget extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Container(
             decoration: BoxDecoration(border: Border.all()),
-            width: 1500,
+            width: 1180,
             height: size.height - 110,
             child: Column(
               children: [
@@ -559,7 +560,7 @@ class CompanySetUpWidget extends StatelessWidget {
               : Colors.blue.withOpacity(0.3),
           border: Border.all(color: cGrey.withOpacity(0.2))),
       child: Center(
-          child: DropdownSearch<CanteenModel>(
+          child: DropdownSearch<SuppliersModel>(
         validator: (item) {
           if (item == null) {
             return "Required field";
@@ -569,18 +570,18 @@ class CompanySetUpWidget extends StatelessWidget {
         },
         // autoValidateMode: AutovalidateMode.always,
         asyncItems: (value) {
-          wearhouseCtr.canteenList.clear();
+          wearhouseCtr.supplierList.clear();
 
-          return wearhouseCtr.fetchCanteenModel();
+          return wearhouseCtr.fetchSupplireModel();
         },
-        itemAsString: (value) => value.schoolName,
+        itemAsString: (value) => value.suppliersName,
         onChanged: (value) async {
           // if (value != null) {
           //   wearhouseCtr.productCategoryName.value = value.categoryName;
           //   wearhouseCtr.productCategoryID.value = value.docid;
           // }
           wearhouseCtr.productCompanyEdit(
-              value!.schoolName, value.docId, data.docId);
+              value!.suppliersName, value.docId, data.docId);
         },
         dropdownDecoratorProps: DropDownDecoratorProps(
             baseStyle: GoogleFonts.poppins(

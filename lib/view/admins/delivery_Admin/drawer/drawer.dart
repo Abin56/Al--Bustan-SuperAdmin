@@ -140,18 +140,18 @@ class DrawerDeliveryAdmin extends StatelessWidget {
         ListTile(
           leading: const DashBoardIconWidget(
               image: 'web_images/drawer_images/delivered_success.png'),
-          tileColor: selectedIndex == 5
+          tileColor: selectedIndex == 4
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
           onTap: () {
-            index = 5;
+            index = 4;
             onTap.call(index);
           },
           title: Row(
             children: [
               DashboardTextFontWidget(
                 title: 'Delivered Orders',
-              ),  
+              ),
             ],
           ),
         ),

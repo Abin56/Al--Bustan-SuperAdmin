@@ -57,6 +57,42 @@ class DrawerWareHouseAdmin extends StatelessWidget {
             ],
           ),
         ),
+        ListTile(
+          leading: const DashBoardIconWidget(
+              image: 'web_images/drawer_images/all_orders.png'),
+          tileColor: selectedIndex == 1
+              ? themeColorBlue.withOpacity(0.1)
+              : Colors.transparent,
+          onTap: () {
+            index = 1;
+            onTap.call(index);
+          },
+          title: Row(
+            children: [
+              DashboardTextFontWidget(
+                title: 'Upload data',
+              ),
+            ],
+          ),
+        ),
+        ListTile(
+          leading: const DashBoardIconWidget(
+              image: 'web_images/drawer_images/all_orders.png'),
+          tileColor: selectedIndex == 2
+              ? themeColorBlue.withOpacity(0.1)
+              : Colors.transparent,
+          onTap: () {
+            index = 2;
+            onTap.call(index);
+          },
+          title: Row(
+            children: [
+              DashboardTextFontWidget(
+                title: 'Temporary Stock List',
+              ),
+            ],
+          ),
+        ),
         ExpansionTile(
           leading: const DashBoardIconWidget(
               image: 'web_images/drawer_images/avilable_products.png'),

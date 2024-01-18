@@ -111,7 +111,7 @@ class InventoryWidget extends StatelessWidget {
                             ListViewTableHeaderWidget(
                                 width: 150, headerTitle: 'Item Code'),
                             ListViewTableHeaderWidget(
-                                width: 150, headerTitle: 'Photo'),
+                                width: 150, headerTitle: 'Image'),
                             ListViewTableHeaderWidget(
                                 width: 150, headerTitle: 'Item Name'),
                             ListViewTableHeaderWidget(
@@ -412,7 +412,7 @@ class ListViewTableHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 50,
-      // width: width,
+      width: width,
       decoration: BoxDecoration(
           color: cLateGrey,
           border: Border.symmetric(

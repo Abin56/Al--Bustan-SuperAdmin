@@ -1,7 +1,8 @@
-import 'package:canteen_superadmin_website/controller/store_dashboard_controller/store_dash_board_controller.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/supplier_adding_widget.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/suppliers_scendrowone_widget.dart';
+import 'package:canteen_superadmin_website/controller/delivery_dashboard_controller/delivery_dashboard_controller.dart';
+import 'package:canteen_superadmin_website/model/canteen_model.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/canteen_add_widget.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/chart_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/container_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/dashboard_item_widget.dart';
@@ -11,15 +12,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SuperAdminDashboardContainer extends StatelessWidget {
-  SuperAdminDashboardContainer({
+class DeliveryDashboardContainer extends StatelessWidget {
+  DeliveryDashboardContainer({
     super.key,
   });
-  final storeDashBoardCtr = Get.put(StoreDashBoardController());
+
+  final deliveryDashBoardCtr = Get.put(DeliveryDashBoardController());
 
   @override
   Widget build(BuildContext context) {
-    storeDashBoardCtr.getTotalCost();
     Size size = MediaQuery.of(context).size;
 
     List<Widget> dashboardcontent = [
@@ -35,7 +36,7 @@ class SuperAdminDashboardContainer extends StatelessWidget {
                 child: Row(
                   children: [
                     const Text(
-                      "Sales Overview",
+                      "Delivery Overview",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
@@ -60,12 +61,10 @@ class SuperAdminDashboardContainer extends StatelessWidget {
                       children: [
                         StreamBuilder(
                             stream: FirebaseFirestore.instance
-                                .collection('AllProduct')
+                                .collection("deliveryAssignList")
                                 .snapshots(),
                             builder: (context, snapshot) {
-                              storeDashBoardCtr.getTotalCost();
-                              storeDashBoardCtr.getTotalAvailableStock();
-                              storeDashBoardCtr.getTotalStock();
+                              deliveryDashBoardCtr.getTotalRevenue();
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
                                 return const SizedBox();
@@ -78,9 +77,8 @@ class SuperAdminDashboardContainer extends StatelessWidget {
                                   bgColor: AppColors.greenColor,
                                   icon: Icons.shopify_rounded,
                                   iconColor: AppColors.lightGreenColor,
-                                  title: "Total Sales",
-                                  value:
-                                      '  ${snapshot.data!.docs.length.toString()}',
+                                  title: "Total deliveries",
+                                  value: '  ${snapshot.data!.docs.length}',
                                 );
                               }
                             }),
@@ -90,8 +88,8 @@ class SuperAdminDashboardContainer extends StatelessWidget {
                         const DashboardItem(
                           icon: Icons.cancel,
                           iconColor: AppColors.yellowColor,
-                          title: "Revenue",
-                          value: "  0",
+                          title: "Cancel Order",
+                          value: "0",
                           bgColor: AppColors.lightYellowColor,
                         ),
                       ],
@@ -102,7 +100,7 @@ class SuperAdminDashboardContainer extends StatelessWidget {
                         const DashboardItem(
                           icon: Icons.rotate_90_degrees_ccw_sharp,
                           iconColor: AppColors.redColor,
-                          title: "    Profit    ",
+                          title: "    Return    ",
                           value: "  0",
                           bgColor: AppColors.lightRedColor,
                         ),
@@ -110,18 +108,17 @@ class SuperAdminDashboardContainer extends StatelessWidget {
                             ? const Spacer()
                             : const Text(''),
                         Padding(
-                          padding: const EdgeInsets.only(right: 30),
-                          child: Obx(
-                            () => DashboardItem(
-                              icon: Icons.auto_graph_rounded,
-                              iconColor: AppColors.indigoColor,
-                              title: "Cost",
-                              value:
-                                  '  ${storeDashBoardCtr.totalCost.value.toString()}',
-                              bgColor: AppColors.lightIndigoColors,
-                            ),
-                          ),
-                        )
+                            padding: const EdgeInsets.only(right: 30),
+                            child: Obx(
+                              () => DashboardItem(
+                                icon: Icons.auto_graph_rounded,
+                                iconColor: AppColors.indigoColor,
+                                title: "Revenue",
+                                value: deliveryDashBoardCtr.totalRevenue.value
+                                    .toString(),
+                                bgColor: AppColors.lightIndigoColors,
+                              ),
+                            )),
                       ],
                     ),
                   ],
@@ -143,7 +140,7 @@ class SuperAdminDashboardContainer extends StatelessWidget {
                 Row(
                   children: [
                     const Text(
-                      "Purchase Overview",
+                      "Stock Overview",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
@@ -167,27 +164,23 @@ class SuperAdminDashboardContainer extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Obx(() => DashboardItem(
-                                  bgColor: AppColors.orangeColor,
-                                  icon: Icons.shopify_rounded,
-                                  iconColor: AppColors.lightOrangeColor,
-                                  title: "No of Purchase",
-                                  value:
-                                      '  ${storeDashBoardCtr.totalStock.toString()}',
-                                )),
+                            const DashboardItem(
+                              bgColor: AppColors.orangeColor,
+                              icon: Icons.shopify_rounded,
+                              iconColor: AppColors.lightOrangeColor,
+                              title: " Total Stock",
+                              value: "12",
+                            ),
                             ResponsiveWebSite.isMobile(context)
                                 ? const Spacer()
                                 : const Text(''),
-                            Obx(
-                              () => DashboardItem(
-                                icon: Icons.book,
-                                iconColor: AppColors.yellowColor,
-                                title: "Cancel Order",
-                                value:
-                                    '  ${storeDashBoardCtr.totalAvailableStock.toString()}',
-                                bgColor: AppColors.lightYellowColor,
-                              ),
-                            )
+                            const DashboardItem(
+                              icon: Icons.book,
+                              iconColor: AppColors.yellowColor,
+                              title: "Pending Order",
+                              value: "02",
+                              bgColor: AppColors.lightYellowColor,
+                            ),
                           ],
                         ),
                       ),
@@ -197,8 +190,8 @@ class SuperAdminDashboardContainer extends StatelessWidget {
                           const DashboardItem(
                             icon: Icons.receipt_long_rounded,
                             iconColor: AppColors.pinkColor,
-                            title: "Cost",
-                            value: "  0",
+                            title: "Delivered",
+                            value: "89",
                             bgColor: AppColors.lightPinkColor,
                           ),
                           ResponsiveWebSite.isMobile(context)
@@ -209,8 +202,8 @@ class SuperAdminDashboardContainer extends StatelessWidget {
                             child: DashboardItem(
                               icon: Icons.notification_important,
                               iconColor: AppColors.indigoColor,
-                              title: "Returns",
-                              value: "  0",
+                              title: "Employee Request",
+                              value: "05",
                               bgColor: AppColors.lightIndigoColors,
                             ),
                           ),
@@ -337,11 +330,11 @@ class SuperAdminDashboardContainer extends StatelessWidget {
         width: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(10),
-          child: SuppliersScendRowoneWidget(
+          child: CanteenScendRowoneWidget(
             iconData1: Icons.home_work_outlined,
-            title: "Suppliers",
+            title: "Canteens",
             navigate: () {
-              Get.to(SuppliersProfile());
+              Get.to(CanteenProfile());
             },
             icon: Icons.more_vert_outlined,
           ),
@@ -349,89 +342,239 @@ class SuperAdminDashboardContainer extends StatelessWidget {
       ),
     ];
 
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ResponsiveWebSite.isMobile(context)
-              ? Column(
-                  children: [
-                    dashboardcontent[0],
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: dashboardcontent[1],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: dashboardcontent[2],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: dashboardcontent[3],
-                    ),
-                  ],
-                )
-              : Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(flex: 1, child: dashboardcontent[0]),
-                        Expanded(flex: 1, child: dashboardcontent[1]),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Expanded(flex: 1, child: dashboardcontent[2]),
-                        Expanded(
-                          flex: 1,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: dashboardcontent[3],
+    return SizedBox(
+      width: double.infinity,
+      height: size.height * 0.85,
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ResponsiveWebSite.isMobile(context)
+                ? Column(
+                    children: [
+                      dashboardcontent[0],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: dashboardcontent[1],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: dashboardcontent[2],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: dashboardcontent[3],
+                      ),
+                    ],
+                  )
+                : Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(flex: 1, child: dashboardcontent[0]),
+                          Expanded(flex: 1, child: dashboardcontent[1]),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(flex: 1, child: dashboardcontent[2]),
+                          Expanded(
+                            flex: 1,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: dashboardcontent[3],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-          Padding(
-            padding: const EdgeInsets.only(
-              right: 10,
+                        ],
+                      ),
+                    ],
+                  ),
+            Padding(
+              padding: const EdgeInsets.only(
+                right: 10,
+              ),
+              child: CustomContainer(
+                height: size.height * 0.4,
+                width: size.width,
+                child: const Chart(),
+              ),
             ),
-            child: CustomContainer(
-              height: size.height * 0.4,
-              width: size.width,
-              child: const Chart(),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
 
-// import 'package:canteen_superadmin_website/controller/store_dashboard_controller/store_dash_board_controller.dart';
+class CanteenScendRowoneWidget extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final IconData iconData1;
+  final VoidCallback navigate;
+
+  const CanteenScendRowoneWidget({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.iconData1,
+    required this.navigate,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 14),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const Spacer(),
+              IconButton(
+                onPressed: navigate,
+                icon: const Icon(Icons.add),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(icon),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: Container(
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 242, 242, 245),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: AppColors.lightGreyColor,
+                // color: cGreen,
+                width: 1.0,
+              ),
+            ),
+            child: StreamBuilder(
+              stream: FirebaseFirestore.instance
+                  .collection('CanteenList')
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.data!.docs.isEmpty) {
+                  return Center(
+                    child: GooglePoppinsWidgets(text: "No data", fontsize: 15),
+                  );
+                } else if (!snapshot.hasData) {
+                  return Center(
+                    child: GooglePoppinsWidgets(text: "No data", fontsize: 15),
+                  );
+                } else {
+                  return GridView.count(
+                    crossAxisCount: 5,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    childAspectRatio: 0.8,
+                    // childAspectRatio: 3,
+                    children:
+                        List.generate(snapshot.data!.docs.length, (index) {
+                      final canteenData = CanteenModel.fromMap(
+                          snapshot.data!.docs[index].data());
+                      return Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: cGrey),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
+                                color: cGrey,
+                                width: double.infinity,
+                                child: Image.network(
+                                  canteenData.image,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              GooglePoppinsWidgets(
+                                  text: canteenData.schoolName, fontsize: 14)
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
+                  );
+
+                  // ListView.separated(
+                  //     itemBuilder: (context, index) {
+                  //       final canteenData = CanteenModel.fromMap(
+                  //           snapshot.data!.docs[index].data());
+                  //       return Container(
+                  //         decoration: BoxDecoration(
+                  //           color: cWhite,
+                  //           border: Border.all(color: cGrey),
+                  //         ),
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.all(5),
+                  //           child: Row(
+                  //             children: [
+                  //               Container(
+                  //                 height: 50,
+                  //                 width: 50,
+                  //                 decoration: BoxDecoration(
+                  //                   image: DecorationImage(
+                  //                     image: NetworkImage(canteenData.image),
+                  //                   ),
+                  //                 ),
+                  //               ),
+                  //               sWidtht10,
+                  //               GooglePoppinsWidgets(
+                  //                   text: canteenData.schoolName, fontsize: 14),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       );
+                  //     },
+                  //     separatorBuilder: (context, index) {
+                  //       return sHeight10;
+                  //     },
+                  //     itemCount: snapshot.data!.docs.length);
+                }
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
+
+
 // import 'package:canteen_superadmin_website/view/colors/colors.dart';
 // import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/chart_widget.dart';
 // import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/container_widget.dart';
 // import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/dashboard_item_widget.dart';
 // import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/secondrow_widget.dart';
 // import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
 
 // import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
 
-// class StoreDashboardContainer extends StatelessWidget {
-//   StoreDashboardContainer({
+// class DeliveryDashboardContainer extends StatelessWidget {
+//   const DeliveryDashboardContainer({
 //     super.key,
 //   });
-//   final storeDashBoardCtr = Get.put(StoreDashBoardController());
 
 //   @override
 //   Widget build(BuildContext context) {
-//     storeDashBoardCtr.getTotalCost();
-//     storeDashBoardCtr.getTotalStock();
 //     Size size = MediaQuery.of(context).size;
 
 //     List<Widget> dashboardcontent = [
@@ -447,7 +590,7 @@ class SuperAdminDashboardContainer extends StatelessWidget {
 //                 Row(
 //                   children: [
 //                     const Text(
-//                       "Purchase Overview",
+//                       "Delivery Overview",
 //                       style: TextStyle(
 //                         fontSize: 18,
 //                         fontWeight: FontWeight.w500,
@@ -469,31 +612,13 @@ class SuperAdminDashboardContainer extends StatelessWidget {
 //                       Row(
 //                         mainAxisAlignment: MainAxisAlignment.spaceAround,
 //                         children: [
-//                           StreamBuilder(
-//                               stream: FirebaseFirestore.instance
-//                                   .collection('AllProduct')
-//                                   .snapshots(),
-//                               builder: (context, snapshot) {
-//                                 storeDashBoardCtr.getTotalCost();
-//                                 storeDashBoardCtr.getTotalStock();
-//                                 if (snapshot.connectionState ==
-//                                     ConnectionState.waiting) {
-//                                   return const SizedBox();
-//                                 } else if (!snapshot.hasData) {
-//                                   return const SizedBox();
-//                                 } else if (!snapshot.hasData) {
-//                                   return const SizedBox();
-//                                 } else {
-//                                   return DashboardItem(
-//                                       bgColor: AppColors.greenColor,
-//                                       icon: Icons.shopify_rounded,
-//                                       iconColor: AppColors.lightGreenColor,
-//                                       title: "Total Purchase",
-//                                       value: "100"
-//                                       // '  ${snapshot.data!.docs.length.toString()}',
-//                                       );
-//                                 }
-//                               }),
+//                           const DashboardItem(
+//                             bgColor: AppColors.greenColor,
+//                             icon: Icons.shopify_rounded,
+//                             iconColor: AppColors.lightGreenColor,
+//                             title: "Total Purchase",
+//                             value: "712",
+//                           ),
 //                           ResponsiveWebSite.isMobile(context)
 //                               ? const Spacer()
 //                               : const Text(''),
@@ -519,20 +644,16 @@ class SuperAdminDashboardContainer extends StatelessWidget {
 //                           ResponsiveWebSite.isMobile(context)
 //                               ? const Spacer()
 //                               : const Text(''),
-//                           Padding(
-//                               padding: EdgeInsets.only(right: 30),
-//                               child: GetBuilder<StoreDashBoardController>(
-//                                 builder: (controller) {
-//                                   return DashboardItem(
-//                                     icon: Icons.auto_graph_rounded,
-//                                     iconColor: AppColors.indigoColor,
-//                                     title: "Cost",
-//                                     value:
-//                                         '  ${controller.totalCost.toString()}',
-//                                     bgColor: AppColors.lightIndigoColors,
-//                                   );
-//                                 },
-//                               )),
+//                           const Padding(
+//                             padding: EdgeInsets.only(right: 30),
+//                             child: DashboardItem(
+//                               icon: Icons.auto_graph_rounded,
+//                               iconColor: AppColors.indigoColor,
+//                               title: "Cost",
+//                               value: "132",
+//                               bgColor: AppColors.lightIndigoColors,
+//                             ),
+//                           ),
 //                         ],
 //                       ),
 //                     ],
@@ -579,16 +700,12 @@ class SuperAdminDashboardContainer extends StatelessWidget {
 //                       Row(
 //                         mainAxisAlignment: MainAxisAlignment.spaceAround,
 //                         children: [
-//                           GetBuilder<StoreDashBoardController>(
-//                             builder: (controller) {
-//                               return DashboardItem(
-//                                 bgColor: AppColors.orangeColor,
-//                                 icon: Icons.shopify_rounded,
-//                                 iconColor: AppColors.lightOrangeColor,
-//                                 title: "Total Stock",
-//                                 value: '  ${controller.totalStock}',
-//                               );
-//                             },
+//                           const DashboardItem(
+//                             bgColor: AppColors.orangeColor,
+//                             icon: Icons.shopify_rounded,
+//                             iconColor: AppColors.lightOrangeColor,
+//                             title: "Total Stock",
+//                             value: "12",
 //                           ),
 //                           ResponsiveWebSite.isMobile(context)
 //                               ? const Spacer()
@@ -762,7 +879,7 @@ class SuperAdminDashboardContainer extends StatelessWidget {
 //           padding: EdgeInsets.all(0),
 //           child: ScendRowoneWidget(
 //             iconData1: Icons.home_work_outlined,
-//             title: "Suppliers",
+//             title: "Canteens",
 //             icon: Icons.more_vert_outlined,
 //           ),
 //         ),

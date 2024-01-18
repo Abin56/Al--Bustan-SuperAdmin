@@ -1,12 +1,10 @@
 import 'package:canteen_superadmin_website/firebase_options.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/category_widget.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_order.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/delivery_prodects.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/table_listview.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/wearhouse_admin/stock_update_widget.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/wearhouse_admin/tesing.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/delivery_adminpanel.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivered_list_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/storeadmin_panel.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/test.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/warehouse_adminpanel.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/login_page.dart';
-import 'package:canteen_superadmin_website/view/welcome_screen/welcome_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,8 +25,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: LoginSection(),
-      home: Scaffold(body: Testing()),
+      home: LoginSection(),
+      // home: WareHouseAdminPanelScreen(),
+      // home: DeliveryAdminPanelScreen()
+      // home: Scaffold(body: DeliveredListWidget()),
     );
   }
 }

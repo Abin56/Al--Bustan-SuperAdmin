@@ -6,6 +6,7 @@ import 'package:canteen_superadmin_website/model/category_model.dart';
 import 'package:canteen_superadmin_website/model/packagetype_model.dart';
 import 'package:canteen_superadmin_website/model/quantity_model.dart';
 import 'package:canteen_superadmin_website/model/subcategory_model.dart';
+import 'package:canteen_superadmin_website/model/suppliers_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +15,7 @@ class WearHouseController extends GetxController {
   List<ProductSubcategoryModel> productSubCategoryList = [];
   List<UnitCategoryModel> unitCategoryList = [];
   List<PackageTypeModel> packageTypeList = [];
-  List<CanteenModel> canteenList = [];
+  List<SuppliersModel> supplierList = [];
   RxString productCategoryName = ''.obs;
   RxString productCategoryID = ''.obs;
   RxBool isLoading = false.obs;
@@ -37,7 +38,7 @@ class WearHouseController extends GetxController {
 
     await dataserver.collection('Stock').doc(docId).update(data).then((value) {
       showToast(msg: "Product category changed");
-      Get.back();
+      // Get.back();
     });
   }
 
@@ -59,7 +60,7 @@ class WearHouseController extends GetxController {
 
     await dataserver.collection('Stock').doc(docId).update(data).then((value) {
       showToast(msg: "Product subcategory changed");
-      Get.back();
+      // Get.back();
     });
   }
 
@@ -81,7 +82,7 @@ class WearHouseController extends GetxController {
 
     await dataserver.collection('Stock').doc(docId).update(data).then((value) {
       showToast(msg: "Product unit category changed");
-      Get.back();
+      // Get.back();
     });
   }
 
@@ -103,20 +104,20 @@ class WearHouseController extends GetxController {
 
     await dataserver.collection('Stock').doc(docId).update(data).then((value) {
       showToast(msg: "Product Package type changed");
-      Get.back();
+      // Get.back();
     });
   }
 
-  Future<List<CanteenModel>> fetchCanteenModel() async {
+  Future<List<SuppliersModel>> fetchSupplireModel() async {
     final firebase =
-        await FirebaseFirestore.instance.collection('CanteenList').get();
+        await FirebaseFirestore.instance.collection('SuppliersList').get();
 
     for (var i = 0; i < firebase.docs.length; i++) {
       final list =
-          firebase.docs.map((e) => CanteenModel.fromMap(e.data())).toList();
-      canteenList.add(list[i]);
+          firebase.docs.map((e) => SuppliersModel.fromMap(e.data())).toList();
+      supplierList.add(list[i]);
     }
-    return canteenList;
+    return supplierList;
   }
 
   productCompanyEdit(String text, String categoryId, String docId) async {
@@ -124,7 +125,7 @@ class WearHouseController extends GetxController {
 
     await dataserver.collection('Stock').doc(docId).update(data).then((value) {
       showToast(msg: "Product Package type changed");
-      Get.back();
+      // Get.back();
     });
   }
 
@@ -133,7 +134,10 @@ class WearHouseController extends GetxController {
     final productList = await getTempStockList();
 
     for (AllProductDetailModel data in productList) {
-      dataserver.collection("AllStockList").doc(data.docId).set(data.toMap());
+      dataserver
+          .collection("TemporaryStockList")
+          .doc(data.docId)
+          .set(data.toMap());
     }
     isLoading.value = false;
     showToast(msg: "Completed");
@@ -145,6 +149,4 @@ class WearHouseController extends GetxController {
         .map((e) => AllProductDetailModel.fromMap(e.data()))
         .toList();
   }
-
-  
 }

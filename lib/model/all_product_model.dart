@@ -18,7 +18,9 @@ class AllProductDetailModel {
   String unitcategoryID;
   String unitcategoryName;
   String packageType;
+  String packageTypeID;
   String companyName;
+  String companyNameID;
   String returnType;
   String itemcode;
   bool outofstock;
@@ -40,7 +42,9 @@ class AllProductDetailModel {
     required this.unitcategoryID,
     required this.unitcategoryName,
     required this.packageType,
+    required this.packageTypeID,
     required this.companyName,
+    required this.companyNameID,
     required this.returnType,
     required this.itemcode,
     required this.outofstock,
@@ -64,7 +68,9 @@ class AllProductDetailModel {
     String? unitcategoryID,
     String? unitcategoryName,
     String? packageType,
+    String? packageTypeID,
     String? companyName,
+    String? companyNameID,
     String? returnType,
     String? itemcode,
     bool? outofstock,
@@ -87,7 +93,9 @@ class AllProductDetailModel {
       unitcategoryID: unitcategoryID ?? this.unitcategoryID,
       unitcategoryName: unitcategoryName ?? this.unitcategoryName,
       packageType: packageType ?? this.packageType,
+      packageTypeID: packageTypeID ?? this.packageTypeID,
       companyName: companyName ?? this.companyName,
+      companyNameID: companyNameID ?? this.companyNameID,
       returnType: returnType ?? this.returnType,
       itemcode: itemcode ?? this.itemcode,
       outofstock: outofstock ?? this.outofstock,
@@ -113,7 +121,9 @@ class AllProductDetailModel {
       'unitcategoryID': unitcategoryID,
       'unitcategoryName': unitcategoryName,
       'packageType': packageType,
+      'packageTypeID': packageTypeID,
       'companyName': companyName,
+      'companyNameID': companyNameID,
       'returnType': returnType,
       'itemcode': itemcode,
       'outofstock': outofstock,
@@ -139,7 +149,9 @@ class AllProductDetailModel {
       unitcategoryID: map['unitcategoryID'] ?? '',
       unitcategoryName: map['unitcategoryName'] ?? '',
       packageType: map['packageType'] ?? '',
+      packageTypeID: map['packageTypeID'] ?? '',
       companyName: map['companyName'] ?? '',
+      companyNameID: map['companyNameID'] ?? '',
       returnType: map['returnType'] ?? '',
       itemcode: map['itemcode'] ?? '',
       outofstock: map['outofstock'] ?? false,
@@ -155,7 +167,7 @@ class AllProductDetailModel {
 
   @override
   String toString() {
-    return 'AllProductDetailModel(docId: $docId, barcodeNumber: $barcodeNumber, productname: $productname, categoryID: $categoryID, categoryName: $categoryName, subcategoryID: $subcategoryID, subcategoryName: $subcategoryName, inPrice: $inPrice, outPrice: $outPrice, quantityinStock: $quantityinStock, expiryDate: $expiryDate, addedDate: $addedDate, authuid: $authuid, unitcategoryID: $unitcategoryID, unitcategoryName: $unitcategoryName, packageType: $packageType, companyName: $companyName, returnType: $returnType, itemcode: $itemcode, outofstock: $outofstock, isavailable: $isavailable)';
+    return 'AllProductDetailModel(docId: $docId, barcodeNumber: $barcodeNumber, productname: $productname, categoryID: $categoryID, categoryName: $categoryName, subcategoryID: $subcategoryID, subcategoryName: $subcategoryName, inPrice: $inPrice, outPrice: $outPrice, quantityinStock: $quantityinStock, expiryDate: $expiryDate, addedDate: $addedDate, authuid: $authuid, unitcategoryID: $unitcategoryID, unitcategoryName: $unitcategoryName, packageType: $packageType,packageTypeID: $packageTypeID, companyName: $companyName,companyNameID: $companyNameID, returnType: $returnType, itemcode: $itemcode, outofstock: $outofstock, isavailable: $isavailable)';
   }
 
   @override
@@ -178,7 +190,9 @@ class AllProductDetailModel {
         other.unitcategoryID == unitcategoryID &&
         other.unitcategoryName == unitcategoryName &&
         other.packageType == packageType &&
+        other.packageTypeID == packageTypeID &&
         other.companyName == companyName &&
+        other.companyNameID == companyNameID &&
         other.returnType == returnType &&
         other.itemcode == itemcode &&
         other.outofstock == outofstock &&
@@ -203,7 +217,9 @@ class AllProductDetailModel {
         unitcategoryID.hashCode ^
         unitcategoryName.hashCode ^
         packageType.hashCode ^
+        packageTypeID.hashCode ^
         companyName.hashCode ^
+        companyNameID.hashCode ^
         returnType.hashCode ^
         itemcode.hashCode ^
         outofstock.hashCode ^

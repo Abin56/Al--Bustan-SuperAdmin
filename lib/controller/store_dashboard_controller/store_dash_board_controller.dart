@@ -1,6 +1,5 @@
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class StoreDashBoardController extends GetxController {
@@ -44,6 +43,7 @@ class StoreDashBoardController extends GetxController {
   void getTotalStock() async {
     int stock = 0;
     final allProductList = await getAllProductList();
+    // ignore: unused_local_variable
     for (AllProductDetailModel product in allProductList) {
       stock = stock + 1;
     }

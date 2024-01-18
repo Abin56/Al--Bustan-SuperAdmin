@@ -1,54 +1,54 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class ProductQuantityModel {
+class UnitCategoryModel {
   String docid;
-  String quantityTypeName;
-  ProductQuantityModel({
+  String unitCategoryName;
+  UnitCategoryModel({
     required this.docid,
-    required this.quantityTypeName,
+    required this.unitCategoryName,
   });
 
-  ProductQuantityModel copyWith({
+  UnitCategoryModel copyWith({
     String? docid,
     String? quantityTypeName,
   }) {
-    return ProductQuantityModel(
+    return UnitCategoryModel(
       docid: docid ?? this.docid,
-      quantityTypeName: quantityTypeName ?? this.quantityTypeName,
+      unitCategoryName: quantityTypeName ?? this.unitCategoryName,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'docid': docid,
-      'value': quantityTypeName,
+      'value': unitCategoryName,
     };
   }
 
-  factory ProductQuantityModel.fromMap(Map<String, dynamic> map) {
-    return ProductQuantityModel(
+  factory UnitCategoryModel.fromMap(Map<String, dynamic> map) {
+    return UnitCategoryModel(
       docid: map['docid'] ?? '',
-      quantityTypeName: map['value'] ?? '',
+      unitCategoryName: map['value'] ?? '',
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory ProductQuantityModel.fromJson(String source) =>
-      ProductQuantityModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UnitCategoryModel.fromJson(String source) =>
+      UnitCategoryModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() =>
-      'ProductCategoryModel(docid: $docid, value: $quantityTypeName)';
+      'ProductCategoryModel(docid: $docid, value: $unitCategoryName)';
 
   @override
-  bool operator ==(covariant ProductQuantityModel other) {
+  bool operator ==(covariant UnitCategoryModel other) {
     if (identical(this, other)) return true;
 
-    return other.docid == docid && other.quantityTypeName == quantityTypeName;
+    return other.docid == docid && other.unitCategoryName == unitCategoryName;
   }
 
   @override
-  int get hashCode => docid.hashCode ^ quantityTypeName.hashCode;
+  int get hashCode => docid.hashCode ^ unitCategoryName.hashCode;
 }

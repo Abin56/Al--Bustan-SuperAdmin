@@ -1,4 +1,9 @@
 import 'package:canteen_superadmin_website/view/admin_panel/admin_panel.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/super_admin/super_admin_panel.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/delivery_adminpanel.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/storeadmin_panel.dart';
+import 'package:canteen_superadmin_website/view/admins/super_Admin/super_adminpanel.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/warehouse_adminpanel.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/login_textformfeild.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/loginsubmitbutton.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
@@ -135,7 +140,10 @@ class _LoginSectionState extends State<LoginSection> {
                                         padding: const EdgeInsets.only(
                                             top: 10, bottom: 0, right: 40),
                                         child: GestureDetector(
-                                            onTap: () {},
+                                            onTap: () {
+                                              Get.to(
+                                                  const SuperAdminPanelScreen());
+                                            },
                                             child: loginWidget[6]),
                                       ),
                                       Padding(
@@ -143,8 +151,10 @@ class _LoginSectionState extends State<LoginSection> {
                                             top: 10, bottom: 0, right: 40),
                                         child: GestureDetector(
                                             onTap: () {
-                                              Get.to(const AdminHomeScreen(
-                                                  navvalue: 'storeadmin'));
+                                              Get.to(
+                                                  const StoreAdminPanelScreen());
+                                              // Get.to(const AdminHomeScreen(
+                                              //     navvalue: 'storeadmin'));
                                             },
                                             child: loginWidget[7]),
                                       ),
@@ -153,10 +163,24 @@ class _LoginSectionState extends State<LoginSection> {
                                             top: 10, bottom: 0, right: 40),
                                         child: GestureDetector(
                                             onTap: () {
-                                              Get.to(const AdminHomeScreen(
-                                                  navvalue: 'deliveryadmin'));
+                                              Get.to(
+                                                  const DeliveryAdminPanelScreen());
+                                              // Get.to(const AdminHomeScreen(
+                                              //     navvalue: 'deliveryadmin'));
                                             },
                                             child: loginWidget[8]),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 10, bottom: 0, right: 40),
+                                        child: GestureDetector(
+                                            onTap: () {
+                                              Get.to(
+                                                  const WareHouseAdminPanelScreen());
+                                              // Get.to(const AdminHomeScreen(
+                                              //     navvalue: 'deliveryadmin'));
+                                            },
+                                            child: loginWidget[10]),
                                       ),
                                     ],
                                   ),
@@ -319,4 +343,9 @@ List<Widget> loginWidget = [
       ),
     ],
   ), //////////////////////////////////////////////////////////////////////////////11
+  LoginContainerWidget(
+    value: 'wearhouseadmin',
+    imagepath: 'web_images/delivery_admin.jpg',
+    text: 'WEARHOUSE ADMIN',
+  ), /////////////////////////////////////////////////////////////////////////////12
 ];

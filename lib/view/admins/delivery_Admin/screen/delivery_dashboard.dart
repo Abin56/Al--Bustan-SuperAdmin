@@ -1,14 +1,12 @@
 import 'package:canteen_superadmin_website/controller/delivery_dashboard_controller/delivery_dashboard_controller.dart';
 import 'package:canteen_superadmin_website/model/canteen_model.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/canteen_add_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/canteen_add_widget.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
-import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/canteen_all_list.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/chart_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/container_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/dashboard_item_widget.dart';
-import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/secondrow_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -488,7 +486,7 @@ class CanteenScendRowoneWidget extends StatelessWidget {
                   );
                 } else {
                   return GridView.count(
-                    crossAxisCount: 8,
+                    crossAxisCount: 5,
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 10,
                     childAspectRatio: 0.8,

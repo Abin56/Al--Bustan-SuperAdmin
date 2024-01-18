@@ -87,11 +87,11 @@ class DeliveryDrawerSelectedPagesSection extends StatelessWidget {
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return SizedBox();
+                    return const SizedBox();
                   } else if (snapshot.data!.docs.isEmpty) {
-                    return SizedBox();
+                    return const SizedBox();
                   } else if (!snapshot.hasData) {
-                    return SizedBox();
+                    return const SizedBox();
                   } else {
                     return CircleAvatar(
                       backgroundColor: cred,
@@ -108,18 +108,42 @@ class DeliveryDrawerSelectedPagesSection extends StatelessWidget {
                 },
               ),
             ),
-            // ListTile(
-            //   tileColor: selectedIndex == 11
-            //       ? themeColorBlue.withOpacity(0.1)
-            //       : Colors.transparent,
-            //   onTap: () {
-            //     index = 11;
-            //     onTap.call(index);
-            //   },
-            //   title: DashboardTextFontWidget(
-            //     title: 'Delivered List',
-            //   ),
-            // ),
+            ListTile(
+              tileColor: selectedIndex == 13
+                  ? themeColorBlue.withOpacity(0.1)
+                  : Colors.transparent,
+              onTap: () {
+                index = 13;
+                onTap.call(index);
+              },
+              title: DashboardTextFontWidget(
+                title: 'Pending Deliveries',
+              ),
+            ),
+            ListTile(
+              tileColor: selectedIndex == 14
+                  ? themeColorBlue.withOpacity(0.1)
+                  : Colors.transparent,
+              onTap: () {
+                index = 14;
+                onTap.call(index);
+              },
+              title: DashboardTextFontWidget(
+                title: 'Picked Orders',
+              ),
+            ),
+            ListTile(
+              tileColor: selectedIndex == 15
+                  ? themeColorBlue.withOpacity(0.1)
+                  : Colors.transparent,
+              onTap: () {
+                index = 15;
+                onTap.call(index);
+              },
+              title: DashboardTextFontWidget(
+                title: 'Delivered orders',
+              ),
+            ),
           ],
         ),
 

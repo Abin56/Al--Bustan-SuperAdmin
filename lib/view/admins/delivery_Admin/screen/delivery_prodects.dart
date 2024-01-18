@@ -148,7 +148,7 @@ class ProductScreen extends StatelessWidget {
                               title: "Cart",
                               children: [CartWiget()],
                               actiononTapfuction: () async {
-                                final newlist =
+                                // final newlist =
                                     await getDeliveryCtr.getCartList();
                                 getDeliveryCtr.cartToDeliveryOrder();
                               },
@@ -337,7 +337,7 @@ class SingleHeadWidget extends StatelessWidget {
       child: GooglePoppinsWidgets(
         text: headName,
         fontsize: 20,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w500,
       ),
     ));
   }
@@ -349,7 +349,7 @@ class DeliveryProductTile extends StatelessWidget {
   final AllProductDetailModel data;
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+//  final   Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Column(
@@ -435,14 +435,14 @@ class DeliveryProductTile extends StatelessWidget {
 class CartWiget extends StatelessWidget {
   CartWiget({super.key});
   final getDeliveryCtr = Get.put(DeliveryController());
-  DeliveryController getSingleDeliveyCtr = DeliveryController();
-  int amount = 0;
+  final DeliveryController getSingleDeliveyCtr = DeliveryController();
+  final int amount = 0;
   @override
   Widget build(BuildContext context) {
     final SizeW = MediaQuery.of(context).size.width;
     final SizeH = MediaQuery.of(context).size.height;
 
-    return Container(
+    return SizedBox(
       width: SizeW * 0.44,
       height: SizeH * 0.4,
       child: StreamBuilder(

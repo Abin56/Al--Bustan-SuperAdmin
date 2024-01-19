@@ -61,7 +61,7 @@ class StoreDashboardContainer extends StatelessWidget {
                       children: [
                         StreamBuilder(
                             stream: FirebaseFirestore.instance
-                                .collection('AllProduct')
+                                .collection('AllProductStockCollection')
                                 .snapshots(),
                             builder: (context, snapshot) {
                               storeDashBoardCtr.getTotalCost();

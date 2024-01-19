@@ -50,7 +50,7 @@ class InventoryWidget extends StatelessWidget {
                               image: 'web_images/drawer_images/inventory.png'),
                           sWidtht10,
                           GooglePoppinsWidgets(
-                            text: 'Available Stock',
+                            text: 'All Stock',
                             fontsize: 20,
                             fontWeight: FontWeight.w500,
                           ),
@@ -115,7 +115,7 @@ class InventoryWidget extends StatelessWidget {
                             ListViewTableHeaderWidget(
                                 width: 150, headerTitle: 'Item Name'),
                             ListViewTableHeaderWidget(
-                                width: 150, headerTitle: 'Item Group'),
+                                width: 150, headerTitle: 'Company'),
                             ListViewTableHeaderWidget(
                                 width: 150, headerTitle: "Last Purchase"),
                             ListViewTableHeaderWidget(
@@ -129,7 +129,7 @@ class InventoryWidget extends StatelessWidget {
                             decoration: const BoxDecoration(),
                             child: StreamBuilder(
                                 stream: FirebaseFirestore.instance
-                                    .collection('AllProduct')
+                                    .collection('AllProductStockCollection')
                                     .snapshots(),
                                 builder: (context, snapshot) {
                                   if (snapshot.connectionState ==
@@ -162,7 +162,7 @@ class InventoryWidget extends StatelessWidget {
                                               image: 'image',
                                               itemName: productData.productname,
                                               itemGroup:
-                                                  productData.categoryName,
+                                                  productData.companyName,
                                               purchasDate: dateConveter(
                                                   DateTime.parse(
                                                       productData.expiryDate)),

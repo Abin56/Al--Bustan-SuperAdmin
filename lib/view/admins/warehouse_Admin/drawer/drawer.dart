@@ -42,11 +42,11 @@ class DrawerWareHouseAdmin extends StatelessWidget {
         ListTile(
           leading: const DashBoardIconWidget(
               image: 'web_images/drawer_images/all_orders.png'),
-          tileColor: selectedIndex == 1
+          tileColor: selectedIndex == 3
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
           onTap: () {
-            index = 1;
+            index = 3;
             onTap.call(index);
           },
           title: Row(

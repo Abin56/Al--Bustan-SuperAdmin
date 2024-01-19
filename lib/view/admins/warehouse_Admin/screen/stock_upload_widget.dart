@@ -63,7 +63,7 @@ class StockUploadWidget extends StatelessWidget {
                       sWidtht10,
                       Obx(() => wearhouseCtr.isLoading.value == false
                           ? CustomGradientButton(
-                              text: "Scan to Add",
+                              text: "Add to temporarylist",
                               height: 40,
                               width: 200,
                               onPressed: () {

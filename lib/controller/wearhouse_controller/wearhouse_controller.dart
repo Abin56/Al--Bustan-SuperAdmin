@@ -137,7 +137,10 @@ class WearHouseController extends GetxController {
       dataserver
           .collection("TemporaryStockList")
           .doc(data.docId)
-          .set(data.toMap());
+          .set(data.toMap())
+          .then((value) {
+        dataserver.collection('Stock').doc(data.docId).delete();
+      });
     }
     isLoading.value = false;
     showToast(msg: "Completed");

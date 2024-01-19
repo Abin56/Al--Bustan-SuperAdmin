@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/invetory_sreen.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/category_creation_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/appbar/app_bar.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/drawer/drawer.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/screen/super_admin_dashboard.dart';
@@ -111,4 +113,6 @@ class _SuperAdminPanelScreenState extends State<SuperAdminPanelScreen> {
 
 List<Widget> pages = [
   SuperAdminDashboardContainer(), //..1
+  InventoryWidget(),
+  const CategoryCreationWidget(),
 ];

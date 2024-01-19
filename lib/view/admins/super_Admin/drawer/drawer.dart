@@ -69,11 +69,11 @@ class DrawerSuperAdmin extends StatelessWidget {
             ListTile(
               leading: const DashBoardIconWidget(
                   image: 'web_images/drawer_images/avilable_products.png'),
-              tileColor: selectedIndex == 2
+              tileColor: selectedIndex == 1
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
               onTap: () {
-                index = 2;
+                index = 1;
                 onTap.call(index);
               },
               title: Row(
@@ -123,11 +123,11 @@ class DrawerSuperAdmin extends StatelessWidget {
             ListTile(
               leading: const DashBoardIconWidget(
                   image: 'web_images/drawer_images/categorization.png'),
-              tileColor: selectedIndex == 5
+              tileColor: selectedIndex == 2
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
               onTap: () {
-                index = 5;
+                index = 2;
                 onTap.call(index);
               },
               title: Row(

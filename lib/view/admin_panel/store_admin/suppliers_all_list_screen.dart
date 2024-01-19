@@ -1,7 +1,7 @@
 import 'package:canteen_superadmin_website/controller/suppliers_controller/suppliers_controller.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/model/suppliers_model.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/supplier_adding_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/supplier_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/textstysle/textstyle.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

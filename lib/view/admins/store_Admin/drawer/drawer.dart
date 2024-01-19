@@ -40,11 +40,11 @@ class DrawerStoreAdmin extends StatelessWidget {
         ListTile(
           leading: const DashBoardIconWidget(
               image: 'web_images/drawer_images/all_orders.png'),
-          tileColor: selectedIndex == 1
+          tileColor: selectedIndex == 2
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
           onTap: () {
-            index = 1;
+            index = 2;
             onTap.call(index);
           },
           title: Row(
@@ -112,11 +112,11 @@ class DrawerStoreAdmin extends StatelessWidget {
         ListTile(
           leading: const DashBoardIconWidget(
               image: 'web_images/drawer_images/categorization.png'),
-          tileColor: selectedIndex == 5
+          tileColor: selectedIndex == 1
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
           onTap: () {
-            index = 5;
+            index = 1;
             onTap.call(index);
           },
           title: Row(

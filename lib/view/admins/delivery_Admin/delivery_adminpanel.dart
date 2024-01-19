@@ -2,6 +2,11 @@
 
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/appbar/app_bar.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/drawer/drawer.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivered_list_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_dashboard.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_order.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_prodects.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_request.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 
@@ -111,5 +116,9 @@ class _DeliveryAdminPanelScreenState extends State<DeliveryAdminPanelScreen> {
 }
 
 List<Widget> pages = [
-  const DashboardContainer(), //..1
+  DeliveryDashboardContainer(), //..0
+  ProductScreen(), //..1
+  const DeliveryRequest(), //..2
+  DeliveryScreen(), //..3
+  DeliveredListWidget(), //..4
 ];

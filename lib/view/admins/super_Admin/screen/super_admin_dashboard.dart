@@ -1,6 +1,6 @@
 import 'package:canteen_superadmin_website/controller/store_dashboard_controller/store_dash_board_controller.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/supplier_adding_widget.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/suppliers_scendrowone_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/supplier_adding_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/suppliers_scendrowone_widget.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/chart_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/container_widget.dart';
@@ -11,15 +11,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class StoreDashboardContainer extends StatelessWidget {
-  StoreDashboardContainer({
+class SuperAdminDashboardContainer extends StatelessWidget {
+  SuperAdminDashboardContainer({
     super.key,
   });
   final storeDashBoardCtr = Get.put(StoreDashBoardController());
 
   @override
   Widget build(BuildContext context) {
-    print('Arun');
     storeDashBoardCtr.getTotalCost();
     Size size = MediaQuery.of(context).size;
 
@@ -36,7 +35,7 @@ class StoreDashboardContainer extends StatelessWidget {
                 child: Row(
                   children: [
                     const Text(
-                      "Purchase Overview",
+                      "Sales Overview",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
@@ -79,7 +78,7 @@ class StoreDashboardContainer extends StatelessWidget {
                                   bgColor: AppColors.greenColor,
                                   icon: Icons.shopify_rounded,
                                   iconColor: AppColors.lightGreenColor,
-                                  title: "Total Purchase",
+                                  title: "Total Sales",
                                   value:
                                       '  ${snapshot.data!.docs.length.toString()}',
                                 );
@@ -91,7 +90,7 @@ class StoreDashboardContainer extends StatelessWidget {
                         const DashboardItem(
                           icon: Icons.cancel,
                           iconColor: AppColors.yellowColor,
-                          title: "Cancel Order",
+                          title: "Revenue",
                           value: "  0",
                           bgColor: AppColors.lightYellowColor,
                         ),
@@ -103,7 +102,7 @@ class StoreDashboardContainer extends StatelessWidget {
                         const DashboardItem(
                           icon: Icons.rotate_90_degrees_ccw_sharp,
                           iconColor: AppColors.redColor,
-                          title: "    Return    ",
+                          title: "    Profit    ",
                           value: "  0",
                           bgColor: AppColors.lightRedColor,
                         ),
@@ -111,7 +110,7 @@ class StoreDashboardContainer extends StatelessWidget {
                             ? const Spacer()
                             : const Text(''),
                         Padding(
-                          padding: EdgeInsets.only(right: 30),
+                          padding: const EdgeInsets.only(right: 30),
                           child: Obx(
                             () => DashboardItem(
                               icon: Icons.auto_graph_rounded,
@@ -144,7 +143,7 @@ class StoreDashboardContainer extends StatelessWidget {
                 Row(
                   children: [
                     const Text(
-                      "Stock Overview",
+                      "Purchase Overview",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
@@ -172,7 +171,7 @@ class StoreDashboardContainer extends StatelessWidget {
                                   bgColor: AppColors.orangeColor,
                                   icon: Icons.shopify_rounded,
                                   iconColor: AppColors.lightOrangeColor,
-                                  title: "Total Stock",
+                                  title: "No of Purchase",
                                   value:
                                       '  ${storeDashBoardCtr.totalStock.toString()}',
                                 )),
@@ -183,7 +182,7 @@ class StoreDashboardContainer extends StatelessWidget {
                               () => DashboardItem(
                                 icon: Icons.book,
                                 iconColor: AppColors.yellowColor,
-                                title: "Available Stock",
+                                title: "Cancel Order",
                                 value:
                                     '  ${storeDashBoardCtr.totalAvailableStock.toString()}',
                                 bgColor: AppColors.lightYellowColor,
@@ -198,7 +197,7 @@ class StoreDashboardContainer extends StatelessWidget {
                           const DashboardItem(
                             icon: Icons.receipt_long_rounded,
                             iconColor: AppColors.pinkColor,
-                            title: "Will be Received",
+                            title: "Cost",
                             value: "  0",
                             bgColor: AppColors.lightPinkColor,
                           ),
@@ -210,7 +209,7 @@ class StoreDashboardContainer extends StatelessWidget {
                             child: DashboardItem(
                               icon: Icons.notification_important,
                               iconColor: AppColors.indigoColor,
-                              title: "Purchase Pending",
+                              title: "Returns",
                               value: "  0",
                               bgColor: AppColors.lightIndigoColors,
                             ),
@@ -337,7 +336,7 @@ class StoreDashboardContainer extends StatelessWidget {
         height: ResponsiveWebSite.isMobile(context) ? 250 : 300,
         width: double.infinity,
         child: Padding(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: SuppliersScendRowoneWidget(
             iconData1: Icons.home_work_outlined,
             title: "Suppliers",

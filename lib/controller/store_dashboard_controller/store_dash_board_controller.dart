@@ -22,7 +22,7 @@ class StoreDashBoardController extends GetxController {
 
   Future<List<AllProductDetailModel>> getAllProductList() async {
     //gettting all products list
-    final data = await firestore.collection('AllProduct').get();
+    final data = await firestore.collection('AllProductStockCollection').get();
     final allProductList =
         data.docs.map((e) => AllProductDetailModel.fromMap(e.data())).toList();
     return allProductList;

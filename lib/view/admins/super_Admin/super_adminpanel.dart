@@ -1,12 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/invetory_sreen.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/category_creation_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/appbar/app_bar.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/drawer/drawer.dart';
+import 'package:canteen_superadmin_website/view/admins/super_Admin/screen/super_admin_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
-import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/dashboard_container.dart';
 
 class SuperAdminPanelScreen extends StatefulWidget {
   const SuperAdminPanelScreen({
@@ -110,5 +112,7 @@ class _SuperAdminPanelScreenState extends State<SuperAdminPanelScreen> {
 }
 
 List<Widget> pages = [
-  const DashboardContainer(), //..1
+  SuperAdminDashboardContainer(), //..1
+  InventoryWidget(),
+  const CategoryCreationWidget(),
 ];

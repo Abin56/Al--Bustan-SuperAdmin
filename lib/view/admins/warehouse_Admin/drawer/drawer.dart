@@ -42,6 +42,24 @@ class DrawerWareHouseAdmin extends StatelessWidget {
         ListTile(
           leading: const DashBoardIconWidget(
               image: 'web_images/drawer_images/all_orders.png'),
+          tileColor: selectedIndex == 3
+              ? themeColorBlue.withOpacity(0.1)
+              : Colors.transparent,
+          onTap: () {
+            index = 3;
+            onTap.call(index);
+          },
+          title: Row(
+            children: [
+              DashboardTextFontWidget(
+                title: 'All Products',
+              ),
+            ],
+          ),
+        ),
+        ListTile(
+          leading: const DashBoardIconWidget(
+              image: 'web_images/drawer_images/all_orders.png'),
           tileColor: selectedIndex == 1
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
@@ -52,7 +70,25 @@ class DrawerWareHouseAdmin extends StatelessWidget {
           title: Row(
             children: [
               DashboardTextFontWidget(
-                title: 'All Products',
+                title: 'Upload data',
+              ),
+            ],
+          ),
+        ),
+        ListTile(
+          leading: const DashBoardIconWidget(
+              image: 'web_images/drawer_images/all_orders.png'),
+          tileColor: selectedIndex == 2
+              ? themeColorBlue.withOpacity(0.1)
+              : Colors.transparent,
+          onTap: () {
+            index = 2;
+            onTap.call(index);
+          },
+          title: Row(
+            children: [
+              DashboardTextFontWidget(
+                title: 'Temporary Stock List',
               ),
             ],
           ),

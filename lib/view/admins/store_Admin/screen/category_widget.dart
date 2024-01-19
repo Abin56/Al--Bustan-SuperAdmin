@@ -21,7 +21,7 @@ class CategoryWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Container(
-        height: sizeH * 0.85,
+        height: sizeH - 110,
         width: double.infinity,
         decoration: BoxDecoration(
             color: cWhite,
@@ -29,11 +29,11 @@ class CategoryWidget extends StatelessWidget {
             boxShadow: const [
               BoxShadow(blurRadius: 0.5),
             ]),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Row(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              Row(
                 children: [
                   GooglePoppinsWidgets(
                     text: "Category",
@@ -103,45 +103,45 @@ class CategoryWidget extends StatelessWidget {
                   // ),
                 ],
               ),
-            ),
-            Expanded(
-                child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection('ProductCategory')
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
-                    } else if (snapshot.data!.docs.isEmpty) {
-                      return Center(
-                        child:
-                            GooglePoppinsWidgets(text: "No data", fontsize: 15),
-                      );
-                    } else if (!snapshot.hasData) {
-                      return Center(
-                        child:
-                            GooglePoppinsWidgets(text: "No data", fontsize: 15),
-                      );
-                    } else {
-                      return ListView.separated(
-                          itemBuilder: (context, index) {
-                            final data = ProductCategoryModel.fromMap(
-                                snapshot.data!.docs[index].data());
+              sHeight20,
+              Expanded(
+                  child: StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection('ProductCategory')
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        } else if (snapshot.data!.docs.isEmpty) {
+                          return Center(
+                            child: GooglePoppinsWidgets(
+                                text: "No data", fontsize: 15),
+                          );
+                        } else if (!snapshot.hasData) {
+                          return Center(
+                            child: GooglePoppinsWidgets(
+                                text: "No data", fontsize: 15),
+                          );
+                        } else {
+                          return ListView.separated(
+                              itemBuilder: (context, index) {
+                                final data = ProductCategoryModel.fromMap(
+                                    snapshot.data!.docs[index].data());
 
-                            return CategoryTile(
-                              data: data,
-                            );
-                          },
-                          separatorBuilder: (context, index) {
-                            return sHeight10;
-                          },
-                          itemCount: snapshot.data!.docs.length);
-                    }
-                  }),
-            ))
-          ],
+                                return CategoryTile(
+                                  data: data,
+                                );
+                              },
+                              separatorBuilder: (context, index) {
+                                return sHeight10;
+                              },
+                              itemCount: snapshot.data!.docs.length);
+                        }
+                      }))
+            ],
+          ),
         ),
       ),
     );
@@ -162,7 +162,7 @@ class CategoryTile extends StatelessWidget {
           // borderRadius: BorderRadius.circular(10),
           ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         child: Row(
           children: [
             GooglePoppinsWidgets(text: data.categoryName, fontsize: 16),

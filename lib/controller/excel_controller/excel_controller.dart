@@ -191,15 +191,17 @@ class ExcelController extends GetxController {
                     packageType: firstRow[4]?.value.toString() == "null"
                         ? ""
                         : firstRow[4]!.value.toString(),
+                    packageTypeID: "",
                     companyName: firstRow[5]?.value.toString() == "null"
                         ? ""
                         : firstRow[5]!.value.toString(),
+                    companyNameID: "",
                     returnType: "",
                     itemcode: "",
                     outofstock: false,
                     isavailable: false);
 
-                firestore.collection("AllStock").doc(uuid).set(data.toMap());
+                firestore.collection("Stock").doc(uuid).set(data.toMap());
               }
             }
 

@@ -1,5 +1,5 @@
 import 'package:canteen_superadmin_website/firebase_options.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/status_screen/pending_status/pickuped_status.dart';
+import 'package:canteen_superadmin_website/view/admins/super_Admin/pages/user_assign_screen/user_assign_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,12 +18,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
+    return  GetMaterialApp(
       debugShowCheckedModeBanner: false,
       // home: WareHouseAdminPanelScreen(),
       home: Scaffold(
         body: Center(
-          child: PickedOrdersStatusScreen(),
+          child: UserAssignListScreen(),
         ),
       ),
     );

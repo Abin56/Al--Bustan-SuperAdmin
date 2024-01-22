@@ -25,24 +25,25 @@ class ReturnSetUpWidget extends StatelessWidget {
               : Colors.blue.withOpacity(0.3),
           border: Border.all(color: cGrey.withOpacity(0.2))),
       child: Center(
-          child: DropdownSearch<ReturnTypeModel>(
-        autoValidateMode: AutovalidateMode.always,
-        asyncItems: (value) {
-          tempProductController.returnTypeModel.clear();
+        child: DropdownSearch<ReturnTypeModel>(
+          autoValidateMode: AutovalidateMode.always,
+          asyncItems: (value) {
+            tempProductController.returnTypeModel.clear();
 
-          return tempProductController.fetchReturntypeModel();
-        },
-        itemAsString: (value) => value.typevalue,
-        onChanged: (value) async {
-          if (value != null) {
-            tempProductController.returnTypeName.value = value.typevalue;
-            tempProductController.returnTypeID.value = value.docid;
-          }
-        },
-        dropdownDecoratorProps: DropDownDecoratorProps(
-            baseStyle: GoogleFonts.poppins(
-                fontSize: 13, color: Colors.black.withOpacity(0.7))),
-      )),
+            return tempProductController.fetchReturntypeModel();
+          },
+          itemAsString: (value) => value.typevalue,
+          onChanged: (value) async {
+            if (value != null) {
+              tempProductController.returnTypeName.value = value.typevalue;
+              tempProductController.returnTypeID.value = value.docid;
+            }
+          },
+          dropdownDecoratorProps: DropDownDecoratorProps(
+              baseStyle: GoogleFonts.poppins(
+                  fontSize: 13, color: Colors.black.withOpacity(0.7))),
+        ),
+      ),
     );
   }
 }

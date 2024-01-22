@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 class UserModel {
+  String joindate;
   String docid;
   String email;
   bool activate;
@@ -12,6 +13,7 @@ class UserModel {
   String userrole;
   bool assignpower;
   UserModel({
+    required this.joindate,
     required this.docid,
     required this.email,
     required this.activate,
@@ -24,6 +26,7 @@ class UserModel {
   });
 
   UserModel copyWith({
+    String? joindate,
     String? docid,
     String? email,
     bool? activate,
@@ -35,6 +38,7 @@ class UserModel {
     bool? assignpower,
   }) {
     return UserModel(
+      joindate: joindate ?? this.joindate,
       docid: docid ?? this.docid,
       email: email ?? this.email,
       activate: activate ?? this.activate,
@@ -49,6 +53,7 @@ class UserModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'joindate': joindate,
       'docid': docid,
       'email': email,
       'activate': activate,
@@ -63,14 +68,15 @@ class UserModel {
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      docid: map['docid'] ?? '',
-      email: map['email'] ?? '',
-      activate: map['activate'] ?? false,
-      imageURl: map['imageURl'] ?? '',
-      phoneNo: map['phoneNo'] ?? '',
-      name: map['name'] ?? '',
-      password: map['password'] ?? '',
-      userrole: map['userrole'] ?? '',
+      joindate: map['joindate']??"",
+      docid: map['docid']??"",
+      email: map['email']??"",
+      activate: map['activate'] ??false,
+      imageURl: map['imageURl']??"",
+      phoneNo: map['phoneNo']??"",
+      name: map['name']??"",
+      password: map['password']??"",
+      userrole: map['userrole']??"",
       assignpower: map['assignpower'] ?? false,
     );
   }
@@ -82,34 +88,37 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(docid: $docid, email: $email, activate: $activate, imageURl: $imageURl, phoneNo: $phoneNo, name: $name, password: $password, userrole: $userrole, assignpower: $assignpower)';
+    return 'UserModel(joindate: $joindate, docid: $docid, email: $email, activate: $activate, imageURl: $imageURl, phoneNo: $phoneNo, name: $name, password: $password, userrole: $userrole, assignpower: $assignpower)';
   }
 
   @override
   bool operator ==(covariant UserModel other) {
     if (identical(this, other)) return true;
-
-    return other.docid == docid &&
-        other.email == email &&
-        other.activate == activate &&
-        other.imageURl == imageURl &&
-        other.phoneNo == phoneNo &&
-        other.name == name &&
-        other.password == password &&
-        other.userrole == userrole &&
-        other.assignpower == assignpower;
+  
+    return 
+      other.joindate == joindate &&
+      other.docid == docid &&
+      other.email == email &&
+      other.activate == activate &&
+      other.imageURl == imageURl &&
+      other.phoneNo == phoneNo &&
+      other.name == name &&
+      other.password == password &&
+      other.userrole == userrole &&
+      other.assignpower == assignpower;
   }
 
   @override
   int get hashCode {
-    return docid.hashCode ^
-        email.hashCode ^
-        activate.hashCode ^
-        imageURl.hashCode ^
-        phoneNo.hashCode ^
-        name.hashCode ^
-        password.hashCode ^
-        userrole.hashCode ^
-        assignpower.hashCode;
+    return joindate.hashCode ^
+      docid.hashCode ^
+      email.hashCode ^
+      activate.hashCode ^
+      imageURl.hashCode ^
+      phoneNo.hashCode ^
+      name.hashCode ^
+      password.hashCode ^
+      userrole.hashCode ^
+      assignpower.hashCode;
   }
 }

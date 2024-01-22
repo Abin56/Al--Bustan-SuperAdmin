@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 
 class UserAssignListScreen extends StatelessWidget {
   final UserController userController = Get.put(UserController());
-   UserAssignListScreen({super.key});
+  UserAssignListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,11 @@ class UserAssignListScreen extends StatelessWidget {
                 child: SizedBox(
               width: 1200,
               child: StreamBuilder(
-                  stream: dataserver.collection('EmployeeProfile').snapshots(),
+                  stream: dataserver
+                      .collection('AllUsersCollection')
+                      // .where('userrole', isEqualTo: 'employee')
+                      .orderBy('name', descending: false)
+                      .snapshots(),
                   builder: (context, employesnaps) {
                     if (employesnaps.hasData) {
                       return ListView.separated(

@@ -112,8 +112,8 @@ class _StoreAdminPanelScreenState extends State<StoreAdminPanelScreen> {
 
 List<Widget> pages = [
   StoreDashboardContainer(), //..0
-  CategoryCreationWidget(),
+  const CategoryCreationWidget(),
   InventoryWidget(),
-  LowStockAlertWidget(),
-  ReturnWidget()
+  const LowStockAlertWidget(),
+  const ReturnWidget()
 ];

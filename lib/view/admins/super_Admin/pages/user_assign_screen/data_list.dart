@@ -1,12 +1,17 @@
+import 'package:canteen_superadmin_website/controller/user_controller/user_controller.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/model/user_model/user_model.dart';
+import 'package:canteen_superadmin_website/view/admins/super_Admin/pages/user_assign_screen/widget/role_dropdown/role_dropdown.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/pages/user_assign_screen/widget/ui_templates.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class UserDataListWidget extends StatelessWidget {
+  final UserController userController = Get.put(UserController());
   final UserModel datalist;
   final int index;
-  const UserDataListWidget({
+  UserDataListWidget({
     required this.index,
     super.key,
     required this.datalist,
@@ -125,45 +130,51 @@ class UserDataListWidget extends StatelessWidget {
           ),
           Expanded(
             flex: 3,
-            child:
-            
-             Row(
-              children: [
-                Container(
-                  height: 45,
-                  width: 25,
-                  color: cWhite,
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(1),
-                      child: Image.asset(
-                        'web_images/user_role.png',
-                        fit: BoxFit.fitHeight,
+            child: datalist.userrole == ''
+                ? UserRoleDropDown(
+                    datalist: datalist,
+                  )
+                : Row(
+                    children: [
+                      Container(
+                        height: 45,
+                        width: 25,
+                        color: cWhite,
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(1),
+                            child: Image.asset(
+                              'web_images/user_role.png',
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                      DataContainerWidget2(
+                          rowMainAccess: MainAxisAlignment.start,
+                          color: cWhite,
+                          index: index,
+                          width: 114,
+                          headerTitle: " ${datalist.userrole}"),
+                      Container(
+                        height: 45,
+                        color: cWhite,
+                        child: Center(
+                          child: IconButton(
+                              onPressed: () async {
+                                await userController.updateUserRole(
+                                  datalist,
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.mode_edit_outline,
+                                size: 20,
+                                color: cGreen,
+                              )),
+                        ),
+                      )
+                    ],
                   ),
-                ),
-                DataContainerWidget2(
-                    rowMainAccess: MainAxisAlignment.start,
-                    color: cWhite,
-                    index: index,
-                    width: 114,
-                    headerTitle: " ${'employee'}"),
-                Container(
-                  height: 45,
-                  color: cWhite,
-                  child: Center(
-                    child: IconButton(
-                        onPressed: () async {},
-                        icon: const Icon(
-                          Icons.mode_edit_outline,
-                          size: 20,
-                          color: cGreen,
-                        )),
-                  ),
-                )
-              ],
-            ),
           ),
           const SizedBox(
             width: 01,
@@ -171,31 +182,121 @@ class UserDataListWidget extends StatelessWidget {
 
           Expanded(
             flex: 3,
-            child: Row(
-              children: [
-                Container(
-                  height: 45,
-                  width: 30,
-                  color: cWhite,
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: Image.asset(
-                        'web_images/not_active.png',
-                        // fit: BoxFit.fill,
+            child: datalist.activate == false
+                ? Row(
+                    children: [
+                      Container(
+                        height: 45,
+                        width: 30,
+                        color: cWhite,
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: Image.asset(
+                              'web_images/not_active.png',
+                              // fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                      Expanded(
+                        child: DataContainerWidget2(
+                            rowMainAccess: MainAxisAlignment.start,
+                            color: cWhite,
+                            index: index,
+                            headerTitle: "Not Actived"),
+                      ),
+                      Container(
+                        height: 45,
+                        color: cWhite,
+                        child: Center(
+                          child: Tooltip(
+                            preferBelow: false,
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(10.0),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 3,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            message: "Activate",
+                            child: IconButton(
+                                onPressed: () async {
+                                  await userController.updateUserAccess(
+                                      datalist, true);
+                                },
+                                icon: const Icon(
+                                  Icons.check,
+                                  size: 20,
+                                  color: cGreen,
+                                )),
+                          ),
+                        ),
+                      )
+                    ],
+                  )
+                : Row(
+                    children: [
+                      Container(
+                        height: 45,
+                        width: 30,
+                        color: cWhite,
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: Image.asset(
+                              'web_images/active.png',
+                              // fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: DataContainerWidget2(
+                            rowMainAccess: MainAxisAlignment.start,
+                            color: cWhite,
+                            index: index,
+                            headerTitle: "Activated"),
+                      ),
+                      Container(
+                        height: 45,
+                        color: cWhite,
+                        child: Center(
+                          child: Tooltip(
+                            preferBelow: false,
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(10.0),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 3,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            message: "Deactive",
+                            child: IconButton(
+                                onPressed: () async {
+                                  await userController.updateUserAccess(
+                                      datalist, false);
+                                },
+                                icon: const Icon(
+                                  Icons.close,
+                                  size: 20,
+                                  color: cred,
+                                )),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                ),
-                Expanded(
-                  child: DataContainerWidget2(
-                      rowMainAccess: MainAxisAlignment.start,
-                      color: cWhite,
-                      index: index,
-                      headerTitle: "Not Actived"),
-                ),
-              ],
-            ),
           ),
 
           Expanded(
@@ -221,7 +322,8 @@ class UserDataListWidget extends StatelessWidget {
                       rowMainAccess: MainAxisAlignment.start,
                       color: cWhite,
                       index: index,
-                      headerTitle: ' 30-10-3000'),
+                      headerTitle:
+                          dateConveter(DateTime.parse(datalist.joindate))),
                 ),
               ],
             ),

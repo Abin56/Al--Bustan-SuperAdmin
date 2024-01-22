@@ -1,3 +1,4 @@
+import 'package:canteen_superadmin_website/core/core.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:canteen_superadmin_website/model/cart_model.dart';
 import 'package:canteen_superadmin_website/model/employee_request_model.dart';
@@ -177,24 +178,45 @@ class DeliveryController extends GetxController {
     return data.docs.map((e) => CartModel.fromMap(e.data())).toList();
   }
 
-  createDeliveryOrderToEmployee(
+  createDeliveryAssignToEmployee(
+      //assigning function//
       //for creating request to employee by assigning//
       {required String employeeName,
       required String employeeId,
       required DocumentSnapshot deliverydata}) async {
     final time = DateTime.now().toString();
 
-    //employees details//
-    final employeeData = {
+    //delivery request goes to pending list //
+    final pendingData = {
+      'time': time,
+      "docId": deliverydata['orderId'],
+      "orderCount": deliverydata['orderCount'],
+      "orderId": deliverydata['orderId'],
+      "assignStatus": true,
+      "isDelivered": false,
+      "pendingStatus": true,
+      "pickedUpStatus": false,
+      "statusMessage": "Pending",
+      "price": deliverydata['price'],
       "employeeName": employeeName,
       "employeeId": employeeId,
-      'assignStatus': true
     };
-    //employees details updated in delivery request detilas//
-    await firestore
-        .collection('deliveryAssignList')
+    await dataserver
+        .collection("DeliveryPendingList")
         .doc(deliverydata['orderId'])
-        .update(employeeData);
+        .set(pendingData);
+
+    //employees details//
+    // final employeeData = {
+    //   "employeeName": employeeName,
+    //   "employeeId": employeeId,
+    //   'assignStatus': true
+    // };
+    //employees details updated in delivery request detilas//
+    // await firestore
+    //     .collection('deliveryAssignList')
+    //     .doc(deliverydata['orderId'])
+    //     .update(employeeData);
 
     //delivery details//
     final data = {
@@ -205,8 +227,8 @@ class DeliveryController extends GetxController {
     };
 
     //delivery request details stored in employees collection//
-    firestore
-        .collection('EmployeeProfile')
+    await firestore
+        .collection('AllUsersCollection')
         .doc(employeeId)
         .collection(('DeliveryRequest'))
         .doc(deliverydata['orderId'])
@@ -223,15 +245,27 @@ class DeliveryController extends GetxController {
         .toList();
     //for add product details in employees collection//
     for (int i = 0; i < productlist.length; i++) {
-      firestore
-          .collection('EmployeeProfile')
+      await firestore
+          .collection('AllUsersCollection')
           .doc(employeeId)
           .collection(('DeliveryRequest'))
           .doc(deliverydata['orderId'])
           .collection("productsDetails")
           .doc(productlist[i].docId)
           .set(productlist[i].toMap());
+
+      await dataserver
+          .collection('DeliveryPendingList')
+          .doc(deliverydata['orderId'])
+          .collection("productsDetails")
+          .doc(productlist[i].docId)
+          .set(productlist[i].toMap());
     }
+
+    await firestore
+        .collection('deliveryAssignList')
+        .doc(deliverydata['orderId'])
+        .delete();
   }
 
   confirmEmployeeRequest(EmployeeRequestModel requestdata) async {
@@ -245,6 +279,9 @@ class DeliveryController extends GetxController {
       "orderId": orderid,
       "assignStatus": false,
       "isDelivered": false,
+      "pendingStatus": false,
+      "pickedUpStatus": false,
+      "statusMessage": "",
       "price": requestdata.amount,
       "employeeName": requestdata.emplopeeName,
       "employeeId": requestdata.emplopeeId
@@ -307,17 +344,16 @@ class DeliveryController extends GetxController {
   }
 }
 
-  // imagePicker() async {
-  //   final pickedImage =
-  //       await ImagePicker().pickImage(source: ImageSource.gallery);
-  //   if (pickedImage != null) {
-  //     // Check if the picked image has a PNG extension
-  //     if (pickedImage.name.toLowerCase().endsWith('.png')) {
-  //       showToast(msg: 'Selected a PNG image.');
-  //     } else {
-  //       // Show a message or handle the case when a non-PNG image is selected
-  //       showToast(msg: 'Please select a PNG image.');
-  //     }
-  //   }
-  // }
-
+// imagePicker() async {
+//   final pickedImage =
+//       await ImagePicker().pickImage(source: ImageSource.gallery);
+//   if (pickedImage != null) {
+//     // Check if the picked image has a PNG extension
+//     if (pickedImage.name.toLowerCase().endsWith('.png')) {
+//       showToast(msg: 'Selected a PNG image.');
+//     } else {
+//       // Show a message or handle the case when a non-PNG image is selected
+//       showToast(msg: 'Please select a PNG image.');
+//     }
+//   }
+// }

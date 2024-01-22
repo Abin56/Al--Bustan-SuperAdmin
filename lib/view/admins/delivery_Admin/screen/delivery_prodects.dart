@@ -86,7 +86,7 @@ class ProductScreen extends StatelessWidget {
               Expanded(
                 child: StreamBuilder(
                     stream: getDeliveryCtr.firestore
-                        .collection("AllProduct")
+                        .collection("AllProductStockCollection")
                         .snapshots(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
@@ -149,7 +149,7 @@ class ProductScreen extends StatelessWidget {
                               children: [CartWiget()],
                               actiononTapfuction: () async {
                                 // final newlist =
-                                    await getDeliveryCtr.getCartList();
+                                await getDeliveryCtr.getCartList();
                                 getDeliveryCtr.cartToDeliveryOrder();
                               },
                               doyouwantActionButton: true,

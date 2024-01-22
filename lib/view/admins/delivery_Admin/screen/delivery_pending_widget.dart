@@ -1,5 +1,7 @@
 import 'package:canteen_superadmin_website/controller/delivery_controller/delivery_controller.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivered_list_widget.dart';
 import 'package:flutter/material.dart';
+
 import 'package:canteen_superadmin_website/controller/employee_controller/employee_controller.dart';
 import 'package:canteen_superadmin_website/model/employe_createprofile_model.dart';
 import 'package:canteen_superadmin_website/view/widgets/button_container_widget/custom_button.dart';
@@ -8,13 +10,13 @@ import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/textstysle/textstyle.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 
-class DeliveredList extends StatelessWidget {
-  DeliveredList({super.key});
+class DeliveryPendingList extends StatelessWidget {
+  DeliveryPendingList({super.key});
 
   final employeeController = Get.put(EmployeeController());
   final getDeliveryCtr = Get.put(DeliveryController());
@@ -130,7 +132,7 @@ class DeliveredList extends StatelessWidget {
               Expanded(
                 child: StreamBuilder(
                     stream: FirebaseFirestore.instance
-                        .collection('DeliveredList')
+                        .collection('DeliveryPendingList')
                         .snapshots(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
@@ -289,7 +291,7 @@ class DeliveredList extends StatelessWidget {
                                                           stream: FirebaseFirestore
                                                               .instance
                                                               .collection(
-                                                                  'EmployeeProfile')
+                                                                  'AllUsersCollection')
                                                               .doc(data[
                                                                   'employeeId'])
                                                               .collection(
@@ -402,10 +404,4 @@ class DeliveredList extends StatelessWidget {
       ),
     );
   }
-}
-
-String timeConvert(String timestampString) {
-  DateTime timestamp = DateTime.parse(timestampString);
-  String formattedTime = DateFormat.jm().format(timestamp);
-  return formattedTime;
 }

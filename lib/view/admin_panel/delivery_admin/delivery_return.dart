@@ -252,7 +252,7 @@ class DeliveryScreen extends StatelessWidget {
                                                                           EmployeeController>()
                                                                       .employeeName;
                                                               getDeliveryCtr
-                                                                  .createDeliveryOrderToEmployee(
+                                                                  .createDeliveryAssignToEmployee(
                                                                 employeeName:
                                                                     emplopeeName,
                                                                 employeeId:

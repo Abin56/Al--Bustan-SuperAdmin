@@ -114,19 +114,89 @@ class DrawerDeliveryAdmin extends StatelessWidget {
           title: Row(
             children: [
               DashboardTextFontWidget(
-                title: 'Pending Orders',
+                title: 'Delivery Assign List',
               ),
             ],
+          ),
+          trailing: StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection('deliveryAssignList')
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const SizedBox();
+              } else if (snapshot.data!.docs.isEmpty) {
+                return const SizedBox();
+              } else if (!snapshot.hasData) {
+                return const SizedBox();
+              } else {
+                return CircleAvatar(
+                  backgroundColor: Colors.yellow,
+                  radius: 12,
+                  child: Center(
+                    child: GooglePoppinsWidgets(
+                      text: snapshot.data!.docs.length.toString(),
+                      fontsize: 11,
+                      color: cWhite,
+                    ),
+                  ),
+                );
+              }
+            },
           ),
         ),
         ListTile(
           leading: const DashBoardIconWidget(
               image: 'web_images/drawer_images/picked_orders.png'),
-          tileColor: selectedIndex == 4
+          tileColor: selectedIndex == 5
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
           onTap: () {
-            index = 4;
+            index = 5;
+            onTap.call(index);
+          },
+          title: Row(
+            children: [
+              DashboardTextFontWidget(
+                title: 'Pending Orders',
+              ),
+            ],
+          ),
+          trailing: StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection('DeliveryPendingList')
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const SizedBox();
+              } else if (snapshot.data!.docs.isEmpty) {
+                return const SizedBox();
+              } else if (!snapshot.hasData) {
+                return const SizedBox();
+              } else {
+                return CircleAvatar(
+                  backgroundColor: cBlue,
+                  radius: 12,
+                  child: Center(
+                    child: GooglePoppinsWidgets(
+                      text: snapshot.data!.docs.length.toString(),
+                      fontsize: 11,
+                      color: cWhite,
+                    ),
+                  ),
+                );
+              }
+            },
+          ),
+        ),
+        ListTile(
+          leading: const DashBoardIconWidget(
+              image: 'web_images/drawer_images/picked_orders.png'),
+          tileColor: selectedIndex == 6
+              ? themeColorBlue.withOpacity(0.1)
+              : Colors.transparent,
+          onTap: () {
+            index = 6;
             onTap.call(index);
           },
           title: Row(
@@ -135,6 +205,32 @@ class DrawerDeliveryAdmin extends StatelessWidget {
                 title: 'Picked Orders',
               ),
             ],
+          ),
+          trailing: StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection('DeliverypickedupList')
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const SizedBox();
+              } else if (snapshot.data!.docs.isEmpty) {
+                return const SizedBox();
+              } else if (!snapshot.hasData) {
+                return const SizedBox();
+              } else {
+                return CircleAvatar(
+                  backgroundColor: cGreen,
+                  radius: 12,
+                  child: Center(
+                    child: GooglePoppinsWidgets(
+                      text: snapshot.data!.docs.length.toString(),
+                      fontsize: 11,
+                      color: cWhite,
+                    ),
+                  ),
+                );
+              }
+            },
           ),
         ),
         ListTile(

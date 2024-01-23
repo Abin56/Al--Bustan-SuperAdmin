@@ -1,4 +1,5 @@
 import 'package:canteen_superadmin_website/core/core.dart';
+import 'package:canteen_superadmin_website/model/admin_model.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:canteen_superadmin_website/model/cart_model.dart';
 import 'package:canteen_superadmin_website/model/employee_request_model.dart';
@@ -10,6 +11,8 @@ import 'package:uuid/uuid.dart';
 
 class DeliveryController extends GetxController {
   final firestore = FirebaseFirestore.instance;
+
+  List<AdminModel> employeeList = [];
 
   RxInt quantity = 0.obs;
   // RxInt singleItemTotalAmount = 0.obs;
@@ -341,6 +344,23 @@ class DeliveryController extends GetxController {
         .collection('EmployeeDeliveryRequest')
         .doc(requestdata.docid)
         .delete();
+  }
+
+  Future<List<AdminModel>> fetchEmployeeModel() async {
+    final firebase =
+        await FirebaseFirestore.instance.collection('AllUsersCollection').get();
+
+    for (var i = 0; i < firebase.docs.length; i++) {
+      // final list =
+      //     firebase.docs.map((e) => AdminModel.fromMap(e.data())).toList();
+      // employeeList.add(list[i]);
+      final list =
+          firebase.docs.map((e) => AdminModel.fromMap(e.data())).toList();
+      if (list[i].userrole == 'employee') {
+        employeeList.add(list[i]);
+      }
+    }
+    return employeeList;
   }
 }
 

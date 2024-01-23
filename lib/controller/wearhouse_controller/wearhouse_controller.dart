@@ -8,9 +8,11 @@ import 'package:canteen_superadmin_website/model/quantity_model.dart';
 import 'package:canteen_superadmin_website/model/subcategory_model.dart';
 import 'package:canteen_superadmin_website/model/suppliers_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class WearHouseController extends GetxController {
+  TextEditingController quantityCtr = TextEditingController();
   List<ProductCategoryModel> productCategoryList = [];
   List<ProductSubcategoryModel> productSubCategoryList = [];
   List<UnitCategoryModel> unitCategoryList = [];
@@ -151,5 +153,15 @@ class WearHouseController extends GetxController {
     return data.docs
         .map((e) => AllProductDetailModel.fromMap(e.data()))
         .toList();
+  }
+
+  Future<void> editQuantity(String docid, int quantity) async {
+    dataserver
+        .collection('AllProductStockCollection')
+        .doc(docid)
+        .update({'quantityinStock': quantity}).then((value) {
+      showToast(msg: "quantity updated");
+      Get.back();
+    });
   }
 }

@@ -1,6 +1,7 @@
 import 'package:canteen_superadmin_website/firebase_options.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/pages/user_assign_screen/user_assign_screen.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/warehouse_adminpanel.dart';
+import 'package:canteen_superadmin_website/view/login/login_section/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WareHouseAdminPanelScreen(),
+      home: LoginSection(),
       // home: Scaffold(
       //   body: Center(
       //     child: Y(),

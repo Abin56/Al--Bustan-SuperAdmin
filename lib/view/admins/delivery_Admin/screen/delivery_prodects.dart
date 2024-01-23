@@ -255,6 +255,14 @@ class DeliveryHeadWidget extends StatelessWidget {
                 Expanded(
                   child: Center(
                     child: Text(
+                      "Company",
+                      style: AppTextStyles.textStyle1,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Center(
+                    child: Text(
                       "Quantity",
                       style: AppTextStyles.textStyle1,
                     ),
@@ -372,6 +380,17 @@ class DeliveryProductTile extends StatelessWidget {
                 child: Center(
                   child: Text(
                     data.productname,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Center(
+                  child: Text(
+                    data.companyName,
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

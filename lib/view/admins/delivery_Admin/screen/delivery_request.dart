@@ -82,7 +82,7 @@ class DeliveryRequest extends StatelessWidget {
                       Expanded(
                         child: Center(
                           child: Text(
-                            "Quantity",
+                            "Items",
                             style: AppTextStyles.textStyle1,
                           ),
                         ),

@@ -1,5 +1,7 @@
 import 'package:canteen_superadmin_website/controller/wearhouse_controller/wearhouse_controller.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
+import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/model/category_model.dart';
 import 'package:canteen_superadmin_website/model/packagetype_model.dart';
 import 'package:canteen_superadmin_website/model/quantity_model.dart';
@@ -11,17 +13,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProductAddingScreen extends StatelessWidget {
-  final TextEditingController barcodeController = TextEditingController();
-  final TextEditingController productNameController = TextEditingController();
-  final TextEditingController inPriceController = TextEditingController();
-  final TextEditingController outPriceController = TextEditingController();
-  final TextEditingController quantityController = TextEditingController();
-  final TextEditingController expiryDateController = TextEditingController();
-  final TextEditingController addedDateController = TextEditingController();
-  final TextEditingController packageTypeController = TextEditingController();
-  final TextEditingController itemCodeController = TextEditingController();
-
   ProductAddingScreen({super.key});
+
+  final getWarehouseCtr = Get.put(WearHouseController());
 
   InputDecoration _customInputDecoration(String labelText) {
     return InputDecoration(
@@ -49,21 +43,21 @@ class ProductAddingScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   TextFormField(
-                    controller: barcodeController,
+                    controller: getWarehouseCtr.barcodeController,
                     decoration: _customInputDecoration('Barcode Number'),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFormField(
-                    controller: productNameController,
+                    controller: getWarehouseCtr.productNameController,
                     decoration: _customInputDecoration('Product Name'),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFormField(
-                    controller: inPriceController,
+                    controller: getWarehouseCtr.inPriceController,
                     decoration: _customInputDecoration('In Price'),
                     keyboardType: TextInputType.number,
                   ),
@@ -71,7 +65,7 @@ class ProductAddingScreen extends StatelessWidget {
                     height: 10,
                   ),
                   TextFormField(
-                    controller: outPriceController,
+                    controller: getWarehouseCtr.outPriceController,
                     decoration: _customInputDecoration('Out Price'),
                     keyboardType: TextInputType.number,
                   ),
@@ -79,7 +73,7 @@ class ProductAddingScreen extends StatelessWidget {
                     height: 10,
                   ),
                   TextFormField(
-                    controller: quantityController,
+                    controller: getWarehouseCtr.quantityController,
                     decoration: _customInputDecoration('Quantity'),
                     keyboardType: TextInputType.number,
                   ),
@@ -87,23 +81,38 @@ class ProductAddingScreen extends StatelessWidget {
                     height: 10,
                   ),
                   TextFormField(
-                    controller: expiryDateController,
+                    controller: getWarehouseCtr.expiryDateController,
                     decoration: _customInputDecoration('Expiry Date'),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFormField(
-                    controller: itemCodeController,
+                    controller: getWarehouseCtr.itemCodeController,
                     decoration: _customInputDecoration('Item Code'),
                   ),
                   SizedBox(
                     height: 10,
                   ),
-                  CategorySetUpWidget(),
+                  GooglePoppinsWidgets(text: "Company Name", fontsize: 14),
+                  CompanySetUpWidget1(),
+                  sHeight10,
+                  GooglePoppinsWidgets(text: "Category", fontsize: 14),
+                  CategorySetUpWidget1(),
+                  sHeight10,
+                  GooglePoppinsWidgets(text: "Subcategory", fontsize: 14),
+                  SubCategorySetUpWidget1(),
+                  sHeight10,
+                  GooglePoppinsWidgets(text: "Unit", fontsize: 14),
+                  UnitSetUpWidget1(),
+                  sHeight10,
+                  GooglePoppinsWidgets(text: "Package Type", fontsize: 14),
+                  PackageSetUpWidget1(),
                   const SizedBox(height: 16.0),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      getWarehouseCtr.addManualStock();
+                    },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.blue, // Example button color
                       shape: RoundedRectangleBorder(
@@ -122,8 +131,8 @@ class ProductAddingScreen extends StatelessWidget {
   }
 }
 
-class CategorySetUpWidget extends StatelessWidget {
-  CategorySetUpWidget({
+class CategorySetUpWidget1 extends StatelessWidget {
+  CategorySetUpWidget1({
     Key? key,
   }) : super(key: key);
 
@@ -144,7 +153,7 @@ class CategorySetUpWidget extends StatelessWidget {
             return null;
           }
         },
-        // autoValidateMode: AutovalidateMode.onUserInteraction,
+        // autoValidateMode: AutovalidateMode.always,
         asyncItems: (value) {
           wearhouseCtr.productCategoryList.clear();
 
@@ -165,8 +174,8 @@ class CategorySetUpWidget extends StatelessWidget {
   }
 }
 
-class SubCategorySetUpWidget extends StatelessWidget {
-  SubCategorySetUpWidget({
+class SubCategorySetUpWidget1 extends StatelessWidget {
+  SubCategorySetUpWidget1({
     Key? key,
   }) : super(key: key);
 
@@ -194,7 +203,12 @@ class SubCategorySetUpWidget extends StatelessWidget {
           return wearhouseCtr.fetchProductSubCategoryModel();
         },
         itemAsString: (value) => value.subcategoryName,
-        onChanged: (value) async {},
+        onChanged: (value) async {
+          if (value != null) {
+            wearhouseCtr.productSubCategoryName.value = value.subcategoryName;
+            wearhouseCtr.productSubCategoryID.value = value.docid;
+          }
+        },
         dropdownDecoratorProps: DropDownDecoratorProps(
             baseStyle: GoogleFonts.poppins(
                 fontSize: 13, color: Colors.black.withOpacity(0.7))),
@@ -203,8 +217,8 @@ class SubCategorySetUpWidget extends StatelessWidget {
   }
 }
 
-class UnitSetUpWidget extends StatelessWidget {
-  UnitSetUpWidget({
+class UnitSetUpWidget1 extends StatelessWidget {
+  UnitSetUpWidget1({
     Key? key,
   }) : super(key: key);
 
@@ -233,10 +247,10 @@ class UnitSetUpWidget extends StatelessWidget {
         },
         itemAsString: (value) => value.unitCategoryName,
         onChanged: (value) async {
-          // if (value != null) {
-          //   wearhouseCtr.productCategoryName.value = value.categoryName;
-          //   wearhouseCtr.productCategoryID.value = value.docid;
-          // }
+          if (value != null) {
+            wearhouseCtr.productUnitName.value = value.unitCategoryName;
+            wearhouseCtr.productUnitID.value = value.docid;
+          }
         },
         dropdownDecoratorProps: DropDownDecoratorProps(
             baseStyle: GoogleFonts.poppins(
@@ -246,8 +260,8 @@ class UnitSetUpWidget extends StatelessWidget {
   }
 }
 
-class PackageSetUpWidget extends StatelessWidget {
-  PackageSetUpWidget({
+class PackageSetUpWidget1 extends StatelessWidget {
+  PackageSetUpWidget1({
     Key? key,
   }) : super(key: key);
 
@@ -276,10 +290,10 @@ class PackageSetUpWidget extends StatelessWidget {
         },
         itemAsString: (value) => value.typevalue,
         onChanged: (value) async {
-          // if (value != null) {
-          //   wearhouseCtr.productCategoryName.value = value.categoryName;
-          //   wearhouseCtr.productCategoryID.value = value.docid;
-          // }
+          if (value != null) {
+            wearhouseCtr.productPackageName.value = value.typevalue;
+            wearhouseCtr.productPackageID.value = value.docid;
+          }
         },
         dropdownDecoratorProps: DropDownDecoratorProps(
             baseStyle: GoogleFonts.poppins(
@@ -289,8 +303,8 @@ class PackageSetUpWidget extends StatelessWidget {
   }
 }
 
-class CompanySetUpWidget extends StatelessWidget {
-  CompanySetUpWidget({
+class CompanySetUpWidget1 extends StatelessWidget {
+  CompanySetUpWidget1({
     Key? key,
   }) : super(key: key);
 
@@ -311,6 +325,7 @@ class CompanySetUpWidget extends StatelessWidget {
             return null;
           }
         },
+
         // autoValidateMode: AutovalidateMode.always,
         asyncItems: (value) {
           wearhouseCtr.supplierList.clear();
@@ -319,10 +334,10 @@ class CompanySetUpWidget extends StatelessWidget {
         },
         itemAsString: (value) => value.suppliersName,
         onChanged: (value) async {
-          // if (value != null) {
-          //   wearhouseCtr.productCategoryName.value = value.categoryName;
-          //   wearhouseCtr.productCategoryID.value = value.docid;
-          // }
+          if (value != null) {
+            wearhouseCtr.productCompanyName.value = value.suppliersName;
+            wearhouseCtr.productCompanyID.value = value.docId;
+          }
         },
         dropdownDecoratorProps: DropDownDecoratorProps(
             baseStyle: GoogleFonts.poppins(

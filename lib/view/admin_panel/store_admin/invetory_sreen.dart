@@ -6,6 +6,7 @@ import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/supplier_adding_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/manual_product_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 // import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -52,7 +53,7 @@ class InventoryWidget extends StatelessWidget {
                               image: 'web_images/drawer_images/inventory.png'),
                           sWidtht10,
                           GooglePoppinsWidgets(
-                            text: 'All Stock',
+                            text: 'All Stocks',
                             fontsize: 20,
                             fontWeight: FontWeight.w500,
                           ),
@@ -65,38 +66,22 @@ class InventoryWidget extends StatelessWidget {
                           sWidtht10,
                           MaterialButton(
                             onPressed: () {
-                              customShowDilogBox(
-                                  context: context,
-                                  title: 'Add Category',
-                                  children: [
-                                    TextField(
-                                      controller: categoryCtr,
-                                      decoration: InputDecoration(
-                                        hintText: 'Category',
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                  actiononTapfuction: () {},
-                                  doyouwantActionButton: true);
+                              Get.to(ProductAddingScreen());
                             },
                             child: Container(
                               height: 40,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: cGreen),
-                              // child: Padding(
-                              //   padding: const EdgeInsets.all(8.0),
-                              //   child: Center(
-                              //     child: GooglePoppinsWidgets(
-                              //         text: "Add Category",
-                              //         fontsize: 14,
-                              //         color: cWhite),
-                              //   ),
-                              // ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(
+                                  child: GooglePoppinsWidgets(
+                                      text: "Add Stock",
+                                      fontsize: 14,
+                                      color: cWhite),
+                                ),
+                              ),
                             ),
                           )
                         ],

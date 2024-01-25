@@ -123,7 +123,7 @@ class TemporaryStockWidget extends StatelessWidget {
                           );
                         },
                         separatorBuilder: (context, index) {
-                          return Divider();
+                          return const Divider();
                         },
                         itemCount: snapshot.data!.docs.length,
                       );

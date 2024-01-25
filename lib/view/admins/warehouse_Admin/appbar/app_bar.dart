@@ -3,6 +3,7 @@ import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/core/fonts/text_widget.dart';
+import 'package:canteen_superadmin_website/view/utils/shared_pref/user_auth/user_credentials.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
@@ -189,6 +190,27 @@ class _AppBarWarehouseAdminState extends State<AppBarWarehouseAdmin> {
             //     ],
             //   ),
             // ),
+            Tooltip(
+              preferBelow: false,
+              decoration: BoxDecoration(
+                color: Colors.green.withOpacity(0.6),
+                borderRadius: BorderRadius.circular(10.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 3,
+                    blurRadius: 7,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
+              ),
+              message: "Logout",
+              child: IconButton(
+                  onPressed: () async {
+                    await logoutUser();
+                  },
+                  icon: const Icon(Icons.power_settings_new_outlined)),
+            ),
             SizedBox(
               width: 50,
               child: Column(

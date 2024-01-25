@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivered_list_widget.dart';
-import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_assigning_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_pending_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_picked_up_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_prodects.dart';
@@ -9,6 +8,7 @@ import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/del
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/category_creation_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/appbar/app_bar.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/drawer/drawer.dart';
+import 'package:canteen_superadmin_website/view/admins/super_Admin/pages/user_assign_screen/user_assign_screen.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/screen/super_admin_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
@@ -133,6 +133,7 @@ List<Widget> pages = [
   DeliveryPickedUpList(),
 
   DeliveredList(), //..4
+    UserAssignListScreen(), //10
 
   //.
 ];

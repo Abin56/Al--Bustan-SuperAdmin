@@ -1,7 +1,7 @@
 import 'package:canteen_superadmin_website/firebase_options.dart';
-import 'package:canteen_superadmin_website/view/admins/super_Admin/pages/user_assign_screen/user_assign_screen.dart';
-import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/warehouse_adminpanel.dart';
-import 'package:canteen_superadmin_website/view/login/login_section/login_page.dart';
+import 'package:canteen_superadmin_website/view/home/home.dart';
+import 'package:canteen_superadmin_website/view/utils/shared_pref/shared_pref_helper.dart';
+import 'package:canteen_superadmin_website/view/welcome_screen/welcome_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +11,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await SharedPreferencesHelper.initPrefs();
 
   runApp(const MyApp());
 }
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginSection(),
+      home: HomeScreen(),
       // home: Scaffold(
       //   body: Center(
       //     child: Y(),

@@ -13,6 +13,7 @@ import 'package:canteen_superadmin_website/model/quantity_model.dart';
 import 'package:canteen_superadmin_website/model/subcategory_model.dart';
 import 'package:canteen_superadmin_website/model/suppliers_model.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/all_stock_details_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/supplier_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/button_container_widget/custom_button.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
@@ -25,8 +26,9 @@ class StockUploadWidget extends StatelessWidget {
   StockUploadWidget({super.key});
 
   final excelCtr = Get.put(ExcelController());
-  final wearhouseCtr = Get.put(WearHouseController());
+  final warehouseCtr = Get.put(WearHouseController());
   final GlobalKey<FormState> fkey = GlobalKey<FormState>();
+  TextEditingController textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -63,13 +65,10 @@ class StockUploadWidget extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             onTap: () async {
                               await excelCtr.uploadExcelFunction2();
-                              if (fkey.currentState?.validate() ?? false) {
-                                wearhouseCtr.addToAllStock();
-                              }
                             }),
                       ),
                       sWidtht10,
-                      Obx(() => wearhouseCtr.isLoading.value == false
+                      Obx(() => warehouseCtr.isLoading.value == false
                           ? Padding(
                               padding: const EdgeInsets.only(left: 50),
                               child: ButtonContainerWidget(
@@ -81,7 +80,7 @@ class StockUploadWidget extends StatelessWidget {
                                   onTap: () async {
                                     if (fkey.currentState?.validate() ??
                                         false) {
-                                      wearhouseCtr.addToAllStock();
+                                      warehouseCtr.addToAllStock();
                                     }
                                   }),
                             )
@@ -149,18 +148,123 @@ class StockUploadWidget extends StatelessWidget {
                                 text: "No data", fontsize: 15),
                           );
                         } else {
+                          List<TextEditingController> textControllers =
+                              List.generate(snapshot.data!.docs.length,
+                                  (index) => TextEditingController());
                           return ListView.separated(
                             itemBuilder: (context, index) {
                               final productData = AllProductDetailModel.fromMap(
                                   snapshot.data!.docs[index].data());
                               return Row(
                                 children: [
+                                  productData.isEdit == false
+                                      ? PopupMenuButton(
+                                          itemBuilder: (context) {
+                                            return [
+                                              PopupMenuItem(
+                                                onTap: () {
+                                                  textControllers[index].text =
+                                                      productData.productname;
+                                                  warehouseCtr.enableEdit(
+                                                      productData.docId);
+                                                },
+                                                child: GooglePoppinsWidgets(
+                                                    text: "Edit", fontsize: 14),
+                                              ),
+                                              PopupMenuItem(
+                                                onTap: () {
+                                                  showDialog(
+                                                    context: context,
+                                                    builder: (context) {
+                                                      return AlertDialog(
+                                                        shape:
+                                                            LinearBorder.none,
+                                                        title: GooglePoppinsWidgets(
+                                                            text:
+                                                                'Are you sure to delete ?',
+                                                            fontsize: 14),
+                                                        actions: [
+                                                          TextButton(
+                                                            child:
+                                                                GooglePoppinsWidgets(
+                                                              text: 'No',
+                                                              fontsize: 14,
+                                                            ),
+                                                            onPressed: () {
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop();
+                                                            },
+                                                          ),
+                                                          TextButton(
+                                                            child:
+                                                                GooglePoppinsWidgets(
+                                                              text: 'Yes',
+                                                              fontsize: 14,
+                                                            ),
+                                                            onPressed: () {
+                                                              warehouseCtr
+                                                                  .deleteStock(
+                                                                      productData
+                                                                          .docId);
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop();
+                                                            },
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                                child: GooglePoppinsWidgets(
+                                                    text: "Delete",
+                                                    fontsize: 14),
+                                              ),
+                                            ];
+                                          },
+                                        )
+                                      : TextButton(
+                                          onPressed: () {
+                                            if (textControllers[index]
+                                                .text
+                                                .isNotEmpty) {
+                                              dataserver
+                                                  .collection('Stock')
+                                                  .doc(productData.docId)
+                                                  .update({
+                                                'productname':
+                                                    textControllers[index].text
+                                              });
+                                              warehouseCtr.disenableEdit(
+                                                  productData.docId);
+                                            } else {
+                                              showToast(
+                                                  msg: "Enter Product name");
+                                            }
+                                          },
+                                          child: GooglePoppinsWidgets(
+                                              text: 'Update', fontsize: 14)),
                                   StockDdetailsWidget(
                                     text: '${index + 1}',
                                     flex: 1,
                                   ),
-                                  StockDdetailsWidget(
-                                      text: productData.productname, flex: 2),
+                                  productData.isEdit == false
+                                      ? StockDdetailsWidget(
+                                          text: productData.productname,
+                                          flex: 2)
+                                      : SizedBox(
+                                          width: 200,
+                                          height: 50,
+                                          child: TextField(
+                                            decoration: InputDecoration(
+                                                hintText:
+                                                    productData.productname,
+                                                border:
+                                                    const OutlineInputBorder()),
+                                            controller: textControllers[index],
+                                          ),
+                                        ),
                                   productData.categoryID == ""
                                       ? Expanded(
                                           flex: 2,
@@ -181,19 +285,22 @@ class StockUploadWidget extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
-                                              IconButton(
-                                                onPressed: () {
-                                                  wearhouseCtr
-                                                      .productCategoryEdit(
-                                                          "",
-                                                          "",
-                                                          productData.docId);
-                                                },
-                                                icon: const Icon(
-                                                  Icons.edit_note_rounded,
-                                                  color: cBlue,
-                                                ),
-                                              )
+                                              productData.isEdit == true
+                                                  ? IconButton(
+                                                      onPressed: () {
+                                                        warehouseCtr
+                                                            .productCategoryEdit(
+                                                                "",
+                                                                "",
+                                                                productData
+                                                                    .docId);
+                                                      },
+                                                      icon: const Icon(
+                                                        Icons.edit_note_rounded,
+                                                        color: cBlue,
+                                                      ),
+                                                    )
+                                                  : const SizedBox(),
                                             ],
                                           ),
                                         ),
@@ -217,19 +324,22 @@ class StockUploadWidget extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
-                                              IconButton(
-                                                onPressed: () {
-                                                  wearhouseCtr
-                                                      .productSubCategoryEdit(
-                                                          "",
-                                                          "",
-                                                          productData.docId);
-                                                },
-                                                icon: const Icon(
-                                                  Icons.edit_note_rounded,
-                                                  color: cBlue,
-                                                ),
-                                              )
+                                              productData.isEdit == true
+                                                  ? IconButton(
+                                                      onPressed: () {
+                                                        warehouseCtr
+                                                            .productSubCategoryEdit(
+                                                                "",
+                                                                "",
+                                                                productData
+                                                                    .docId);
+                                                      },
+                                                      icon: const Icon(
+                                                        Icons.edit_note_rounded,
+                                                        color: cBlue,
+                                                      ),
+                                                    )
+                                                  : const SizedBox()
                                             ],
                                           ),
                                         ),
@@ -254,19 +364,22 @@ class StockUploadWidget extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
-                                              IconButton(
-                                                onPressed: () {
-                                                  wearhouseCtr
-                                                      .productUnitCategoryEdit(
-                                                          "",
-                                                          "",
-                                                          productData.docId);
-                                                },
-                                                icon: const Icon(
-                                                  Icons.edit_note_rounded,
-                                                  color: cBlue,
-                                                ),
-                                              )
+                                              productData.isEdit == true
+                                                  ? IconButton(
+                                                      onPressed: () {
+                                                        warehouseCtr
+                                                            .productUnitCategoryEdit(
+                                                                "",
+                                                                "",
+                                                                productData
+                                                                    .docId);
+                                                      },
+                                                      icon: const Icon(
+                                                        Icons.edit_note_rounded,
+                                                        color: cBlue,
+                                                      ),
+                                                    )
+                                                  : const SizedBox()
                                             ],
                                           ),
                                         ),
@@ -290,19 +403,22 @@ class StockUploadWidget extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
-                                              IconButton(
-                                                onPressed: () {
-                                                  wearhouseCtr
-                                                      .productPackageTypeEdit(
-                                                          "",
-                                                          "",
-                                                          productData.docId);
-                                                },
-                                                icon: const Icon(
-                                                  Icons.edit_note_rounded,
-                                                  color: cBlue,
-                                                ),
-                                              )
+                                              productData.isEdit == true
+                                                  ? IconButton(
+                                                      onPressed: () {
+                                                        warehouseCtr
+                                                            .productPackageTypeEdit(
+                                                                "",
+                                                                "",
+                                                                productData
+                                                                    .docId);
+                                                      },
+                                                      icon: const Icon(
+                                                        Icons.edit_note_rounded,
+                                                        color: cBlue,
+                                                      ),
+                                                    )
+                                                  : const SizedBox()
                                             ],
                                           ),
                                         ),
@@ -326,19 +442,22 @@ class StockUploadWidget extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
-                                              IconButton(
-                                                onPressed: () {
-                                                  wearhouseCtr
-                                                      .productCompanyEdit(
-                                                          "",
-                                                          "",
-                                                          productData.docId);
-                                                },
-                                                icon: const Icon(
-                                                  Icons.edit_note_rounded,
-                                                  color: cBlue,
-                                                ),
-                                              )
+                                              productData.isEdit == true
+                                                  ? IconButton(
+                                                      onPressed: () {
+                                                        warehouseCtr
+                                                            .productCompanyEdit(
+                                                                "",
+                                                                "",
+                                                                productData
+                                                                    .docId);
+                                                      },
+                                                      icon: const Icon(
+                                                        Icons.edit_note_rounded,
+                                                        color: cBlue,
+                                                      ),
+                                                    )
+                                                  : const SizedBox()
                                             ],
                                           ),
                                         ),

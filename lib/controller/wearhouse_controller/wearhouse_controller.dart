@@ -31,6 +31,10 @@ class WearHouseController extends GetxController {
   RxString productPackageID = ''.obs;
   RxBool isLoading = false.obs;
 
+  // List<RxBool> enableEdit = [];
+
+  int stockCollectionLenth = 0;
+
   final TextEditingController barcodeController = TextEditingController();
   final TextEditingController productNameController = TextEditingController();
   final TextEditingController inPriceController = TextEditingController();
@@ -221,5 +225,32 @@ class WearHouseController extends GetxController {
       showToast(msg: "Stock Added");
       Get.back();
     });
+  }
+
+  deleteStock(String docid) {
+    dataserver.collection('Stock').doc(docid).delete().then((value) {
+      showToast(msg: "Item deleted");
+      // getStockCollectionLenth();
+    });
+  }
+
+  // getStockCollectionLenth() async {
+  //   final data = await dataserver.collection('Stock').get();
+  //   stockCollectionLenth = data.docs.length;
+
+  // }
+  // @override
+  // void onInit() async{
+  //   await getStockCollectionLenth();
+  //   // TODO: implement onInit
+  //   super.onInit();
+  // }
+
+  enableEdit(String docId) {
+    dataserver.collection('Stock').doc(docId).update({'isedit': true});
+  }
+
+  disenableEdit(String docId) {
+    dataserver.collection('Stock').doc(docId).update({'isedit': false});
   }
 }

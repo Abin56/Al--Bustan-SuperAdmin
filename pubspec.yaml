@@ -55,6 +55,7 @@ dependencies:
   intl:
   excel: ^4.0.2
   file_picker: ^6.1.1
+  awesome_side_sheet:
 
 dev_dependencies:
   flutter_test:

@@ -13,6 +13,7 @@ import 'package:canteen_superadmin_website/model/quantity_model.dart';
 import 'package:canteen_superadmin_website/model/subcategory_model.dart';
 import 'package:canteen_superadmin_website/model/suppliers_model.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/all_stock_details_widget.dart';
+import 'package:canteen_superadmin_website/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/button_container_widget/custom_button.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:dropdown_search/dropdown_search.dart';
@@ -48,32 +49,43 @@ class StockUploadWidget extends StatelessWidget {
                   child: Row(
                     children: [
                       GooglePoppinsWidgets(
-                        text: "Stock",
+                        text: "ADD STOCK",
                         fontsize: 25,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.bold,
                       ),
-                      Spacer(),
-                      CustomGradientButton(
-                        text: "Upload Excel",
-                        height: 40,
-                        width: 200,
-                        onPressed: () {
-                          excelCtr.uploadExcelFunction2();
-                        },
+                      Padding(
+                        padding: const EdgeInsets.only(left: 50),
+                        child: ButtonContainerWidget(
+                            text: 'UPLOAD EXCEL',
+                            width: 120,
+                            height: 40,
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                            onTap: () async {
+                              await excelCtr.uploadExcelFunction2();
+                              if (fkey.currentState?.validate() ?? false) {
+                                wearhouseCtr.addToAllStock();
+                              }
+                            }),
                       ),
                       sWidtht10,
                       Obx(() => wearhouseCtr.isLoading.value == false
-                          ? CustomGradientButton(
-                              text: "Add to temporarylist",
-                              height: 40,
-                              width: 200,
-                              onPressed: () {
-                                if (fkey.currentState?.validate() ?? false) {
-                                  wearhouseCtr.addToAllStock();
-                                }
-                              },
+                          ? Padding(
+                              padding: const EdgeInsets.only(left: 50),
+                              child: ButtonContainerWidget(
+                                  text: 'UPLOAD TO TEMPORARY LIST',
+                                  width: 200,
+                                  height: 40,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                  onTap: () async {
+                                    if (fkey.currentState?.validate() ??
+                                        false) {
+                                      wearhouseCtr.addToAllStock();
+                                    }
+                                  }),
                             )
-                          : CircularProgressIndicator())
+                          : const CircularProgressIndicator())
                     ],
                   ),
                 ),

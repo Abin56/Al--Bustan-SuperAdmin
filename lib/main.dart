@@ -1,5 +1,6 @@
 import 'package:canteen_superadmin_website/firebase_options.dart';
 import 'package:canteen_superadmin_website/scroll_on_web_widget.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/home/home.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/login_page.dart';
 import 'package:canteen_superadmin_website/view/utils/shared_pref/shared_pref_helper.dart';

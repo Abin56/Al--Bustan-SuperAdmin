@@ -20,6 +20,7 @@ class DeliveryAdminListContainers extends StatelessWidget {
      child: Container(
      height: 45,
       decoration:   BoxDecoration(
+        color: Colors.pink.withOpacity(0.2),
         border:  const Border(
           right: BorderSide(color: cWhite,width: 5),
             bottom: BorderSide(color: cWhite)), ),

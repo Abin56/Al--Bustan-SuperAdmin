@@ -17,13 +17,13 @@ class SuppliersControllers extends GetxController {
 
   Rx<Uint8List?> suppliersImage = Rx<Uint8List?>(null);
 
-  TextEditingController suppliersnamecontroller = TextEditingController();
-  TextEditingController suppliersidcontroller = TextEditingController();
+  TextEditingController productnamecontroller = TextEditingController();
+  TextEditingController productquantitycontroller = TextEditingController();
   TextEditingController suppliersaddresscontroller = TextEditingController();
   TextEditingController contactPersoncontroller = TextEditingController();
   TextEditingController suppliersProductscontroller = TextEditingController();
-  TextEditingController workstartTimectscontroller = TextEditingController();
-  TextEditingController workEndTimectscontroller = TextEditingController();
+  TextEditingController manufacturectsdatecontroller = TextEditingController();
+  TextEditingController expirydatecontroller = TextEditingController();
 
   addSuppliers() async {
     try {
@@ -36,25 +36,25 @@ class SuppliersControllers extends GetxController {
 
       final suppliersModel = SuppliersModel(
         docId: uuid,
-        suppliersName: suppliersnamecontroller.text,
-        suppliersId: suppliersidcontroller.text,
+        suppliersName: productnamecontroller.text,
+        suppliersId: productquantitycontroller.text,
         suppliersAddress: suppliersaddresscontroller.text,
         contactPerson: contactPersoncontroller.text,
         suppliersProducts: suppliersProductscontroller.text,
-        workstartTime: workstartTimectscontroller.text,
-        workEndTime: workEndTimectscontroller.text,
+        workstartTime: manufacturectsdatecontroller.text,
+        workEndTime: expirydatecontroller.text,
         image: image,
         isEnabled: true,
       );
       final data = suppliersModel.toMap();
       await firestore.collection('SuppliersList').doc(uuid).set(data);
-      suppliersnamecontroller.clear();
-      suppliersidcontroller.clear();
+      productnamecontroller.clear();
+      productquantitycontroller.clear();
       suppliersaddresscontroller.clear();
       contactPersoncontroller.clear();
       suppliersProductscontroller.clear();
-      workstartTimectscontroller.clear();
-      workEndTimectscontroller.clear();
+      manufacturectsdatecontroller.clear();
+      expirydatecontroller.clear();
     } catch (e) {
       print('Error adding suppliers: $e');
     }
@@ -95,22 +95,22 @@ class SuppliersControllers extends GetxController {
         }
 
         await firestore.collection('SuppliersList').doc(docId).update({
-          'suppliersName': suppliersnamecontroller.text,
-          'suppliersId': suppliersidcontroller.text,
+          'suppliersName': productnamecontroller.text,
+          'suppliersId': productquantitycontroller.text,
           'suppliersAddress': suppliersaddresscontroller.text,
           'contactPerson': contactPersoncontroller.text,
           'suppliersProducts': suppliersProductscontroller.text,
-          'workstartTime': workstartTimectscontroller.text,
-          'workEndTime': workEndTimectscontroller.text,
+          'workstartTime': manufacturectsdatecontroller.text,
+          'workEndTime': expirydatecontroller.text,
         });
 
-        suppliersnamecontroller.clear();
-        suppliersidcontroller.clear();
+        productnamecontroller.clear();
+        productquantitycontroller.clear();
         suppliersaddresscontroller.clear();
         contactPersoncontroller.clear();
         suppliersProductscontroller.clear();
-        workstartTimectscontroller.clear();
-        workEndTimectscontroller.clear();
+        manufacturectsdatecontroller.clear();
+        expirydatecontroller.clear();
 
         print('Supplier edited successfully');
       } else {

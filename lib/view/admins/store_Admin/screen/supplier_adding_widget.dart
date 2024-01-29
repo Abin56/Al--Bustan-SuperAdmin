@@ -21,9 +21,9 @@ class SuppliersProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (existingSupplier != null) {
-      suppliercontroller.suppliersnamecontroller.text =
+      suppliercontroller.productnamecontroller.text =
           existingSupplier!.suppliersName;
-      suppliercontroller.suppliersidcontroller.text =
+      suppliercontroller.productquantitycontroller.text =
           existingSupplier!.suppliersId;
       suppliercontroller.suppliersaddresscontroller.text =
           existingSupplier!.suppliersAddress;
@@ -31,9 +31,9 @@ class SuppliersProfile extends StatelessWidget {
           existingSupplier!.contactPerson;
       suppliercontroller.suppliersProductscontroller.text =
           existingSupplier!.suppliersProducts;
-      suppliercontroller.workstartTimectscontroller.text =
+      suppliercontroller.manufacturectsdatecontroller.text =
           existingSupplier!.workstartTime;
-      suppliercontroller.workEndTimectscontroller.text =
+      suppliercontroller.expirydatecontroller.text =
           existingSupplier!.workEndTime;
     }
 
@@ -62,14 +62,14 @@ class SuppliersProfile extends StatelessWidget {
                   const Text("Create an account", style: TextStyle()),
                   TextFormFiledContainerWidget(
                     validator: checkFieldEmpty,
-                    controller: suppliercontroller.suppliersnamecontroller,
+                    controller: suppliercontroller.productnamecontroller,
                     hintText: 'Enter your suppliers name',
                     title: "Suppliers Name",
                     width: 300,
                   ),
                   TextFormFiledContainerWidget(
                     validator: checkFieldEmpty,
-                    controller: suppliercontroller.suppliersidcontroller,
+                    controller: suppliercontroller.productquantitycontroller,
                     hintText: 'Enter the Canteen Id',
                     title: "Supplier Id ",
                     width: 300,
@@ -104,7 +104,7 @@ class SuppliersProfile extends StatelessWidget {
                         child: TextFormFiledContainerWidget(
                           validator: checkFieldEmpty,
                           controller:
-                              suppliercontroller.workstartTimectscontroller,
+                              suppliercontroller.manufacturectsdatecontroller,
                           hintText: 'Starting time',
                           title: "Working Time",
                           width: 145,
@@ -112,7 +112,7 @@ class SuppliersProfile extends StatelessWidget {
                       ),
                       TextFormFiledContainerWidget(
                         validator: checkFieldEmpty,
-                        controller: suppliercontroller.workEndTimectscontroller,
+                        controller: suppliercontroller.expirydatecontroller,
                         hintText: 'Ending time',
                         title: "",
                         width: 145,

@@ -1,3 +1,4 @@
+import 'package:canteen_superadmin_website/controller/store_controller/all_product_controller.dart';
 import 'package:canteen_superadmin_website/firebase_options.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/delivery_adminpanel.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivered_list_widget.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(AllProductController());
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: LoginSection(),

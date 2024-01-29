@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 0, left: 50),
+                  padding: const EdgeInsets.only(top: 500, left: 50),
                   child: GestureDetector(
                     onTap: () {
                       print("object");

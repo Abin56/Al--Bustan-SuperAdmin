@@ -138,7 +138,7 @@ class AllStockDetailsWidget extends StatelessWidget {
                           );
                         },
                         separatorBuilder: (context, index) {
-                          return Divider();
+                          return const Divider();
                         },
                         itemCount: snapshot.data!.docs.length,
                       );
@@ -170,7 +170,7 @@ class StockDdetailsWidget extends StatelessWidget {
       child: Center(
         child: Text(
           text,
-          style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 12.5),
+          style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 11.5),
         ),
       ),
     );
@@ -188,8 +188,8 @@ class HeadWidget extends StatelessWidget {
       child: Center(
         child: GooglePoppinsWidgets(
           text: headName,
-          fontsize: 16,
-          fontWeight: FontWeight.w500,
+          fontsize: 12,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );

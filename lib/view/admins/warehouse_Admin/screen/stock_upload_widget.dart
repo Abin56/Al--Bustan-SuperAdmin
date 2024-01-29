@@ -38,7 +38,8 @@ class StockUploadWidget extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Container(
             decoration: BoxDecoration(border: Border.all()),
-            width: 1180,
+            // width: 1180,
+            width: size.width,
             height: size.height - 110,
             child: Column(
               children: [

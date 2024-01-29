@@ -82,6 +82,7 @@ flutter:
     - web_images/drawer_images/
     - web_images/
     - web_images/images/
+    - web_images/home/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

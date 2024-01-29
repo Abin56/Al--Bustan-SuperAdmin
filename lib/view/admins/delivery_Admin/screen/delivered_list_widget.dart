@@ -1,4 +1,5 @@
 import 'package:canteen_superadmin_website/controller/delivery_controller/delivery_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:canteen_superadmin_website/controller/employee_controller/employee_controller.dart';
 import 'package:canteen_superadmin_website/model/employe_createprofile_model.dart';
 import 'package:canteen_superadmin_website/view/widgets/button_container_widget/custom_button.dart';
@@ -7,14 +8,13 @@ import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/textstysle/textstyle.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:flutter/material.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-class DeliveredListWidget extends StatelessWidget {
-  DeliveredListWidget({super.key});
+class DeliveredList extends StatelessWidget {
+  DeliveredList({super.key});
 
   final employeeController = Get.put(EmployeeController());
   final getDeliveryCtr = Get.put(DeliveryController());
@@ -22,7 +22,6 @@ class DeliveredListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Container(
@@ -131,7 +130,7 @@ class DeliveredListWidget extends StatelessWidget {
               Expanded(
                 child: StreamBuilder(
                     stream: FirebaseFirestore.instance
-                        .collection('deliveryAssignList')
+                        .collection('DeliveredList')
                         .snapshots(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
@@ -147,21 +146,10 @@ class DeliveredListWidget extends StatelessWidget {
                               text: "No data", fontsize: 15),
                         );
                       } else {
-                        List deliveredList = [];
-
                         return ListView.builder(
+                          itemCount: snapshot.data!.docs.length,
                           itemBuilder: (context, index) {
-                            // final data = snapshot.data!.docs[index];
-                            final listdata = snapshot.data!.docs;
-
-                            for (var element in listdata) {
-                              if (element['isDelivered'] == true) {
-                                deliveredList.add(element);
-                              }
-                            }
-
-                            final data = deliveredList[index];
-
+                            final data = snapshot.data!.docs[index];
                             return Column(
                               children: [
                                 Padding(
@@ -273,7 +261,7 @@ class DeliveredListWidget extends StatelessWidget {
                                                                           EmployeeController>()
                                                                       .employeeName;
                                                               getDeliveryCtr
-                                                                  .createDeliveryOrderToEmployee(
+                                                                  .createDeliveryAssignToEmployee(
                                                                 employeeName:
                                                                     emplopeeName,
                                                                 employeeId:
@@ -360,142 +348,11 @@ class DeliveredListWidget extends StatelessWidget {
                                           ),
                                         ),
                                       ),
-
-                                      // Expanded(
-                                      //   flex: 1,/
-                                      //   child: Center(
-                                      //     child: Container(
-                                      //       decoration: BoxDecoration(
-                                      //         color: AppColors.greyColor,
-                                      //         borderRadius:
-                                      //             BorderRadius.circular(5),
-                                      //       ),
-                                      //       child: Padding(
-                                      //         padding: const EdgeInsets.all(3),
-                                      //         child: data['isDelivered'] == true
-                                      //             ? const Text(
-                                      //                 "Delivered",
-                                      //                 style: TextStyle(
-                                      //                   color: AppColors
-                                      //                       .whiteColor,
-                                      //                 ),
-                                      //               )
-                                      //             : data['assignStatus'] ==
-                                      //                     false
-                                      //                 ? SizedBox(
-                                      //                     height: 60,
-                                      //                     child: DropdownSearch<
-                                      //                         EmployeeProfileCreateModel>(
-                                      //                       autoValidateMode:
-                                      //                           AutovalidateMode
-                                      //                               .always,
-                                      //                       asyncItems:
-                                      //                           (value) {
-                                      //                         employeeController
-                                      //                             .employeeList
-                                      //                             .clear();
-
-                                      //                         return employeeController
-                                      //                             .fetchEmployees();
-                                      //                       },
-                                      //                       itemAsString:
-                                      //                           (value) =>
-                                      //                               value.name,
-                                      //                       onChanged:
-                                      //                           (value) async {
-                                      //                         // employeeController.employeeUID.value = true;
-                                      //                         if (value !=
-                                      //                             null) {
-                                      //                           employeeController
-                                      //                                   .employeeUID
-                                      //                                   .value =
-                                      //                               value.docid;
-                                      //                           employeeController
-                                      //                                   .employeeName =
-                                      //                               value.name;
-                                      //                         }
-                                      //                         final employeeID =
-                                      //                             Get.find<
-                                      //                                     EmployeeController>()
-                                      //                                 .employeeUID;
-                                      //                         final emplopeeName =
-                                      //                             Get.find<
-                                      //                                     EmployeeController>()
-                                      //                                 .employeeName;
-                                      //                         getDeliveryCtr.createDeliveryOrderToEmployee(
-                                      //                             employeeName:
-                                      //                                 emplopeeName,
-                                      //                             employeeId:
-                                      //                                 employeeID
-                                      //                                     .value,
-                                      //                             deliverydata:
-                                      //                                 data);
-                                      //                       },
-                                      //                       dropdownDecoratorProps:
-                                      //                           DropDownDecoratorProps(
-                                      //                         baseStyle:
-                                      //                             GoogleFonts
-                                      //                                 .poppins(
-                                      //                           fontSize: 13,
-                                      //                           color: Colors
-                                      //                               .black
-                                      //                               .withOpacity(
-                                      //                                   0.7),
-                                      //                         ),
-                                      //                       ),
-                                      //                     ),
-                                      //                   )
-                                      //                 : StreamBuilder(
-                                      //                     stream: FirebaseFirestore
-                                      //                         .instance
-                                      //                         .collection(
-                                      //                             'EmployeeProfile')
-                                      //                         .doc(data[
-                                      //                             'employeeId'])
-                                      //                         .collection(
-                                      //                             'DeliveryRequest')
-                                      //                         .doc(data[
-                                      //                             'orderId'])
-                                      //                         .collection(
-                                      //                             'productsDetails')
-                                      //                         .snapshots(),
-                                      //                     builder: (context,
-                                      //                         statussnap) {
-                                      //                       if (snapshot
-                                      //                           .hasData) {
-                                      //                         if (statussnap
-                                      //                                 .connectionState ==
-                                      //                             ConnectionState
-                                      //                                 .waiting) {
-                                      //                           return const SizedBox();
-                                      //                         } else if (statussnap
-                                      //                             .data!
-                                      //                             .docs
-                                      //                             .isEmpty) {
-                                      //                           return const Text(
-                                      //                               "Pickuped");
-                                      //                         } else {
-                                      //                           return const Text(
-                                      //                               'Pending');
-                                      //                         }
-                                      //                       } else {
-                                      //                         return const Text(
-                                      //                             '');
-                                      //                       }
-                                      //                     }),
-                                      //       ),
-                                      //     ),
-                                      //   ),
-                                      // ),
                                       Expanded(
                                         flex: 1,
                                         child: Center(
                                           child: Text(
                                             timeConvert(data['time']),
-                                            // dateConveter(
-                                            //     DateTime.parse(data['time'])),
-
-                                            // "11.30",
                                             overflow: TextOverflow.ellipsis,
                                             style: AppTextStyles
                                                 .deliveryTextStyle1,
@@ -535,7 +392,6 @@ class DeliveredListWidget extends StatelessWidget {
                               ],
                             );
                           },
-                          itemCount: deliveredList.length,
                         );
                       }
                     }),

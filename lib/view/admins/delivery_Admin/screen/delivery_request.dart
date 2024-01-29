@@ -82,7 +82,7 @@ class DeliveryRequest extends StatelessWidget {
                       Expanded(
                         child: Center(
                           child: Text(
-                            "Quantity",
+                            "Items",
                             style: AppTextStyles.textStyle1,
                           ),
                         ),
@@ -405,7 +405,8 @@ class EmployeeRequestProductDetailsWidget extends StatelessWidget {
                                   child: Center(
                                     child: StreamBuilder(
                                         stream: FirebaseFirestore.instance
-                                            .collection('AllProduct')
+                                            .collection(
+                                                'AllProductStockCollection')
                                             .doc(productdata.docId)
                                             .snapshots(),
                                         builder: (context, qtySnapshot) {
@@ -471,4 +472,3 @@ class EmployeeRequestProductDetailsWidget extends StatelessWidget {
     );
   }
 }
-  

@@ -4,7 +4,9 @@ import 'package:canteen_superadmin_website/view/admins/delivery_Admin/appbar/app
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/drawer/drawer.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivered_list_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_dashboard.dart';
-import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_order.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_assigning_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_pending_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_picked_up_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_prodects.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_request.dart';
 import 'package:flutter/material.dart';
@@ -120,5 +122,7 @@ List<Widget> pages = [
   ProductScreen(), //..1
   const DeliveryRequest(), //..2
   DeliveryScreen(), //..3
-  DeliveredListWidget(), //..4
+  DeliveredList(), //..4
+  DeliveryPendingList(), //..5
+  DeliveryPickedUpList(), //..6
 ];

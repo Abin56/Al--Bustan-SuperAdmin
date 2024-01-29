@@ -1,11 +1,9 @@
-import 'package:canteen_superadmin_website/controller/store_controller/all_product_controller.dart';
 import 'package:canteen_superadmin_website/firebase_options.dart';
-import 'package:canteen_superadmin_website/view/admins/delivery_Admin/delivery_adminpanel.dart';
-import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivered_list_widget.dart';
-import 'package:canteen_superadmin_website/view/admins/store_Admin/storeadmin_panel.dart';
-import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/test.dart';
-import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/warehouse_adminpanel.dart';
+import 'package:canteen_superadmin_website/scroll_on_web_widget.dart';
+import 'package:canteen_superadmin_website/view/home/home.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/login_page.dart';
+import 'package:canteen_superadmin_website/view/utils/shared_pref/shared_pref_helper.dart';
+import 'package:canteen_superadmin_website/view/welcome_screen/welcome_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +13,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await SharedPreferencesHelper.initPrefs();
 
   runApp(const MyApp());
 }
@@ -24,13 +23,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(AllProductController());
     return GetMaterialApp(
+      scrollBehavior: MyCustomScrollBehavior(),
       debugShowCheckedModeBanner: false,
-      home: LoginSection(),
-      // home: WareHouseAdminPanelScreen(),
-      // home: DeliveryAdminPanelScreen()
-      // home: Scaffold(body: DeliveredListWidget()),
+      home: WelcomeScreen(),
+      // home: Scaffold(
+      //   body: Center(
+      //     child: Y(),
+      //   ),
+      // ),
     );
   }
 }

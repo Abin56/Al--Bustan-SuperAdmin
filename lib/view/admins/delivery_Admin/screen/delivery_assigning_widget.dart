@@ -1,5 +1,6 @@
 import 'package:canteen_superadmin_website/controller/delivery_controller/delivery_controller.dart';
 import 'package:canteen_superadmin_website/controller/employee_controller/employee_controller.dart';
+import 'package:canteen_superadmin_website/model/admin_model.dart';
 import 'package:canteen_superadmin_website/model/employe_createprofile_model.dart';
 import 'package:canteen_superadmin_website/view/widgets/button_container_widget/custom_button.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
@@ -226,17 +227,23 @@ class DeliveryScreen extends StatelessWidget {
                                                       ? SizedBox(
                                                           height: 40,
                                                           child: DropdownSearch<
-                                                              EmployeeProfileCreateModel>(
+                                                              AdminModel>(
                                                             autoValidateMode:
                                                                 AutovalidateMode
                                                                     .always,
                                                             asyncItems:
                                                                 (value) {
-                                                              employeeController
+                                                              getDeliveryCtr
                                                                   .employeeList
                                                                   .clear();
-                                                              return employeeController
-                                                                  .fetchEmployees();
+                                                              return getDeliveryCtr
+                                                                  .fetchEmployeeModel();
+
+                                                              // employeeController
+                                                              //     .employeeList
+                                                              //     .clear();
+                                                              // return employeeController
+                                                              //     .fetchEmployees();
                                                             },
                                                             itemAsString:
                                                                 (value) =>
@@ -262,7 +269,7 @@ class DeliveryScreen extends StatelessWidget {
                                                                           EmployeeController>()
                                                                       .employeeName;
                                                               getDeliveryCtr
-                                                                  .createDeliveryOrderToEmployee(
+                                                                  .createDeliveryAssignToEmployee(
                                                                 employeeName:
                                                                     emplopeeName,
                                                                 employeeId:

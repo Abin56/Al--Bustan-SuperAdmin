@@ -148,22 +148,12 @@ class ExcelController extends GetxController {
         Sheet? table = result.tables[result.tables.keys.first];
         if (table != null) {
           List<Data?>? headRow = table.rows[0];
-          if (headRow[0]?.value.toString() == "Item Name" &&
-              headRow[1]?.value.toString() == "Main Category " &&
-              headRow[2]?.value.toString() == "Sub Category" &&
-              headRow[3]?.value.toString() == "Unit Of Measurement " &&
-              headRow[4]?.value.toString() == "Packaging " &&
-              headRow[5]?.value.toString() == "Company Name ") {
+          if (headRow[0]?.value.toString() == "Item Name") {
             for (int i = 1; i < table.maxRows; i++) {
               final uuid = const Uuid().v1();
               String time = DateTime.now().toString();
               List<Data?>? firstRow = table.rows[i];
-              if (firstRow[0]?.value != null ||
-                  firstRow[1]?.value != null ||
-                  firstRow[2]?.value != null ||
-                  firstRow[3]?.value != null ||
-                  firstRow[4]?.value != null ||
-                  firstRow[5]?.value != null) {
+              if (firstRow[0]?.value != null) {
                 final data = AllProductDetailModel(
                     docId: uuid,
                     barcodeNumber: "",
@@ -171,13 +161,9 @@ class ExcelController extends GetxController {
                         ? ""
                         : firstRow[0]!.value.toString(),
                     categoryID: "",
-                    categoryName: firstRow[1]?.value.toString() == "null"
-                        ? ""
-                        : firstRow[1]!.value.toString(),
+                    categoryName: '',
                     subcategoryID: "",
-                    subcategoryName: firstRow[2]?.value.toString() == "null"
-                        ? ""
-                        : firstRow[2]!.value.toString(),
+                    subcategoryName: '',
                     inPrice: 0,
                     outPrice: 0,
                     quantityinStock: 0,
@@ -185,16 +171,10 @@ class ExcelController extends GetxController {
                     addedDate: time,
                     authuid: "",
                     unitcategoryID: "",
-                    unitcategoryName: firstRow[3]?.value.toString() == "null"
-                        ? ""
-                        : firstRow[3]!.value.toString(),
-                    packageType: firstRow[4]?.value.toString() == "null"
-                        ? ""
-                        : firstRow[4]!.value.toString(),
+                    unitcategoryName: '',
+                    packageType: '',
                     packageTypeID: "",
-                    companyName: firstRow[5]?.value.toString() == "null"
-                        ? ""
-                        : firstRow[5]!.value.toString(),
+                    companyName: '',
                     companyNameID: "",
                     returnType: "",
                     itemcode: "",

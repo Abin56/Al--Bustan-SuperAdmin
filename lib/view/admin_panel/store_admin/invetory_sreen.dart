@@ -1,9 +1,12 @@
 import 'package:canteen_superadmin_website/controller/store_controller/store_controller.dart';
+import 'package:canteen_superadmin_website/controller/wearhouse_controller/wearhouse_controller.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/storekeeper_details.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/supplier_adding_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/manual_product_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 // import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -50,7 +53,7 @@ class InventoryWidget extends StatelessWidget {
                               image: 'web_images/drawer_images/inventory.png'),
                           sWidtht10,
                           GooglePoppinsWidgets(
-                            text: 'Available Stock',
+                            text: 'All Stocks',
                             fontsize: 20,
                             fontWeight: FontWeight.w500,
                           ),
@@ -63,38 +66,22 @@ class InventoryWidget extends StatelessWidget {
                           sWidtht10,
                           MaterialButton(
                             onPressed: () {
-                              customShowDilogBox(
-                                  context: context,
-                                  title: 'Add Category',
-                                  children: [
-                                    TextField(
-                                      controller: categoryCtr,
-                                      decoration: InputDecoration(
-                                        hintText: 'Category',
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                  actiononTapfuction: () {},
-                                  doyouwantActionButton: true);
+                              Get.to(ProductAddingScreen());
                             },
                             child: Container(
                               height: 40,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: cGreen),
-                              // child: Padding(
-                              //   padding: const EdgeInsets.all(8.0),
-                              //   child: Center(
-                              //     child: GooglePoppinsWidgets(
-                              //         text: "Add Category",
-                              //         fontsize: 14,
-                              //         color: cWhite),
-                              //   ),
-                              // ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(
+                                  child: GooglePoppinsWidgets(
+                                      text: "Add Stock",
+                                      fontsize: 14,
+                                      color: cWhite),
+                                ),
+                              ),
                             ),
                           )
                         ],
@@ -111,13 +98,13 @@ class InventoryWidget extends StatelessWidget {
                             ListViewTableHeaderWidget(
                                 width: 150, headerTitle: 'Item Code'),
                             ListViewTableHeaderWidget(
-                                width: 150, headerTitle: 'Image'),
-                            ListViewTableHeaderWidget(
                                 width: 150, headerTitle: 'Item Name'),
                             ListViewTableHeaderWidget(
-                                width: 150, headerTitle: 'Item Group'),
+                                width: 150, headerTitle: 'Company'),
                             ListViewTableHeaderWidget(
                                 width: 150, headerTitle: "Last Purchase"),
+                            ListViewTableHeaderWidget(
+                                width: 150, headerTitle: 'Price'),
                             ListViewTableHeaderWidget(
                                 width: 150, headerTitle: "On Hand"),
                             ListViewTableHeaderWidget(
@@ -129,7 +116,7 @@ class InventoryWidget extends StatelessWidget {
                             decoration: const BoxDecoration(),
                             child: StreamBuilder(
                                 stream: FirebaseFirestore.instance
-                                    .collection('AllProduct')
+                                    .collection('AllProductStockCollection')
                                     .snapshots(),
                                 builder: (context, snapshot) {
                                   if (snapshot.connectionState ==
@@ -156,18 +143,9 @@ class InventoryWidget extends StatelessWidget {
                                                   snapshot.data!.docs[index]
                                                       .data());
                                           return InventoryTileWidget(
-                                              index: index,
-                                              itemCode:
-                                                  productData.barcodeNumber,
-                                              image: 'image',
-                                              itemName: productData.productname,
-                                              itemGroup:
-                                                  productData.categoryName,
-                                              purchasDate: dateConveter(
-                                                  DateTime.parse(
-                                                      productData.expiryDate)),
-                                              stock: productData.quantityinStock
-                                                  .toString());
+                                            productData: productData,
+                                            index: index,
+                                          );
                                         },
                                         separatorBuilder:
                                             (BuildContext context, int index) {
@@ -316,25 +294,17 @@ class InventoryWidget extends StatelessWidget {
 // }
 
 class InventoryTileWidget extends StatelessWidget {
-  const InventoryTileWidget({
+  InventoryTileWidget({
+    required this.productData,
     required this.index,
-    required this.itemCode,
-    required this.image,
-    required this.itemName,
-    required this.itemGroup,
-    required this.purchasDate,
-    required this.stock,
     super.key,
   });
 
-  final int index;
-  final String itemCode;
-  final String image;
-  final String itemName;
-  final String itemGroup;
-  final String purchasDate;
-  final String stock;
+  final getWarehouseCtr = Get.put(WearHouseController());
 
+  final int index;
+
+  final AllProductDetailModel productData;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -344,40 +314,57 @@ class InventoryTileWidget extends StatelessWidget {
           DataContainerWidget(
             index: index,
             width: 150,
-            headerTitle: itemCode,
+            headerTitle: productData.barcodeNumber,
           ),
           DataContainerWidget(
             index: index,
             width: 150,
-            headerTitle: image,
+            headerTitle: productData.productname,
           ),
           DataContainerWidget(
             index: index,
             width: 150,
-            headerTitle: itemName,
+            headerTitle: productData.categoryName,
           ),
           DataContainerWidget(
             index: index,
             width: 150,
-            headerTitle: itemGroup,
+            headerTitle: dateConveter(DateTime.parse(productData.addedDate)),
           ),
           DataContainerWidget(
             index: index,
             width: 150,
-            headerTitle: purchasDate,
+            headerTitle: productData.inPrice.toString(),
           ),
           DataContainerWidget(
             index: index,
             width: 150,
-            headerTitle: stock,
+            headerTitle: productData.quantityinStock.toString(),
           ),
           PopupMenuButton(
             itemBuilder: (context) {
               return [
                 PopupMenuItem(
-                    onTap: () {},
+                    onTap: () {
+                      customShowDilogBox(
+                        context: context,
+                        title: "Quantity",
+                        children: [
+                          TextFormFiledContainerWidget(
+                              controller: getWarehouseCtr.quantityCtr,
+                              hintText: "Quantity",
+                              title: 'Quantity',
+                              width: 200)
+                        ],
+                        doyouwantActionButton: true,
+                        actiononTapfuction: () {
+                          getWarehouseCtr.editQuantity(productData.docId,
+                              int.parse(getWarehouseCtr.quantityCtr.text));
+                        },
+                      );
+                    },
                     child: GooglePoppinsWidgets(
-                        text: 'Add more details', fontsize: 11)),
+                        text: 'Edit Quantity', fontsize: 11)),
                 PopupMenuItem(
                     onTap: () {
                       customShowDilogBox(

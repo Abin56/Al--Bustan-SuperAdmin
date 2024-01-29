@@ -69,11 +69,11 @@ class DrawerSuperAdmin extends StatelessWidget {
             ListTile(
               leading: const DashBoardIconWidget(
                   image: 'web_images/drawer_images/avilable_products.png'),
-              tileColor: selectedIndex == 2
+              tileColor: selectedIndex == 1
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
               onTap: () {
-                index = 2;
+                index = 1;
                 onTap.call(index);
               },
               title: Row(
@@ -123,11 +123,11 @@ class DrawerSuperAdmin extends StatelessWidget {
             ListTile(
               leading: const DashBoardIconWidget(
                   image: 'web_images/drawer_images/categorization.png'),
-              tileColor: selectedIndex == 5
+              tileColor: selectedIndex == 2
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
               onTap: () {
-                index = 5;
+                index = 2;
                 onTap.call(index);
               },
               title: Row(
@@ -153,11 +153,11 @@ class DrawerSuperAdmin extends StatelessWidget {
             ListTile(
               leading: const DashBoardIconWidget(
                   image: 'web_images/drawer_images/all_orders.png'),
-              tileColor: selectedIndex == 1
+              tileColor: selectedIndex == 5
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
               onTap: () {
-                index = 1;
+                index = 5;
                 onTap.call(index);
               },
               title: Row(
@@ -171,11 +171,11 @@ class DrawerSuperAdmin extends StatelessWidget {
             ListTile(
               leading: const DashBoardIconWidget(
                   image: 'web_images/drawer_images/delivery_request.png'),
-              tileColor: selectedIndex == 2
+              tileColor: selectedIndex == 6
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
               onTap: () {
-                index = 2;
+                index = 6;
                 onTap.call(index);
               },
               title: Row(
@@ -215,11 +215,11 @@ class DrawerSuperAdmin extends StatelessWidget {
             ListTile(
               leading: const DashBoardIconWidget(
                   image: 'web_images/drawer_images/order_pending.png'),
-              tileColor: selectedIndex == 3
+              tileColor: selectedIndex == 7
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
               onTap: () {
-                index = 3;
+                index = 7;
                 onTap.call(index);
               },
               title: Row(
@@ -233,11 +233,11 @@ class DrawerSuperAdmin extends StatelessWidget {
             ListTile(
               leading: const DashBoardIconWidget(
                   image: 'web_images/drawer_images/picked_orders.png'),
-              tileColor: selectedIndex == 4
+              tileColor: selectedIndex == 8
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
               onTap: () {
-                index = 4;
+                index = 8;
                 onTap.call(index);
               },
               title: Row(
@@ -251,11 +251,11 @@ class DrawerSuperAdmin extends StatelessWidget {
             ListTile(
               leading: const DashBoardIconWidget(
                   image: 'web_images/drawer_images/delivered_success.png'),
-              tileColor: selectedIndex == 5
+              tileColor: selectedIndex == 9
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
               onTap: () {
-                index = 5;
+                index = 9;
                 onTap.call(index);
               },
               title: Row(
@@ -269,64 +269,21 @@ class DrawerSuperAdmin extends StatelessWidget {
           ],
         ),
         sHeight10,
-        ExpansionTile(
+        ListTile(
           leading: const DashBoardIconWidget(
               image: 'web_images/drawer_images/users.png'),
+          tileColor: selectedIndex == 10
+              ? themeColorBlue.withOpacity(0.1)
+              : Colors.transparent,
+          onTap: () {
+            index = 10;
+            onTap.call(index);
+          },
           title: GooglePoppinsWidgets(
             text: "USERS REQUEST",
             fontsize: 14,
             fontWeight: FontWeight.bold,
           ),
-          children: [
-            ListTile(
-              tileColor: selectedIndex == 10
-                  ? themeColorBlue.withOpacity(0.1)
-                  : Colors.transparent,
-              onTap: () {
-                index = 10;
-                onTap.call(index);
-              },
-              title: DashboardTextFontWidget(
-                title: 'Warehouse Admin',
-              ),
-            ),
-            ListTile(
-              tileColor: selectedIndex == 10
-                  ? themeColorBlue.withOpacity(0.1)
-                  : Colors.transparent,
-              onTap: () {
-                index = 10;
-                onTap.call(index);
-              },
-              title: DashboardTextFontWidget(
-                title: 'Store Admin',
-              ),
-            ),
-            ListTile(
-              tileColor: selectedIndex == 10
-                  ? themeColorBlue.withOpacity(0.1)
-                  : Colors.transparent,
-              onTap: () {
-                index = 10;
-                onTap.call(index);
-              },
-              title: DashboardTextFontWidget(
-                title: 'Delivery Admin',
-              ),
-            ),
-            ListTile(
-              tileColor: selectedIndex == 10
-                  ? themeColorBlue.withOpacity(0.1)
-                  : Colors.transparent,
-              onTap: () {
-                index = 10;
-                onTap.call(index);
-              },
-              title: DashboardTextFontWidget(
-                title: 'Employees',
-              ),
-            ),
-          ],
         ),
         sHeight10,
         ExpansionTile(

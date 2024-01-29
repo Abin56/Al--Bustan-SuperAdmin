@@ -190,40 +190,52 @@ class ScendRowoneWidget extends StatelessWidget {
                   .collection('CanteenList')
                   .snapshots(),
               builder: (context, snapshot) {
-                return ListView.separated(
-                    itemBuilder: (context, index) {
-                      final canteenData = CanteenModel.fromMap(
-                          snapshot.data!.docs[index].data());
-                      return Container(
-                        decoration: BoxDecoration(
-                          color: cWhite,
-                          border: Border.all(color: cGrey),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(5),
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage(canteenData.image),
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.data!.docs.isEmpty) {
+                  return Center(
+                    child: GooglePoppinsWidgets(text: "No data", fontsize: 15),
+                  );
+                } else if (!snapshot.hasData) {
+                  return Center(
+                    child: GooglePoppinsWidgets(text: "No data", fontsize: 15),
+                  );
+                } else {
+                  return ListView.separated(
+                      itemBuilder: (context, index) {
+                        final canteenData = CanteenModel.fromMap(
+                            snapshot.data!.docs[index].data());
+                        return Container(
+                          decoration: BoxDecoration(
+                            color: cWhite,
+                            border: Border.all(color: cGrey),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: NetworkImage(canteenData.image),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              sWidtht10,
-                              GooglePoppinsWidgets(
-                                  text: canteenData.schoolName, fontsize: 14),
-                            ],
+                                sWidtht10,
+                                GooglePoppinsWidgets(
+                                    text: canteenData.schoolName, fontsize: 14),
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return sHeight10;
-                    },
-                    itemCount: snapshot.data!.docs.length);
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return sHeight10;
+                      },
+                      itemCount: snapshot.data!.docs.length);
+                }
               },
             ),
           ),

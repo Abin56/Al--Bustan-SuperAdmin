@@ -8,7 +8,7 @@ class EmployeeController extends GetxController {
   List<EmployeeProfileCreateModel> employeeList = [];
   Future<List<EmployeeProfileCreateModel>> fetchEmployees() async {
     final firebase =
-        await FirebaseFirestore.instance.collection('EmployeeProfile').get();
+        await FirebaseFirestore.instance.collection('AllUsersCollection').get();
 
     for (var i = 0; i < firebase.docs.length; i++) {
       final list = firebase.docs

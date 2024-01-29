@@ -86,7 +86,7 @@ class ProductScreen extends StatelessWidget {
               Expanded(
                 child: StreamBuilder(
                     stream: getDeliveryCtr.firestore
-                        .collection("AllProduct")
+                        .collection("AllProductStockCollection")
                         .snapshots(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
@@ -149,7 +149,7 @@ class ProductScreen extends StatelessWidget {
                               children: [CartWiget()],
                               actiononTapfuction: () async {
                                 // final newlist =
-                                    await getDeliveryCtr.getCartList();
+                                await getDeliveryCtr.getCartList();
                                 getDeliveryCtr.cartToDeliveryOrder();
                               },
                               doyouwantActionButton: true,
@@ -248,6 +248,14 @@ class DeliveryHeadWidget extends StatelessWidget {
                   child: Center(
                     child: Text(
                       "Product Name",
+                      style: AppTextStyles.textStyle1,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      "Company",
                       style: AppTextStyles.textStyle1,
                     ),
                   ),
@@ -372,6 +380,17 @@ class DeliveryProductTile extends StatelessWidget {
                 child: Center(
                   child: Text(
                     data.productname,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Center(
+                  child: Text(
+                    data.companyName,
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

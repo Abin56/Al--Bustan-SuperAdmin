@@ -3,8 +3,9 @@
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/appbar/app_bar.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/drawer/drawer.dart';
-import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/all_stock_details_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/category_creation_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/low_stock_alert_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/returns_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/store_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
@@ -111,7 +112,8 @@ class _StoreAdminPanelScreenState extends State<StoreAdminPanelScreen> {
 
 List<Widget> pages = [
   StoreDashboardContainer(), //..0
-  CategoryCreationWidget(),
-  // InventoryWidget()
-  AllStockDetails(),
+  const CategoryCreationWidget(),
+  InventoryWidget(),
+  const LowStockAlertWidget(),
+  const ReturnWidget()
 ];

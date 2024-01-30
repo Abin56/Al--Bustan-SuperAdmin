@@ -1,5 +1,5 @@
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
-import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:flutter/material.dart';
 
 class BackButtonContainerWidget extends StatelessWidget {
@@ -16,8 +16,27 @@ class BackButtonContainerWidget extends StatelessWidget {
       child: Container(
         height: 30,
         width: 80,
-        decoration: const BoxDecoration(
-          color: themeColorBlue,
+        decoration: BoxDecoration(
+          // color: AppColors.greenColor,
+          gradient: const LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            stops: [
+              0.1,
+              0.4,
+              0.6,
+              0.9,
+            ],
+            colors: [
+              Color(0xFF35B2A2),
+              Color(0xFF11967F),
+              Color(0xFF06876A),
+              Color(0xFF036952),
+            ],
+          ),
+          border: Border.all(
+            width: 1,
+          ),
         ),
         child: Center(
           child: GooglePoppinsWidgets(

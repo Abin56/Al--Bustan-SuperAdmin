@@ -1,21 +1,26 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../fonts/google_poppins.dart';
+import '../../../core/fonts/google_poppins.dart';
 
 class ButtonContainerWidget extends StatelessWidget {
   void Function() onTap;
   final String text;
   final double width;
-    final double height;
-    final double fontSize;
+  final double height;
+  final double fontSize;
+  final FontWeight? fontWeight;
 
-
-
-
-   ButtonContainerWidget({super.key,required this.text ,required this.width,required this.height,required this. fontSize,required this.onTap});
+  ButtonContainerWidget(
+      {super.key,
+      required this.text,
+      required this.width,
+      required this.height,
+      this.fontWeight,
+      required this.fontSize,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +37,7 @@ class ButtonContainerWidget extends StatelessWidget {
           child: GooglePoppinsWidgets(
             textAlign: TextAlign.center,
             color: cWhite,
-            fontWeight: FontWeight.w500,
+            fontWeight: fontWeight,
             text: text,
             fontsize: fontSize,
           ),
@@ -42,17 +47,17 @@ class ButtonContainerWidget extends StatelessWidget {
   }
 }
 
-
 class ColorButtonContainerWidget extends StatelessWidget {
   final String text;
   final Color color;
 
-  const ColorButtonContainerWidget({super.key, required this.text,required this.color});
+  const ColorButtonContainerWidget(
+      {super.key, required this.text, required this.color});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration:  BoxDecoration(
+      decoration: BoxDecoration(
         color: color,
         borderRadius: const BorderRadius.horizontal(),
       ),
@@ -70,4 +75,3 @@ class ColorButtonContainerWidget extends StatelessWidget {
     );
   }
 }
-

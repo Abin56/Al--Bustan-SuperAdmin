@@ -42,15 +42,20 @@ dependencies:
   firebase_storage:
   google_fonts:
   google_sign_in:
-  image_picker:
+  image_picker: ^1.0.7
   lottie:
   shared_preferences:
   uuid:
+  text_scroll:
   get:
+  firebase_app_check:
   sidebar_drawer:
   fluttertoast:
   syncfusion_flutter_charts: ^21.2.4
   intl:
+  excel: ^4.0.2
+  file_picker: ^6.1.1
+  awesome_side_sheet:
 
 dev_dependencies:
   flutter_test:
@@ -75,18 +80,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/drawer_images/dashboard.png
-    - assets/drawer_images/inventory.png
-    - assets/drawer_images/invoice.png
-    - assets/drawer_images/product-return.png
-    - assets/drawer_images/purchase.png
-    - assets/drawer_images/sale.png
-    - assets/drawer_images/bill.png
-    - assets/drawer_images/customer.png
-    - assets/drawer_images/supplier.png
-    - assets/AL - Bustan.png
-    - assets/user.png
-    - assets/images/
+    - web_images/drawer_images/
+    - web_images/
+    - web_images/images/
+    - web_images/home/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

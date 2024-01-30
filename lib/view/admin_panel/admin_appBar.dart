@@ -1,8 +1,8 @@
 import 'package:canteen_superadmin_website/view/admin_panel/employee_request/employee_request.dart';
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
-import 'package:canteen_superadmin_website/view/constant/constant.validate.dart';
-import 'package:canteen_superadmin_website/view/fonts/google_poppins.dart';
-import 'package:canteen_superadmin_website/view/fonts/text_widget.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
+import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/core/fonts/text_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
@@ -72,8 +72,8 @@ class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
                   height: 40,
                   width: 40,
                   decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(14)),
-                      color: cLateGrey),
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                      color: AppColors.backGroundColor),
                   child: const DrawerIcon(),
                 ),
               ],
@@ -82,9 +82,12 @@ class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
             SizedBox(
               height: 40,
               width: sizeW * 0.3,
-              child: const CupertinoSearchTextField(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
+              child: CupertinoSearchTextField(
                 placeholder: 'Search anything',
+                decoration: BoxDecoration(
+                  color: AppColors.lightGreyColor,
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                ),
               ),
             ),
             const Spacer(),
@@ -241,7 +244,7 @@ class _AppBarAdminPanelState extends State<AppBarAdminPanel> {
                 child: Row(children: [
                   const CircleAvatar(
                     radius: 15,
-                    backgroundImage: AssetImage('assets/user.png'),
+                    backgroundImage: AssetImage('web_images/user.png'),
                   ),
                   sWidtht10,
                   GooglePoppinsWidgets(text: "AL BUSTAN", fontsize: 11),

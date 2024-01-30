@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:canteen_superadmin_website/view/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
 
 class DashboardItem extends StatelessWidget {
   final IconData icon;
@@ -22,8 +22,8 @@ class DashboardItem extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: 40,
-          height: 40, 
+          width: 50,
+          height: 50,
           decoration: BoxDecoration(
             color: bgColor,
             borderRadius: BorderRadius.circular(16),
@@ -35,11 +35,13 @@ class DashboardItem extends StatelessWidget {
           child: Icon(
             icon,
             color: iconColor,
+            size: 28,
           ),
         ),
+        SizedBox(width: 10),
         Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          // mainAxisAlignment: MainAxisAlignment.start,
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               title,
@@ -47,12 +49,13 @@ class DashboardItem extends StatelessWidget {
                 color: AppColors.greyColor,
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
-        const    SizedBox(height: 5),
+            const SizedBox(height: 5),
             Text(
               value,
-              style:const TextStyle(
+              style: const TextStyle(
                 fontSize: 26,
                 fontWeight: FontWeight.w900,
               ),

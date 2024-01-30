@@ -1,5 +1,7 @@
 import 'package:awesome_side_sheet/Enums/sheet_position.dart';
 import 'package:awesome_side_sheet/side_sheet.dart';
+import 'package:canteen_superadmin_website/core/core.dart';
+import 'package:canteen_superadmin_website/model/notification_model/notification_model.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/employee_request/employee_request.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
@@ -162,46 +164,34 @@ class _AppBarWarehouseAdminState extends State<AppBarWarehouseAdmin> {
                                     ),
                                   ),
                                 ),
-                                body: const Column(
-                                  children: [
-                                    NotificationMessageTile(
-                                      icon: Icons.warning_rounded,
-                                      messageText:
-                                          'Wait for the data import operation to complete adasdasdqadhasdgvsaddsa   hasvbdab sjd saduigasd sadugasd ',
-                                      headerText: 'WARNING !',
-                                      whiteshadeColor:
-                                          Color.fromARGB(255, 241, 134, 120),
-                                      containerColor:
-                                          Color.fromARGB(255, 237, 95, 75),
-                                    ),
-                                    SizedBox(
-                                      height: 02,
-                                    ),
-                                    NotificationMessageTile(
-                                      messageText:
-                                          'Wait for the data import operation to complete adasdasdqadhasdgvsaddsa   hasvbdab sjd saduigasd sadugasd ',
-                                      headerText: 'INFO',
-                                      icon: Icons.info_outline,
-                                      whiteshadeColor:
-                                          Color.fromARGB(255, 63, 162, 232),
-                                      containerColor:
-                                          Color.fromARGB(255, 4, 130, 225),
-                                    ),
-                                    SizedBox(
-                                      height: 02,
-                                    ),
-                                    NotificationMessageTile(
-                                      messageText:
-                                          'Wait for the data import operation to complete adasdasdqadhasdgvsaddsa   hasvbdab sjd saduigasd sadugasd ',
-                                      headerText: 'Success',
-                                      icon: Icons.check_circle_outline_rounded,
-                                      whiteshadeColor:
-                                          Color.fromARGB(255, 127, 203, 153),
-                                      containerColor:
-                                          Color.fromARGB(255, 84, 187, 119),
-                                    ),
-                                  ],
-                                ),
+                                body: StreamBuilder(
+                                    stream: dataserver
+                                        .collection('Notification_Collection')
+                                        .snapshots(),
+                                    builder: (context, snap) {
+                                      return ListView.separated(
+                                          itemBuilder: (context, index) {
+                                            final data =
+                                                NotificationModel.fromMap(snap
+                                                    .data!.docs[index]
+                                                    .data());
+                                            return NotificationMessageTile(
+                                              icon: data.icon,
+                                              messageText: data.messageText,
+                                              headerText: data.headerText,
+                                              whiteshadeColor:
+                                                  data.whiteshadeColor,
+                                              containerColor:
+                                                  data.containerColor,
+                                            );
+                                          },
+                                          separatorBuilder: (context, index) {
+                                            return const SizedBox(
+                                              height: 01,
+                                            );
+                                          },
+                                          itemCount: snap.data!.docs.length);
+                                    }),
                                 context: context,
                                 sheetPosition: SheetPosition.right,
                               );

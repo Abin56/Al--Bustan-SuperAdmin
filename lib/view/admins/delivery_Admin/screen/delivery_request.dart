@@ -405,8 +405,7 @@ class EmployeeRequestProductDetailsWidget extends StatelessWidget {
                                   child: Center(
                                     child: StreamBuilder(
                                         stream: FirebaseFirestore.instance
-                                            .collection(
-                                                'AllProductStockCollection')
+                                            .collection('AvailableProducts')
                                             .doc(productdata.docId)
                                             .snapshots(),
                                         builder: (context, qtySnapshot) {

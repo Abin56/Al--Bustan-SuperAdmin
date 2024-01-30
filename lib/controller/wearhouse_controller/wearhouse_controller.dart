@@ -31,7 +31,9 @@ class WearHouseController extends GetxController {
   RxString productPackageID = ''.obs;
   RxBool isLoading = false.obs;
 
-  // List<RxBool> enableEdit = [];
+  TextEditingController stockNameCtr = TextEditingController();
+
+  // RxBool isStockEmpty = false.obs;
 
   int stockCollectionLenth = 0;
 
@@ -253,4 +255,25 @@ class WearHouseController extends GetxController {
   disenableEdit(String docId) {
     dataserver.collection('Stock').doc(docId).update({'isedit': false});
   }
+
+  deleteAllStock() async {
+    final stockData = await dataserver.collection('Stock').get();
+
+    final allStockList = stockData.docs
+        .map((e) => AllProductDetailModel.fromMap(e.data()))
+        .toList();
+
+    for (AllProductDetailModel element in allStockList) {
+      dataserver.collection('Stock').doc(element.docId).delete();
+    }
+  }
+
+  // Future<void> checkStockData() async {
+  //   final stockData = await dataserver.collection("Stock").get();
+  //   if (stockData.docs.isEmpty) {
+  //     isStockEmpty.value = true;
+  //   } else {
+  //     isStockEmpty.value = false;
+  //   }
+  // }
 }

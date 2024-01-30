@@ -12,7 +12,6 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await SharedPreferencesHelper.initPrefs();
-
   runApp(const MyApp());
 }
 
@@ -24,6 +23,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       scrollBehavior: MyCustomScrollBehavior(),
       debugShowCheckedModeBanner: false,
+      // home: HomeScreen(),
       home: WelcomeScreen(),
       // home: Scaffold(
       //   body: Center(

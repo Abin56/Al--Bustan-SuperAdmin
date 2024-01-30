@@ -14,8 +14,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class InventoryWidget extends StatelessWidget {
-  InventoryWidget({super.key});
+class AvailableStockWidget extends StatelessWidget {
+  AvailableStockWidget({super.key});
 
   final getStroreCtr = Get.put(StoreController());
 
@@ -53,7 +53,7 @@ class InventoryWidget extends StatelessWidget {
                               image: 'web_images/drawer_images/inventory.png'),
                           sWidtht10,
                           GooglePoppinsWidgets(
-                            text: 'All Stocks',
+                            text: 'Available Stocks',
                             fontsize: 20,
                             fontWeight: FontWeight.w500,
                           ),
@@ -64,26 +64,26 @@ class InventoryWidget extends StatelessWidget {
                             child: const CupertinoSearchTextField(),
                           ),
                           sWidtht10,
-                          MaterialButton(
-                            onPressed: () {
-                              Get.to(ProductAddingScreen());
-                            },
-                            child: Container(
-                              height: 40,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: cGreen),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Center(
-                                  child: GooglePoppinsWidgets(
-                                      text: "Add Stock",
-                                      fontsize: 14,
-                                      color: cWhite),
-                                ),
-                              ),
-                            ),
-                          )
+                          // MaterialButton(
+                          //   onPressed: () {
+                          //     Get.to(ProductAddingScreen());
+                          //   },
+                          //   child: Container(
+                          //     height: 40,
+                          //     decoration: BoxDecoration(
+                          //         borderRadius: BorderRadius.circular(10),
+                          //         color: cGreen),
+                          //     child: Padding(
+                          //       padding: const EdgeInsets.all(8.0),
+                          //       child: Center(
+                          //         child: GooglePoppinsWidgets(
+                          //             text: "Add Stock",
+                          //             fontsize: 14,
+                          //             color: cWhite),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // )
                         ],
                       ),
                     ),
@@ -104,9 +104,9 @@ class InventoryWidget extends StatelessWidget {
                             ListViewTableHeaderWidget(
                                 width: 150, headerTitle: "Last Purchase"),
                             ListViewTableHeaderWidget(
-                                width: 150, headerTitle: 'Category'),
+                                width: 150, headerTitle: 'Price'),
                             ListViewTableHeaderWidget(
-                                width: 150, headerTitle: "Subcategory"),
+                                width: 150, headerTitle: "On Hand"),
                             ListViewTableHeaderWidget(
                                 width: 150, headerTitle: "Action"),
                           ],
@@ -116,7 +116,7 @@ class InventoryWidget extends StatelessWidget {
                             decoration: const BoxDecoration(),
                             child: StreamBuilder(
                                 stream: FirebaseFirestore.instance
-                                    .collection('AllProductStockCollection')
+                                    .collection('AvailableProducts')
                                     .snapshots(),
                                 builder: (context, snapshot) {
                                   if (snapshot.connectionState ==
@@ -324,7 +324,7 @@ class InventoryTileWidget extends StatelessWidget {
           DataContainerWidget(
             index: index,
             width: 150,
-            headerTitle: productData.categoryName,
+            headerTitle: productData.companyName,
           ),
           DataContainerWidget(
             index: index,
@@ -334,12 +334,12 @@ class InventoryTileWidget extends StatelessWidget {
           DataContainerWidget(
             index: index,
             width: 150,
-            headerTitle: productData.categoryName.toString(),
+            headerTitle: productData.inPrice.toString(),
           ),
           DataContainerWidget(
             index: index,
             width: 150,
-            headerTitle: productData.subcategoryName.toString(),
+            headerTitle: productData.quantityinStock.toString(),
           ),
           PopupMenuButton(
             itemBuilder: (context) {

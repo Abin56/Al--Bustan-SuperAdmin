@@ -173,7 +173,7 @@ class UserLoginController extends GetxController {
           isLoading.value = false;
           emailcontroller.clear();
           passwordcontroller.clear();
-          Get.offAll(const WareHouseAdminPanelScreen());
+          Get.offAll( WareHouseAdminPanelScreen());
         } else {
           showToast(msg: "You are not a WarehouseAdmin");
           isLoading.value = false;
@@ -289,7 +289,7 @@ class UserLoginController extends GetxController {
     if (employedata.data() != null) {
       UserCredentialsController.adminmodel =
           AdminModel.fromMap(employedata.data()!);
-      Get.offAll(() => const WareHouseAdminPanelScreen());
+      Get.offAll(() =>  WareHouseAdminPanelScreen());
     } else {
       showToast(msg: "Please login again");
       Get.offAll(() => const LoginSection());

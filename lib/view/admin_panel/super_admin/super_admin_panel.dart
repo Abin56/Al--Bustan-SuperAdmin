@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/all_stock_details_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/all_stock_details_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/screen/super_admin_dashboard.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/super_admin/super_admin_drawer.dart';
 import 'package:flutter/material.dart';
@@ -121,7 +122,8 @@ class _AdminHomeScreenState extends State<SuperAdminAdminHomeScreen> {
 List<Widget> pages = [
   SuperAdminDashboardContainer(),
   // const DashboardContainer(),
-  InventoryWidget(),
+  // InventoryWidget(),
+  AllStockDetails(),
   StoreRequetWidget(),
   CategoryWidget(),
   SubCategoryWidget(),
@@ -139,7 +141,7 @@ List<Widget> pages = [
     child: DeliveryScreen(),
   ),
   const Center(child: DeliveryRequest()),
-  AllStockDetailsWidget(),
+  // AllStockDetailsWidget(),
   SuperAdminDashboardContainer(),
   Center(
     child: Text(sideMenu[10]),

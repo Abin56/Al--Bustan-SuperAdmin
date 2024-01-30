@@ -344,6 +344,7 @@ class SuperAdminDashboardContainer extends StatelessWidget {
               Get.to(SuppliersProfile());
             },
             icon: Icons.more_vert_outlined,
+            onpressedViewAll: () {},
           ),
         ),
       ),

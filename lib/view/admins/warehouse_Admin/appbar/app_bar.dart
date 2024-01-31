@@ -176,7 +176,7 @@ class _AppBarWarehouseAdminState extends State<AppBarWarehouseAdmin> {
                                                     .data!.docs[index]
                                                     .data());
                                             return NotificationMessageTile(
-                                              icon: data.icon,
+                                              // icon: data.icon,
                                               messageText: data.messageText,
                                               headerText: data.headerText,
                                               whiteshadeColor:

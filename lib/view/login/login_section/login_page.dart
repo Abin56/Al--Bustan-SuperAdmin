@@ -1,8 +1,5 @@
 import 'package:canteen_superadmin_website/controller/login_controller/login_controller.dart';
-import 'package:canteen_superadmin_website/view/admins/delivery_Admin/delivery_adminpanel.dart';
-import 'package:canteen_superadmin_website/view/admins/store_Admin/storeadmin_panel.dart';
-import 'package:canteen_superadmin_website/view/admins/super_Admin/super_adminpanel.dart';
-import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/warehouse_adminpanel.dart';
+
 import 'package:canteen_superadmin_website/view/login/login_section/login_textformfeild.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/loginsubmitbutton.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
@@ -13,7 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginSection extends StatefulWidget {
-  const LoginSection({super.key});
+    final UserLoginController userLoginController =
+      Get.put(UserLoginController());
+   LoginSection({super.key});
 
   @override
   State<LoginSection> createState() => _LoginSectionState();
@@ -166,44 +165,6 @@ class _LoginSectionState extends State<LoginSection> {
                       Padding(
                         padding: const EdgeInsets.only(top: 10),
                         child: loginWidget[5],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10, bottom: 10),
-                        child: loginWidget[6],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Row(
-                          children: [
-                            Expanded(
-                                child: Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 10, left: 10),
-                              child: loginWidget[7],
-                            )),
-                            Expanded(
-                                child: Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 10, left: 10),
-                              child: loginWidget[8],
-                            )),
-                          ],
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 10, left: 10, right: 10),
-                              child: loginWidget[8],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: loginWidget[9],
                       ),
                     ],
                   ),

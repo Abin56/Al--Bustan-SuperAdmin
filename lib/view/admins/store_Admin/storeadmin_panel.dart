@@ -7,6 +7,7 @@ import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/catego
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/low_stock_alert_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/returns_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/store_dashboard.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/available_stock.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 
@@ -115,5 +116,6 @@ List<Widget> pages = [
   const CategoryCreationWidget(),
   InventoryWidget(),
   const LowStockAlertWidget(),
-  const ReturnWidget()
+  const ReturnWidget(),
+  AvailableStockWidget()
 ];

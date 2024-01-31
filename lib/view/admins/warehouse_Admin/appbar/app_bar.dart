@@ -1,8 +1,13 @@
+import 'package:awesome_side_sheet/Enums/sheet_position.dart';
+import 'package:awesome_side_sheet/side_sheet.dart';
+import 'package:canteen_superadmin_website/core/core.dart';
+import 'package:canteen_superadmin_website/model/notification_model/notification_model.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/employee_request/employee_request.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/core/fonts/text_widget.dart';
+import 'package:canteen_superadmin_website/view/pages/notification_messagetile/notification_messagetile.dart';
 import 'package:canteen_superadmin_website/view/utils/shared_pref/user_auth/user_credentials.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -92,104 +97,7 @@ class _AppBarWarehouseAdminState extends State<AppBarWarehouseAdmin> {
               ),
             ),
             const Spacer(),
-            // SizedBox(
-            //   width: 109,
-            //   child: Column(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //       Row(
-            //         children: [
-            //           Column(
-            //             crossAxisAlignment: CrossAxisAlignment.end,
-            //             children: [
-            //               const Text(
-            //                 'Stevne Zone',
-            //                 style: TextStyle(fontSize: 12),
-            //               ),
-            //               Padding(
-            //                 padding: const EdgeInsets.only(right: 0),
-            //                 child: Text(
-            //                   'Admin',
-            //                   style: TextStyle(
-            //                       color: cBlack.withOpacity(0.5),
-            //                       fontSize: 10.7),
-            //                 ),
-            //               ),
-            //             ],
-            //           ),
-            //           IconButton(
-            //               focusNode: textButtonFocusNode2,
-            //               onPressed: () {
-            //                 // ResponsiveWebSite.isDesktop(context)
-            //                 //     ? textButtonFocusNode2.requestFocus()
-            //                 //     : appBarAdminBox(context);
-            //                 showOverlay = true;
-            //               },
-            //               icon: const Icon(
-            //                 Icons.arrow_drop_down,
-            //                 size: 18,
-            //                 color: cBlack,
-            //               )),
-            //         ],
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            // CircleAvatar(
-            //   backgroundColor: Colors.transparent,
-            //   radius: 20,
-            //   child: Image.asset(
-            //     'assests/png/avathar.png',
-            //     fit: BoxFit.cover,
-            //   ),
-            // ),
-            // SizedBox(
-            //   width: 70,
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.end,
-            //     children: [
-            //       Stack(
-            //         children: [
-            //           Padding(
-            //             padding: const EdgeInsets.only(top: 15, right: 10),
-            //             child: IconButton(
-            //                 focusNode: textButtonFocusNode,
-            //                 onPressed: () {
-            //                   // if (val) {
-            //                   // ResponsiveWebSite.isDesktop(context)
-            //                   //     ? textButtonFocusNode.requestFocus()
-            //                   //     : appBarMailBox(context);
-            //                   showOverlay = true;
-            //                   // }
-            //                 },
-            //                 icon: Icon(
-            //                   Icons.mail_outline_outlined,
-            //                   color: cBlack.withOpacity(0.4),
-            //                 )),
-            //           ),
-            //           Padding(
-            //             padding: const EdgeInsets.only(top: 07, left: 22),
-            //             child: CircleAvatar(
-            //               backgroundColor: Colors.white,
-            //               radius: 12,
-            //               child: CircleAvatar(
-            //                 backgroundColor:
-            //                     const Color.fromARGB(255, 42, 215, 197),
-            //                 radius: 10,
-            //                 child: GooglePoppinsWidgets(
-            //                   text: '5',
-            //                   fontsize: 11,
-            //                   fontWeight: FontWeight.w600,
-            //                   color: cWhite,
-            //                 ),
-            //               ),
-            //             ),
-            //           ),
-            //         ],
-            //       ),
-            //     ],
-            //   ),
-            // ),
+
             Tooltip(
               preferBelow: false,
               decoration: BoxDecoration(
@@ -222,6 +130,71 @@ class _AppBarWarehouseAdminState extends State<AppBarWarehouseAdmin> {
                         child: IconButton(
                             focusNode: textButtonFocusNode1,
                             onPressed: () {
+                              aweSideSheet(
+                                header: DefaultTabController(
+                                  length: 2,
+                                  child: SizedBox(
+                                    height: 80,
+                                    child: AppBar(
+                                      bottom: TabBar(
+                                        // indicatorColor: Colors.grey,
+                                        labelColor: Colors.black,
+                                        unselectedLabelColor: Colors.grey,
+                                        tabs: [
+                                          Tab(
+                                            //icon: const Icon(Icons.production_quantity_limits_rounded),
+                                            child: GooglePoppinsWidgets(
+                                              text: "All Messages",
+                                              fontsize: 12,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          Tab(
+                                            child: GooglePoppinsWidgets(
+                                              text: "Warings",
+                                              fontsize: 12,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                            // icon: Icon(
+                                            //   Icons.location_history,
+                                            // ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                body: StreamBuilder(
+                                    stream: dataserver
+                                        .collection('Notification_Collection')
+                                        .snapshots(),
+                                    builder: (context, snap) {
+                                      return ListView.separated(
+                                          itemBuilder: (context, index) {
+                                            final data =
+                                                NotificationModel.fromMap(snap
+                                                    .data!.docs[index]
+                                                    .data());
+                                            return NotificationMessageTile(
+                                              // icon: data.icon,
+                                              messageText: data.messageText,
+                                              headerText: data.headerText,
+                                              whiteshadeColor:
+                                                  data.whiteshadeColor,
+                                              containerColor:
+                                                  data.containerColor,
+                                            );
+                                          },
+                                          separatorBuilder: (context, index) {
+                                            return const SizedBox(
+                                              height: 01,
+                                            );
+                                          },
+                                          itemCount: snap.data!.docs.length);
+                                    }),
+                                context: context,
+                                sheetPosition: SheetPosition.right,
+                              );
                               showOverlay = true;
                               //.................... Notification
                               // ResponsiveWebSite.isDesktop(context)

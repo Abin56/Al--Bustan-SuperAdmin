@@ -178,7 +178,7 @@ class UserLoginController extends GetxController {
           isLoading.value = false;
           emailcontroller.clear();
           passwordcontroller.clear();
-          Get.offAll(const WareHouseAdminPanelScreen());
+          Get.offAll( WareHouseAdminPanelScreen());
         } else {
           showToast(msg: "You are not a WarehouseAdmin");
           isLoading.value = false;
@@ -203,7 +203,7 @@ class UserLoginController extends GetxController {
     await Future.delayed(const Duration(seconds: 2));
     log("message   .... ${UserCredentialsController.userRole}");
     if (auth.currentUser == null) {
-      Get.offAll(() => const LoginSection());
+      Get.offAll(() =>  LoginSection());
     } else {
       if (UserCredentialsController.userRole == 'superadmin') {
         await checkSuperAdmin(auth);
@@ -214,9 +214,9 @@ class UserLoginController extends GetxController {
       } else if (UserCredentialsController.userRole == 'storeadmin') {
         await checkStoreAdmin(auth);
       } else if (UserCredentialsController.userRole == 'superadmin') {
-        Get.offAll(() => const LoginSection());
+        Get.offAll(() =>  LoginSection());
       } else {
-        Get.offAll(() => const LoginSection());
+        Get.offAll(() =>  LoginSection());
       }
     }
   }
@@ -249,7 +249,7 @@ class UserLoginController extends GetxController {
       Get.offAll(() => const SuperAdminPanelScreen());
     } else {
       showToast(msg: "Please login again");
-      Get.offAll(() => const LoginSection());
+      Get.offAll(() =>  LoginSection());
     }
   }
 
@@ -265,7 +265,7 @@ class UserLoginController extends GetxController {
       Get.offAll(() => const DeliveryAdminPanelScreen());
     } else {
       showToast(msg: "Please login again");
-      Get.offAll(() => const LoginSection());
+      Get.offAll(() =>  LoginSection());
     }
   }
 
@@ -281,7 +281,7 @@ class UserLoginController extends GetxController {
       Get.offAll(() => const StoreAdminPanelScreen());
     } else {
       showToast(msg: "Please login again");
-      Get.offAll(() => const LoginSection());
+      Get.offAll(() =>  LoginSection());
     }
   }
 
@@ -294,10 +294,10 @@ class UserLoginController extends GetxController {
     if (employedata.data() != null) {
       UserCredentialsController.adminmodel =
           AdminModel.fromMap(employedata.data()!);
-      Get.offAll(() => const WareHouseAdminPanelScreen());
+      Get.offAll(() =>  WareHouseAdminPanelScreen());
     } else {
       showToast(msg: "Please login again");
-      Get.offAll(() => const LoginSection());
+      Get.offAll(() =>  LoginSection());
     }
   }
 }

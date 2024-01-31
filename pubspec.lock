@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  awesome_side_sheet:
+    dependency: "direct main"
+    description:
+      name: awesome_side_sheet
+      sha256: c0e71d2044346b7081b95062d794c465e136d43aec946f765ee61608ebd89e17
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   boolean_selector:
     dependency: transitive
     description:

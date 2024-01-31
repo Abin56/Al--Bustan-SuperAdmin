@@ -55,7 +55,8 @@ dependencies:
   intl:
   excel: ^4.0.2
   file_picker: ^6.1.1
-  marquee: 
+  awesome_side_sheet:
+  marquee:
 
 dev_dependencies:
   flutter_test:

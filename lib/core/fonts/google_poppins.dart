@@ -11,6 +11,7 @@ class GooglePoppinsWidgets extends StatelessWidget {
   TextAlign? textAlign;
   double? textScaleFactor;
   TextDecoration? decoration;
+  int? maxLines;
 
   GooglePoppinsWidgets({
     required this.text,
@@ -20,6 +21,7 @@ class GooglePoppinsWidgets extends StatelessWidget {
     this.textAlign,
     this.textScaleFactor,
     this.decoration,
+    this.maxLines,
     super.key,
   });
 
@@ -27,6 +29,7 @@ class GooglePoppinsWidgets extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      maxLines: maxLines,
       textAlign: textAlign,
       overflow: TextOverflow.ellipsis,
       style: GoogleFonts.poppins(
@@ -34,6 +37,8 @@ class GooglePoppinsWidgets extends StatelessWidget {
         fontSize: fontsize,
         fontWeight: fontWeight,
         color: color,
+        
+        
       ),
       textScaleFactor: textScaleFactor,
     );

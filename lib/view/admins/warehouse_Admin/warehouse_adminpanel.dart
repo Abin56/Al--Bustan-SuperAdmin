@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:canteen_superadmin_website/controller/wearhouse_controller/wearhouse_controller.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivered_list_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_assigning_widget.dart';
@@ -9,10 +10,12 @@ import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/del
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/category_creation_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/pages/user_assign_screen/user_assign_screen.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/appbar/app_bar.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/available_stock.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/return_screen/return_screen.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/stock_upload_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/temporary_stock_list.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
@@ -22,7 +25,8 @@ import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widg
 import 'drawer/drawer.dart';
 
 class WareHouseAdminPanelScreen extends StatefulWidget {
-  const WareHouseAdminPanelScreen({
+  final warehouseCtr = Get.put(WearHouseController());
+  WareHouseAdminPanelScreen({
     Key? key,
   }) : super(key: key);
 
@@ -139,7 +143,8 @@ List<Widget> pages = [
   Center(
     child: GooglePoppinsWidgets(text: "Low Stock Alert", fontsize: 15),
   ),
- ReturnScreen(),
+  ReturnScreen(),
+  AvailableStockWidget(),
 
   UserAssignListScreen(), //10
   UserAssignListScreen(), //11

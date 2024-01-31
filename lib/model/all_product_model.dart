@@ -25,82 +25,83 @@ class AllProductDetailModel {
   String itemcode;
   bool outofstock;
   bool isavailable;
-  AllProductDetailModel({
-    required this.docId,
-    required this.barcodeNumber,
-    required this.productname,
-    required this.categoryID,
-    required this.categoryName,
-    required this.subcategoryID,
-    required this.subcategoryName,
-    required this.inPrice,
-    required this.outPrice,
-    required this.quantityinStock,
-    required this.expiryDate,
-    required this.addedDate,
-    required this.authuid,
-    required this.unitcategoryID,
-    required this.unitcategoryName,
-    required this.packageType,
-    required this.packageTypeID,
-    required this.companyName,
-    required this.companyNameID,
-    required this.returnType,
-    required this.itemcode,
-    required this.outofstock,
-    required this.isavailable,
-  });
+  bool isEdit;
+  AllProductDetailModel(
+      {required this.docId,
+      required this.barcodeNumber,
+      required this.productname,
+      required this.categoryID,
+      required this.categoryName,
+      required this.subcategoryID,
+      required this.subcategoryName,
+      required this.inPrice,
+      required this.outPrice,
+      required this.quantityinStock,
+      required this.expiryDate,
+      required this.addedDate,
+      required this.authuid,
+      required this.unitcategoryID,
+      required this.unitcategoryName,
+      required this.packageType,
+      required this.packageTypeID,
+      required this.companyName,
+      required this.companyNameID,
+      required this.returnType,
+      required this.itemcode,
+      required this.outofstock,
+      required this.isavailable,
+      required this.isEdit});
 
-  AllProductDetailModel copyWith({
-    String? docId,
-    String? barcodeNumber,
-    String? productname,
-    String? categoryID,
-    String? categoryName,
-    String? subcategoryID,
-    String? subcategoryName,
-    int? inPrice,
-    int? outPrice,
-    int? quantityinStock,
-    String? expiryDate,
-    String? addedDate,
-    String? authuid,
-    String? unitcategoryID,
-    String? unitcategoryName,
-    String? packageType,
-    String? packageTypeID,
-    String? companyName,
-    String? companyNameID,
-    String? returnType,
-    String? itemcode,
-    bool? outofstock,
-    bool? isavailable,
-  }) {
+  AllProductDetailModel copyWith(
+      {String? docId,
+      String? barcodeNumber,
+      String? productname,
+      String? categoryID,
+      String? categoryName,
+      String? subcategoryID,
+      String? subcategoryName,
+      int? inPrice,
+      int? outPrice,
+      int? quantityinStock,
+      String? expiryDate,
+      String? addedDate,
+      String? authuid,
+      String? unitcategoryID,
+      String? unitcategoryName,
+      String? packageType,
+      String? packageTypeID,
+      String? companyName,
+      String? companyNameID,
+      String? returnType,
+      String? itemcode,
+      bool? outofstock,
+      bool? isavailable,
+      bool? isEdit}) {
     return AllProductDetailModel(
-      docId: docId ?? this.docId,
-      barcodeNumber: barcodeNumber ?? this.barcodeNumber,
-      productname: productname ?? this.productname,
-      categoryID: categoryID ?? this.categoryID,
-      categoryName: categoryName ?? this.categoryName,
-      subcategoryID: subcategoryID ?? this.subcategoryID,
-      subcategoryName: subcategoryName ?? this.subcategoryName,
-      inPrice: inPrice ?? this.inPrice,
-      outPrice: outPrice ?? this.outPrice,
-      quantityinStock: quantityinStock ?? this.quantityinStock,
-      expiryDate: expiryDate ?? this.expiryDate,
-      addedDate: addedDate ?? this.addedDate,
-      authuid: authuid ?? this.authuid,
-      unitcategoryID: unitcategoryID ?? this.unitcategoryID,
-      unitcategoryName: unitcategoryName ?? this.unitcategoryName,
-      packageType: packageType ?? this.packageType,
-      packageTypeID: packageTypeID ?? this.packageTypeID,
-      companyName: companyName ?? this.companyName,
-      companyNameID: companyNameID ?? this.companyNameID,
-      returnType: returnType ?? this.returnType,
-      itemcode: itemcode ?? this.itemcode,
-      outofstock: outofstock ?? this.outofstock,
-      isavailable: isavailable ?? this.isavailable,
-    );
+        docId: docId ?? this.docId,
+        barcodeNumber: barcodeNumber ?? this.barcodeNumber,
+        productname: productname ?? this.productname,
+        categoryID: categoryID ?? this.categoryID,
+        categoryName: categoryName ?? this.categoryName,
+        subcategoryID: subcategoryID ?? this.subcategoryID,
+        subcategoryName: subcategoryName ?? this.subcategoryName,
+        inPrice: inPrice ?? this.inPrice,
+        outPrice: outPrice ?? this.outPrice,
+        quantityinStock: quantityinStock ?? this.quantityinStock,
+        expiryDate: expiryDate ?? this.expiryDate,
+        addedDate: addedDate ?? this.addedDate,
+        authuid: authuid ?? this.authuid,
+        unitcategoryID: unitcategoryID ?? this.unitcategoryID,
+        unitcategoryName: unitcategoryName ?? this.unitcategoryName,
+        packageType: packageType ?? this.packageType,
+        packageTypeID: packageTypeID ?? this.packageTypeID,
+        companyName: companyName ?? this.companyName,
+        companyNameID: companyNameID ?? this.companyNameID,
+        returnType: returnType ?? this.returnType,
+        itemcode: itemcode ?? this.itemcode,
+        outofstock: outofstock ?? this.outofstock,
+        isavailable: isavailable ?? this.isavailable,
+        isEdit: isEdit ?? this.isEdit);
   }
 
   Map<String, dynamic> toMap() {
@@ -128,6 +129,7 @@ class AllProductDetailModel {
       'itemcode': itemcode,
       'outofstock': outofstock,
       'isavailable': isavailable,
+      'isedit': isEdit
     };
   }
 
@@ -156,6 +158,7 @@ class AllProductDetailModel {
       itemcode: map['itemcode'] ?? '',
       outofstock: map['outofstock'] ?? false,
       isavailable: map['isavailable'] ?? true,
+      isEdit: map['isedit'] ?? false,
     );
   }
 
@@ -167,7 +170,7 @@ class AllProductDetailModel {
 
   @override
   String toString() {
-    return 'AllProductDetailModel(docId: $docId, barcodeNumber: $barcodeNumber, productname: $productname, categoryID: $categoryID, categoryName: $categoryName, subcategoryID: $subcategoryID, subcategoryName: $subcategoryName, inPrice: $inPrice, outPrice: $outPrice, quantityinStock: $quantityinStock, expiryDate: $expiryDate, addedDate: $addedDate, authuid: $authuid, unitcategoryID: $unitcategoryID, unitcategoryName: $unitcategoryName, packageType: $packageType,packageTypeID: $packageTypeID, companyName: $companyName,companyNameID: $companyNameID, returnType: $returnType, itemcode: $itemcode, outofstock: $outofstock, isavailable: $isavailable)';
+    return 'AllProductDetailModel(docId: $docId, barcodeNumber: $barcodeNumber, productname: $productname, categoryID: $categoryID, categoryName: $categoryName, subcategoryID: $subcategoryID, subcategoryName: $subcategoryName, inPrice: $inPrice, outPrice: $outPrice, quantityinStock: $quantityinStock, expiryDate: $expiryDate, addedDate: $addedDate, authuid: $authuid, unitcategoryID: $unitcategoryID, unitcategoryName: $unitcategoryName, packageType: $packageType,packageTypeID: $packageTypeID, companyName: $companyName,companyNameID: $companyNameID, returnType: $returnType, itemcode: $itemcode, outofstock: $outofstock, isavailable: $isavailable,isedit:$isEdit)';
   }
 
   @override
@@ -196,7 +199,8 @@ class AllProductDetailModel {
         other.returnType == returnType &&
         other.itemcode == itemcode &&
         other.outofstock == outofstock &&
-        other.isavailable == isavailable;
+        other.isavailable == isavailable &&
+        other.isEdit == isEdit;
   }
 
   @override
@@ -223,6 +227,7 @@ class AllProductDetailModel {
         returnType.hashCode ^
         itemcode.hashCode ^
         outofstock.hashCode ^
-        isavailable.hashCode;
+        isavailable.hashCode ^
+        isEdit.hashCode;
   }
 }

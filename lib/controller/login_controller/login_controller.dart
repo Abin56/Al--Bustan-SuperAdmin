@@ -183,7 +183,8 @@ class UserLoginController extends GetxController {
           showToast(msg: "You are not a WarehouseAdmin");
           isLoading.value = false;
         }
-      }).catchError((error) {
+      }
+      ).catchError((error) {
         if (error is FirebaseAuthException) {
           isLoading.value = false;
           handleFirebaseError(error);
@@ -191,6 +192,10 @@ class UserLoginController extends GetxController {
       });
     } catch (e) {
       isLoading.value = false;
+        //    if (e is FirebaseAuthException) {
+        //   isLoading.value = false;
+        //   handleFirebaseError(e);
+        // }
       // showToast(msg: e.toString());
       showToast(msg: "Sign in failed");
     }

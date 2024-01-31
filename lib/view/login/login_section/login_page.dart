@@ -1,26 +1,26 @@
 import 'package:canteen_superadmin_website/controller/login_controller/login_controller.dart';
-import 'package:canteen_superadmin_website/core/colors/colors.dart';
-import 'package:canteen_superadmin_website/core/constant/const.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
-import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
+
 import 'package:canteen_superadmin_website/view/login/login_section/login_textformfeild.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/loginsubmitbutton.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/login/who_youAre.dart';
 import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginSection extends StatefulWidget {
-    final UserLoginController userLoginController =
+  final UserLoginController userLoginController =
       Get.put(UserLoginController());
-   LoginSection({super.key});
+  LoginSection({super.key});
 
   @override
   State<LoginSection> createState() => _LoginSectionState();
 }
 
 class _LoginSectionState extends State<LoginSection> {
-     final formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   bool value = false;
   @override
@@ -74,14 +74,13 @@ class _LoginSectionState extends State<LoginSection> {
           height: 50,
           fontSize: 18,
           onTap: () {
-            if(formKey.currentState!.validate()){
-              Future.delayed(const Duration(milliseconds: 100),(){
-                showToast(msg: "Please Wait");
-              });
-            whoAreYou(context);
-
+            if (formKey.currentState!.validate()) {
+              whoAreYou(context);
             }
-           
+            // if(password!=passwordcontroller){
+            //   showToast(msg: "Wrong Password");
+            // }else{
+            // }
           }),
       ///////////////////////////////////////////////////////////////6
       // Row(
@@ -180,7 +179,6 @@ class _LoginSectionState extends State<LoginSection> {
                           padding: const EdgeInsets.only(top: 10),
                           child: loginWidget[5],
                         ),
-
                       ],
                     ),
                   )

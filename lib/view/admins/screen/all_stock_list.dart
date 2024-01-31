@@ -1,3 +1,4 @@
+import 'package:canteen_superadmin_website/controller/store_controller/all_product_controller.dart';
 import 'package:canteen_superadmin_website/controller/store_controller/store_controller.dart';
 import 'package:canteen_superadmin_website/controller/wearhouse_controller/wearhouse_controller.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
@@ -104,8 +105,6 @@ class AllStockList extends StatelessWidget {
                               ListViewTableHeaderWidget(
                                   width: 150, headerTitle: 'Company'),
                               ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: "Last Purchase"),
-                              ListViewTableHeaderWidget(
                                   width: 150, headerTitle: 'Category'),
                               ListViewTableHeaderWidget(
                                   width: 150, headerTitle: "Subcategory"),
@@ -115,6 +114,8 @@ class AllStockList extends StatelessWidget {
                                   width: 150, headerTitle: 'PackageType'),
                               ListViewTableHeaderWidget(
                                   width: 150, headerTitle: 'Limit'),
+                              ListViewTableHeaderWidget(
+                                  width: 150, headerTitle: 'Expiry Date'),
                               ListViewTableHeaderWidget(
                                   width: 150, headerTitle: 'InPrice'),
                               ListViewTableHeaderWidget(
@@ -190,6 +191,7 @@ class InventoryTileWidget extends StatelessWidget {
   });
 
   final getWarehouseCtr = Get.put(WearHouseController());
+  final allProductCtr = Get.put(AllProductController());
 
   final int index;
 
@@ -200,6 +202,7 @@ class InventoryTileWidget extends StatelessWidget {
       height: 48,
       child: Row(
         children: [
+          // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
           DataContainerWidget(
             index: index,
             width: 150,
@@ -213,13 +216,9 @@ class InventoryTileWidget extends StatelessWidget {
           DataContainerWidget(
             index: index,
             width: 150,
-            headerTitle: productData.categoryName,
+            headerTitle: productData.companyName,
           ),
-          DataContainerWidget(
-            index: index,
-            width: 150,
-            headerTitle: dateConveter(DateTime.parse(productData.addedDate)),
-          ),
+
           DataContainerWidget(
             index: index,
             width: 150,
@@ -230,7 +229,6 @@ class InventoryTileWidget extends StatelessWidget {
             width: 150,
             headerTitle: productData.subcategoryName.toString(),
           ),
-
           DataContainerWidget(
             index: index,
             width: 150,
@@ -241,11 +239,15 @@ class InventoryTileWidget extends StatelessWidget {
             width: 150,
             headerTitle: productData.packageType.toString(),
           ),
-          // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<,
           DataContainerWidget(
             index: index,
             width: 150,
-            headerTitle: productData.quantityinStock.toString(),
+            headerTitle: productData.limit.toString(),
+          ),
+          DataContainerWidget(
+            index: index,
+            width: 150,
+            headerTitle: productData.expiryDate.toString(),
           ),
           DataContainerWidget(
             index: index,
@@ -278,16 +280,94 @@ class InventoryTileWidget extends StatelessWidget {
                     child: GooglePoppinsWidgets(
                         text: 'Edit Quantity', fontsize: 11)),
                 PopupMenuItem(
-                    onTap: () {
-                      customShowDilogBox(
-                          context: context,
-                          title: "Shopkeeper Datails",
-                          children: [const StoreKeeperDatailsWidget()],
-                          doyouwantActionButton: true);
-                      // ShowDialogWidget(context, StoreKeeperDatailsWidget());
-                    },
-                    child: GooglePoppinsWidgets(
-                        text: 'Storekeeper details', fontsize: 11)),
+                  onTap: () {
+                    customShowDilogBox(
+                        context: context,
+                        title: "Shopkeeper Datails",
+                        children: [
+                          const StoreKeeperDatailsWidget(),
+                        ],
+                        doyouwantActionButton: true);
+                    // ShowDialogWidget(context, StoreKeeperDatailsWidget());
+                  },
+                  child: GooglePoppinsWidgets(
+                      text: 'Storekeeper details', fontsize: 11),
+                ),
+                //  <<< Edit  >>>>
+                PopupMenuItem(
+                  onTap: () {
+                    customShowDilogBox(
+                      context: context,
+                      title: "Edit",
+                      children: [
+                        TextFormFiledContainerWidget(
+                          controller: allProductCtr.productNameController,
+                          hintText: "Item Name",
+                          title: 'Item Name',
+                          width: 300,
+                        ),
+                        TextFormFiledContainerWidget(
+                            controller: allProductCtr.limitCtr,
+                            hintText: "Limit",
+                            title: 'Limit',
+                            width: 300),
+                        TextFormFiledContainerWidget(
+                            controller: allProductCtr.expiryDateController,
+                            hintText: "Expiry Date",
+                            title: 'Expiry Date',
+                            width: 300),
+                        TextFormFiledContainerWidget(
+                          controller: allProductCtr.inPriceController,
+                          hintText: "InPrice",
+                          title: 'InPrice',
+                          width: 300,
+                        ),
+                        sHeight10,
+                        GooglePoppinsWidgets(
+                            text: "Company Name", fontsize: 14),
+                        // drop
+                        CompanySetUpWidget1(),
+                        sHeight10,
+                        GooglePoppinsWidgets(text: "Category", fontsize: 14),
+                        CategorySetUpWidget1(),
+                        sHeight10,
+                        GooglePoppinsWidgets(text: "Subcategory", fontsize: 14),
+                        SubCategorySetUpWidget1(),
+                        sHeight10,
+                        GooglePoppinsWidgets(text: "Unit", fontsize: 14),
+                        UnitSetUpWidget1(),
+                        sHeight10,
+                        GooglePoppinsWidgets(
+                            text: "Package Type", fontsize: 14),
+                        PackageSetUpWidget1(),
+                      ],
+                      doyouwantActionButton: true,
+                      actiononTapfuction: () {
+                        allProductCtr.editProductLimit(
+                          productData.docId,
+                          allProductCtr.productNameController.text,
+                          allProductCtr.expiryDateController.text,
+                          int.parse(allProductCtr.inPriceController.text),
+                          int.parse(allProductCtr.limitCtr.text),
+                          getWarehouseCtr.productCompanyName.value,
+                          getWarehouseCtr.productCompanyID.value,
+                          getWarehouseCtr.productCategoryName.value,
+                          getWarehouseCtr.productCategoryID.value,
+                          getWarehouseCtr.productSubCategoryID.value,
+                          getWarehouseCtr.productSubCategoryName.value,
+                          getWarehouseCtr.productUnitID.value,
+                          getWarehouseCtr.productUnitName.value,
+                          getWarehouseCtr.productPackageID.value,
+                          getWarehouseCtr.productPackageName.value,
+                        );
+                      },
+                    );
+                  },
+                  child: GooglePoppinsWidgets(
+                    text: 'Edit',
+                    fontsize: 11,
+                  ),
+                )
               ];
             },
           )

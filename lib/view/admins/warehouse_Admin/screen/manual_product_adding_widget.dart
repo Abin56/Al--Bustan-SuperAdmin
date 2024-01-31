@@ -77,23 +77,17 @@ class ProductAddingScreen extends StatelessWidget {
                     decoration: _customInputDecoration('Quantity'),
                     keyboardType: TextInputType.number,
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
+                  sHeight10,
                   TextFormField(
                     controller: getWarehouseCtr.expiryDateController,
                     decoration: _customInputDecoration('Expiry Date'),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
+                  sHeight10,
                   TextFormField(
                     controller: getWarehouseCtr.itemCodeController,
                     decoration: _customInputDecoration('Item Code'),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
+                  sHeight10,
                   GooglePoppinsWidgets(text: "Company Name", fontsize: 14),
                   CompanySetUpWidget1(),
                   sHeight10,
@@ -114,7 +108,7 @@ class ProductAddingScreen extends StatelessWidget {
                       getWarehouseCtr.addManualStock();
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.blue, // Example button color
+                      backgroundColor: Colors.blue,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
@@ -253,8 +247,11 @@ class UnitSetUpWidget1 extends StatelessWidget {
           }
         },
         dropdownDecoratorProps: DropDownDecoratorProps(
-            baseStyle: GoogleFonts.poppins(
-                fontSize: 13, color: Colors.black.withOpacity(0.7))),
+          baseStyle: GoogleFonts.poppins(
+            fontSize: 13,
+            color: Colors.black.withOpacity(0.7),
+          ),
+        ),
       )),
     );
   }
@@ -303,12 +300,57 @@ class PackageSetUpWidget1 extends StatelessWidget {
   }
 }
 
+// class CompanySetUpWidget1 extends StatelessWidget {
+//   CompanySetUpWidget1({
+//     Key? key,
+//   }) : super(key: key);
+
+//   final wearhouseCtr = Get.put(WearHouseController());
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       decoration: BoxDecoration(
+//           color: Colors.blue.withOpacity(0.3),
+//           border: Border.all(color: cGrey.withOpacity(0.2))),
+//       child: Center(
+//           child: DropdownSearch<SuppliersModel>(
+//         validator: (item) {
+//           if (item == null) {
+//             return "Required field";
+//           } else {
+//             return null;
+//           }
+//         },
+
+//         // autoValidateMode: AutovalidateMode.always,
+//         asyncItems: (value) {
+//           wearhouseCtr.supplierList.clear();
+
+//           return wearhouseCtr.fetchSupplireModel();
+//         },
+//         itemAsString: (value) => value.suppliersName,
+//         onChanged: (value) async {
+//           if (value != null) {
+//             wearhouseCtr.productCompanyName.value = value.suppliersName;
+//             wearhouseCtr.productCompanyID.value = value.docId;
+//           }
+//         },
+//         dropdownDecoratorProps: DropDownDecoratorProps(
+//             baseStyle: GoogleFonts.poppins(
+//                 fontSize: 13, color: Colors.black.withOpacity(0.7))),
+//       )),
+//     );
+//   }
+// }
+
 class CompanySetUpWidget1 extends StatelessWidget {
   CompanySetUpWidget1({
     Key? key,
   }) : super(key: key);
 
   final wearhouseCtr = Get.put(WearHouseController());
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -317,32 +359,41 @@ class CompanySetUpWidget1 extends StatelessWidget {
           color: Colors.blue.withOpacity(0.3),
           border: Border.all(color: cGrey.withOpacity(0.2))),
       child: Center(
+        child: Form(
+          key: _formKey,
           child: DropdownSearch<SuppliersModel>(
-        validator: (item) {
-          if (item == null) {
-            return "Required field";
-          } else {
-            return null;
-          }
-        },
-
-        // autoValidateMode: AutovalidateMode.always,
-        asyncItems: (value) {
-          wearhouseCtr.supplierList.clear();
-
-          return wearhouseCtr.fetchSupplireModel();
-        },
-        itemAsString: (value) => value.suppliersName,
-        onChanged: (value) async {
-          if (value != null) {
-            wearhouseCtr.productCompanyName.value = value.suppliersName;
-            wearhouseCtr.productCompanyID.value = value.docId;
-          }
-        },
-        dropdownDecoratorProps: DropDownDecoratorProps(
-            baseStyle: GoogleFonts.poppins(
-                fontSize: 13, color: Colors.black.withOpacity(0.7))),
-      )),
+            validator: (item) {
+              if (item == null) {
+                return "Required field";
+              } else {
+                return null;
+              }
+            },
+            asyncItems: (value) {
+              wearhouseCtr.supplierList.clear();
+              return wearhouseCtr.fetchSupplireModel();
+            },
+            itemAsString: (value) => value.suppliersName,
+            onChanged: (value) async {
+              if (value != null) {
+                wearhouseCtr.productCompanyName.value = value.suppliersName;
+                wearhouseCtr.productCompanyID.value = value.docId;
+              }
+            },
+            onSaved: (value) {
+              // Do something with the selected value when the form is saved.
+              // You can update the data or perform any necessary actions.
+              print("Form saved: $value");
+            },
+            dropdownDecoratorProps: DropDownDecoratorProps(
+              baseStyle: GoogleFonts.poppins(
+                fontSize: 13,
+                color: Colors.black.withOpacity(0.7),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

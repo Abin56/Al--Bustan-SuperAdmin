@@ -1,8 +1,6 @@
 import 'package:canteen_superadmin_website/controller/login_controller/login_controller.dart';
-
-import 'package:canteen_superadmin_website/view/login/login_section/login_textformfeild.dart';
-import 'package:canteen_superadmin_website/view/login/login_section/loginsubmitbutton.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/constant/const.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/login_textformfeild.dart';
@@ -77,13 +75,13 @@ class _LoginSectionState extends State<LoginSection> {
           fontSize: 18,
           onTap: () {
             if(formKey.currentState!.validate()){
+              Future.delayed(const Duration(milliseconds: 100),(){
+                showToast(msg: "Please Wait");
+              });
             whoAreYou(context);
 
             }
-            // if(password!=passwordcontroller){
-            //   showToast(msg: "Wrong Password");
-            // }else{
-           // }
+           
           }),
       ///////////////////////////////////////////////////////////////6
       // Row(

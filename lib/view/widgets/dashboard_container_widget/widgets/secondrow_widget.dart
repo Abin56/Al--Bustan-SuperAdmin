@@ -1,11 +1,6 @@
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
-import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
-import 'package:canteen_superadmin_website/model/canteen_model.dart';
-import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/canteen_details/canteen_details_showing.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ScendRowWidget extends StatelessWidget {
   final IconData icon;
@@ -176,85 +171,108 @@ class ScendRowoneWidget extends StatelessWidget {
             ],
           ),
         ),
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 242, 242, 245),
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                color: AppColors.lightGreyColor,
-                // color: cGreen,
-                width: 1.0,
-              ),
-            ),
-            child: StreamBuilder(
-              stream: FirebaseFirestore.instance
-                  .collection('CanteenList')
-                  .snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
-                } else if (snapshot.data!.docs.isEmpty) {
-                  return Center(
-                    child: GooglePoppinsWidgets(text: "No data", fontsize: 15),
-                  );
-                } else if (!snapshot.hasData) {
-                  return Center(
-                    child: GooglePoppinsWidgets(text: "No data", fontsize: 15),
-                  );
-                } else {
-                  return ListView.separated(
-                      itemBuilder: (context, index) {
-                        final canteenData = CanteenModel.fromMap(
-                            snapshot.data!.docs[index].data());
-                        return GestureDetector(
-                          onTap: (){
-                            
-                            Get.to(()=> CanteenDetailsShowingPage(
-                              canteenimagepath:canteenData.image ,
-                              schooltext: canteenData.schoolName,
-                              addresstext: canteenData.schoolAddress,
-                              canteenidtext: canteenData.canteenId,
-                              contactpersontext: canteenData.contactPerson,
-                              albustanpersontext: canteenData.albustanPerson,
-                              starttimetext: canteenData.workstartTime,
-                              endtimetext: canteenData.workEndTime,
-                            ));
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: cWhite,
-                              border: Border.all(color: cGrey),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    height: 50,
-                                    width: 50,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: NetworkImage(canteenData.image),
-                                      ),
-                                    ),
-                                  ),
-                                  sWidtht10,
-                                  GooglePoppinsWidgets(
-                                      text: canteenData.schoolName, fontsize: 14),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                      separatorBuilder: (context, index) {
-                        return sHeight10;
-                      },
-                      itemCount: snapshot.data!.docs.length);
-                }
-              },
-            ),
+        const Expanded(
+          child: SizedBox(
+            child:DefaultTabController(
+                  length: 2,
+                  child: Column(children: [TabBar(
+                      unselectedLabelColor: Colors.black,
+                      labelColor: Colors.red,
+                      tabs: <Widget>[
+                        Tab(
+                          icon: Icon(Icons.people),
+                        ),
+                        Tab(
+                          icon: Icon(Icons.person),
+                        )
+                      ],
+                      //controller: _tabController,
+                      indicatorSize: TabBarIndicatorSize.tab,
+                    ),TabBarView(
+                      children: <Widget>[Text('people'), Text('Person')],
+                     // controller: _tabController,
+                    ),
+                  ]),
+                ),
+            // child: Container(
+            //   decoration: BoxDecoration(
+            //     color: const Color.fromARGB(255, 242, 242, 245),
+            //     borderRadius: BorderRadius.circular(10),
+            //     border: Border.all(
+            //       color: AppColors.lightGreyColor,
+            //       // color: cGreen,
+            //       width: 1.0,
+            //     ),
+            //   ),
+            //   child: StreamBuilder(
+            //     stream: FirebaseFirestore.instance
+            //         .collection('CanteenList')
+            //         .snapshots(),
+            //     builder: (context, snapshot) {
+            //       if (snapshot.connectionState == ConnectionState.waiting) {
+            //         return const Center(child: CircularProgressIndicator());
+            //       } else if (snapshot.data!.docs.isEmpty) {
+            //         return Center(
+            //           child: GooglePoppinsWidgets(text: "No data", fontsize: 15),
+            //         );
+            //       } else if (!snapshot.hasData) {
+            //         return Center(
+            //           child: GooglePoppinsWidgets(text: "No data", fontsize: 15),
+            //         );
+            //       } else {
+            //         return ListView.separated(
+            //             itemBuilder: (context, index) {
+            //               final canteenData = CanteenModel.fromMap(
+            //                   snapshot.data!.docs[index].data());
+            //               return GestureDetector(
+            //                 onTap: (){
+                              
+            //                   Get.to(()=> CanteenDetailsShowingPage(
+            //                     canteenimagepath:canteenData.image ,
+            //                     schooltext: canteenData.schoolName,
+            //                     addresstext: canteenData.schoolAddress,
+            //                     canteenidtext: canteenData.canteenId,
+            //                     contactpersontext: canteenData.contactPerson,
+            //                     albustanpersontext: canteenData.albustanPerson,
+            //                     starttimetext: canteenData.workstartTime,
+            //                     endtimetext: canteenData.workEndTime,
+            //                   ));
+            //                 },
+            //                 child: Container(
+            //                   decoration: BoxDecoration(
+            //                     color: cWhite,
+            //                     border: Border.all(color: cGrey),
+            //                   ),
+            //                   child: Padding(
+            //                     padding: const EdgeInsets.all(5),
+            //                     child: Row(
+            //                       children: [
+            //                         Container(
+            //                           height: 50,
+            //                           width: 50,
+            //                           decoration: BoxDecoration(
+            //                             image: DecorationImage(
+            //                               image: NetworkImage(canteenData.image),
+            //                             ),
+            //                           ),
+            //                         ),
+            //                         sWidtht10,
+            //                         GooglePoppinsWidgets(
+            //                             text: canteenData.schoolName, fontsize: 14),
+            //                       ],
+            //                     ),
+            //                   ),
+            //                 ),
+            //               );
+            //             },
+            //             separatorBuilder: (context, index) {
+            //               return sHeight10;
+            //             },
+            //             itemCount: snapshot.data!.docs.length);
+            //       }
+            //     },
+            //   ),
+            // ),
           ),
         ),
       ],

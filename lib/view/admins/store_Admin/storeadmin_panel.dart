@@ -115,7 +115,7 @@ List<Widget> pages = [
   StoreDashboardContainer(), //..0
   const CategoryCreationWidget(),
   InventoryWidget(),
-  const LowStockAlertWidget(),
+  LowStockAlertWidget(),
   const ReturnWidget(),
   AvailableStockWidget()
 ];

@@ -1,7 +1,9 @@
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_heebo.dart';
+import 'package:canteen_superadmin_website/view/welcome_screen/welcome_screen.dart';
 import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -27,12 +29,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget buildMobileLayout() {
+    Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Column(
         children: [
           // Implement your mobile layout here
           Container(
-            height: ResponsiveWebSite.isDesktop(context) ? 1100 : 950,
+            // width: size.width,
+            height: size.height,
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('web_images/home/slider-eclipse.png'),
@@ -160,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: AnimatedButton(
                       buttonColor: buttonColor,
                       onPressed: () {
-                        print("object");
+                        Get.to(() => WelcomeScreen());
                       },
                       height: 40,
                       width: 100,
@@ -324,10 +328,42 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.only(top: 500, left: 120),
+                  padding: const EdgeInsets.only(top: 60, left: 120),
+                  // child: InkWell(
+                  //   onTap: () {
+                  //     print("object");
+                  //   },
+                  //   onHover: (isHovered) {
+                  //     setState(() {
+                  //       buttonColor = isHovered
+                  //           ? Colors.white
+                  //           : const Color.fromARGB(255, 247, 182, 20);
+                  //     });
+                  //   },
+                  //   child: AnimatedContainer(
+                  //     duration: const Duration(milliseconds: 300),
+                  //     height: 60,
+                  //     width: 160,
+                  //     decoration: BoxDecoration(
+                  //       color: buttonColor,
+                  //       borderRadius: BorderRadius.circular(38),
+                  //     ),
+                  //     child: const Center(
+                  //       child: Text(
+                  //         "Login",
+                  //         style: TextStyle(
+                  //           color: Colors.black,
+                  //           fontWeight: FontWeight.bold,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   child: InkWell(
                     onTap: () {
-                      print("object");
+                      setState(() {
+                        buttonColor = const Color.fromARGB(255, 247, 182, 20);
+                      });
                     },
                     onHover: (isHovered) {
                       setState(() {
@@ -336,22 +372,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             : const Color.fromARGB(255, 247, 182, 20);
                       });
                     },
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      height: 60,
-                      width: 160,
-                      decoration: BoxDecoration(
-                        color: buttonColor,
-                        borderRadius: BorderRadius.circular(38),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          "Login",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 400, left: 20),
+                      child: AnimatedButton(
+                        buttonColor: buttonColor,
+                        onPressed: () {
+                          Get.to(() => WelcomeScreen());
+                        },
+                        height: 40,
+                        width: 100,
                       ),
                     ),
                   ),
@@ -471,7 +500,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       InkWell(
         onTap: () {
-          print("object");
+          Get.to(() => WelcomeScreen());
         },
         onHover: (isHovered) {
           setState(() {

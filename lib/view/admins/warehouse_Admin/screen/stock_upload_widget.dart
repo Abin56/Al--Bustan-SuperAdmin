@@ -6,16 +6,13 @@ import 'package:canteen_superadmin_website/core/constant/constant.validate.dart'
 import 'package:canteen_superadmin_website/core/core.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
-import 'package:canteen_superadmin_website/model/canteen_model.dart';
 import 'package:canteen_superadmin_website/model/category_model.dart';
 import 'package:canteen_superadmin_website/model/packagetype_model.dart';
 import 'package:canteen_superadmin_website/model/quantity_model.dart';
 import 'package:canteen_superadmin_website/model/subcategory_model.dart';
 import 'package:canteen_superadmin_website/model/suppliers_model.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/all_stock_details_widget.dart';
-import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/temporary_stock_list.dart';
-import 'package:canteen_superadmin_website/view/widgets/button_container_widget/custom_button.dart';
-import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
+import 'package:canteen_superadmin_website/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,8 +22,9 @@ class StockUploadWidget extends StatelessWidget {
   StockUploadWidget({super.key});
 
   final excelCtr = Get.put(ExcelController());
-  final wearhouseCtr = Get.put(WearHouseController());
+  final warehouseCtr = Get.put(WearHouseController());
   final GlobalKey<FormState> fkey = GlobalKey<FormState>();
+  TextEditingController textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,43 +37,130 @@ class StockUploadWidget extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Container(
             decoration: BoxDecoration(border: Border.all()),
-            width: 1180,
+            // width: 1180,
+            width: size.width,
             height: size.height - 110,
             child: Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    children: [
-                      GooglePoppinsWidgets(
-                        text: "Stock",
-                        fontsize: 25,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      Spacer(),
-                      CustomGradientButton(
-                        text: "Upload Excel",
-                        height: 40,
-                        width: 200,
-                        onPressed: () {
-                          excelCtr.uploadExcelFunction2();
-                        },
-                      ),
-                      sWidtht10,
-                      Obx(() => wearhouseCtr.isLoading.value == false
-                          ? CustomGradientButton(
-                              text: "Add to temporarylist",
-                              height: 40,
-                              width: 200,
-                              onPressed: () {
-                                if (fkey.currentState?.validate() ?? false) {
-                                  wearhouseCtr.addToAllStock();
-                                }
-                              },
-                            )
-                          : CircularProgressIndicator())
-                    ],
-                  ),
+                  child: StreamBuilder(
+                      stream: dataserver.collection('Stock').snapshots(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const SizedBox();
+                        } else if (!snapshot.hasData) {
+                          return const SizedBox();
+                        } else {
+                          return Row(
+                            children: [
+                              GooglePoppinsWidgets(
+                                text: "ADD STOCK",
+                                fontsize: 25,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 50),
+                                child: ButtonContainerWidget(
+                                    text: snapshot.data!.docs.isNotEmpty
+                                        ? "UPLOAD NEXT EXCEL"
+                                        : 'UPLOAD EXCEL',
+                                    width: 120,
+                                    height: 40,
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold,
+                                    onTap: () async {
+                                      await excelCtr.uploadExcelFunction2();
+                                    }),
+                              ),
+                              sWidtht10,
+                              snapshot.data!.docs.isNotEmpty
+                                  ? Obx(
+                                      () => warehouseCtr.isLoading.value ==
+                                              false
+                                          ? Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 50),
+                                              child: ButtonContainerWidget(
+                                                  text:
+                                                      'UPLOAD TO TEMPORARY LIST',
+                                                  width: 200,
+                                                  height: 40,
+                                                  fontSize: 11,
+                                                  fontWeight: FontWeight.bold,
+                                                  onTap: () async {
+                                                    if (fkey.currentState
+                                                            ?.validate() ??
+                                                        false) {
+                                                      showDialogWidget(
+                                                          context: context,
+                                                          title:
+                                                              'Are you sure to add all stock to temporary list',
+                                                          function: () {
+                                                            warehouseCtr
+                                                                .addToAllStock();
+                                                          });
+                                                    }
+                                                  }),
+                                            )
+                                          : const CircularProgressIndicator(),
+                                    )
+                                  : const SizedBox(),
+                              snapshot.data!.docs.isNotEmpty
+                                  ? Padding(
+                                      padding: const EdgeInsets.only(left: 50),
+                                      child: ButtonContainerWidget(
+                                        text: 'DELETE ALL',
+                                        width: 120,
+                                        height: 40,
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold,
+                                        onTap: () async {
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return AlertDialog(
+                                                shape: LinearBorder.none,
+                                                title: GooglePoppinsWidgets(
+                                                    text:
+                                                        'Are you sure to delete all items ?',
+                                                    fontsize: 14),
+                                                actions: [
+                                                  TextButton(
+                                                    child: GooglePoppinsWidgets(
+                                                      text: 'No',
+                                                      fontsize: 14,
+                                                    ),
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                  ),
+                                                  TextButton(
+                                                    child: GooglePoppinsWidgets(
+                                                      text: 'Yes',
+                                                      fontsize: 14,
+                                                    ),
+                                                    onPressed: () {
+                                                      warehouseCtr
+                                                          .deleteAllStock();
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
+                                    )
+                                  : const SizedBox(),
+                            ],
+                          );
+                        }
+                      }),
                 ),
                 Container(
                   height: 50,
@@ -141,196 +226,10 @@ class StockUploadWidget extends StatelessWidget {
                             itemBuilder: (context, index) {
                               final productData = AllProductDetailModel.fromMap(
                                   snapshot.data!.docs[index].data());
-                              return Row(
-                                children: [
-                                  StockDdetailsWidget(
-                                    text: '${index + 1}',
-                                    flex: 1,
-                                  ),
-                                  StockDdetailsWidget(
-                                      text: productData.productname, flex: 2),
-                                  productData.categoryID == ""
-                                      ? Expanded(
-                                          flex: 2,
-                                          child: CategorySetUpWidget(
-                                              index: index, data: productData))
-                                      : Expanded(
-                                          flex: 2,
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                child: Center(
-                                                  child: Text(
-                                                    productData.categoryName,
-                                                    style: const TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        fontSize: 12.5),
-                                                  ),
-                                                ),
-                                              ),
-                                              IconButton(
-                                                onPressed: () {
-                                                  wearhouseCtr
-                                                      .productCategoryEdit(
-                                                          "",
-                                                          "",
-                                                          productData.docId);
-                                                },
-                                                icon: const Icon(
-                                                  Icons.edit_note_rounded,
-                                                  color: cBlue,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                  productData.subcategoryID == ""
-                                      ? Expanded(
-                                          flex: 2,
-                                          child: SubCategorySetUpWidget(
-                                              index: index, data: productData))
-                                      : Expanded(
-                                          flex: 2,
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                child: Center(
-                                                  child: Text(
-                                                    productData.subcategoryName,
-                                                    style: const TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        fontSize: 12.5),
-                                                  ),
-                                                ),
-                                              ),
-                                              IconButton(
-                                                onPressed: () {
-                                                  wearhouseCtr
-                                                      .productSubCategoryEdit(
-                                                          "",
-                                                          "",
-                                                          productData.docId);
-                                                },
-                                                icon: const Icon(
-                                                  Icons.edit_note_rounded,
-                                                  color: cBlue,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                  productData.unitcategoryID == ""
-                                      ? Expanded(
-                                          flex: 2,
-                                          child: unitSetUpWidget(
-                                              index: index, data: productData))
-                                      : Expanded(
-                                          flex: 2,
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                child: Center(
-                                                  child: Text(
-                                                    productData
-                                                        .unitcategoryName,
-                                                    style: const TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        fontSize: 12.5),
-                                                  ),
-                                                ),
-                                              ),
-                                              IconButton(
-                                                onPressed: () {
-                                                  wearhouseCtr
-                                                      .productUnitCategoryEdit(
-                                                          "",
-                                                          "",
-                                                          productData.docId);
-                                                },
-                                                icon: const Icon(
-                                                  Icons.edit_note_rounded,
-                                                  color: cBlue,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                  productData.packageTypeID == ""
-                                      ? Expanded(
-                                          flex: 2,
-                                          child: PackageSetUpWidget(
-                                              index: index, data: productData))
-                                      : Expanded(
-                                          flex: 2,
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                child: Center(
-                                                  child: Text(
-                                                    productData.packageType,
-                                                    style: const TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        fontSize: 12.5),
-                                                  ),
-                                                ),
-                                              ),
-                                              IconButton(
-                                                onPressed: () {
-                                                  wearhouseCtr
-                                                      .productPackageTypeEdit(
-                                                          "",
-                                                          "",
-                                                          productData.docId);
-                                                },
-                                                icon: const Icon(
-                                                  Icons.edit_note_rounded,
-                                                  color: cBlue,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                  productData.companyNameID == ""
-                                      ? Expanded(
-                                          flex: 2,
-                                          child: CompanySetUpWidget(
-                                              index: index, data: productData))
-                                      : Expanded(
-                                          flex: 2,
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                child: Center(
-                                                  child: Text(
-                                                    productData.companyName,
-                                                    style: const TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        fontSize: 12.5),
-                                                  ),
-                                                ),
-                                              ),
-                                              IconButton(
-                                                onPressed: () {
-                                                  wearhouseCtr
-                                                      .productCompanyEdit(
-                                                          "",
-                                                          "",
-                                                          productData.docId);
-                                                },
-                                                icon: const Icon(
-                                                  Icons.edit_note_rounded,
-                                                  color: cBlue,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                ],
+                              return StockTileWidget(
+                                productData: productData,
+                                warehouseCtr: warehouseCtr,
+                                index: index,
                               );
                             },
                             separatorBuilder: (context, index) {
@@ -348,6 +247,267 @@ class StockUploadWidget extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class StockTileWidget extends StatelessWidget {
+  StockTileWidget({
+    super.key,
+    required this.productData,
+    required this.warehouseCtr,
+    required this.index,
+  });
+  final int index;
+  final AllProductDetailModel productData;
+  final WearHouseController warehouseCtr;
+  final WearHouseController wearhctr = WearHouseController();
+  @override
+  Widget build(BuildContext context) {
+    wearhctr.stockNameCtr.text = productData.productname;
+    return Row(
+      children: [
+        productData.isEdit == false
+            ? PopupMenuButton(
+                itemBuilder: (context) {
+                  return [
+                    PopupMenuItem(
+                      onTap: () {
+                        warehouseCtr.enableEdit(productData.docId);
+                      },
+                      child: GooglePoppinsWidgets(text: "Edit", fontsize: 14),
+                    ),
+                    PopupMenuItem(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              shape: LinearBorder.none,
+                              title: GooglePoppinsWidgets(
+                                  text: 'Are you sure to delete ?',
+                                  fontsize: 14),
+                              actions: [
+                                TextButton(
+                                  child: GooglePoppinsWidgets(
+                                    text: 'No',
+                                    fontsize: 14,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                                TextButton(
+                                  child: GooglePoppinsWidgets(
+                                    text: 'Yes',
+                                    fontsize: 14,
+                                  ),
+                                  onPressed: () {
+                                    warehouseCtr.deleteStock(productData.docId);
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      child: GooglePoppinsWidgets(text: "Delete", fontsize: 14),
+                    ),
+                  ];
+                },
+              )
+            : TextButton(
+                onPressed: () {
+                  if (wearhctr.stockNameCtr.text.isNotEmpty) {
+                    dataserver
+                        .collection('Stock')
+                        .doc(productData.docId)
+                        .update({'productname': wearhctr.stockNameCtr.text});
+                    warehouseCtr.disenableEdit(productData.docId);
+                  } else {
+                    showToast(msg: "Enter Product name");
+                  }
+                },
+                child: GooglePoppinsWidgets(text: 'Update', fontsize: 14)),
+        StockDdetailsWidget(
+          text: '${index + 1}',
+          flex: 1,
+        ),
+        productData.isEdit == false
+            ? StockDdetailsWidget(text: productData.productname, flex: 2)
+            : SizedBox(
+                width: 200,
+                height: 50,
+                child: TextField(
+                  decoration: InputDecoration(
+                      hintText: productData.productname,
+                      border: const OutlineInputBorder()),
+                  // controller: textControllers[index],
+                  controller: wearhctr.stockNameCtr,
+                ),
+              ),
+        productData.categoryID == ""
+            ? Expanded(
+                flex: 2,
+                child: CategorySetUpWidget(index: index, data: productData))
+            : Expanded(
+                flex: 2,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          productData.categoryName,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w400, fontSize: 12.5),
+                        ),
+                      ),
+                    ),
+                    productData.isEdit == true
+                        ? IconButton(
+                            onPressed: () {
+                              warehouseCtr.productCategoryEdit(
+                                  "", "", productData.docId);
+                            },
+                            icon: const Icon(
+                              Icons.edit_note_rounded,
+                              color: cBlue,
+                            ),
+                          )
+                        : const SizedBox(),
+                  ],
+                ),
+              ),
+        productData.subcategoryID == ""
+            ? Expanded(
+                flex: 2,
+                child: SubCategorySetUpWidget(index: index, data: productData))
+            : Expanded(
+                flex: 2,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          productData.subcategoryName,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w400, fontSize: 12.5),
+                        ),
+                      ),
+                    ),
+                    productData.isEdit == true
+                        ? IconButton(
+                            onPressed: () {
+                              warehouseCtr.productSubCategoryEdit(
+                                  "", "", productData.docId);
+                            },
+                            icon: const Icon(
+                              Icons.edit_note_rounded,
+                              color: cBlue,
+                            ),
+                          )
+                        : const SizedBox()
+                  ],
+                ),
+              ),
+        productData.unitcategoryID == ""
+            ? Expanded(
+                flex: 2,
+                child: unitSetUpWidget(index: index, data: productData))
+            : Expanded(
+                flex: 2,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          productData.unitcategoryName,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w400, fontSize: 12.5),
+                        ),
+                      ),
+                    ),
+                    productData.isEdit == true
+                        ? IconButton(
+                            onPressed: () {
+                              warehouseCtr.productUnitCategoryEdit(
+                                  "", "", productData.docId);
+                            },
+                            icon: const Icon(
+                              Icons.edit_note_rounded,
+                              color: cBlue,
+                            ),
+                          )
+                        : const SizedBox()
+                  ],
+                ),
+              ),
+        productData.packageTypeID == ""
+            ? Expanded(
+                flex: 2,
+                child: PackageSetUpWidget(index: index, data: productData))
+            : Expanded(
+                flex: 2,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          productData.packageType,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w400, fontSize: 12.5),
+                        ),
+                      ),
+                    ),
+                    productData.isEdit == true
+                        ? IconButton(
+                            onPressed: () {
+                              warehouseCtr.productPackageTypeEdit(
+                                  "", "", productData.docId);
+                            },
+                            icon: const Icon(
+                              Icons.edit_note_rounded,
+                              color: cBlue,
+                            ),
+                          )
+                        : const SizedBox()
+                  ],
+                ),
+              ),
+        productData.companyNameID == ""
+            ? Expanded(
+                flex: 2,
+                child: CompanySetUpWidget(index: index, data: productData))
+            : Expanded(
+                flex: 2,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          productData.companyName,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w400, fontSize: 12.5),
+                        ),
+                      ),
+                    ),
+                    productData.isEdit == true
+                        ? IconButton(
+                            onPressed: () {
+                              warehouseCtr.productCompanyEdit(
+                                  "", "", productData.docId);
+                            },
+                            icon: const Icon(
+                              Icons.edit_note_rounded,
+                              color: cBlue,
+                            ),
+                          )
+                        : const SizedBox()
+                  ],
+                ),
+              ),
+      ],
     );
   }
 }
@@ -590,4 +750,40 @@ class CompanySetUpWidget extends StatelessWidget {
       )),
     );
   }
+}
+
+showDialogWidget(
+    {required BuildContext context,
+    required String title,
+    required Function function}) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        shape: LinearBorder.none,
+        title: GooglePoppinsWidgets(text: title, fontsize: 14),
+        actions: [
+          TextButton(
+            child: GooglePoppinsWidgets(
+              text: 'No',
+              fontsize: 14,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            child: GooglePoppinsWidgets(
+              text: 'Yes',
+              fontsize: 14,
+            ),
+            onPressed: () {
+              function();
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

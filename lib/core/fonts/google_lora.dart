@@ -3,17 +3,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class GooglePoppinsWidgets extends StatelessWidget {
+class GoogleLoraWidgets extends StatelessWidget {
   String text;
   double fontsize;
   FontWeight? fontWeight;
   Color? color;
   TextAlign? textAlign;
-  double? textScaleFactor;
-  TextDecoration? decoration;
-  int? maxLines;
-
-  GooglePoppinsWidgets({
+  double?textScaleFactor;
+  TextDecoration?decoration;
+  GoogleLoraWidgets({
     required this.text,
     required this.fontsize,
     this.fontWeight,
@@ -21,26 +19,25 @@ class GooglePoppinsWidgets extends StatelessWidget {
     this.textAlign,
     this.textScaleFactor,
     this.decoration,
-    this.maxLines,
-    super.key,
+    super.key,  
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(
+      
       text,
-      maxLines: maxLines,
-      textAlign: textAlign,
-      overflow: TextOverflow.ellipsis,
-      style: GoogleFonts.poppins(
-        decoration: decoration,
+      textAlign:textAlign ,
+      // overflow: TextOverflow.ellipsis,
+      style: GoogleFonts.lora(
+        
+        decoration:decoration,
         fontSize: fontsize,
         fontWeight: fontWeight,
         color: color,
-        
-        
+      
       ),
-      textScaleFactor: textScaleFactor,
+        textScaleFactor: textScaleFactor,
     );
   }
 }

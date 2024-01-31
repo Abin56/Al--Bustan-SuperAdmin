@@ -37,7 +37,7 @@ dependencies:
   cloud_firestore:
   cloud_functions:
   dropdown_search:
-  firebase_auth:
+  firebase_auth: ^4.16.0
   firebase_core:
   firebase_storage:
   google_fonts:

@@ -1,4 +1,5 @@
 import 'package:canteen_superadmin_website/controller/login_controller/login_controller.dart';
+import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 
 import 'package:canteen_superadmin_website/view/login/login_section/login_textformfeild.dart';
 import 'package:canteen_superadmin_website/view/login/login_section/loginsubmitbutton.dart';
@@ -10,16 +11,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginSection extends StatefulWidget {
-    final UserLoginController userLoginController =
+  final UserLoginController userLoginController =
       Get.put(UserLoginController());
-   LoginSection({super.key});
+  LoginSection({super.key});
 
   @override
   State<LoginSection> createState() => _LoginSectionState();
 }
 
 class _LoginSectionState extends State<LoginSection> {
-     final formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   bool value = false;
   @override
@@ -73,14 +74,13 @@ class _LoginSectionState extends State<LoginSection> {
           height: 50,
           fontSize: 18,
           onTap: () {
-            if(formKey.currentState!.validate()){
-            whoAreYou(context);
-
+            if (formKey.currentState!.validate()) {
+              whoAreYou(context);
             }
             // if(password!=passwordcontroller){
             //   showToast(msg: "Wrong Password");
             // }else{
-           // }
+            // }
           }),
       ///////////////////////////////////////////////////////////////6
       // Row(
@@ -178,44 +178,6 @@ class _LoginSectionState extends State<LoginSection> {
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: loginWidget[5],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10, bottom: 10),
-                          child: loginWidget[6],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                  child: Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 10, left: 10),
-                                child: loginWidget[7],
-                              )),
-                              Expanded(
-                                  child: Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 10, left: 10),
-                                child: loginWidget[8],
-                              )),
-                            ],
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 10, left: 10, right: 10),
-                                child: loginWidget[8],
-                              ),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: loginWidget[9],
                         ),
                       ],
                     ),
@@ -316,139 +278,9 @@ class _LoginSectionState extends State<LoginSection> {
                           )
                         ],
                       ),
-      body: SingleChildScrollView(
-        child: Container(
-          child: ResponsiveWebSite.isMobile(context)
-              ? Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: loginWidget[0],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: loginWidget[1],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: loginWidget[2],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: loginWidget[3],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: loginWidget[4],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: loginWidget[5],
-                      ),
-                    ],
-                  ),
-                )
-              : Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 40, top: 100),
-                          child: SizedBox(
-                            height: 1000,
-                            child: Column(
-                              children: [
-                                loginWidget[0],
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: loginWidget[1],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: loginWidget[2],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 20),
-                                  child: loginWidget[3],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: loginWidget[4],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 20),
-                                  child: loginWidget[5],
-                                ),
-                                // Padding(
-                                //   padding: const EdgeInsets.only(
-                                //       top: 20, bottom: 20),
-                                //   child: Row(
-                                //     mainAxisAlignment: MainAxisAlignment.center,
-                                //     children: [
-                                //       Padding(
-                                //         padding: const EdgeInsets.only(
-                                //             top: 10, bottom: 0, right: 40),
-                                //         child: GestureDetector(
-                                //             onTap: () {
-                                //               Get.to(
-                                //                   const SuperAdminPanelScreen());
-                                //             },
-                                //             child: loginWidget[6]),
-                                //       ),
-                                //       Padding(
-                                //         padding: const EdgeInsets.only(
-                                //             top: 10, bottom: 0, right: 40),
-                                //         child: GestureDetector(
-                                //             onTap: () {
-                                //               Get.to(
-                                //                   const StoreAdminPanelScreen());
-                                //               // Get.to(const AdminHomeScreen(
-                                //               //     navvalue: 'storeadmin'));
-                                //             },
-                                //             child: loginWidget[7]),
-                                //       ),
-                                //       Padding(
-                                //         padding: const EdgeInsets.only(
-                                //             top: 10, bottom: 0, right: 40),
-                                //         child: GestureDetector(
-                                //             onTap: () {
-                                //               Get.to(
-                                //                   const DeliveryAdminPanelScreen());
-                                //               // Get.to(const AdminHomeScreen(
-                                //               //     navvalue: 'deliveryadmin'));
-                                //             },
-                                //             child: loginWidget[8]),
-                                //       ),
-                                //       Padding(
-                                //         padding: const EdgeInsets.only(
-                                //             top: 10, bottom: 0, right: 40),
-                                //         child: GestureDetector(
-                                //             onTap: () {
-                                //               Get.to(
-                                //                   const WareHouseAdminPanelScreen());
-                                //               // Get.to(const AdminHomeScreen(
-                                //               //     navvalue: 'deliveryadmin'));
-                                //             },
-                                //             child: loginWidget[10]),
-                                //       ),
-                                //     ],
-                                //   ),
-                                // ),
-                                Container(
-                                  child: loginWidget[9],
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
                     ),
                   ),
-                ),
+          ),
         ),
       ),
     );

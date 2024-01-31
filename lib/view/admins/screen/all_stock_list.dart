@@ -28,152 +28,147 @@ class AllStockList extends StatelessWidget {
     final sizeH = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: Scaffold(
-        body: Container(
-          height: sizeH * 0.85,
-          width: double.infinity,
-          decoration: BoxDecoration(
-              color: cWhite,
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: const [
-                BoxShadow(blurRadius: 0.5),
-              ]),
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Center(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
-                      child: SizedBox(
-                        width: 1650,
-                        child: Row(
-                          children: [
-                            const ImageWidget(
-                                image:
-                                    'web_images/drawer_images/inventory.png'),
-                            sWidtht10,
-                            GooglePoppinsWidgets(
-                              text: 'All Stocks',
-                              fontsize: 20,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            const Spacer(),
-                            SizedBox(
+      child: Container(
+        height: sizeH * 0.85,
+        width: double.infinity,
+        decoration: BoxDecoration(
+            color: cWhite,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const [
+              BoxShadow(blurRadius: 0.5),
+            ]),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Center(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: SizedBox(
+                      width: 1650,
+                      child: Row(
+                        children: [
+                          const ImageWidget(
+                              image: 'web_images/drawer_images/inventory.png'),
+                          sWidtht10,
+                          GooglePoppinsWidgets(
+                            text: 'All Stocks',
+                            fontsize: 20,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            height: 40,
+                            width: sizeW * 0.1,
+                            child: const CupertinoSearchTextField(),
+                          ),
+                          sWidtht10,
+                          MaterialButton(
+                            onPressed: () {
+                              Get.to(ProductAddingScreen());
+                            },
+                            child: Container(
                               height: 40,
-                              width: sizeW * 0.1,
-                              child: const CupertinoSearchTextField(),
-                            ),
-                            sWidtht10,
-                            MaterialButton(
-                              onPressed: () {
-                                Get.to(ProductAddingScreen());
-                              },
-                              child: Container(
-                                height: 40,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: cGreen),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Center(
-                                    child: GooglePoppinsWidgets(
-                                        text: "Add Stock",
-                                        fontsize: 14,
-                                        color: cWhite),
-                                  ),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: cGreen),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(
+                                  child: GooglePoppinsWidgets(
+                                      text: "Add Stock",
+                                      fontsize: 14,
+                                      color: cWhite),
                                 ),
                               ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                        child: SizedBox(
-                      width: 1650,
-                      child: Column(
-                        children: [
-                          const Row(
-                            children: [
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: 'Item Code'),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: 'Item Name'),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: 'Company'),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: 'Category'),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: "Subcategory"),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: 'Unit'),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: 'PackageType'),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: 'Limit'),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: 'Expiry Date'),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: 'InPrice'),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: "Action"),
-                            ],
-                          ),
-                          Expanded(
-                            child: Container(
-                              decoration: const BoxDecoration(),
-                              child: StreamBuilder(
-                                  stream: FirebaseFirestore.instance
-                                      .collection('AllProductStockCollection')
-                                      .snapshots(),
-                                  builder: (context, snapshot) {
-                                    if (snapshot.connectionState ==
-                                        ConnectionState.waiting) {
-                                      return const Center(
-                                          child: CircularProgressIndicator());
-                                    } else if (snapshot.data!.docs.isEmpty) {
-                                      return Center(
-                                        child: GooglePoppinsWidgets(
-                                            text: "No data", fontsize: 15),
-                                      );
-                                    } else if (!snapshot.hasData) {
-                                      return Center(
-                                        child: GooglePoppinsWidgets(
-                                            text: "No data", fontsize: 15),
-                                      );
-                                    } else {
-                                      return ListView.separated(
-                                          // scrollDirection: Axis.horizontal,
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            final productData =
-                                                AllProductDetailModel.fromMap(
-                                                    snapshot.data!.docs[index]
-                                                        .data());
-                                            return InventoryTileWidget(
-                                              productData: productData,
-                                              index: index,
-                                            );
-                                          },
-                                          separatorBuilder:
-                                              (BuildContext context,
-                                                  int index) {
-                                            return const Divider();
-                                          },
-                                          itemCount:
-                                              snapshot.data!.docs.length);
-                                    }
-                                  }),
                             ),
                           )
                         ],
                       ),
-                    ))
-                  ],
-                ),
+                    ),
+                  ),
+                  Expanded(
+                      child: SizedBox(
+                    width: 1650,
+                    child: Column(
+                      children: [
+                        const Row(
+                          children: [
+                            ListViewTableHeaderWidget(
+                                width: 150, headerTitle: 'Item Code'),
+                            ListViewTableHeaderWidget(
+                                width: 150, headerTitle: 'Item Name'),
+                            ListViewTableHeaderWidget(
+                                width: 150, headerTitle: 'Company'),
+                            ListViewTableHeaderWidget(
+                                width: 150, headerTitle: 'Category'),
+                            ListViewTableHeaderWidget(
+                                width: 150, headerTitle: "Subcategory"),
+                            ListViewTableHeaderWidget(
+                                width: 150, headerTitle: 'Unit'),
+                            ListViewTableHeaderWidget(
+                                width: 150, headerTitle: 'PackageType'),
+                            ListViewTableHeaderWidget(
+                                width: 150, headerTitle: 'Limit'),
+                            ListViewTableHeaderWidget(
+                                width: 150, headerTitle: 'Expiry Date'),
+                            ListViewTableHeaderWidget(
+                                width: 150, headerTitle: 'InPrice'),
+                            ListViewTableHeaderWidget(
+                                width: 150, headerTitle: "Action"),
+                          ],
+                        ),
+                        Expanded(
+                          child: Container(
+                            decoration: const BoxDecoration(),
+                            child: StreamBuilder(
+                                stream: FirebaseFirestore.instance
+                                    .collection('AllProductStockCollection')
+                                    .snapshots(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                        child: CircularProgressIndicator());
+                                  } else if (snapshot.data!.docs.isEmpty) {
+                                    return Center(
+                                      child: GooglePoppinsWidgets(
+                                          text: "No data", fontsize: 15),
+                                    );
+                                  } else if (!snapshot.hasData) {
+                                    return Center(
+                                      child: GooglePoppinsWidgets(
+                                          text: "No data", fontsize: 15),
+                                    );
+                                  } else {
+                                    return ListView.separated(
+                                        // scrollDirection: Axis.horizontal,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          final productData =
+                                              AllProductDetailModel.fromMap(
+                                                  snapshot.data!.docs[index]
+                                                      .data());
+                                          return InventoryTileWidget(
+                                            productData: productData,
+                                            index: index,
+                                          );
+                                        },
+                                        separatorBuilder:
+                                            (BuildContext context, int index) {
+                                          return const Divider();
+                                        },
+                                        itemCount: snapshot.data!.docs.length);
+                                  }
+                                }),
+                          ),
+                        )
+                      ],
+                    ),
+                  ))
+                ],
               ),
             ),
           ),

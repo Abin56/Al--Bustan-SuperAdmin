@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:uuid/uuid.dart';
 
@@ -120,13 +121,16 @@ class AllProductController extends GetxController {
       await firestore
           .collection('AllProductStockCollection')
           .doc(docId)
-          .update(data);
-      productNameController.clear();
-      inPriceController.clear();
-      limitCtr.clear();
-      expiryDateController.clear();
+          .update(data)
+          .then((value) {
+        productNameController.clear();
+        inPriceController.clear();
+        limitCtr.clear();
+        expiryDateController.clear();
+        Get.back();
 
-      print('Product limit updated successfully!');
+        print('Product limit updated successfully!');
+      });
     } catch (e) {
       print('Error updating product limit: $e');
       throw Exception('Failed to update product limit');

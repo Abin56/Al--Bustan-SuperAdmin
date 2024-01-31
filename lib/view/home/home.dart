@@ -1,7 +1,9 @@
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_heebo.dart';
+import 'package:canteen_superadmin_website/view/welcome_screen/welcome_screen.dart';
 import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -160,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: AnimatedButton(
                       buttonColor: buttonColor,
                       onPressed: () {
-                        print("object");
+                        Get.to(() => WelcomeScreen());
                       },
                       height: 40,
                       width: 100,
@@ -187,7 +189,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const Icon(
                         Icons.location_pin,
                         size: 20,
-                        color: const Color.fromARGB(255, 247, 182, 20),
+                        color: Color.fromARGB(255, 247, 182, 20),
                       ),
                       GoogleHeeboWidget(
                         text: """
@@ -236,7 +238,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 60,
                         width: 100,
                         child: Image.asset(
-                          'web_images/AL - Bustan.png',
+                          'web_images/albustanwhite.png',
                         ),
                       ),
                       GoogleHeeboWidget(
@@ -252,7 +254,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: AppColors.whiteColor,
                           size: 20,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => WelcomeScreen());
+                        },
                       ),
                       GoogleHeeboWidget(
                         text: "0521-1969-00",
@@ -327,7 +331,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.only(top: 500, left: 120),
                   child: InkWell(
                     onTap: () {
-                      print("object");
+                      Get.to(() => WelcomeScreen());
                     },
                     onHover: (isHovered) {
                       setState(() {
@@ -383,7 +387,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const Icon(
                         Icons.location_pin,
                         size: 20,
-                        color: const Color.fromARGB(255, 247, 182, 20),
+                        color: Color.fromARGB(255, 247, 182, 20),
                       ),
                       GoogleHeeboWidget(
                         text:
@@ -411,7 +415,7 @@ class _HomeScreenState extends State<HomeScreen> {
         height: 60,
         width: 100,
         child: Image.asset(
-          'web_images/AL - Bustan.png',
+          'web_images/albustanwhite.png',
         ),
       ),
       GoogleHeeboWidget(
@@ -471,7 +475,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       InkWell(
         onTap: () {
-          print("object");
+          Get.to(() => WelcomeScreen());
         },
         onHover: (isHovered) {
           setState(() {
@@ -504,7 +508,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const Icon(
             Icons.location_pin,
             size: 20,
-            color: const Color.fromARGB(255, 247, 182, 20),
+            color: Color.fromARGB(255, 247, 182, 20),
           ),
           GoogleHeeboWidget(
             text:

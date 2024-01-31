@@ -49,7 +49,7 @@ class UserCredentialsController {
 
 logoutUser() async {
   await FirebaseAuth.instance.signOut().then((value) async {
-    Get.offAll(const LoginSection());
+    Get.offAll( LoginSection());
     await SharedPreferencesHelper.clearSharedPreferenceData();
     UserCredentialsController.clearUserCredentials();
   });

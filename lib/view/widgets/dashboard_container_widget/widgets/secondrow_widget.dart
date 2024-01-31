@@ -1,9 +1,11 @@
-import 'package:canteen_superadmin_website/model/canteen_model.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/model/canteen_model.dart';
+import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/canteen_details/canteen_details_showing.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ScendRowWidget extends StatelessWidget {
   final IconData icon;
@@ -205,28 +207,43 @@ class ScendRowoneWidget extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final canteenData = CanteenModel.fromMap(
                             snapshot.data!.docs[index].data());
-                        return Container(
-                          decoration: BoxDecoration(
-                            color: cWhite,
-                            border: Border.all(color: cGrey),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(5),
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: NetworkImage(canteenData.image),
+                        return GestureDetector(
+                          onTap: (){
+                            
+                            Get.to(()=> CanteenDetailsShowingPage(
+                              canteenimagepath:canteenData.image ,
+                              schooltext: canteenData.schoolName,
+                              addresstext: canteenData.schoolAddress,
+                              canteenidtext: canteenData.canteenId,
+                              contactpersontext: canteenData.contactPerson,
+                              albustanpersontext: canteenData.albustanPerson,
+                              starttimetext: canteenData.workstartTime,
+                              endtimetext: canteenData.workEndTime,
+                            ));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: cWhite,
+                              border: Border.all(color: cGrey),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: NetworkImage(canteenData.image),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                sWidtht10,
-                                GooglePoppinsWidgets(
-                                    text: canteenData.schoolName, fontsize: 14),
-                              ],
+                                  sWidtht10,
+                                  GooglePoppinsWidgets(
+                                      text: canteenData.schoolName, fontsize: 14),
+                                ],
+                              ),
                             ),
                           ),
                         );

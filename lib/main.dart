@@ -24,7 +24,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       scrollBehavior: MyCustomScrollBehavior(),
       debugShowCheckedModeBanner: false,
-      home: WelcomeScreen(),
+     //home: 
+     //const Scaffold(body: ReturnScreen())
+  //  const class  SuppliersDetailsShowingPage (),
+     home: WelcomeScreen(),
       // home: Scaffold(
       //   body: Center(
       //     child: Y(),

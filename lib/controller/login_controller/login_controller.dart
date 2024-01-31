@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:canteen_superadmin_website/core/constant/const.dart';
 import 'package:canteen_superadmin_website/model/admin_model.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/delivery_adminpanel.dart';
@@ -60,6 +61,10 @@ class UserLoginController extends GetxController {
     } catch (e) {
       isLoading.value = false;
       // showToast(msg: e.toString());
+         if (e is FirebaseAuthException) {
+          isLoading.value = false;
+          handleFirebaseError(e);
+        }
       showToast(msg: "Sign in failed");
     }
   }

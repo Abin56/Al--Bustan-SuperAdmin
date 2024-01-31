@@ -55,6 +55,7 @@ dependencies:
   intl:
   excel: ^4.0.2
   file_picker: ^6.1.1
+  marquee: 
 
 dev_dependencies:
   flutter_test:
@@ -83,7 +84,7 @@ flutter:
     - web_images/
     - web_images/images/
     - web_images/home/
-  #   - images/a_dot_ham.jpeg
+    - images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

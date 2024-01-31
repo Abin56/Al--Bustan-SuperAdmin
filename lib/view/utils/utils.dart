@@ -17,9 +17,10 @@ void handleFirebaseError(FirebaseAuthException error) {
     case 'wrong-password':
       showToast(msg: 'wrong-password');
       break;
-    default:
-      showToast(msg: 'Something went wrong');
-      break;
+      
+    // default:
+    //   showToast(msg: 'Something went wrong');
+    //   break;
   }
 }
 

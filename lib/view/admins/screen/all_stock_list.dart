@@ -343,7 +343,7 @@ class InventoryTileWidget extends StatelessWidget {
                       ],
                       doyouwantActionButton: true,
                       actiononTapfuction: () {
-                        allProductCtr.editProductLimit(
+                        allProductCtr.editProductList(
                           productData.docId,
                           allProductCtr.productNameController.text,
                           allProductCtr.expiryDateController.text,

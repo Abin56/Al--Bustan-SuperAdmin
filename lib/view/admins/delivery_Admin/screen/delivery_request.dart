@@ -271,7 +271,7 @@ class EmployeeRequestProductDetailsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
       width: size.width * 0.5,
       height: size.height * 0.4,
       child: Column(

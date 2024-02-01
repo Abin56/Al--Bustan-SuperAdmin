@@ -6,6 +6,7 @@ import 'package:canteen_superadmin_website/view/admin_panel/store_admin/storekee
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/view/admins/screen/search.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/supplier_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/manual_product_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
@@ -58,12 +59,20 @@ class AllStockList extends StatelessWidget {
                             fontsize: 20,
                             fontWeight: FontWeight.w500,
                           ),
-                          const Spacer(),
-                          SizedBox(
-                            height: 40,
-                            width: sizeW * 0.1,
-                            child: const CupertinoSearchTextField(),
+                          // const Spacer(),
+                          sWidtht40,
+                          IconButton(
+                            onPressed: () {
+                              Get.to(SearchScreen());
+                            },
+                            icon: iconWidget(
+                                icon: Icons.search, color: cBlack, size: 25),
                           ),
+                          // SizedBox(
+                          //   height: 40,
+                          //   width: sizeW * 0.1,
+                          //   child: const CupertinoSearchTextField(),
+                          // ),
                           sWidtht10,
                           MaterialButton(
                             onPressed: () {

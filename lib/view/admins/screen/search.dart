@@ -18,52 +18,60 @@ class SearchScreen extends StatelessWidget {
           children: [
             TextField(
               controller: searchController,
+              onChanged: (String keyword) {
+                if (keyword.isNotEmpty) {
+                  allProductCtr.searchProductsByName(keyword);
+                }
+              },
               decoration: InputDecoration(
                 labelText: 'Search by Product Name',
                 suffixIcon: IconButton(
-                  icon: Icon(Icons.search),
-                  onPressed: () async {
+                  icon: const Icon(Icons.search),
+                  onPressed: () {
                     String keyword = searchController.text.trim();
-                    List<AllProductDetailModel> searchResults =
-                        await allProductCtr.searchProductsByName(keyword);
-
-                    if (searchResults.isNotEmpty) {
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: searchResults.length,
-                          itemBuilder: (context, index) {
-                            AllProductDetailModel product =
-                                searchResults[index];
-                            return ListTile(
-                              title: Text(product.productname),
-                              subtitle: Text('Company: ${product.companyName}'),
-                            );
-                          },
-                        ),
-                      );
+                    if (keyword.isNotEmpty) {
+                      allProductCtr.searchProductsByName(keyword);
                     } else {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text('No Results'),
-                            content: Text(
-                              'No products found matching the search criteria.',
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('OK'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
+                      Get.snackbar('Error', 'Please enter a search term',
+                          snackPosition: SnackPosition.BOTTOM);
                     }
                   },
                 ),
+              ),
+            ),
+            Expanded(
+              child: Obx(
+                () {
+                  if (allProductCtr.loading.value) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  List<AllProductDetailModel> searchResults =
+                      allProductCtr.searchResults;
+
+                  if (allProductCtr.error.value.isNotEmpty) {
+                    return Center(
+                      child: Text(allProductCtr.error.value),
+                    );
+                  }
+
+                  if (searchResults.isEmpty) {
+                    return Center(
+                      child: Text('No results found.'),
+                    );
+                  }
+
+                  return ListView.builder(
+                    itemCount: searchResults.length,
+                    itemBuilder: (context, index) {
+                      AllProductDetailModel product = searchResults[index];
+                      return ListTile(
+                        title: Text(product.productname),
+                        subtitle: Text('Company: ${product.companyName}'),
+                      );
+                    },
+                  );
+                },
               ),
             ),
           ],

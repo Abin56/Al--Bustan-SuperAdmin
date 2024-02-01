@@ -1,12 +1,14 @@
-import 'dart:math';
-
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:uuid/uuid.dart';
 
 class AllProductController extends GetxController {
+  RxList<AllProductDetailModel> searchResults = <AllProductDetailModel>[].obs;
+  final RxBool loading = true.obs;
+  final RxString error = ''.obs;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   final TextEditingController productNameController = TextEditingController();
   final TextEditingController inPriceController = TextEditingController();
@@ -40,13 +42,13 @@ class AllProductController extends GetxController {
     try {
       String uuid = this.uuid.v1();
       String docName = '$productname-$uuid';
-      final time = DateTime.now().toString();
+      final time = DateTime.now().toString().toLowerCase();
 
       // map product details
       Map<String, dynamic> productData = {
         'docId': docName,
         'barcodeNumber': barcodeNumber,
-        'productname': productname,
+        'productname': productname.toLowerCase(),
         'categoryID': categoryID,
         'categoryName': categoryName,
         'subcategoryID': subcategoryID,
@@ -101,7 +103,7 @@ class AllProductController extends GetxController {
   ) async {
     try {
       final data = {
-        'productname': newName,
+        'productname': newName.toLowerCase(),
         'limit': newLimit,
         'expiryDate': newExpiry,
         'inPrice': newInPrice,
@@ -133,24 +135,49 @@ class AllProductController extends GetxController {
     }
   }
 
-  Future<List<AllProductDetailModel>> searchProductsByName(
-      String keyword) async {
+// Search
+  // Future<void> searchProductsByName(String keyword) async {
+  //   try {
+  //     loading.value = true;
+
+  //     final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+  //         .collection('AllProductStockCollection')
+  //         .where('productname', isGreaterThanOrEqualTo: keyword.toLowerCase())
+  //         .where('productname', isLessThan: '${keyword.toLowerCase()}z')
+  //         .get();
+
+  //     searchResults.value = querySnapshot.docs.map((doc) {
+  //       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+  //       data['productname'] = data['productname'].toString().toLowerCase();
+  //       return AllProductDetailModel.fromMap(data);
+  //     }).toList();
+  //   } catch (e) {
+  //     print('Error searching products: $e');
+  //     error.value = 'Failed to search products: $e';
+  //   } finally {
+  //     loading.value = false;
+  //   }
+  // }
+  Future<void> searchProductsByName(String keyword) async {
     try {
-      print("search try");
+      loading.value = true;
+
       final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('AllProductStockCollection')
-          .where('productname', isGreaterThanOrEqualTo: keyword)
-          .where('productname', isLessThan: keyword + 'z')
+          .where('productname', isGreaterThanOrEqualTo: keyword.toLowerCase())
+          .where('productname', isLessThan: '${keyword.toLowerCase()}z')
           .get();
 
-      return querySnapshot.docs.map((doc) {
+      searchResults.value = querySnapshot.docs.map((doc) {
         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+        data['productname'] = data['productname'].toString().toLowerCase();
         return AllProductDetailModel.fromMap(data);
       }).toList();
     } catch (e) {
-      print("search catch");
       print('Error searching products: $e');
-      throw Exception('Failed to search products');
+      error.value = 'Failed to search products: $e';
+    } finally {
+      loading.value = false;
     }
   }
 }

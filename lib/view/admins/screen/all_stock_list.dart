@@ -6,6 +6,7 @@ import 'package:canteen_superadmin_website/view/admin_panel/store_admin/storekee
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/view/admins/screen/search.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/supplier_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/manual_product_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
@@ -61,11 +62,17 @@ class AllStockList extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                             ),
                             const Spacer(),
-                            SizedBox(
-                              height: 40,
-                              width: sizeW * 0.1,
-                              child: const CupertinoSearchTextField(),
+                            // SizedBox(
+                            //   height: 40,
+                            //   width: sizeW * 0.1,
+                            // child: const CupertinoSearchTextField(),
+                            IconButton(
+                              onPressed: () {
+                                Get.to(() => SearchScreen());
+                              },
+                              icon: const Icon(Icons.search),
                             ),
+                            // ),
                             sWidtht10,
                             MaterialButton(
                               onPressed: () {
@@ -92,86 +99,87 @@ class AllStockList extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                        child: SizedBox(
-                      width: 1650,
-                      child: Column(
-                        children: [
-                          const Row(
-                            children: [
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: 'Item Code'),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: 'Item Name'),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: 'Company'),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: 'Category'),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: "Subcategory"),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: 'Unit'),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: 'PackageType'),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: 'Limit'),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: 'Expiry Date'),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: 'InPrice'),
-                              ListViewTableHeaderWidget(
-                                  width: 150, headerTitle: "Action"),
-                            ],
-                          ),
-                          Expanded(
-                            child: Container(
-                              decoration: const BoxDecoration(),
-                              child: StreamBuilder(
-                                  stream: FirebaseFirestore.instance
-                                      .collection('AllProductStockCollection')
-                                      .snapshots(),
-                                  builder: (context, snapshot) {
-                                    if (snapshot.connectionState ==
-                                        ConnectionState.waiting) {
-                                      return const Center(
-                                          child: CircularProgressIndicator());
-                                    } else if (snapshot.data!.docs.isEmpty) {
-                                      return Center(
-                                        child: GooglePoppinsWidgets(
-                                            text: "No data", fontsize: 15),
-                                      );
-                                    } else if (!snapshot.hasData) {
-                                      return Center(
-                                        child: GooglePoppinsWidgets(
-                                            text: "No data", fontsize: 15),
-                                      );
-                                    } else {
-                                      return ListView.separated(
-                                          // scrollDirection: Axis.horizontal,
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            final productData =
-                                                AllProductDetailModel.fromMap(
-                                                    snapshot.data!.docs[index]
-                                                        .data());
-                                            return InventoryTileWidget(
-                                              productData: productData,
-                                              index: index,
-                                            );
-                                          },
-                                          separatorBuilder:
-                                              (BuildContext context,
-                                                  int index) {
-                                            return const Divider();
-                                          },
-                                          itemCount:
-                                              snapshot.data!.docs.length);
-                                    }
-                                  }),
+                      child: SizedBox(
+                        width: 1650,
+                        child: Column(
+                          children: [
+                            const Row(
+                              children: [
+                                ListViewTableHeaderWidget(
+                                    width: 150, headerTitle: 'Item Code'),
+                                ListViewTableHeaderWidget(
+                                    width: 150, headerTitle: 'Item Name'),
+                                ListViewTableHeaderWidget(
+                                    width: 150, headerTitle: 'Company'),
+                                ListViewTableHeaderWidget(
+                                    width: 150, headerTitle: 'Category'),
+                                ListViewTableHeaderWidget(
+                                    width: 150, headerTitle: "Subcategory"),
+                                ListViewTableHeaderWidget(
+                                    width: 150, headerTitle: 'Unit'),
+                                ListViewTableHeaderWidget(
+                                    width: 150, headerTitle: 'PackageType'),
+                                ListViewTableHeaderWidget(
+                                    width: 150, headerTitle: 'Limit'),
+                                ListViewTableHeaderWidget(
+                                    width: 150, headerTitle: 'Expiry Date'),
+                                ListViewTableHeaderWidget(
+                                    width: 150, headerTitle: 'InPrice'),
+                                ListViewTableHeaderWidget(
+                                    width: 150, headerTitle: "Action"),
+                              ],
                             ),
-                          )
-                        ],
+                            Expanded(
+                              child: Container(
+                                decoration: const BoxDecoration(),
+                                child: StreamBuilder(
+                                    stream: FirebaseFirestore.instance
+                                        .collection('AllProductStockCollection')
+                                        .snapshots(),
+                                    builder: (context, snapshot) {
+                                      if (snapshot.connectionState ==
+                                          ConnectionState.waiting) {
+                                        return const Center(
+                                            child: CircularProgressIndicator());
+                                      } else if (snapshot.data!.docs.isEmpty) {
+                                        return Center(
+                                          child: GooglePoppinsWidgets(
+                                              text: "No data", fontsize: 15),
+                                        );
+                                      } else if (!snapshot.hasData) {
+                                        return Center(
+                                          child: GooglePoppinsWidgets(
+                                              text: "No data", fontsize: 15),
+                                        );
+                                      } else {
+                                        return ListView.separated(
+                                            // scrollDirection: Axis.horizontal,
+                                            itemBuilder: (BuildContext context,
+                                                int index) {
+                                              final productData =
+                                                  AllProductDetailModel.fromMap(
+                                                      snapshot.data!.docs[index]
+                                                          .data());
+                                              return InventoryTileWidget(
+                                                productData: productData,
+                                                index: index,
+                                              );
+                                            },
+                                            separatorBuilder:
+                                                (BuildContext context,
+                                                    int index) {
+                                              return const Divider();
+                                            },
+                                            itemCount:
+                                                snapshot.data!.docs.length);
+                                      }
+                                    }),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    ))
+                    )
                   ],
                 ),
               ),

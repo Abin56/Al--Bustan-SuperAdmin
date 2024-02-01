@@ -136,43 +136,26 @@ class AllProductController extends GetxController {
   }
 
 // Search
-  // Future<void> searchProductsByName(String keyword) async {
-  //   try {
-  //     loading.value = true;
 
-  //     final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-  //         .collection('AllProductStockCollection')
-  //         .where('productname', isGreaterThanOrEqualTo: keyword.toLowerCase())
-  //         .where('productname', isLessThan: '${keyword.toLowerCase()}z')
-  //         .get();
-
-  //     searchResults.value = querySnapshot.docs.map((doc) {
-  //       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-  //       data['productname'] = data['productname'].toString().toLowerCase();
-  //       return AllProductDetailModel.fromMap(data);
-  //     }).toList();
-  //   } catch (e) {
-  //     print('Error searching products: $e');
-  //     error.value = 'Failed to search products: $e';
-  //   } finally {
-  //     loading.value = false;
-  //   }
-  // }
   Future<void> searchProductsByName(String keyword) async {
     try {
       loading.value = true;
 
-      final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection('AllProductStockCollection')
-          .where('productname', isGreaterThanOrEqualTo: keyword.toLowerCase())
-          .where('productname', isLessThan: '${keyword.toLowerCase()}z')
-          .get();
+      if (keyword.isEmpty) {
+        searchResults.clear();
+      } else {
+        final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+            .collection('AllProductStockCollection')
+            .where('productname', isGreaterThanOrEqualTo: keyword.toLowerCase())
+            .where('productname', isLessThan: '${keyword.toLowerCase()}z')
+            .get();
 
-      searchResults.value = querySnapshot.docs.map((doc) {
-        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-        data['productname'] = data['productname'].toString().toLowerCase();
-        return AllProductDetailModel.fromMap(data);
-      }).toList();
+        searchResults.value = querySnapshot.docs.map((doc) {
+          Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+          data['productname'] = data['productname'].toString().toLowerCase();
+          return AllProductDetailModel.fromMap(data);
+        }).toList();
+      }
     } catch (e) {
       print('Error searching products: $e');
       error.value = 'Failed to search products: $e';

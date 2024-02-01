@@ -132,7 +132,7 @@ List<Widget> pages = [
   StockUploadWidget(),
   TemporaryStockWidget(),
   InventoryWidget(),
-  CategoryCreationWidget(),
+  const CategoryCreationWidget(),
   ProductScreen(), //..1
   const DeliveryRequest(), //..2
   DeliveryScreen(), //..3
@@ -143,7 +143,9 @@ List<Widget> pages = [
   Center(
     child: GooglePoppinsWidgets(text: "Low Stock Alert", fontsize: 15),
   ),
-  ReturnScreen(),
+  const ReturnScreen(),
+
+  UserAssignListScreen(), //
   AvailableStockWidget(),
 
   UserAssignListScreen(), //10

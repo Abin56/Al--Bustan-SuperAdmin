@@ -50,7 +50,7 @@ class CanteenDetailsShowingPage extends StatelessWidget {
                      ),
                    )
                 ],
-            ),////////////////////////////////////////////////////////////////////0
+            ),////////////////////////////////////////////////////////////////////0..................image
             Container(
                     decoration: BoxDecoration(borderRadius: const BorderRadius.all(Radius.circular(30)), color: Colors.blue.withOpacity(0.1)),
                     width: ResponsiveWebSite.isMobile(context)?260: 300,
@@ -72,7 +72,7 @@ class CanteenDetailsShowingPage extends StatelessWidget {
                         
                       ],
                     ),
-                  ),/////////////////////////////////////////1
+                  ),/////////////////////////////////////////1........................Address
                   Container(
                     decoration: BoxDecoration(borderRadius: const BorderRadius.all(Radius.circular(30)), color: Colors.blue.withOpacity(0.1)),
                     width: ResponsiveWebSite.isMobile(context)?260: 300,
@@ -91,7 +91,7 @@ class CanteenDetailsShowingPage extends StatelessWidget {
                         
                       ],
                     ),
-                  ),///////////////////////////////////////////////////////////////2
+                  ),///////////////////////////////////////////////////////////////2....................Canteen Id
                    Container(
                     decoration: BoxDecoration(borderRadius: const BorderRadius.all(Radius.circular(30)), color: Colors.blue.withOpacity(0.1)),
                     width: ResponsiveWebSite.isMobile(context)?260: 300,
@@ -113,7 +113,7 @@ class CanteenDetailsShowingPage extends StatelessWidget {
                         
                       ],
                     ),
-                  ),///////////////////////////////////////////////////////////////////3
+                  ),///////////////////////////////////////////////////////////////////3..........Contact Person
                    Container(
                     decoration: BoxDecoration(borderRadius: const BorderRadius.all(Radius.circular(30)), color: Colors.blue.withOpacity(0.1)),
                     width:ResponsiveWebSite.isMobile(context)?260: 300,
@@ -135,7 +135,7 @@ class CanteenDetailsShowingPage extends StatelessWidget {
                         
                       ],
                     ),
-                  ),/////////////////////////////////////////////////4
+                  ),/////////////////////////////////////////////////4..............Albustan Person
                     Container(
                     decoration: BoxDecoration(borderRadius: const BorderRadius.all(Radius.circular(30)), color: Colors.blue.withOpacity(0.1)),
                     width:ResponsiveWebSite.isMobile(context)?260: 300,
@@ -164,22 +164,22 @@ class CanteenDetailsShowingPage extends StatelessWidget {
                         
                       ],
                     ),
-                  ),//////////////////////////////////////////////////////5
+                  ),//////////////////////////////////////////////////////5.......................Working Time
                   
    ];
     return  Scaffold(
       body: SingleChildScrollView(
         child: ResponsiveWebSite.isDesktop(context)? Column(
           children: [ 
-           listWidgetOfCanteen[0],
+           listWidgetOfCanteen[0],/////image
             Padding(
               padding: const EdgeInsets.only(top: 25),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [ 
-                  listWidgetOfCanteen[1],
-                  listWidgetOfCanteen[2],
-                  listWidgetOfCanteen[3]
+                  listWidgetOfCanteen[1],/////address
+                  listWidgetOfCanteen[2],////Canteen Id
+                  listWidgetOfCanteen[3]/////////////Contact Person
                      
                 ],
               ),
@@ -189,8 +189,8 @@ class CanteenDetailsShowingPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [ 
-                  listWidgetOfCanteen[4],
-                  listWidgetOfCanteen[5]
+                  listWidgetOfCanteen[4],//////////////Albustan Person
+                  listWidgetOfCanteen[5]///////////////Working Time
                 ],
               ),
             )
@@ -198,14 +198,14 @@ class CanteenDetailsShowingPage extends StatelessWidget {
         ): ResponsiveWebSite.isTablet(context) 
         ?Column(
          children: [ 
-           listWidgetOfCanteen[0],
+           listWidgetOfCanteen[0],////////////image
            Padding(
              padding: const EdgeInsets.only(top: 15),
              child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [ 
-                 listWidgetOfCanteen[1],
-                 listWidgetOfCanteen[2],
+                 listWidgetOfCanteen[1],///////////address
+                 listWidgetOfCanteen[2],//////Canteen Id
               ],
              ),
            ),
@@ -214,8 +214,8 @@ class CanteenDetailsShowingPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [ 
-                 listWidgetOfCanteen[3],
-                 listWidgetOfCanteen[4],
+                 listWidgetOfCanteen[3],//////////////Contact Person
+                 listWidgetOfCanteen[4],////////////Albustan Person
               ],
                          ),
             ),
@@ -224,7 +224,7 @@ class CanteenDetailsShowingPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
               children: [ 
-                 listWidgetOfCanteen[5],
+                 listWidgetOfCanteen[5],//////////////////////Working Time
               ],
                          ),
             )
@@ -232,26 +232,26 @@ class CanteenDetailsShowingPage extends StatelessWidget {
         )
         :Column(
           children: [ 
-            listWidgetOfCanteen[0],
+            listWidgetOfCanteen[0],//////////image
            Padding(
              padding: const EdgeInsets.all(8.0),
-             child: listWidgetOfCanteen[1],
+             child: listWidgetOfCanteen[1],////////////address
            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: listWidgetOfCanteen[2],
+              child: listWidgetOfCanteen[2],/////////Canteen Id
             ),
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: listWidgetOfCanteen[3],
+               child: listWidgetOfCanteen[3],//////////////Contact Person
              ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: listWidgetOfCanteen[4],
+              child: listWidgetOfCanteen[4],///////////////Albustan Person
             ),
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: listWidgetOfCanteen[5],
+               child: listWidgetOfCanteen[5],//////////////////////Working Time
              ),
             
           ],

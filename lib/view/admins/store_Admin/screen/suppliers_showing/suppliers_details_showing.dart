@@ -29,7 +29,7 @@ class SuppliersDetailsShowingPage extends StatelessWidget {
             height:ResponsiveWebSite.isMobile(context)?400: 600,
             width: double.infinity,
             child: Image.asset("images/supply-.jpg",fit: BoxFit.cover,)),
-            ////////////////////////////////////////////////////////////////////0
+            ////////////////////////////////////////////////////////////////////0......................image
             Container(
                     decoration: BoxDecoration(borderRadius: const BorderRadius.all(Radius.circular(30)), color: Colors.blue.withOpacity(0.1)),
                     width: ResponsiveWebSite.isMobile(context)?260: 300,
@@ -52,7 +52,7 @@ class SuppliersDetailsShowingPage extends StatelessWidget {
                         
                       ],
                     ),
-                  ),/////////////////////////////////////////1
+                  ),/////////////////////////////////////////1................Suppliers Name
                   Container(
                     decoration: BoxDecoration(borderRadius: const BorderRadius.all(Radius.circular(30)), color: Colors.blue.withOpacity(0.1)),
                     width: ResponsiveWebSite.isMobile(context)?260: 300,
@@ -74,7 +74,7 @@ class SuppliersDetailsShowingPage extends StatelessWidget {
                         
                       ],
                     ),
-                  ),///////////////////////////////////////////////////////////////2
+                  ),///////////////////////////////////////////////////////////////2...............................Supplier Id
                    Container(
                     decoration: BoxDecoration(borderRadius: const BorderRadius.all(Radius.circular(30)), color: Colors.blue.withOpacity(0.1)),
                     width: ResponsiveWebSite.isMobile(context)?260: 300,
@@ -96,7 +96,7 @@ class SuppliersDetailsShowingPage extends StatelessWidget {
                         
                       ],
                     ),
-                  ),///////////////////////////////////////////////////////////////////3
+                  ),///////////////////////////////////////////////////////////////////3.....................Address
                    Container(
                     decoration: BoxDecoration(borderRadius: const BorderRadius.all(Radius.circular(30)), color: Colors.blue.withOpacity(0.1)),
                     width:ResponsiveWebSite.isMobile(context)?260: 300,
@@ -118,7 +118,7 @@ class SuppliersDetailsShowingPage extends StatelessWidget {
                         
                       ],
                     ),
-                  ),/////////////////////////////////////////////////4
+                  ),/////////////////////////////////////////////////4.......................Contact Person
                    Container(
                     decoration: BoxDecoration(borderRadius: const BorderRadius.all(Radius.circular(30)), color: Colors.blue.withOpacity(0.1)),
                     width:ResponsiveWebSite.isMobile(context)?260: 300,
@@ -140,7 +140,7 @@ class SuppliersDetailsShowingPage extends StatelessWidget {
                         
                       ],
                     ),
-                  ),/////////////////////////////////////////////////5
+                  ),/////////////////////////////////////////////////5/..................Products
                     Container(
                     decoration: BoxDecoration(borderRadius: const BorderRadius.all(Radius.circular(30)), color: Colors.blue.withOpacity(0.1)),
                     width:ResponsiveWebSite.isMobile(context)?260: 300,
@@ -169,22 +169,22 @@ class SuppliersDetailsShowingPage extends StatelessWidget {
                         
                       ],
                     ),
-                  ),//////////////////////////////////////////////////////6
+                  ),//////////////////////////////////////////////////////6...........................Working Time
                   
    ];
     return  Scaffold(
       body: SingleChildScrollView(
         child: ResponsiveWebSite.isDesktop(context)? Column(
           children: [ 
-           listWidgetOfSuppliers[0],
+           listWidgetOfSuppliers[0],///......image
             Padding(
               padding: const EdgeInsets.only(top: 25),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [ 
-                  listWidgetOfSuppliers[1],
-                  listWidgetOfSuppliers[2],
-                  listWidgetOfSuppliers[3]
+                  listWidgetOfSuppliers[1],/////////////suppliers name
+                  listWidgetOfSuppliers[2],/////////////suppliers id
+                  listWidgetOfSuppliers[3]/////////////////Address"
                      
                 ],
               ),
@@ -194,9 +194,9 @@ class SuppliersDetailsShowingPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [ 
-                  listWidgetOfSuppliers[4],
-                  listWidgetOfSuppliers[5],
-                  listWidgetOfSuppliers[6]
+                  listWidgetOfSuppliers[4],///////////////////contact person
+                  listWidgetOfSuppliers[5],/////////////product
+                  listWidgetOfSuppliers[6]///////////////working time
                 ],
               ),
             )
@@ -204,14 +204,14 @@ class SuppliersDetailsShowingPage extends StatelessWidget {
         ): ResponsiveWebSite.isTablet(context) 
         ?Column(
          children: [ 
-           listWidgetOfSuppliers[0],
+           listWidgetOfSuppliers[0],//////////////image
            Padding(
              padding: const EdgeInsets.only(top: 15),
              child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [ 
-                 listWidgetOfSuppliers[1],
-                 listWidgetOfSuppliers[2],
+                 listWidgetOfSuppliers[1],///////////////
+                 listWidgetOfSuppliers[2],//////////////
               ],
              ),
            ),
@@ -220,8 +220,8 @@ class SuppliersDetailsShowingPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [ 
-                 listWidgetOfSuppliers[3],
-                 listWidgetOfSuppliers[4],
+                 listWidgetOfSuppliers[3],/////////////////Address"
+                 listWidgetOfSuppliers[4],////////////////.Contact Person
               ],
                          ),
             ),
@@ -230,8 +230,8 @@ class SuppliersDetailsShowingPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
               children: [ 
-                 listWidgetOfSuppliers[5],
-                 listWidgetOfSuppliers[6]
+                 listWidgetOfSuppliers[5],//////////////////Products
+                 listWidgetOfSuppliers[6]/////............Working Time
               ],
                          ),
             )
@@ -239,30 +239,30 @@ class SuppliersDetailsShowingPage extends StatelessWidget {
         )
         :Column(
           children: [ 
-            listWidgetOfSuppliers[0],
+            listWidgetOfSuppliers[0],/////////////image
            Padding(
              padding: const EdgeInsets.all(8.0),
-             child: listWidgetOfSuppliers[1],
+             child: listWidgetOfSuppliers[1],////////////suppliers name
            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: listWidgetOfSuppliers[2],
+              child: listWidgetOfSuppliers[2],/////////////////////suppliers id
             ),
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: listWidgetOfSuppliers[3],
+               child: listWidgetOfSuppliers[3],/////////Address
              ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: listWidgetOfSuppliers[4],
+              child: listWidgetOfSuppliers[4],/////Contact Person
             ),
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: listWidgetOfSuppliers[5],
+               child: listWidgetOfSuppliers[5],///////////////////Products
              ),
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: listWidgetOfSuppliers[6],
+               child: listWidgetOfSuppliers[6],//////working time
              ),
             
           ],

@@ -121,7 +121,7 @@ class SuppliersScendRowoneWidget extends StatelessWidget {
                               const SizedBox(height: 8),
                               GooglePoppinsWidgets(
                                 text: SuppliersData.suppliersName,
-                                fontsize: 14,
+                                fontsize: 13,
                                 textAlign: TextAlign.center,
                               ),
                             ],

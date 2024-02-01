@@ -291,6 +291,13 @@ class InventoryTileWidget extends StatelessWidget {
                 //  <<< Edit  >>>>
                 PopupMenuItem(
                   onTap: () {
+                    allProductCtr.productNameController.text =
+                        productData.productname;
+                    allProductCtr.limitCtr.text = productData.limit.toString();
+                    allProductCtr.expiryDateController.text =
+                        productData.expiryDate;
+                    allProductCtr.inPriceController.text =
+                        productData.inPrice.toString();
                     customShowDilogBox(
                       context: context,
                       title: "Edit",
@@ -299,23 +306,23 @@ class InventoryTileWidget extends StatelessWidget {
                           controller: allProductCtr.productNameController,
                           hintText: "Item Name",
                           title: 'Item Name',
-                          width: 300,
+                          width: 500,
                         ),
                         TextFormFiledContainerWidget(
                             controller: allProductCtr.limitCtr,
                             hintText: "Limit",
                             title: 'Limit',
-                            width: 300),
+                            width: 500),
                         TextFormFiledContainerWidget(
                             controller: allProductCtr.expiryDateController,
                             hintText: "Expiry Date",
                             title: 'Expiry Date',
-                            width: 300),
+                            width: 500),
                         TextFormFiledContainerWidget(
                           controller: allProductCtr.inPriceController,
                           hintText: "InPrice",
                           title: 'InPrice',
-                          width: 300,
+                          width: 500,
                         ),
                         sHeight10,
                         GooglePoppinsWidgets(

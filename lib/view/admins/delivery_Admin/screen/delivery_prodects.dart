@@ -86,7 +86,7 @@ class ProductScreen extends StatelessWidget {
               Expanded(
                 child: StreamBuilder(
                     stream: getDeliveryCtr.firestore
-                        .collection("AllProductStockCollection")
+                        .collection("AvailableProducts")
                         .snapshots(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {

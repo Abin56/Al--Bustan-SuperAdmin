@@ -11,7 +11,6 @@ Future<void> whoAreYou(context) async {
       builder: (builder) {
         return SizedBox(
           height: 350,
-          
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -27,6 +26,7 @@ Future<void> whoAreYou(context) async {
                       value: 'superadmin'),
                   LoginContainerWidget(
                       onTap: () async {
+                        print("object");
                         await Get.find<UserLoginController>()
                             .wareHouseAdminLogin();
                       },

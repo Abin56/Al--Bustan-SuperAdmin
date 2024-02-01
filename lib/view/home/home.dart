@@ -29,14 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget buildMobileLayout() {
-    Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Column(
         children: [
           // Implement your mobile layout here
           Container(
-            // width: size.width,
-            height: size.height,
+            height: ResponsiveWebSite.isDesktop(context) ? 1100 : 950,
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('web_images/home/slider-eclipse.png'),
@@ -191,7 +189,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const Icon(
                         Icons.location_pin,
                         size: 20,
-                        color: const Color.fromARGB(255, 247, 182, 20),
+                        color: Color.fromARGB(255, 247, 182, 20),
                       ),
                       GoogleHeeboWidget(
                         text: """
@@ -240,7 +238,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 60,
                         width: 100,
                         child: Image.asset(
-                          'web_images/AL - Bustan.png',
+                          'web_images/albustanwhite.png',
                         ),
                       ),
                       GoogleHeeboWidget(
@@ -256,7 +254,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: AppColors.whiteColor,
                           size: 20,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => WelcomeScreen());
+                        },
                       ),
                       GoogleHeeboWidget(
                         text: "0521-1969-00",
@@ -328,42 +328,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.only(top: 60, left: 120),
-                  // child: InkWell(
-                  //   onTap: () {
-                  //     print("object");
-                  //   },
-                  //   onHover: (isHovered) {
-                  //     setState(() {
-                  //       buttonColor = isHovered
-                  //           ? Colors.white
-                  //           : const Color.fromARGB(255, 247, 182, 20);
-                  //     });
-                  //   },
-                  //   child: AnimatedContainer(
-                  //     duration: const Duration(milliseconds: 300),
-                  //     height: 60,
-                  //     width: 160,
-                  //     decoration: BoxDecoration(
-                  //       color: buttonColor,
-                  //       borderRadius: BorderRadius.circular(38),
-                  //     ),
-                  //     child: const Center(
-                  //       child: Text(
-                  //         "Login",
-                  //         style: TextStyle(
-                  //           color: Colors.black,
-                  //           fontWeight: FontWeight.bold,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
+                  padding: const EdgeInsets.only(top: 500, left: 120),
                   child: InkWell(
                     onTap: () {
-                      setState(() {
-                        buttonColor = const Color.fromARGB(255, 247, 182, 20);
-                      });
+                      Get.to(() => WelcomeScreen());
                     },
                     onHover: (isHovered) {
                       setState(() {
@@ -372,15 +340,22 @@ class _HomeScreenState extends State<HomeScreen> {
                             : const Color.fromARGB(255, 247, 182, 20);
                       });
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 400, left: 20),
-                      child: AnimatedButton(
-                        buttonColor: buttonColor,
-                        onPressed: () {
-                          Get.to(() => WelcomeScreen());
-                        },
-                        height: 40,
-                        width: 100,
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      height: 60,
+                      width: 160,
+                      decoration: BoxDecoration(
+                        color: buttonColor,
+                        borderRadius: BorderRadius.circular(38),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -412,7 +387,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const Icon(
                         Icons.location_pin,
                         size: 20,
-                        color: const Color.fromARGB(255, 247, 182, 20),
+                        color: Color.fromARGB(255, 247, 182, 20),
                       ),
                       GoogleHeeboWidget(
                         text:
@@ -440,7 +415,7 @@ class _HomeScreenState extends State<HomeScreen> {
         height: 60,
         width: 100,
         child: Image.asset(
-          'web_images/AL - Bustan.png',
+          'web_images/albustanwhite.png',
         ),
       ),
       GoogleHeeboWidget(
@@ -533,7 +508,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const Icon(
             Icons.location_pin,
             size: 20,
-            color: const Color.fromARGB(255, 247, 182, 20),
+            color: Color.fromARGB(255, 247, 182, 20),
           ),
           GoogleHeeboWidget(
             text:

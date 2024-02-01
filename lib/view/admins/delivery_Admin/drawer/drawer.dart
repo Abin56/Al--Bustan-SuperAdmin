@@ -52,7 +52,7 @@ class DrawerDeliveryAdmin extends StatelessWidget {
           title: Row(
             children: [
               DashboardTextFontWidget(
-                title: 'All Orders',
+                title: 'Available Products',
               ),
             ],
           ),

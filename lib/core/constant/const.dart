@@ -11,7 +11,7 @@ void showToast({required String msg}) {
     msg: msg,
     toastLength: Toast.LENGTH_LONG,
     gravity: ToastGravity.CENTER,
-    timeInSecForIosWeb: 1,
+    timeInSecForIosWeb: 2,
     backgroundColor: Colors.black,
     textColor: Colors.white,
     fontSize: 16.0,
@@ -19,6 +19,5 @@ void showToast({required String msg}) {
 }
 
 printLog(String msg) {
-  return
-  log(msg);
+  return log(msg);
 }

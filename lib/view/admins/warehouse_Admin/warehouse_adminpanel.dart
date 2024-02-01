@@ -7,7 +7,9 @@ import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/del
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_picked_up_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_prodects.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_request.dart';
+import 'package:canteen_superadmin_website/view/admins/screen/all_stock_list.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/category_creation_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/low_stock_alert_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/pages/user_assign_screen/user_assign_screen.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/appbar/app_bar.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/available_stock.dart';
@@ -131,7 +133,8 @@ List<Widget> pages = [
   const DashboardContainer(), //..1
   StockUploadWidget(),
   TemporaryStockWidget(),
-  InventoryWidget(),
+  // InventoryWidget(),
+  AllStockList(),
   CategoryCreationWidget(),
   ProductScreen(), //..1
   const DeliveryRequest(), //..2
@@ -140,13 +143,11 @@ List<Widget> pages = [
   DeliveryPendingList(), //..5
   DeliveryPickedUpList(), //
 
-  Center(
-    child: GooglePoppinsWidgets(text: "Low Stock Alert", fontsize: 15),
-  ),
+  LowStockAlertWidget(),
   ReturnScreen(),
-  AvailableStockWidget(),
 
-  UserAssignListScreen(), //10
+  UserAssignListScreen(),
+  AvailableStockWidget(), //10
   UserAssignListScreen(), //11
   UserAssignListScreen(), //12
   UserAssignListScreen(), //13

@@ -320,71 +320,76 @@ class DashboardContainer extends StatelessWidget {
         height: ResponsiveWebSite.isMobile(context) ? 250 : 350,
         // width: double.infinity,
         child: DefaultTabController(
-          length: 2, 
-         child: SizedBox(
-          height: 80,
-          child: AppBar(
-            bottom: PreferredSize(
-     preferredSize: const Size.fromHeight(4.0),
-     child: Container(
-        color: Colors.blue[100],
-        height: 40,
-        child: TabBar(
-              unselectedLabelColor: Colors.black,
-               labelColor: const Color.fromARGB(255, 27, 79, 29),
-              tabs: [ 
-              Tab(
-              child: GooglePoppinsWidgets(text: "CANTEENS", fontsize: 14,fontWeight: FontWeight.w500,),
-            ),
-            Tab(
-              child: GooglePoppinsWidgets(text: "SUPPLIERS", fontsize: 14,fontWeight: FontWeight.w500,),
-            ),
-            ]) ,
-     ),
-   ),
-            // TabBar(
-            //   unselectedLabelColor: Colors.black,
-            //    labelColor: Colors.green,
-            //   tabs: [ 
-            //   Tab(
-            //   child: GooglePoppinsWidgets(text: "CANTEENS", fontsize: 14,fontWeight: FontWeight.w500,),
-            // ),
-            // Tab(
-            //   child: GooglePoppinsWidgets(text: "SUPPLIERS", fontsize: 14,fontWeight: FontWeight.w500,),
-            // ),
-            // ]),
-            flexibleSpace: TabBarView(
-              children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 40),
-                child: ScendRowoneWidget(
-                            iconData1: Icons.home_work_outlined,
-                            title: "Canteens",
-                            navigate: () {
-                Get.to(CanteenProfile());
-                            },  
-                            icon: Icons.more_vert_outlined,
+          length: 2,
+          child: SizedBox(
+            height: 80,
+            child: AppBar(
+                bottom: PreferredSize(
+                  preferredSize: const Size.fromHeight(4.0),
+                  child: Container(
+                    color: Colors.blue[100],
+                    height: 40,
+                    child: TabBar(
+                        unselectedLabelColor: Colors.black,
+                        labelColor: const Color.fromARGB(255, 27, 79, 29),
+                        tabs: [
+                          Tab(
+                            child: GooglePoppinsWidgets(
+                              text: "CANTEENS",
+                              fontsize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
-              ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 40),
-            child: SuppliersScendRowoneWidget(
-              iconData1: Icons.home_work_outlined,
-              title: "Suppliers",
-              navigate: () {
-                Get.to(SuppliersProfile());
-              },
-              icon: Icons.more_vert_outlined,
-              onpressedViewAll: () {
-                Get.to(SuppliersViewPage());
-              },
-            ),
-          ),
-            ])
+                          Tab(
+                            child: GooglePoppinsWidgets(
+                              text: "SUPPLIERS",
+                              fontsize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ]),
+                  ),
+                ),
+                // TabBar(
+                //   unselectedLabelColor: Colors.black,
+                //    labelColor: Colors.green,
+                //   tabs: [
+                //   Tab(
+                //   child: GooglePoppinsWidgets(text: "CANTEENS", fontsize: 14,fontWeight: FontWeight.w500,),
+                // ),
+                // Tab(
+                //   child: GooglePoppinsWidgets(text: "SUPPLIERS", fontsize: 14,fontWeight: FontWeight.w500,),
+                // ),
+                // ]),
+                flexibleSpace: TabBarView(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 40),
+                    child: ScendRowoneWidget(
+                      iconData1: Icons.home_work_outlined,
+                      title: "Canteens",
+                      navigate: () {
+                        Get.to(CanteenProfile());
+                      },
+                      icon: Icons.more_vert_outlined,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 40),
+                    child: SuppliersScendRowoneWidget(
+                      iconData1: Icons.home_work_outlined,
+                      title: "Suppliers",
+                      navigate: () {
+                        Get.to(SuppliersProfile());
+                      },
+                      icon: Icons.more_vert_outlined,
+                      onpressedViewAll: () {
+                        Get.to(SuppliersViewPage());
+                      },
+                    ),
+                  ),
+                ])),
           ),
         ),
-        ),
-
         // child: Padding(
         //   padding: const EdgeInsets.all(0),
         //   child: ScendRowoneWidget(
@@ -392,12 +397,11 @@ class DashboardContainer extends StatelessWidget {
         //     title: "Canteens",
         //     navigate: () {
         //       Get.to(CanteenProfile());
-        //     },  
+        //     },
         //     icon: Icons.more_vert_outlined,
         //   ),
         // ),
-      ),//..............................4
-      
+      ), //..............................4
     ];
 
     return SingleChildScrollView(
@@ -456,9 +460,7 @@ class DashboardContainer extends StatelessWidget {
                               padding: const EdgeInsets.only(left: 10),
                               child: dashboardcontent[3],
                             )),
-                        Expanded(
-                            flex: 1,
-                            child: dashboardcontent[4])
+                        Expanded(flex: 1, child: dashboardcontent[4])
                       ],
                     ),
                   ],

@@ -322,7 +322,7 @@ class DashboardContainer extends StatelessWidget {
             title: "Canteens",
             navigate: () {
               Get.to(CanteenProfile());
-            },
+            },  
             icon: Icons.more_vert_outlined,
           ),
         ),

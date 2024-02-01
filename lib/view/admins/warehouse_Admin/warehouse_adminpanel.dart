@@ -9,6 +9,7 @@ import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/del
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/category_creation_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/pages/user_assign_screen/user_assign_screen.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/appbar/app_bar.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/notification/notification.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/return_screen/return_screen.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/stock_upload_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/temporary_stock_list.dart';
@@ -135,6 +136,8 @@ List<Widget> pages = [
   DeliveredList(), //..4
   DeliveryPendingList(), //..5
   DeliveryPickedUpList(), //
+  WareAdminNotification(),
+
 
   Center(
     child: GooglePoppinsWidgets(text: "Low Stock Alert", fontsize: 15),

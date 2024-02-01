@@ -321,6 +321,26 @@ class DrawerWareHouseAdmin extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        //........................................>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+          ListTile(
+          leading: const DashBoardIconWidget(
+              image: 'web_images/drawer_images/all_orders.png'),
+          tileColor: selectedIndex == 10
+              ? themeColorBlue.withOpacity(0.1)
+              : Colors.transparent,
+          onTap: () {
+            index = 10;
+            onTap.call(index);
+          },
+          title: Row(
+            children: [
+              DashboardTextFontWidget(
+                title: 'Notifications',
+              ),
+            ],
+          ),
+        ),
+        //>>>>>>>>>>>>>>>>>>>>....................................>>>>>>>>>>>>
         // ExpansionTile(
         //   leading: const DashBoardIconWidget(
         //       image: 'web_images/drawer_images/users.png'),
@@ -412,6 +432,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
             title: 'Sale',
           ),
         ),
+        
       ],
     );
   }

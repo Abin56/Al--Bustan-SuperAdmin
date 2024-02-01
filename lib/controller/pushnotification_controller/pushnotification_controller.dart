@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:canteen_superadmin_website/model/user_model/user_model.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
@@ -13,7 +12,7 @@ import '../../model/deviceTokenModel/deviceToken.dart';
 class PushnotificationController extends GetxController {
   List<UserDeiveTokenModel> alluserdevicetokenlist = [];
   List<UserModel> allEmployeeUidList = [];
-   List<UserDeiveTokenModel> allEmployeeDeviceToken = [];
+  List<String> allEmployeeDeviceToken = [];
   List<UserModel> alldeliverAdminUidList = [];
   List<UserModel> allWarehouseAdminUidList = [];
   List<UserModel> allStoreAdminUidList = [];
@@ -53,7 +52,8 @@ class PushnotificationController extends GetxController {
       }
     }
   }
-    Future sendMessageForAllUsers(
+
+  Future sendMessageForAllUsers(
     String message,
     String title,
   ) async {
@@ -73,33 +73,44 @@ class PushnotificationController extends GetxController {
           .toList();
 
       alluserdevicetokenlist.add(list[i]);
+      // print(alluserdevicetokenlist[i].deviceToken);
     }
-
-    return alluserdevicetokenlist;
   }
+
 //..................................>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//allusers
   Future fetchAllEmployeesUid() async {
     final firebase = await dataserver
         .collection("AllUsersCollection")
         .where('userrole', isEqualTo: 'employee')
         .get();
-    for (var i = 0; i < firebase.docs.length; i++) {
-      final list =
-          firebase.docs.map((e) => UserModel.fromMap(e.data())).toList();
-      allEmployeeUidList.add(list[i]);
-    }
-    return allEmployeeUidList;
+    final list = firebase.docs.map((e) => UserModel.fromMap(e.data())).toList();
+    allEmployeeUidList.addAll(list);
+    // print(allEmployeeUidList.docid);
+    // print(allEmployeeUidList.length);
   }
 
   Future fetchAllEmployeeDeviceID() async {
+    // print("object");
+
     for (var i = 0; i < allEmployeeUidList.length; i++) {
-      final   result = alluserdevicetokenlist.where(
-          (element) => allEmployeeUidList[i].docid.contains(element.uid));
-          allEmployeeDeviceToken.addAll(result);
-    print("fetchAllEmployeeDeviceID ${allEmployeeDeviceToken[i].deviceToken}");
-         
+      final firebase = await dataserver
+          .collection("UserDeviceToken")
+          .doc(allEmployeeUidList[i].docid)
+          .get();
+      if (firebase.data() != null) {
+        allEmployeeDeviceToken.add(firebase.data()?['deviceToken']);
+      }
     }
-    log("message  ... ${allEmployeeDeviceToken.length}");
+    print('....$allEmployeeDeviceToken');
+
+    // for (var i = 0; i < allEmployeeUidList.length; i++) {
+    //   final result = alluserdevicetokenlist.where(
+    //       (element) => allEmployeeUidList[i].docid.contains(element.uid));
+    //   allEmployeeDeviceToken.addAll(result);
+    //   print(
+    //       "fetchAllEmployeeDeviceID ${allEmployeeDeviceToken[i].deviceToken}");
+    // }
+    // log("message  ... ${allEmployeeDeviceToken.length}");
   }
 
   ///............................................>>>>>>>>>>>>>>>>>>>>>>>>>>employees

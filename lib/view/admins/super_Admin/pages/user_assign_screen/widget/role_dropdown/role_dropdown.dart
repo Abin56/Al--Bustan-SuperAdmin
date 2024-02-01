@@ -24,6 +24,7 @@ class UserRoleDropDown extends StatelessWidget {
           BoxDecoration(border: Border.all(color: cGrey.withOpacity(0.2))),
       child: Center(
         child: DropdownSearch<UserRoleModel>(
+          // popupProps: const PopupProps.bottomSheet(),
           autoValidateMode: AutovalidateMode.always,
           asyncItems: (value) {
             Get.find<UserController>().userRoleList.clear();
@@ -43,7 +44,15 @@ class UserRoleDropDown extends StatelessWidget {
               });
             }
           },
+          // dropdownBuilder: (context, userRoleModel) {
+          //   return ListTile(
+          //     title: Text(userRoleModel!.name),
+          //     // Other ListTile properties as needed
+          //   );
+          // },
           dropdownDecoratorProps: DropDownDecoratorProps(
+              dropdownSearchDecoration:
+                  const InputDecoration(labelText: "Name"),
               baseStyle: GoogleFonts.poppins(
                   fontSize: 13, color: Colors.black.withOpacity(0.7))),
         ),

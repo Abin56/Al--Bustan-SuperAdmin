@@ -3,6 +3,7 @@ import 'package:canteen_superadmin_website/controller/wearhouse_controller/wearh
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/all_stock_details_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/supplier_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/manual_product_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
@@ -76,42 +77,56 @@ class SearchScreen extends StatelessWidget {
                     );
                   }
 
-                  return Container(
-                    width: double.infinity,
-                    child: Column(
-                      children: [
-                        const Row(
-                          children: [
-                            SizedBox(width: 150, child: Text('Item Code')),
-                            SizedBox(width: 150, child: Text('Item Name')),
-                            SizedBox(width: 150, child: Text('Company')),
-                            SizedBox(width: 150, child: Text('Category')),
-                            SizedBox(width: 150, child: Text('Subcategory')),
-                            SizedBox(width: 150, child: Text('Unit')),
-                            SizedBox(width: 150, child: Text('Package Type')),
-                            SizedBox(width: 150, child: Text('Limit')),
-                            SizedBox(width: 150, child: Text('Expiry Date')),
-                            SizedBox(width: 150, child: Text('InPrice')),
-                            SizedBox(width: 150, child: Text('Action')),
-                          ],
-                        ),
-                        Expanded(
-                          child: ListView.separated(
-                            itemBuilder: (BuildContext context, int index) {
-                              final product = searchResults[index];
-                              return InventoryTileWidget(
-                                productData: product,
-                                index: index,
-                              );
-                            },
-                            separatorBuilder:
-                                (BuildContext context, int index) {
-                              return const Divider();
-                            },
-                            itemCount: searchResults.length,
+                  return SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Container(
+                      width: double.infinity,
+                      child: Column(
+                        children: [
+                          const Row(
+                            children: [
+                              ListViewTableHeaderWidget(
+                                  width: 150, headerTitle: 'Item Code'),
+                              ListViewTableHeaderWidget(
+                                  width: 150, headerTitle: 'Item Name'),
+                              ListViewTableHeaderWidget(
+                                  width: 150, headerTitle: 'Company'),
+                              ListViewTableHeaderWidget(
+                                  width: 150, headerTitle: 'Category'),
+                              ListViewTableHeaderWidget(
+                                  width: 150, headerTitle: "Subcategory"),
+                              ListViewTableHeaderWidget(
+                                  width: 150, headerTitle: 'Unit'),
+                              ListViewTableHeaderWidget(
+                                  width: 150, headerTitle: 'PackageType'),
+                              ListViewTableHeaderWidget(
+                                  width: 150, headerTitle: 'Limit'),
+                              ListViewTableHeaderWidget(
+                                  width: 150, headerTitle: 'Expiry Date'),
+                              ListViewTableHeaderWidget(
+                                  width: 150, headerTitle: 'InPrice'),
+                              ListViewTableHeaderWidget(
+                                  width: 150, headerTitle: "Action"),
+                            ],
                           ),
-                        ),
-                      ],
+                          Expanded(
+                            child: ListView.separated(
+                              itemBuilder: (BuildContext context, int index) {
+                                final product = searchResults[index];
+                                return InventoryTileWidget(
+                                  productData: product,
+                                  index: index,
+                                );
+                              },
+                              separatorBuilder:
+                                  (BuildContext context, int index) {
+                                return const Divider();
+                              },
+                              itemCount: searchResults.length,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -158,18 +173,6 @@ class InventoryTileWidget extends StatelessWidget {
           PopupMenuButton(
             itemBuilder: (context) {
               return [
-                // PopupMenuItem(
-                //   onTap: () {
-
-                //   },
-                //   child: Text('Edit Quantity'),
-                // ),
-                // PopupMenuItem(
-                //   onTap: () {
-
-                //   },
-                //   child: Text('Storekeeper details'),
-                // ),
                 PopupMenuItem(
                   onTap: () {
                     customShowDilogBox(

@@ -42,13 +42,13 @@ class AllProductController extends GetxController {
     try {
       String uuid = this.uuid.v1();
       String docName = '$productname-$uuid';
-      final time = DateTime.now().toString().toLowerCase();
+      final time = DateTime.now().toString();
 
       // map product details
       Map<String, dynamic> productData = {
         'docId': docName,
         'barcodeNumber': barcodeNumber,
-        'productname': productname.toLowerCase(),
+        'productname': productname,
         'categoryID': categoryID,
         'categoryName': categoryName,
         'subcategoryID': subcategoryID,
@@ -103,7 +103,7 @@ class AllProductController extends GetxController {
   ) async {
     try {
       final data = {
-        'productname': newName.toLowerCase(),
+        'productname': newName,
         'limit': newLimit,
         'expiryDate': newExpiry,
         'inPrice': newInPrice,
@@ -134,8 +134,6 @@ class AllProductController extends GetxController {
       throw Exception('Failed to update product limit');
     }
   }
-
-// Search
 
   Future<void> searchProductsByName(String keyword) async {
     try {

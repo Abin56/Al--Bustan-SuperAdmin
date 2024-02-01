@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:canteen_superadmin_website/core/core.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -178,7 +180,7 @@ class AllProductController extends GetxController {
         .where((element) =>
             element.productname!.toLowerCase().contains(text.toLowerCase()))
         .toList();
-    update();
+    // update();
   }
 
   getallStockList() async {

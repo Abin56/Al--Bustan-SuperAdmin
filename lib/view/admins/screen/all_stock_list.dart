@@ -59,14 +59,20 @@ class AllStockList extends StatelessWidget {
                             fontsize: 20,
                             fontWeight: FontWeight.w500,
                           ),
+                          // const Spacer(),
+                          sWidtht40,
                           IconButton(
-                            icon: const Icon(
-                              Icons.search,
-                            ),
                             onPressed: () {
-                              Get.to(() => SearchScreen());
+                              Get.to(SearchScreen());
                             },
+                            icon: iconWidget(
+                                icon: Icons.search, color: cBlack, size: 25),
                           ),
+                          // SizedBox(
+                          //   height: 40,
+                          //   width: sizeW * 0.1,
+                          //   child: const CupertinoSearchTextField(),
+                          // ),
                           sWidtht10,
                           MaterialButton(
                             onPressed: () {

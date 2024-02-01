@@ -1,5 +1,6 @@
 import 'package:canteen_superadmin_website/controller/store_controller/all_product_controller.dart';
 import 'package:canteen_superadmin_website/controller/wearhouse_controller/wearhouse_controller.dart';
+import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
@@ -17,6 +18,7 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    allProductCtr.getallStockList();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -27,7 +29,11 @@ class SearchScreen extends StatelessWidget {
               child: TextField(
                 controller: searchController,
                 onChanged: (String keyword) {
-                  allProductCtr.searchProductsByName(keyword);
+                  // if (keyword.isNotEmpty) {
+                  //   // allProductCtr.searchProductsByName(keyword);
+
+                  // }
+                  allProductCtr.search(keyword);
                 },
                 decoration: InputDecoration(
                   labelText: 'Search by Product Name',
@@ -35,8 +41,8 @@ class SearchScreen extends StatelessWidget {
                   suffixIcon: IconButton(
                     icon: const Icon(Icons.clear, color: Colors.grey),
                     onPressed: () {
-                      searchController.clear();
-                      allProductCtr.searchProductsByName('');
+                      // searchController.clear();
+                      // allProductCtr.searchProductsByName('');
                     },
                   ),
                   enabledBorder: OutlineInputBorder(
@@ -53,63 +59,83 @@ class SearchScreen extends StatelessWidget {
             Expanded(
               child: Obx(
                 () {
-                  if (allProductCtr.loading.value) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
+                  // if (allProductCtr.loading.value) {
+                  //   return const Center(
+                  //     child: CircularProgressIndicator(),
+                  //   );
+                  // }
 
-                  List<AllProductDetailModel> searchResults =
-                      allProductCtr.searchResults;
+                  // List<AllProductDetailModel> searchResults =
+                  //     allProductCtr.searchResults;
 
-                  if (allProductCtr.error.value.isNotEmpty) {
-                    return Center(
-                      child: Text(allProductCtr.error.value),
-                    );
-                  }
+                  // if (allProductCtr.error.value.isNotEmpty) {
+                  //   return Center(
+                  //     child: Text(allProductCtr.error.value),
+                  //   );
+                  // }
 
-                  if (searchResults.isEmpty) {
+                  if (allProductCtr.searchList.isEmpty) {
                     return const Center(
                       child: Text('No results found.'),
                     );
                   }
 
-                  return SizedBox(
-                    width: double.infinity,
-                    child: Column(
-                      children: [
-                        const Row(
-                          children: [
-                            SizedBox(width: 150, child: Text('Item Code')),
-                            SizedBox(width: 150, child: Text('Item Name')),
-                            SizedBox(width: 150, child: Text('Company')),
-                            SizedBox(width: 150, child: Text('Category')),
-                            SizedBox(width: 150, child: Text('Subcategory')),
-                            SizedBox(width: 150, child: Text('Unit')),
-                            SizedBox(width: 150, child: Text('Package Type')),
-                            SizedBox(width: 150, child: Text('Limit')),
-                            SizedBox(width: 150, child: Text('Expiry Date')),
-                            SizedBox(width: 150, child: Text('InPrice')),
-                            SizedBox(width: 150, child: Text('Action')),
-                          ],
-                        ),
-                        Expanded(
-                          child: ListView.separated(
-                            itemBuilder: (BuildContext context, int index) {
-                              final product = searchResults[index];
-                              return InventoryTileWidget(
-                                productData: product,
-                                index: index,
-                              );
-                            },
-                            separatorBuilder:
-                                (BuildContext context, int index) {
-                              return const Divider();
-                            },
-                            itemCount: searchResults.length,
+                  return SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Container(
+                      width: 1700,
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: cGrey,
+                              border: Border.all(),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                      width: 150, child: Text('Item Code')),
+                                  SizedBox(
+                                      width: 150, child: Text('Item Name')),
+                                  SizedBox(width: 150, child: Text('Company')),
+                                  SizedBox(width: 150, child: Text('Category')),
+                                  SizedBox(
+                                      width: 150, child: Text('Subcategory')),
+                                  SizedBox(width: 150, child: Text('Unit')),
+                                  SizedBox(
+                                      width: 150, child: Text('Package Type')),
+                                  SizedBox(width: 150, child: Text('Limit')),
+                                  SizedBox(
+                                      width: 150, child: Text('Expiry Date')),
+                                  SizedBox(width: 150, child: Text('InPrice')),
+                                  SizedBox(width: 150, child: Text('Action')),
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
-                      ],
+                          Expanded(
+                            child: ListView.separated(
+                              itemBuilder: (BuildContext context, int index) {
+                                // final product = searchResults[index];
+                                final product =
+                                    allProductCtr.searchList.value[index];
+                                return InventoryTileWidget(
+                                  productData: product,
+                                  index: index,
+                                );
+                              },
+                              separatorBuilder:
+                                  (BuildContext context, int index) {
+                                return const Divider();
+                              },
+                              itemCount: allProductCtr.searchList.length,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -170,6 +196,13 @@ class InventoryTileWidget extends StatelessWidget {
                 // ),
                 PopupMenuItem(
                   onTap: () {
+                    allProductCtr.productNameController.text =
+                        productData.productname;
+                    allProductCtr.limitCtr.text = productData.limit.toString();
+                    allProductCtr.expiryDateController.text =
+                        productData.expiryDate;
+                    allProductCtr.inPriceController.text =
+                        productData.inPrice.toString();
                     customShowDilogBox(
                       context: context,
                       title: "Edit",

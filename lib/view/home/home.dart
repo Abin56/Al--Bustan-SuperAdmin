@@ -1,5 +1,7 @@
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_heebo.dart';
+import 'package:canteen_superadmin_website/view/footer/footer.dart';
 import 'package:canteen_superadmin_website/view/welcome_screen/welcome_screen.dart';
 import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Column(
         children: [
           Container(
-            height: ResponsiveWebSite.isDesktop(context) ? 1100 : 950,
+            height: 760,
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('web_images/home/slider-eclipse.png'),
@@ -169,7 +171,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-          )
+          ),
+          SizedBox(
+            height: 60,
+          ),
+          FooterFinal()
         ],
       ),
     );
@@ -180,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Column(
         children: [
           Container(
-            height: ResponsiveWebSite.isDesktop(context) ? 1100 : 950,
+            height: 900,
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('web_images/home/slider-eclipse.png'),
@@ -241,7 +247,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 // Title "AL-BUSTAN"
                 Padding(
-                  padding: const EdgeInsets.only(top: 180, left: 80),
+                  padding: const EdgeInsets.only(top: 160, left: 80),
                   child: SizedBox(
                     height: ResponsiveWebSite.isDesktop(context) ? 100 : 80,
                     child: GoogleHeeboWidget(
@@ -262,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 // Login Button
                 Padding(
-                  padding: const EdgeInsets.only(top: 320, left: 80),
+                  padding: const EdgeInsets.only(top: 300, left: 80),
                   child: InkWell(
                     onTap: () {
                       Get.to(() => WelcomeScreen());
@@ -297,7 +303,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 // Logo
                 Padding(
                   padding: const EdgeInsets.only(
-                    top: 410,
+                    top: 390,
                   ),
                   child: SizedBox(
                     width: double.infinity,
@@ -307,7 +313,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 // Address
                 Padding(
-                  padding: const EdgeInsets.only(top: 800, left: 80),
+                  padding: const EdgeInsets.only(top: 780, left: 80),
                   child: Row(
                     children: [
                       const Icon(
@@ -331,7 +337,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-          )
+          ),
+          SizedBox(
+            height: 80,
+          ),
+          FooterFinal()
         ],
       ),
     );
@@ -492,7 +502,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-          )
+          ),
+          SizedBox(
+            height: 100,
+          ),
+          FooterFinal()
         ],
       ),
     );

@@ -195,19 +195,14 @@ class _LoginSectionState extends State<LoginSection> {
                         //   child: loginWidget[2],
                         // ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
                           child: loginWidget[3],
+                          padding: const EdgeInsets.only(top: 10),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: loginWidget[4],
                         ),
-                        // IconButton(
-                        //   onPressed: () {
-                        //     myLaunchUrl();
-                        //   },
-                        //   icon: Icon(Icons.abc),
-                        // ),
+
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: loginWidget[5],

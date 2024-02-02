@@ -4,6 +4,7 @@ import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/supplier_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/manual_product_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
@@ -29,29 +30,32 @@ class SearchScreen extends StatelessWidget {
               child: TextField(
                 controller: searchController,
                 onChanged: (String keyword) {
-                  // if (keyword.isNotEmpty) {
-                  //   // allProductCtr.searchProductsByName(keyword);
-
-                  // }
                   allProductCtr.search(keyword);
                 },
                 decoration: InputDecoration(
                   labelText: 'Search by Product Name',
-                  prefixIcon: const Icon(Icons.search, color: Colors.grey),
-                  suffixIcon: IconButton(
-                    icon: const Icon(Icons.clear, color: Colors.grey),
-                    onPressed: () {
-                      // searchController.clear();
-                      // allProductCtr.searchProductsByName('');
-                    },
+                  prefixIcon: const Icon(
+                    Icons.search,
+                    color: AppColors.greyColor,
                   ),
+
+                  // suffixIcon: IconButton(
+                  //   icon: const Icon(
+                  //     Icons.clear,
+                  //     color: AppColors.greyColor,
+                  //   ),
+                  //   onPressed: () {},
+                  // ),
+
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.grey),
+                    borderSide: const BorderSide(
+                      color: AppColors.greyColor,
+                    ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.blue),
+                    borderSide: const BorderSide(color: AppColors.blackColor),
                   ),
                 ),
               ),
@@ -59,21 +63,6 @@ class SearchScreen extends StatelessWidget {
             Expanded(
               child: Obx(
                 () {
-                  // if (allProductCtr.loading.value) {
-                  //   return const Center(
-                  //     child: CircularProgressIndicator(),
-                  //   );
-                  // }
-
-                  // List<AllProductDetailModel> searchResults =
-                  //     allProductCtr.searchResults;
-
-                  // if (allProductCtr.error.value.isNotEmpty) {
-                  //   return Center(
-                  //     child: Text(allProductCtr.error.value),
-                  //   );
-                  // }
-
                   if (allProductCtr.searchList.isEmpty) {
                     return const Center(
                       child: Text('No results found.'),
@@ -89,29 +78,35 @@ class SearchScreen extends StatelessWidget {
                           Container(
                             height: 50,
                             decoration: BoxDecoration(
-                              color: cGrey,
+                              color: AppColors.lightGreyColor,
                               border: Border.all(),
                             ),
                             child: const Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Row(
                                 children: [
-                                  SizedBox(
-                                      width: 150, child: Text('Item Code')),
-                                  SizedBox(
-                                      width: 150, child: Text('Item Name')),
-                                  SizedBox(width: 150, child: Text('Company')),
-                                  SizedBox(width: 150, child: Text('Category')),
-                                  SizedBox(
-                                      width: 150, child: Text('Subcategory')),
-                                  SizedBox(width: 150, child: Text('Unit')),
-                                  SizedBox(
-                                      width: 150, child: Text('Package Type')),
-                                  SizedBox(width: 150, child: Text('Limit')),
-                                  SizedBox(
-                                      width: 150, child: Text('Expiry Date')),
-                                  SizedBox(width: 150, child: Text('InPrice')),
-                                  SizedBox(width: 150, child: Text('Action')),
+                                  ListViewTableHeaderWidget(
+                                      width: 150, headerTitle: 'Item Code'),
+                                  ListViewTableHeaderWidget(
+                                      width: 150, headerTitle: 'Item Name'),
+                                  ListViewTableHeaderWidget(
+                                      width: 150, headerTitle: 'Company'),
+                                  ListViewTableHeaderWidget(
+                                      width: 150, headerTitle: 'Category'),
+                                  ListViewTableHeaderWidget(
+                                      width: 150, headerTitle: "Subcategory"),
+                                  ListViewTableHeaderWidget(
+                                      width: 150, headerTitle: 'Unit'),
+                                  ListViewTableHeaderWidget(
+                                      width: 150, headerTitle: 'PackageType'),
+                                  ListViewTableHeaderWidget(
+                                      width: 150, headerTitle: 'Limit'),
+                                  ListViewTableHeaderWidget(
+                                      width: 150, headerTitle: 'Expiry Date'),
+                                  ListViewTableHeaderWidget(
+                                      width: 150, headerTitle: 'InPrice'),
+                                  ListViewTableHeaderWidget(
+                                      width: 150, headerTitle: "Action"),
                                 ],
                               ),
                             ),
@@ -182,18 +177,6 @@ class InventoryTileWidget extends StatelessWidget {
           PopupMenuButton(
             itemBuilder: (context) {
               return [
-                // PopupMenuItem(
-                //   onTap: () {
-
-                //   },
-                //   child: Text('Edit Quantity'),
-                // ),
-                // PopupMenuItem(
-                //   onTap: () {
-
-                //   },
-                //   child: Text('Storekeeper details'),
-                // ),
                 PopupMenuItem(
                   onTap: () {
                     allProductCtr.productNameController.text =
@@ -232,7 +215,9 @@ class InventoryTileWidget extends StatelessWidget {
                         sHeight10,
                         GooglePoppinsWidgets(
                             text: "Company Name", fontsize: 14),
+
                         // drop
+
                         CompanySetUpWidget1(),
                         sHeight10,
                         GooglePoppinsWidgets(text: "Category", fontsize: 14),

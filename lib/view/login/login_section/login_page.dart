@@ -9,6 +9,7 @@ import 'package:canteen_superadmin_website/view/login/who_youAre.dart';
 import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginSection extends StatefulWidget {
   final UserLoginController userLoginController =
@@ -17,6 +18,15 @@ class LoginSection extends StatefulWidget {
 
   @override
   State<LoginSection> createState() => _LoginSectionState();
+}
+
+Future<void> myLaunchUrl() async {
+  print("app in");
+  final Uri url = Uri.parse(
+      'https://play.google.com/store/apps/details?id=in.ivarva.app_xpox');
+  if (!await launch(url.toString())) {
+    throw Exception('Could not launch $url');
+  }
 }
 
 class _LoginSectionState extends State<LoginSection> {
@@ -37,6 +47,7 @@ class _LoginSectionState extends State<LoginSection> {
         fontsize: 20,
         fontWeight: FontWeight.bold,
       ), //////////////////////////////////////////////////2
+
       Row(
         children: [
           const Expanded(
@@ -46,7 +57,16 @@ class _LoginSectionState extends State<LoginSection> {
               color: Colors.grey,
             ),
           )),
-          GooglePoppinsWidgets(text: 'Signup', fontsize: 12, color: cGrey),
+          GestureDetector(
+            onTap: () {
+              myLaunchUrl();
+            },
+            child: GooglePoppinsWidgets(
+              text: 'Signup',
+              fontsize: 12,
+              color: cGrey,
+            ),
+          ),
           const Expanded(
               child: Padding(
             padding: EdgeInsets.only(right: 100),
@@ -55,7 +75,9 @@ class _LoginSectionState extends State<LoginSection> {
             ),
           ))
         ],
-      ), /////////////////////////////////////////////////////////////////////3
+      ),
+
+      /////////////////////////////////////////////////////////////////////3
       LoginTextFormFiledContainerWidget(
         controller: Get.find<UserLoginController>().emailcontroller,
         hintText: 'Enter Email Address',
@@ -129,10 +151,15 @@ class _LoginSectionState extends State<LoginSection> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 10),
-            child: GooglePoppinsWidgets(
-              text: "Signup",
-              fontsize: 14,
-              color: Colors.orange,
+            child: InkWell(
+              onTap: () {
+                myLaunchUrl();
+              },
+              child: GooglePoppinsWidgets(
+                text: "Signup",
+                fontsize: 14,
+                color: Colors.orange,
+              ),
             ),
           ),
         ],
@@ -159,14 +186,14 @@ class _LoginSectionState extends State<LoginSection> {
                           padding: const EdgeInsets.only(top: 10),
                           child: loginWidget[0],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: loginWidget[1],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: loginWidget[2],
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(top: 10),
+                        //   child: loginWidget[1],
+                        // ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(top: 10),
+                        //   child: loginWidget[2],
+                        // ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: loginWidget[3],
@@ -175,9 +202,18 @@ class _LoginSectionState extends State<LoginSection> {
                           padding: const EdgeInsets.only(top: 10),
                           child: loginWidget[4],
                         ),
+                        // IconButton(
+                        //   onPressed: () {
+                        //     myLaunchUrl();
+                        //   },
+                        //   icon: Icon(Icons.abc),
+                        // ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: loginWidget[5],
+                        ),
+                        Container(
+                          child: loginWidget[9],
                         ),
                       ],
                     ),
@@ -194,14 +230,14 @@ class _LoginSectionState extends State<LoginSection> {
                               child: Column(
                                 children: [
                                   loginWidget[0],
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 10),
-                                    child: loginWidget[1],
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 10),
-                                    child: loginWidget[2],
-                                  ),
+                                  // Padding(
+                                  //   padding: const EdgeInsets.only(top: 10),
+                                  //   child: loginWidget[1],
+                                  // ),
+                                  // Padding(
+                                  //   padding: const EdgeInsets.only(top: 10),
+                                  //   child: loginWidget[2],
+                                  // ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 20),
                                     child: loginWidget[3],
@@ -210,10 +246,12 @@ class _LoginSectionState extends State<LoginSection> {
                                     padding: const EdgeInsets.only(top: 10),
                                     child: loginWidget[4],
                                   ),
+
                                   Padding(
                                     padding: const EdgeInsets.only(top: 20),
                                     child: loginWidget[5],
                                   ),
+
                                   // Padding(
                                   //   padding: const EdgeInsets.only(
                                   //       top: 20, bottom: 20),
@@ -298,6 +336,7 @@ class LoginContainerWidget extends StatelessWidget {
     this.onTap,
     required this.value,
   });
+
   String text;
   @override
   Widget build(BuildContext context) {

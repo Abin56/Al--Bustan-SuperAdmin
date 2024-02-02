@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:canteen_superadmin_website/core/core.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:uuid/uuid.dart';
 
 class AllProductController extends GetxController {
@@ -12,7 +15,16 @@ class AllProductController extends GetxController {
   final TextEditingController limitCtr = TextEditingController();
   final TextEditingController expiryDateController = TextEditingController();
   final Uuid uuid = const Uuid();
+
+  final RxBool loading = true.obs;
+  final RxString error = ''.obs;
+  RxList<AllProductDetailModel> searchResults = <AllProductDetailModel>[].obs;
   RxList<AllProductDetailModel> searchList = <AllProductDetailModel>[].obs;
+  final TextEditingController searchController = TextEditingController();
+
+  RxString searchControllerString = ''.obs;
+
+  RxString filterName = "Product Name".obs;
 
   Future<void> addProduct({
     required String barcodeNumber,
@@ -142,7 +154,28 @@ class AllProductController extends GetxController {
     }
   }
 
-  search(String text) async {
+  // Future<List<AllProductDetailModel>> searchProductsByName(
+  //     String keyword) async {
+  //   try {
+  //     print("search try");
+  //     final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+  //         .collection('AllProductStockCollection')
+  //         .where('productname', isGreaterThanOrEqualTo: keyword)
+  //         .where('productname', isLessThan: keyword + 'z')
+  //         .get();
+
+  //     return querySnapshot.docs.map((doc) {
+  //       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+  //       return AllProductDetailModel.fromMap(data);
+  //     }).toList();
+  //   } catch (e) {
+  //     print("search catch");
+  //     print('Error searching products: $e');
+  //     throw Exception('Failed to search products');
+  //   }
+  // }
+
+  searchByProductName(String text) async {
     final allStockdata =
         await dataserver.collection('AllProductStockCollection').get();
     final allstocklist = allStockdata.docs
@@ -150,7 +183,20 @@ class AllProductController extends GetxController {
         .toList();
     searchList.value = allstocklist
         .where((element) =>
-            element.productname!.toLowerCase().contains(text.toLowerCase()))
+            element.productname.toLowerCase().contains(text.toLowerCase()))
+        .toList();
+    // update();
+  }
+
+  searchByCompanyName(String text) async {
+    final allStockdata =
+        await dataserver.collection('AllProductStockCollection').get();
+    final allstocklist = allStockdata.docs
+        .map((e) => AllProductDetailModel.fromMap(e.data()))
+        .toList();
+    searchList.value = allstocklist
+        .where((element) =>
+            element.companyName.toLowerCase().contains(text.toLowerCase()))
         .toList();
     // update();
   }
@@ -162,4 +208,31 @@ class AllProductController extends GetxController {
         .map((e) => AllProductDetailModel.fromMap(e.data()))
         .toList();
   }
+
+  // Future<void> searchProductsByName(String keyword) async {
+  //   try {
+  //     loading.value = true;
+
+  //     if (keyword.isEmpty) {
+  //       searchResults.clear();
+  //     } else {
+  //       final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+  //           .collection('AllProductStockCollection')
+  //           .where('productname', isGreaterThanOrEqualTo: keyword.toLowerCase())
+  //           .where('productname', isLessThan: '${keyword.toLowerCase()}z')
+  //           .get();
+
+  //       searchResults.value = querySnapshot.docs.map((doc) {
+  //         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+  //         data['productname'] = data['productname'].toString().toLowerCase();
+  //         return AllProductDetailModel.fromMap(data);
+  //       }).toList();
+  //     }
+  //   } catch (e) {
+  //     print('Error searching products: $e');
+  //     error.value = 'Failed to search products: $e';
+  //   } finally {
+  //     loading.value = false;
+  //   }
+  // }
 }

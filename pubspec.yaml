@@ -36,7 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   cloud_firestore:
   cloud_functions:
-  dropdown_search:
+  dropdown_search: ^5.0.6
   firebase_auth: ^4.16.0
   firebase_core:
   firebase_storage:

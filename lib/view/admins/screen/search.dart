@@ -33,7 +33,7 @@ class SearchScreen extends StatelessWidget {
                   //   // allProductCtr.searchProductsByName(keyword);
 
                   // }
-                  allProductCtr.search(keyword);
+                  allProductCtr.searchByProductName(keyword);
                 },
                 decoration: InputDecoration(
                   labelText: 'Search by Product Name',
@@ -80,65 +80,73 @@ class SearchScreen extends StatelessWidget {
                     );
                   }
 
-                  return SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Container(
-                      width: 1700,
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: cGrey,
-                              border: Border.all(),
-                            ),
-                            child: const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                      width: 150, child: Text('Item Code')),
-                                  SizedBox(
-                                      width: 150, child: Text('Item Name')),
-                                  SizedBox(width: 150, child: Text('Company')),
-                                  SizedBox(width: 150, child: Text('Category')),
-                                  SizedBox(
-                                      width: 150, child: Text('Subcategory')),
-                                  SizedBox(width: 150, child: Text('Unit')),
-                                  SizedBox(
-                                      width: 150, child: Text('Package Type')),
-                                  SizedBox(width: 150, child: Text('Limit')),
-                                  SizedBox(
-                                      width: 150, child: Text('Expiry Date')),
-                                  SizedBox(width: 150, child: Text('InPrice')),
-                                  SizedBox(width: 150, child: Text('Action')),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: ListView.separated(
-                              itemBuilder: (BuildContext context, int index) {
-                                // final product = searchResults[index];
-                                final product =
-                                    allProductCtr.searchList.value[index];
-                                return InventoryTileWidget(
-                                  productData: product,
-                                  index: index,
-                                );
-                              },
-                              separatorBuilder:
-                                  (BuildContext context, int index) {
-                                return const Divider();
-                              },
-                              itemCount: allProductCtr.searchList.length,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  return AllProductSearchContainer(
+                      allProductCtr: allProductCtr);
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AllProductSearchContainer extends StatelessWidget {
+  const AllProductSearchContainer({
+    super.key,
+    required this.allProductCtr,
+  });
+
+  final AllProductController allProductCtr;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Container(
+        width: 1700,
+        child: Column(
+          children: [
+            Container(
+              height: 50,
+              decoration: BoxDecoration(
+                color: cGrey,
+                border: Border.all(),
+              ),
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    SizedBox(width: 150, child: Text('Item Code')),
+                    SizedBox(width: 150, child: Text('Item Name')),
+                    SizedBox(width: 150, child: Text('Company')),
+                    SizedBox(width: 150, child: Text('Category')),
+                    SizedBox(width: 150, child: Text('Subcategory')),
+                    SizedBox(width: 150, child: Text('Unit')),
+                    SizedBox(width: 150, child: Text('Package Type')),
+                    SizedBox(width: 150, child: Text('Limit')),
+                    SizedBox(width: 150, child: Text('Expiry Date')),
+                    SizedBox(width: 150, child: Text('InPrice')),
+                    SizedBox(width: 150, child: Text('Action')),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: ListView.separated(
+                itemBuilder: (BuildContext context, int index) {
+                  // final product = searchResults[index];
+                  final product = allProductCtr.searchList.value[index];
+                  return InventoryTileWidget(
+                    productData: product,
+                    index: index,
                   );
                 },
+                separatorBuilder: (BuildContext context, int index) {
+                  return const Divider();
+                },
+                itemCount: allProductCtr.searchList.length,
               ),
             ),
           ],

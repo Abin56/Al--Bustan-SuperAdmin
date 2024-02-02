@@ -20,6 +20,11 @@ class AllProductController extends GetxController {
   final RxString error = ''.obs;
   RxList<AllProductDetailModel> searchResults = <AllProductDetailModel>[].obs;
   RxList<AllProductDetailModel> searchList = <AllProductDetailModel>[].obs;
+  final TextEditingController searchController = TextEditingController();
+
+  RxString searchControllerString = ''.obs;
+
+  RxString filterName = "Product Name".obs;
 
   Future<void> addProduct({
     required String barcodeNumber,
@@ -170,7 +175,7 @@ class AllProductController extends GetxController {
   //   }
   // }
 
-  search(String text) async {
+  searchByProductName(String text) async {
     final allStockdata =
         await dataserver.collection('AllProductStockCollection').get();
     final allstocklist = allStockdata.docs
@@ -178,7 +183,20 @@ class AllProductController extends GetxController {
         .toList();
     searchList.value = allstocklist
         .where((element) =>
-            element.productname!.toLowerCase().contains(text.toLowerCase()))
+            element.productname.toLowerCase().contains(text.toLowerCase()))
+        .toList();
+    // update();
+  }
+
+  searchByCompanyName(String text) async {
+    final allStockdata =
+        await dataserver.collection('AllProductStockCollection').get();
+    final allstocklist = allStockdata.docs
+        .map((e) => AllProductDetailModel.fromMap(e.data()))
+        .toList();
+    searchList.value = allstocklist
+        .where((element) =>
+            element.companyName.toLowerCase().contains(text.toLowerCase()))
         .toList();
     // update();
   }
@@ -191,30 +209,30 @@ class AllProductController extends GetxController {
         .toList();
   }
 
-  Future<void> searchProductsByName(String keyword) async {
-    try {
-      loading.value = true;
+  // Future<void> searchProductsByName(String keyword) async {
+  //   try {
+  //     loading.value = true;
 
-      if (keyword.isEmpty) {
-        searchResults.clear();
-      } else {
-        final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-            .collection('AllProductStockCollection')
-            .where('productname', isGreaterThanOrEqualTo: keyword.toLowerCase())
-            .where('productname', isLessThan: '${keyword.toLowerCase()}z')
-            .get();
+  //     if (keyword.isEmpty) {
+  //       searchResults.clear();
+  //     } else {
+  //       final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+  //           .collection('AllProductStockCollection')
+  //           .where('productname', isGreaterThanOrEqualTo: keyword.toLowerCase())
+  //           .where('productname', isLessThan: '${keyword.toLowerCase()}z')
+  //           .get();
 
-        searchResults.value = querySnapshot.docs.map((doc) {
-          Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-          data['productname'] = data['productname'].toString().toLowerCase();
-          return AllProductDetailModel.fromMap(data);
-        }).toList();
-      }
-    } catch (e) {
-      print('Error searching products: $e');
-      error.value = 'Failed to search products: $e';
-    } finally {
-      loading.value = false;
-    }
-  }
+  //       searchResults.value = querySnapshot.docs.map((doc) {
+  //         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+  //         data['productname'] = data['productname'].toString().toLowerCase();
+  //         return AllProductDetailModel.fromMap(data);
+  //       }).toList();
+  //     }
+  //   } catch (e) {
+  //     print('Error searching products: $e');
+  //     error.value = 'Failed to search products: $e';
+  //   } finally {
+  //     loading.value = false;
+  //   }
+  // }
 }

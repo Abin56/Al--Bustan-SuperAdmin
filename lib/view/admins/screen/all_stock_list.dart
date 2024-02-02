@@ -20,6 +20,7 @@ class AllStockList extends StatelessWidget {
   AllStockList({super.key});
 
   final getStroreCtr = Get.put(StoreController());
+  final allProductCtr = Get.put(AllProductController());
 
   final TextEditingController categoryCtr = TextEditingController();
 
@@ -27,6 +28,7 @@ class AllStockList extends StatelessWidget {
   Widget build(BuildContext context) {
     final sizeW = MediaQuery.of(context).size.width;
     final sizeH = MediaQuery.of(context).size.height;
+    allProductCtr.searchControllerString.value = "";
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Container(
@@ -68,11 +70,60 @@ class AllStockList extends StatelessWidget {
                             icon: iconWidget(
                                 icon: Icons.search, color: cBlack, size: 25),
                           ),
-                          // SizedBox(
-                          //   height: 40,
-                          //   width: sizeW * 0.1,
-                          //   child: const CupertinoSearchTextField(),
-                          // ),
+                          SizedBox(
+                            height: 40,
+                            width: sizeW * 0.2,
+                            child: Obx(
+                              () => CupertinoSearchTextField(
+                                  backgroundColor: cLateGrey,
+                                  placeholderStyle: TextStyle(color: cGrey),
+                                  placeholder: allProductCtr.filterName.value,
+                                  // controller: allProductCtr.searchController,
+                                  onChanged: (value) {
+                                    if (allProductCtr.filterName ==
+                                        "Product Name") {
+                                      allProductCtr.searchByProductName(value);
+                                    } else {
+                                      allProductCtr.searchByCompanyName(value);
+                                    }
+
+                                    allProductCtr.searchControllerString.value =
+                                        value;
+                                  }),
+                            ),
+                          ),
+                          sWidtht5,
+                          Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: cLateGrey),
+                            child: PopupMenuButton(
+                              position: PopupMenuPosition.under,
+                              icon: iconWidget(
+                                  icon: Icons.filter_alt_sharp,
+                                  color: cGrey,
+                                  size: 25),
+                              itemBuilder: (context) => [
+                                PopupMenuItem(
+                                    onTap: () {
+                                      allProductCtr.filterName.value =
+                                          "Product Name";
+                                    },
+                                    child: GooglePoppinsWidgets(
+                                        text: "Product Name", fontsize: 14)),
+                                PopupMenuItem(
+                                    onTap: () {
+                                      allProductCtr.filterName.value =
+                                          "Company Name";
+                                    },
+                                    child: GooglePoppinsWidgets(
+                                        text: "Company Name", fontsize: 14))
+                              ],
+                            ),
+                          ),
+
                           sWidtht10,
                           MaterialButton(
                             onPressed: () {
@@ -130,50 +181,79 @@ class AllStockList extends StatelessWidget {
                           ],
                         ),
                         Expanded(
-                          child: Container(
-                            decoration: const BoxDecoration(),
-                            child: StreamBuilder(
-                                stream: FirebaseFirestore.instance
-                                    .collection('AllProductStockCollection')
-                                    .snapshots(),
-                                builder: (context, snapshot) {
-                                  if (snapshot.connectionState ==
-                                      ConnectionState.waiting) {
-                                    return const Center(
-                                        child: CircularProgressIndicator());
-                                  } else if (snapshot.data!.docs.isEmpty) {
-                                    return Center(
-                                      child: GooglePoppinsWidgets(
-                                          text: "No data", fontsize: 15),
-                                    );
-                                  } else if (!snapshot.hasData) {
-                                    return Center(
-                                      child: GooglePoppinsWidgets(
-                                          text: "No data", fontsize: 15),
-                                    );
-                                  } else {
-                                    return ListView.separated(
-                                        // scrollDirection: Axis.horizontal,
-                                        itemBuilder:
-                                            (BuildContext context, int index) {
-                                          final productData =
-                                              AllProductDetailModel.fromMap(
-                                                  snapshot.data!.docs[index]
-                                                      .data());
-                                          return InventoryTileWidget(
-                                            productData: productData,
-                                            index: index,
+                            child: Obx(
+                          () => allProductCtr.searchControllerString.value == ""
+                              ? Container(
+                                  decoration: const BoxDecoration(),
+                                  child: StreamBuilder(
+                                      stream: FirebaseFirestore.instance
+                                          .collection(
+                                              'AllProductStockCollection')
+                                          .snapshots(),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.connectionState ==
+                                            ConnectionState.waiting) {
+                                          return const Center(
+                                              child:
+                                                  CircularProgressIndicator());
+                                        } else if (snapshot
+                                            .data!.docs.isEmpty) {
+                                          return Center(
+                                            child: GooglePoppinsWidgets(
+                                                text: "No data", fontsize: 15),
                                           );
-                                        },
-                                        separatorBuilder:
-                                            (BuildContext context, int index) {
-                                          return const Divider();
-                                        },
-                                        itemCount: snapshot.data!.docs.length);
-                                  }
-                                }),
-                          ),
-                        )
+                                        } else if (!snapshot.hasData) {
+                                          return Center(
+                                            child: GooglePoppinsWidgets(
+                                                text: "No data", fontsize: 15),
+                                          );
+                                        } else {
+                                          return ListView.separated(
+                                              // scrollDirection: Axis.horizontal,
+                                              itemBuilder:
+                                                  (BuildContext context,
+                                                      int index) {
+                                                final productData =
+                                                    AllProductDetailModel
+                                                        .fromMap(snapshot
+                                                            .data!.docs[index]
+                                                            .data());
+                                                return InventoryTileWidget(
+                                                  productData: productData,
+                                                  index: index,
+                                                );
+                                              },
+                                              separatorBuilder:
+                                                  (BuildContext context,
+                                                      int index) {
+                                                return const Divider();
+                                              },
+                                              itemCount:
+                                                  snapshot.data!.docs.length);
+                                        }
+                                      }),
+                                )
+                              : Container(
+                                  color: cLateGrey,
+                                  child: ListView.separated(
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      // final product = searchResults[index];
+                                      final product =
+                                          allProductCtr.searchList.value[index];
+                                      return InventoryTileWidget(
+                                        productData: product,
+                                        index: index,
+                                      );
+                                    },
+                                    separatorBuilder:
+                                        (BuildContext context, int index) {
+                                      return const Divider();
+                                    },
+                                    itemCount: allProductCtr.searchList.length,
+                                  ),
+                                ),
+                        ))
                       ],
                     ),
                   ))
@@ -262,27 +342,6 @@ class InventoryTileWidget extends StatelessWidget {
           PopupMenuButton(
             itemBuilder: (context) {
               return [
-                PopupMenuItem(
-                    onTap: () {
-                      customShowDilogBox(
-                        context: context,
-                        title: "Quantity",
-                        children: [
-                          TextFormFiledContainerWidget(
-                              controller: getWarehouseCtr.quantityCtr,
-                              hintText: "Quantity",
-                              title: 'Quantity',
-                              width: 200)
-                        ],
-                        doyouwantActionButton: true,
-                        actiononTapfuction: () {
-                          getWarehouseCtr.editQuantity(productData.docId,
-                              int.parse(getWarehouseCtr.quantityCtr.text));
-                        },
-                      );
-                    },
-                    child: GooglePoppinsWidgets(
-                        text: 'Edit Quantity', fontsize: 11)),
                 PopupMenuItem(
                   onTap: () {
                     customShowDilogBox(

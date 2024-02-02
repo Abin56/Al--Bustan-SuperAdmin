@@ -170,7 +170,6 @@ class StockDdetailsWidget extends StatelessWidget {
     return Expanded(
       flex: flex,
       child: Center(
-        // child: AlBustanTableViewApp(text: text, flex: 1, color: cWhite,),
         child: Text(
           text,
           style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 11.5),

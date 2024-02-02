@@ -182,7 +182,7 @@ class WearHouseController extends GetxController {
 
   Future<void> editQuantity(String docid, int quantity) async {
     dataserver
-        .collection('AllProductStockCollection')
+        .collection('AvailableProducts')
         .doc(docid)
         .update({'quantityinStock': quantity}).then((value) {
       showToast(msg: "quantity updated");

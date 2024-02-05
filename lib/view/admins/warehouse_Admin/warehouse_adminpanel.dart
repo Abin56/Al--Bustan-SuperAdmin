@@ -12,6 +12,7 @@ import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/low_st
 import 'package:canteen_superadmin_website/view/admins/super_Admin/pages/user_assign_screen/user_assign_screen.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/appbar/app_bar.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/available_stock.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/report.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/return_screen/return_screen.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/stock_upload_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/temporary_stock_list.dart';
@@ -147,6 +148,7 @@ List<Widget> pages = [
 
   UserAssignListScreen(),
   AvailableStockWidget(), //10
+  Reports(), //15
   UserAssignListScreen(), //11
   UserAssignListScreen(), //12
   UserAssignListScreen(), //13

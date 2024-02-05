@@ -20,7 +20,7 @@ class LoginSection extends StatefulWidget {
   State<LoginSection> createState() => _LoginSectionState();
 }
 
-Future<void> myLaunchUrl() async {
+Future<void> toApp() async {
   print("app in");
   final Uri url = Uri.parse(
       'https://play.google.com/store/apps/details?id=in.ivarva.app_xpox');
@@ -59,7 +59,7 @@ class _LoginSectionState extends State<LoginSection> {
           )),
           GestureDetector(
             onTap: () {
-              myLaunchUrl();
+              toApp();
             },
             child: GooglePoppinsWidgets(
               text: 'Signup',
@@ -153,7 +153,7 @@ class _LoginSectionState extends State<LoginSection> {
             padding: const EdgeInsets.only(top: 10, left: 10),
             child: InkWell(
               onTap: () {
-                myLaunchUrl();
+                toApp();
               },
               child: GooglePoppinsWidgets(
                 text: "Signup",
@@ -163,12 +163,12 @@ class _LoginSectionState extends State<LoginSection> {
             ),
           ),
         ],
-      ), //////////////////////////////////////////////////////////////////////////////11
+      ), /////////////////////////////////
       LoginContainerWidget(
         value: 'wearhouseadmin',
         imagepath: 'web_images/warehouse_Admin.jpg',
         text: 'WEARHOUSE ADMIN',
-      ), /////////////////////////////////////////////////////////////////////////////12
+      ), /////////////////////////////////
     ];
     return Scaffold(
       backgroundColor: cWhite,

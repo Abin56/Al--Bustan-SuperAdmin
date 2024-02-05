@@ -1,4 +1,4 @@
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/invetory_sreen.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/low_stock_alert_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

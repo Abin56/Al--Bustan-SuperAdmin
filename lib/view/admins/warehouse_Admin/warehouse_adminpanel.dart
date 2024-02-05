@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:canteen_superadmin_website/controller/wearhouse_controller/wearhouse_controller.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivered_list_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_assigning_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_pending_widget.dart';

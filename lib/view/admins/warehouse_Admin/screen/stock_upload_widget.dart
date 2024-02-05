@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:canteen_superadmin_website/controller/excel_controller/excel_controller.dart';
 import 'package:canteen_superadmin_website/controller/wearhouse_controller/wearhouse_controller.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
@@ -13,7 +11,7 @@ import 'package:canteen_superadmin_website/model/packagetype_model.dart';
 import 'package:canteen_superadmin_website/model/quantity_model.dart';
 import 'package:canteen_superadmin_website/model/subcategory_model.dart';
 import 'package:canteen_superadmin_website/model/suppliers_model.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/all_stock_details_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/temporary_stock_list.dart';
 import 'package:canteen_superadmin_website/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:dropdown_search/dropdown_search.dart';

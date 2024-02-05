@@ -33,17 +33,17 @@ class ContactUsContainerWidget extends StatelessWidget {
                       child: Row(
                         children: [
                           SizedBox(
-                            width: 50,
+                            width: 70,
                             height: 50,
                             child: Image.asset(
-                              'assets/images/leptonlogogreen.png',
+                              'web_images/albustanwhite.png',
                               fit: BoxFit.fill,
                             ),
                           ),
                           const Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: PrimaryFontWidget(
-                                text: "Lepton\nAI Solutions",
+                                text: "AL BUSTAN",
                                 fontSize: 15,
                                 fontweight: FontWeight.bold,
                                 color: Colors.white),

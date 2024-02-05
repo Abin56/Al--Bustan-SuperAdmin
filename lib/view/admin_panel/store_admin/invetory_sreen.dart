@@ -1,7 +1,7 @@
 import 'package:canteen_superadmin_website/controller/store_controller/store_controller.dart';
 import 'package:canteen_superadmin_website/controller/wearhouse_controller/wearhouse_controller.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/admin_panel/store_admin/storekeeper_details.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/storekeeper_details.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';

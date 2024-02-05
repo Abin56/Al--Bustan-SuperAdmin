@@ -1,6 +1,6 @@
 import 'package:canteen_superadmin_website/core/core.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/admin_panel/delivery_admin/status_screen/pending_status/data_list.dart';
-import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/low_stock_alert_widget.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/status_screen/pending_status/data_list.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/invetory_sreen.dart';
 import 'package:flutter/material.dart';
 
 class PickedOrdersStatusScreen extends StatelessWidget {

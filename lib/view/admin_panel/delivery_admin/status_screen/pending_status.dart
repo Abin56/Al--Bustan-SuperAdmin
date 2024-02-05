@@ -1,4 +1,4 @@
-import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/low_stock_alert_widget.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/invetory_sreen.dart';
 import 'package:flutter/material.dart';
 
 class PendingOrdersStatusScreen extends StatelessWidget {

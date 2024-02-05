@@ -1,14 +1,18 @@
 import 'package:canteen_superadmin_website/controller/delivery_controller/delivery_controller.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
+import 'package:canteen_superadmin_website/model/canteen_model.dart';
 import 'package:canteen_superadmin_website/model/cart_model.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/stock_upload_widget.dart';
 import 'package:canteen_superadmin_website/view/textstysle/textstyle.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProductScreen extends StatelessWidget {
   ProductScreen({super.key});
@@ -481,7 +485,8 @@ class CartWiget extends StatelessWidget {
             } else {
               return Column(
                 children: [
-                  const CartHeadWidget(),
+                  GooglePoppinsWidgets(text: "Select Canteen", fontsize: 16),
+                  CartHeadWidget(),
                   Expanded(
                     child: ListView.separated(
                         itemBuilder: (context, index) {
@@ -613,7 +618,7 @@ class CartWiget extends StatelessWidget {
                                     sWidtht10,
                                     SizedBox(
                                       height: SizeW * 0.03,
-                                      width: SizeW * 0.03,
+                                      width: SizeW * 0.05,
                                       child: TextField(
                                         textAlign: TextAlign.center,
                                         onChanged: (value) {
@@ -689,6 +694,22 @@ class CartWiget extends StatelessWidget {
                                       text: data.totalAmount.toString(),
                                       fontsize: 16),
                                 ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  showDialogWidget(
+                                      context: context,
+                                      title:
+                                          "Are you Sure to Remove item from cart",
+                                      function: () {
+                                        getDeliveryCtr
+                                            .deleteCartItem(data.docId);
+                                      });
+                                },
+                                icon: iconWidget(
+                                    icon: Icons.delete_rounded,
+                                    color: cred,
+                                    size: 25),
                               )
                             ],
                           );
@@ -718,6 +739,62 @@ class CartWiget extends StatelessWidget {
 //     return
 //   }
 // }
+
+class CompanySetUpWidget1 extends StatelessWidget {
+  CompanySetUpWidget1({
+    Key? key,
+  }) : super(key: key);
+
+  final deliveryCtr = Get.put(DeliveryController());
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.blue.withOpacity(0.3),
+          border: Border.all(color: cGrey.withOpacity(0.2))),
+      child: Center(
+        child: Form(
+          key: _formKey,
+          child: DropdownSearch<CanteenModel>(
+            validator: (item) {
+              if (item == null) {
+                return "Required field";
+              } else {
+                return null;
+              }
+            },
+            asyncItems: (value) {
+              deliveryCtr.canteenList.clear();
+              return deliveryCtr.fetchcanteenModel();
+            },
+            itemAsString: (value) => value.schoolName,
+            onChanged: (value) async {
+              if (value != null) {
+                deliveryCtr.canteenName.value = value.schoolName;
+                deliveryCtr.canteenID.value = value.docId;
+              }
+            },
+            onSaved: (value) {
+              // Do something with the selected value when the form is saved.
+              // You can update the data or perform any necessary actions.
+              print("Form saved: $value");
+            },
+            dropdownDecoratorProps: DropDownDecoratorProps(
+              baseStyle: GoogleFonts.poppins(
+                fontSize: 13,
+                color: Colors.black.withOpacity(0.7),
+              ),
+            ),
+            popupProps: const PopupProps.menu(
+                showSearchBox: true, searchDelay: Duration(microseconds: 10)),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class CartHeadWidget extends StatelessWidget {
   const CartHeadWidget({super.key});

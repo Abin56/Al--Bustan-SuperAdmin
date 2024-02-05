@@ -1,7 +1,6 @@
 import 'package:canteen_superadmin_website/core/constant/const.dart';
 import 'package:canteen_superadmin_website/core/core.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
-import 'package:canteen_superadmin_website/model/canteen_model.dart';
 import 'package:canteen_superadmin_website/model/category_model.dart';
 import 'package:canteen_superadmin_website/model/packagetype_model.dart';
 import 'package:canteen_superadmin_website/model/quantity_model.dart';

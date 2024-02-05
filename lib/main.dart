@@ -1,5 +1,6 @@
 import 'package:canteen_superadmin_website/firebase_options.dart';
 import 'package:canteen_superadmin_website/scroll_on_web_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/notification/notification.dart';
 import 'package:canteen_superadmin_website/view/home/home.dart';
 import 'package:canteen_superadmin_website/view/utils/shared_pref/shared_pref_helper.dart';
 import 'package:canteen_superadmin_website/view/welcome_screen/welcome_screen.dart';
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
       scrollBehavior: MyCustomScrollBehavior(),
       debugShowCheckedModeBanner: false,
       // home: HomeScreen(),
-      home: const HomeScreen(),
+      home:  WareAdminNotification (),
+     // const HomeScreen(),
       // home: Scaffold(
       //   body: Center(
       //     child: Y(),

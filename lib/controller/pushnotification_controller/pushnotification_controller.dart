@@ -12,10 +12,13 @@ import '../../model/deviceTokenModel/deviceToken.dart';
 class PushnotificationController extends GetxController {
   List<UserDeiveTokenModel> alluserdevicetokenlist = [];
   List<UserModel> allEmployeeUidList = [];
-  List<String> allEmployeeDeviceToken = [];
   List<UserModel> alldeliverAdminUidList = [];
   List<UserModel> allWarehouseAdminUidList = [];
   List<UserModel> allStoreAdminUidList = [];
+  List<String> allEmployeeDeviceToken = [];
+  List<String> allDeliveryAdminDeviceToken = [];
+  List<String> allWarehouseAdminDeviceToken = [];
+  List<String> allStoreAdminDeviceToken=[];
 
   Future sendNotificationApi(
       String message, String title, String deviceToken) async {
@@ -53,16 +56,7 @@ class PushnotificationController extends GetxController {
     }
   }
 
-  Future sendMessageForAllUsers(
-    String message,
-    String title,
-  ) async {
-    for (var i = 0; i < alluserdevicetokenlist.length; i++) {
-      sendNotificationApi("message", "title", "");
-    }
-
-    // sendNotificationApi("message","title","");
-  }
+ 
 
   Future fetchalluserDeviceToken() async {
     final firebase = await dataserver.collection("UserDeviceToken").get();
@@ -75,6 +69,15 @@ class PushnotificationController extends GetxController {
       alluserdevicetokenlist.add(list[i]);
       // print(alluserdevicetokenlist[i].deviceToken);
     }
+  }
+   Future sendMessageForAllUsers() async {
+    for (var i = 0; i < alluserdevicetokenlist.length; i++) {
+      sendNotificationApi("message", "title",// "$alluserdevicetokenlist[i]",
+      ""
+      );
+    }
+
+    // sendNotificationApi("message","title","");
   }
 
 //..................................>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//allusers
@@ -90,8 +93,6 @@ class PushnotificationController extends GetxController {
   }
 
   Future fetchAllEmployeeDeviceID() async {
-    // print("object");
-
     for (var i = 0; i < allEmployeeUidList.length; i++) {
       final firebase = await dataserver
           .collection("UserDeviceToken")
@@ -113,6 +114,12 @@ class PushnotificationController extends GetxController {
     // log("message  ... ${allEmployeeDeviceToken.length}");
   }
 
+  Future sendMessageForEmployee() async {
+    for (var i = 0; i < allEmployeeDeviceToken.length; i++) {
+      sendNotificationApi("message", "title", allEmployeeDeviceToken[i]);
+    }
+  }
+
   ///............................................>>>>>>>>>>>>>>>>>>>>>>>>>>employees
   Future fetchAllDEliveryAdmin() async {
     final firebase = await dataserver
@@ -123,14 +130,27 @@ class PushnotificationController extends GetxController {
       final list =
           firebase.docs.map((e) => UserModel.fromMap(e.data())).toList();
       alldeliverAdminUidList.add(list[i]);
-      print(alldeliverAdminUidList[i].docid);
+      //  print(alldeliverAdminUidList[i].docid);
     }
-    return alldeliverAdminUidList;
+    // return alldeliverAdminUidList;
+  }
+
+  Future FetchAllDeliveryAdminDeviceID() async {
+    for (var i = 0; i < alldeliverAdminUidList.length; i++) {
+      final firebase = await dataserver
+          .collection("UserDeviceToken")
+          .doc(alldeliverAdminUidList[i].docid)
+          .get();
+      if (firebase.data() != null) {
+        allDeliveryAdminDeviceToken.add(firebase.data()?['deviceToken']);
+      }
+    }
+    print('....$allDeliveryAdminDeviceToken');
   }
 
   Future sendMessageForDeliverAdmin() async {
-    for (var i = 0; i < alldeliverAdminUidList.length; i++) {
-      sendNotificationApi("message", "title", "deviceToken");
+    for (var i = 0; i < allDeliveryAdminDeviceToken.length; i++) {
+      sendNotificationApi("message", "title", allDeliveryAdminDeviceToken[i]);
     }
   }
 
@@ -147,9 +167,22 @@ class PushnotificationController extends GetxController {
     }
   }
 
-  Future sendMessageForWareHouseAdmin() async {
+  Future fetchAllWarehouseAdminDeviceID() async {
     for (var i = 0; i < allWarehouseAdminUidList.length; i++) {
-      sendNotificationApi("message", "title", "deviceToken");
+      final Firebase = await dataserver
+          .collection("UserDeviceToken")
+          .doc(allWarehouseAdminUidList[i].docid)
+          .get();
+      if (Firebase.data() != null) {
+        allWarehouseAdminDeviceToken.add(Firebase.data()?["deviceToken"]);
+      }
+    }
+    print('....$allWarehouseAdminDeviceToken');
+  }
+
+  Future sendMessageForWareHouseAdmin() async {
+    for (var i = 0; i < allWarehouseAdminDeviceToken.length; i++) {
+      sendNotificationApi("message", "title", allWarehouseAdminDeviceToken[i]);
     }
   }
 
@@ -165,10 +198,20 @@ class PushnotificationController extends GetxController {
       allStoreAdminUidList.add(list[i]);
     }
   }
+  Future fetchAllStoreAdminDEviceId()async{
+    for(var i=0;i < allStoreAdminUidList.length;i++){
+      final firebase= await dataserver.collection("UserDeviceToken").doc(allStoreAdminUidList[i].docid).get();
+      if(firebase.data()!=null){
+        allStoreAdminDeviceToken.add(firebase.data()?["deviceToken"]);
+
+      }
+    }
+    print('....$allStoreAdminDeviceToken');
+  }
 
   Future sendMessageForStoreAdmin() async {
-    for (var i = 0; i < allStoreAdminUidList.length; i++) {
-      sendNotificationApi("message", "title", "deviceToken");
+    for (var i = 0; i < allStoreAdminDeviceToken.length; i++) {
+      sendNotificationApi("message", "title", allStoreAdminDeviceToken[i]);
     }
   }
   //.................................>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>storeadmin

@@ -6,7 +6,6 @@ import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/supplier_adding_widget.dart';
-import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/manual_product_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 // import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

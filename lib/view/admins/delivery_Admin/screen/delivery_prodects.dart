@@ -1,4 +1,5 @@
 import 'package:canteen_superadmin_website/controller/delivery_controller/delivery_controller.dart';
+import 'package:canteen_superadmin_website/core/constant/const.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:canteen_superadmin_website/model/canteen_model.dart';
 import 'package:canteen_superadmin_website/model/cart_model.dart';
@@ -153,8 +154,12 @@ class ProductScreen extends StatelessWidget {
                               children: [CartWiget()],
                               actiononTapfuction: () async {
                                 // final newlist =
-                                await getDeliveryCtr.getCartList();
-                                getDeliveryCtr.cartToDeliveryOrder();
+                                // await getDeliveryCtr.getCartList();
+                                if (getDeliveryCtr.canteenID.value != "") {
+                                  getDeliveryCtr.cartToDeliveryOrder();
+                                } else {
+                                  showToast(msg: "Please Select Canteen");
+                                }
                               },
                               doyouwantActionButton: true,
                             );
@@ -464,6 +469,8 @@ class CartWiget extends StatelessWidget {
   Widget build(BuildContext context) {
     final SizeW = MediaQuery.of(context).size.width;
     final SizeH = MediaQuery.of(context).size.height;
+    getDeliveryCtr.canteenID.value = "";
+    getDeliveryCtr.canteenName.value = "";
 
     return SizedBox(
       width: SizeW * 0.44,
@@ -484,8 +491,11 @@ class CartWiget extends StatelessWidget {
               );
             } else {
               return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GooglePoppinsWidgets(text: "Select Canteen", fontsize: 16),
+                  CanteenSetUpWidget(),
+                  sHeight10,
                   CartHeadWidget(),
                   Expanded(
                     child: ListView.separated(
@@ -740,8 +750,8 @@ class CartWiget extends StatelessWidget {
 //   }
 // }
 
-class CompanySetUpWidget1 extends StatelessWidget {
-  CompanySetUpWidget1({
+class CanteenSetUpWidget extends StatelessWidget {
+  CanteenSetUpWidget({
     Key? key,
   }) : super(key: key);
 
@@ -788,7 +798,12 @@ class CompanySetUpWidget1 extends StatelessWidget {
               ),
             ),
             popupProps: const PopupProps.menu(
-                showSearchBox: true, searchDelay: Duration(microseconds: 10)),
+                searchFieldProps: TextFieldProps(
+                    decoration: InputDecoration(
+                        hintText: "Search Canteen",
+                        border: OutlineInputBorder())),
+                showSearchBox: true,
+                searchDelay: Duration(microseconds: 10)),
           ),
         ),
       ),

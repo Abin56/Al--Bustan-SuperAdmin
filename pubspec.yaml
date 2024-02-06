@@ -58,6 +58,7 @@ dependencies:
   awesome_side_sheet:
   marquee:
   url_launcher: ^6.2.4
+  flutter_calendar_carousel: ^2.4.2
 
 dev_dependencies:
   flutter_test:

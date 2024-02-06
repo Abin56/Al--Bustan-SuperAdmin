@@ -1,6 +1,7 @@
 import 'package:canteen_superadmin_website/core/core.dart';
 import 'package:canteen_superadmin_website/model/admin_model.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
+import 'package:canteen_superadmin_website/model/canteen_model.dart';
 import 'package:canteen_superadmin_website/model/cart_model.dart';
 import 'package:canteen_superadmin_website/model/employee_request_model.dart';
 import 'package:canteen_superadmin_website/core/constant/const.dart';
@@ -13,6 +14,10 @@ class DeliveryController extends GetxController {
   final firestore = FirebaseFirestore.instance;
 
   List<AdminModel> employeeList = [];
+
+  RxString canteenName = ''.obs;
+  RxString canteenID = ''.obs;
+  List<CanteenModel> canteenList = [];
 
   RxInt quantity = 0.obs;
   // RxInt singleItemTotalAmount = 0.obs;
@@ -40,7 +45,7 @@ class DeliveryController extends GetxController {
   }
 
   lessQuantity(CartModel data) {
-    if (data.quantity > 0) {
+    if (data.quantity > 1) {
       int qty = data.quantity - 1;
       int totalAmount = data.outPrice * qty;
       final qtydata = {
@@ -55,7 +60,7 @@ class DeliveryController extends GetxController {
           .doc(data.productDetailsDocId)
           .update({'quantityinStock': qty});
     } else {
-      showToast(msg: "Please add quantity");
+      showToast(msg: "Minimum 1 quantity needed");
     }
   }
 
@@ -88,8 +93,8 @@ class DeliveryController extends GetxController {
       "availableQuantity": data.quantityinStock,
       "inPrice": data.inPrice,
       "outPrice": data.outPrice,
-      "quantity": 0,
-      "totalAmount": 0,
+      "quantity": 1,
+      "totalAmount": data.outPrice,
       "docId": uuid
     };
 
@@ -361,6 +366,24 @@ class DeliveryController extends GetxController {
       }
     }
     return employeeList;
+  }
+
+  deleteCartItem(String docId) {
+    dataserver.collection('DeliveryCart').doc(docId).delete().then((value) {
+      showToast(msg: "Item Deleted from cart");
+    });
+  }
+
+  Future<List<CanteenModel>> fetchcanteenModel() async {
+    final firebase =
+        await FirebaseFirestore.instance.collection('SuppliersList').get();
+
+    for (var i = 0; i < firebase.docs.length; i++) {
+      final list =
+          firebase.docs.map((e) => CanteenModel.fromMap(e.data())).toList();
+      canteenList.add(list[i]);
+    }
+    return canteenList;
   }
 }
 

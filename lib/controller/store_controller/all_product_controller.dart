@@ -201,6 +201,24 @@ class AllProductController extends GetxController {
     // update();
   }
 
+  searchByProductWithCompanyName(String text, String companyName) async {
+    print('Working');
+    print(text);
+    final allStockdata =
+        await dataserver.collection('AllProductStockCollection').get();
+    final allstocklist = allStockdata.docs
+        .map((e) => AllProductDetailModel.fromMap(e.data()))
+        .toList();
+    searchList.value = allstocklist
+        .where((element) =>
+            element.productname.toLowerCase().contains(text.toLowerCase()) &&
+            element.companyName
+                .toLowerCase()
+                .contains(companyName.toLowerCase()))
+        .toList();
+    // update();
+  }
+
   getallStockList() async {
     final allStockdata =
         await dataserver.collection('AllProductStockCollection').get();
@@ -208,31 +226,4 @@ class AllProductController extends GetxController {
         .map((e) => AllProductDetailModel.fromMap(e.data()))
         .toList();
   }
-
-  // Future<void> searchProductsByName(String keyword) async {
-  //   try {
-  //     loading.value = true;
-
-  //     if (keyword.isEmpty) {
-  //       searchResults.clear();
-  //     } else {
-  //       final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-  //           .collection('AllProductStockCollection')
-  //           .where('productname', isGreaterThanOrEqualTo: keyword.toLowerCase())
-  //           .where('productname', isLessThan: '${keyword.toLowerCase()}z')
-  //           .get();
-
-  //       searchResults.value = querySnapshot.docs.map((doc) {
-  //         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-  //         data['productname'] = data['productname'].toString().toLowerCase();
-  //         return AllProductDetailModel.fromMap(data);
-  //       }).toList();
-  //     }
-  //   } catch (e) {
-  //     print('Error searching products: $e');
-  //     error.value = 'Failed to search products: $e';
-  //   } finally {
-  //     loading.value = false;
-  //   }
-  // }
 }

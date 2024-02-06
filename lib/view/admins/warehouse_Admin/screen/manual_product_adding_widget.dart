@@ -46,14 +46,14 @@ class ProductAddingScreen extends StatelessWidget {
                     controller: getWarehouseCtr.barcodeController,
                     decoration: _customInputDecoration('Barcode Number'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
                     controller: getWarehouseCtr.productNameController,
                     decoration: _customInputDecoration('Product Name'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
@@ -61,7 +61,7 @@ class ProductAddingScreen extends StatelessWidget {
                     decoration: _customInputDecoration('In Price'),
                     keyboardType: TextInputType.number,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
@@ -69,7 +69,7 @@ class ProductAddingScreen extends StatelessWidget {
                     decoration: _customInputDecoration('Out Price'),
                     keyboardType: TextInputType.number,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
@@ -391,6 +391,8 @@ class CompanySetUpWidget1 extends StatelessWidget {
                 color: Colors.black.withOpacity(0.7),
               ),
             ),
+            popupProps: const PopupProps.menu(
+                showSearchBox: true, searchDelay: Duration(microseconds: 10)),
           ),
         ),
       ),

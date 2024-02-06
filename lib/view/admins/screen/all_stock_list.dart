@@ -1,29 +1,30 @@
-import 'dart:html';
-
 import 'package:canteen_superadmin_website/controller/store_controller/all_product_controller.dart';
 import 'package:canteen_superadmin_website/controller/store_controller/store_controller.dart';
 import 'package:canteen_superadmin_website/controller/wearhouse_controller/wearhouse_controller.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
+import 'package:canteen_superadmin_website/model/suppliers_model.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/storekeeper_details.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/storekeeper_details.dart';
 import 'package:canteen_superadmin_website/view/admins/screen/search.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/supplier_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/manual_product_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 // import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AllStockList extends StatelessWidget {
   AllStockList({super.key});
 
   final getStroreCtr = Get.put(StoreController());
   final allProductCtr = Get.put(AllProductController());
+  final wearhouseCtr = Get.put(WearHouseController());
 
   final TextEditingController categoryCtr = TextEditingController();
 
@@ -32,6 +33,7 @@ class AllStockList extends StatelessWidget {
     final sizeW = MediaQuery.of(context).size.width;
     final sizeH = MediaQuery.of(context).size.height;
     allProductCtr.searchControllerString.value = "";
+    wearhouseCtr.productCompanyName.value = "";
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Container(
@@ -79,13 +81,20 @@ class AllStockList extends StatelessWidget {
                             child: Obx(
                               () => CupertinoSearchTextField(
                                   backgroundColor: cLateGrey,
-                                  placeholderStyle: TextStyle(color: cGrey),
+                                  placeholderStyle:
+                                      const TextStyle(color: cGrey),
                                   placeholder: allProductCtr.filterName.value,
                                   // controller: allProductCtr.searchController,
                                   onChanged: (value) {
                                     if (allProductCtr.filterName ==
                                         "Product Name") {
-                                      allProductCtr.searchByProductName(value);
+                                      // allProductCtr.searchByProductName(value);
+                                      allProductCtr
+                                          .searchByProductWithCompanyName(
+                                              allProductCtr
+                                                  .searchControllerString.value,
+                                              wearhouseCtr
+                                                  .productCompanyName.value);
                                     } else {
                                       allProductCtr.searchByCompanyName(value);
                                     }
@@ -124,6 +133,79 @@ class AllStockList extends StatelessWidget {
                                     child: GooglePoppinsWidgets(
                                         text: "Company Name", fontsize: 14))
                               ],
+                            ),
+                          ),
+                          sWidtht5,
+                          Container(
+                            height: 40,
+                            width: 200,
+                            decoration: BoxDecoration(
+                                color: Colors.blue.withOpacity(0.3),
+                                borderRadius: BorderRadius.circular(10),
+                                border:
+                                    Border.all(color: cBlack.withOpacity(0.2))),
+                            child: Center(
+                              child: DropdownSearch<SuppliersModel>(
+                                validator: (item) {
+                                  if (item == null) {
+                                    return "Required field";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                asyncItems: (value) {
+                                  wearhouseCtr.supplierList.clear();
+                                  return wearhouseCtr.fetchSupplireModel();
+                                },
+                                itemAsString: (value) => value.suppliersName,
+                                onChanged: (value) async {
+                                  if (value != null) {
+                                    wearhouseCtr.productCompanyName.value =
+                                        value.suppliersName;
+                                    wearhouseCtr.productCompanyID.value =
+                                        value.docId;
+                                  }
+                                  allProductCtr.searchByProductWithCompanyName(
+                                      allProductCtr
+                                          .searchControllerString.value,
+                                      wearhouseCtr.productCompanyName.value);
+                                },
+                                onSaved: (value) {
+                                  // Do something with the selected value when the form is saved.
+                                  // You can update the data or perform any necessary actions.
+                                  print("Form saved: $value");
+                                },
+                                clearButtonProps: ClearButtonProps(
+                                  // isVisible: true,
+                                  icon: Icon(Icons.close),
+                                  iconSize: 15,
+                                  onPressed: () {
+                                    wearhouseCtr.productCompanyName.value = "";
+                                    allProductCtr
+                                        .searchByProductWithCompanyName(
+                                            allProductCtr
+                                                .searchControllerString.value,
+                                            wearhouseCtr
+                                                .productCompanyName.value);
+                                  },
+                                ),
+                                dropdownDecoratorProps: DropDownDecoratorProps(
+                                  textAlign: TextAlign.center,
+                                  dropdownSearchDecoration: InputDecoration(
+                                      enabledBorder: InputBorder.none,
+                                      hintText: 'Select Company'),
+                                  baseStyle: GoogleFonts.poppins(
+                                    fontSize: 13,
+                                    color: Colors.black.withOpacity(0.7),
+                                  ),
+                                ),
+                                popupProps: const PopupProps.menu(
+                                    showSearchBox: true,
+                                    searchFieldProps: TextFieldProps(
+                                        decoration: InputDecoration(
+                                            hintText: 'Search Company')),
+                                    searchDelay: Duration(microseconds: 10)),
+                              ),
                             ),
                           ),
 

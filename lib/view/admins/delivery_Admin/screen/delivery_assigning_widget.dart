@@ -2,6 +2,7 @@ import 'package:canteen_superadmin_website/controller/delivery_controller/delive
 import 'package:canteen_superadmin_website/controller/employee_controller/employee_controller.dart';
 import 'package:canteen_superadmin_website/model/admin_model.dart';
 import 'package:canteen_superadmin_website/model/employe_createprofile_model.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/stock_upload_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/button_container_widget/custom_button.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
@@ -72,6 +73,14 @@ class DeliveryScreen extends StatelessWidget {
                         child: Center(
                           child: Text(
                             "Order ID",
+                            style: AppTextStyles.textStyle1,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            "Canteen Name",
                             style: AppTextStyles.textStyle1,
                           ),
                         ),
@@ -163,12 +172,35 @@ class DeliveryScreen extends StatelessWidget {
                                       Expanded(
                                         flex: 1,
                                         child: Center(
-                                          child: Text(
-                                            data['orderId'],
-                                            overflow: TextOverflow.ellipsis,
-                                            style: AppTextStyles
-                                                .deliveryTextStyle1,
-                                          ),
+                                          child: MarqueeWidget(
+                                              text: data['orderId'],
+                                              flex: 1,
+                                              color: cWhite,
+                                              velocity: 100),
+                                        ),
+                                        // child: Center(
+                                        // child: Text(
+                                        //   data['orderId'],
+                                        //   overflow: TextOverflow.ellipsis,
+                                        //   style: AppTextStyles
+                                        //       .deliveryTextStyle1,
+                                        // ),
+                                      ),
+
+                                      Expanded(
+                                        flex: 1,
+                                        child: Center(
+                                          child: MarqueeWidget(
+                                              text: data['canteenName'],
+                                              flex: 1,
+                                              color: cWhite,
+                                              velocity: 100),
+                                          // child: Text(
+                                          //   data['canteenName'],
+                                          //   overflow: TextOverflow.ellipsis,
+                                          //   style: AppTextStyles
+                                          //       .deliveryTextStyle1,
+                                          // ),
                                         ),
                                       ),
                                       Expanded(

@@ -66,6 +66,14 @@ class DeliveryRequest extends StatelessWidget {
                       Expanded(
                         child: Center(
                           child: Text(
+                            "Canteen Name",
+                            style: AppTextStyles.textStyle1,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: Text(
                             "Employee Name",
                             style: AppTextStyles.textStyle1,
                           ),
@@ -158,108 +166,110 @@ class EmployeeRequestTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
-      child: Container(
-        child: Row(
-          children: [
-            Expanded(
-              child: Center(
-                child: GooglePoppinsWidgets(text: data.requestId, fontsize: 14),
-              ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Center(
+              child: GooglePoppinsWidgets(text: data.requestId, fontsize: 14),
             ),
-            Expanded(
-              child: Center(
-                child:
-                    GooglePoppinsWidgets(text: data.emplopeeName, fontsize: 14),
-              ),
+          ),
+          Expanded(
+            child: Center(
+              child: GooglePoppinsWidgets(text: data.CanteenName, fontsize: 14),
             ),
-            Expanded(
-              child: Center(
-                child: GooglePoppinsWidgets(
-                    text: dateConveter(DateTime.parse(data.time)),
-                    fontsize: 14),
-              ),
+          ),
+          Expanded(
+            child: Center(
+              child:
+                  GooglePoppinsWidgets(text: data.emplopeeName, fontsize: 14),
             ),
-            Expanded(
-              child: Center(
-                child: GooglePoppinsWidgets(
-                    text: data.orderCount.toString(), fontsize: 14),
-              ),
+          ),
+          Expanded(
+            child: Center(
+              child: GooglePoppinsWidgets(
+                  text: dateConveter(DateTime.parse(data.time)), fontsize: 14),
             ),
-            Expanded(
-              child: Center(
-                child: GooglePoppinsWidgets(
-                    text: data.amount.toString(), fontsize: 14),
-              ),
+          ),
+          Expanded(
+            child: Center(
+              child: GooglePoppinsWidgets(
+                  text: data.orderCount.toString(), fontsize: 14),
             ),
+          ),
+          Expanded(
+            child: Center(
+              child: GooglePoppinsWidgets(
+                  text: data.amount.toString(), fontsize: 14),
+            ),
+          ),
 
-            Expanded(
-                child: Center(
-                    child: IconButton(
-              onPressed: () {
-                customShowDilogBox(
-                    context: context,
-                    title: 'Details',
-                    children: [
-                      EmployeeRequestProductDetailsWidget(
-                        data: data,
-                      )
-                    ],
-                    actiononTapfuction: () {
-                      delivertCtr.confirmEmployeeRequest(data);
-                    },
-                    doyouwantActionButton: true);
-              },
-              icon: const Icon(Icons.more_vert_outlined),
-            )))
-            // Expanded(
-            //   child: Container(
-            //     height: 50,
-            //     child: Row(
-            //       children: [
-            //         Expanded(
-            //           child: Padding(
-            //             padding: const EdgeInsets.all(5.0),
-            //             child: GestureDetector(
-            //               onTap: () {
-            //                 delivertCtr.confirmEmployeeRequest(data);
-            //               },
-            //               child: Container(
-            //                 color: cGreen,
-            //                 child: Center(
-            //                     child: GooglePoppinsWidgets(
-            //                   text: "Confirm",
-            //                   fontsize: 12,
-            //                   color: cWhite,
-            //                 )),
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //         Expanded(
-            //           child: Padding(
-            //             padding: const EdgeInsets.all(5.0),
-            //             child: GestureDetector(
-            //               onTap: () async {
-            //                 await delivertCtr.cancelEmployeeRequest(data);
-            //               },
-            //               child: Container(
-            //                 color: cred,
-            //                 child: Center(
-            //                     child: GooglePoppinsWidgets(
-            //                   text: "Cancel",
-            //                   fontsize: 12,
-            //                   color: cWhite,
-            //                 )),
-            //               ),
-            //             ),
-            //           ),
-            //         )
-            //       ],
-            //     ),
-            //   ),
-            // )
-          ],
-        ),
+          Expanded(
+              child: Center(
+                  child: IconButton(
+            onPressed: () {
+              customShowDilogBox(
+                  context: context,
+                  title: 'Details',
+                  children: [
+                    EmployeeRequestProductDetailsWidget(
+                      data: data,
+                    )
+                  ],
+                  actiononTapfuction: () {
+                    delivertCtr.confirmEmployeeRequest(data);
+                  },
+                  doyouwantActionButton: true);
+            },
+            icon: const Icon(Icons.more_vert_outlined),
+          )))
+          // Expanded(
+          //   child: Container(
+          //     height: 50,
+          //     child: Row(
+          //       children: [
+          //         Expanded(
+          //           child: Padding(
+          //             padding: const EdgeInsets.all(5.0),
+          //             child: GestureDetector(
+          //               onTap: () {
+          //                 delivertCtr.confirmEmployeeRequest(data);
+          //               },
+          //               child: Container(
+          //                 color: cGreen,
+          //                 child: Center(
+          //                     child: GooglePoppinsWidgets(
+          //                   text: "Confirm",
+          //                   fontsize: 12,
+          //                   color: cWhite,
+          //                 )),
+          //               ),
+          //             ),
+          //           ),
+          //         ),
+          //         Expanded(
+          //           child: Padding(
+          //             padding: const EdgeInsets.all(5.0),
+          //             child: GestureDetector(
+          //               onTap: () async {
+          //                 await delivertCtr.cancelEmployeeRequest(data);
+          //               },
+          //               child: Container(
+          //                 color: cred,
+          //                 child: Center(
+          //                     child: GooglePoppinsWidgets(
+          //                   text: "Cancel",
+          //                   fontsize: 12,
+          //                   color: cWhite,
+          //                 )),
+          //               ),
+          //             ),
+          //           ),
+          //         )
+          //       ],
+          //     ),
+          //   ),
+          // )
+        ],
       ),
     );
   }

@@ -895,7 +895,7 @@ class MarqueeWidgetAppState extends State<MarqueeWidget> {
                           widget.text,
                           style: const TextStyle(
                               fontWeight: FontWeight.w400,
-                              fontSize: 12.5,
+                              fontSize: 16,
                               overflow: TextOverflow.ellipsis),
                         )),
                 ),

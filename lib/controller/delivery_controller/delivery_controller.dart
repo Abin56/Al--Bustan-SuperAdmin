@@ -85,7 +85,7 @@ class DeliveryController extends GetxController {
   }
 
   addToCart(AllProductDetailModel data) {
-    final uuid = Uuid().v1();
+    // final uuid = Uuid().v1();
     final cartdata = {
       "productDetailsDocId": data.docId,
       "barcodeNumber": data.barcodeNumber,
@@ -95,23 +95,23 @@ class DeliveryController extends GetxController {
       "outPrice": data.outPrice,
       "quantity": 1,
       "totalAmount": data.outPrice,
-      "docId": uuid
+      "docId": data.docId
     };
 
-    firestore.collection("DeliveryCart").doc(uuid).set(cartdata).then(
+    firestore.collection("DeliveryCart").doc(data.docId).set(cartdata).then(
       (value) {
         showToast(msg: "Added to Cart");
       },
     );
     firestore
         .collection('DeliveryCart')
-        .doc(uuid)
+        .doc(data.docId)
         .collection("CartProductDetails")
         .doc(data.docId)
         .set(data.toMap());
     firestore
         .collection('DeliveryCart')
-        .doc(uuid)
+        .doc(data.docId)
         .collection("CartProductDetails")
         .doc(data.docId)
         .update({'quantityinStock': 0});
@@ -155,9 +155,14 @@ class DeliveryController extends GetxController {
         "orderId": orderid,
         "assignStatus": false,
         "isDelivered": false,
+        "pendingStatus": false,
+        "pickedUpStatus": false,
+        "statusMessage": "Pending",
         "price": amount,
         "employeeName": '',
-        "employeeId": ''
+        "employeeId": '',
+        "canteenName": canteenName.value,
+        "canteenId": canteenID.value
       };
       //for adding delivery deatils in deliveryAssignlist collection//
       firestore.collection("deliveryAssignList").doc(orderid).set(data);
@@ -208,6 +213,8 @@ class DeliveryController extends GetxController {
       "price": deliverydata['price'],
       "employeeName": employeeName,
       "employeeId": employeeId,
+      "canteenName": deliverydata["canteenName"],
+      "canteenId": deliverydata["canteenId"]
     };
     await dataserver
         .collection("DeliveryPendingList")
@@ -292,7 +299,9 @@ class DeliveryController extends GetxController {
       "statusMessage": "",
       "price": requestdata.amount,
       "employeeName": requestdata.emplopeeName,
-      "employeeId": requestdata.emplopeeId
+      "employeeId": requestdata.emplopeeId,
+      "canteenName": requestdata.CanteenName,
+      "canteenId": requestdata.CanteenId,
     };
     final requestedProductList = await firestore
         .collection('EmployeeDeliveryRequest')
@@ -376,7 +385,7 @@ class DeliveryController extends GetxController {
 
   Future<List<CanteenModel>> fetchcanteenModel() async {
     final firebase =
-        await FirebaseFirestore.instance.collection('SuppliersList').get();
+        await FirebaseFirestore.instance.collection('CanteenList').get();
 
     for (var i = 0; i < firebase.docs.length; i++) {
       final list =

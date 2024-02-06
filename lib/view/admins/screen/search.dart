@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:canteen_superadmin_website/controller/store_controller/all_product_controller.dart';
 import 'package:canteen_superadmin_website/controller/wearhouse_controller/wearhouse_controller.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';

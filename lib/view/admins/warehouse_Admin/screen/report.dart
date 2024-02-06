@@ -1,132 +1,209 @@
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:flutter/material.dart';
 
 class Reports extends StatelessWidget {
-  const Reports({super.key});
+  Reports({super.key});
+  List<Widget> reportsWidget = [
+    ReportContainerWidget(
+      headingText: 'Daily Report',
+      button1Text: "Button 1",
+      button2Text: "Button 2",
+      button3Text: "Button 3",
+      buttonHeight: 40,
+      buttonWidth: 140,
+      button1OnPressed: () {},
+      button2OnPressed: () {},
+      button3OnPressed: () {},
+    ),
+    ReportContainerWidget(
+      headingText: 'Monthly Report',
+      button1Text: "Button 1",
+      button2Text: "Button 2",
+      button3Text: "Button 3",
+      buttonHeight: 40,
+      buttonWidth: 140,
+      button1OnPressed: () {},
+      button2OnPressed: () {},
+      button3OnPressed: () {},
+    ),
+    ReportContainerWidget(
+      headingText: 'Delivery Report',
+      button1Text: "Button 1",
+      button2Text: "Button 2",
+      button3Text: "Button 3",
+      buttonHeight: 40,
+      buttonWidth: 140,
+      button1OnPressed: () {},
+      button2OnPressed: () {},
+      button3OnPressed: () {},
+    ),
+    ReportContainerWidget(
+      headingText: 'Purchase Report',
+      button1Text: "Button 1",
+      button2Text: "Button 2",
+      button3Text: "Button 3",
+      buttonHeight: 40,
+      buttonWidth: 140,
+      button1OnPressed: () {},
+      button2OnPressed: () {},
+      button3OnPressed: () {},
+    ),
+    ReportContainerWidget(
+      headingText: 'Sales Report',
+      button1Text: "Button 1",
+      button2Text: "Button 2",
+      button3Text: "Button 3",
+      buttonHeight: 40,
+      buttonWidth: 140,
+      button1OnPressed: () {},
+      button2OnPressed: () {},
+      button3OnPressed: () {},
+    ),
+    ReportContainerWidget(
+      headingText: 'Report Container',
+      button1Text: "Button 1",
+      button2Text: "Button 2",
+      button3Text: "Button 3",
+      buttonHeight: 40,
+      buttonWidth: 140,
+      button1OnPressed: () {},
+      button2OnPressed: () {},
+      button3OnPressed: () {},
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
     final sizeW = MediaQuery.of(context).size.width;
     final sizeH = MediaQuery.of(context).size.height;
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        height: sizeH * 0.91,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: cWhite,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: const [
-            BoxShadow(blurRadius: 0.5),
-          ],
-        ),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: GooglePoppinsWidgets(text: "All Report", fontsize: 26),
+    return ResponsiveWebSite.isMobile(context)
+        ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              height: sizeH * 0.91,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: cWhite,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: const [
+                  BoxShadow(blurRadius: 0.5),
+                ],
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: GooglePoppinsWidgets(text: "Report", fontsize: 26),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: reportsWidget[0],
+                          ),
+                          sWidtht10,
+                          Expanded(
+                            child: reportsWidget[1],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: reportsWidget[2],
+                          ),
+                          sWidtht10,
+                          Expanded(
+                            child: reportsWidget[3],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: reportsWidget[4],
+                          ),
+                          sWidtht10,
+                          Expanded(
+                            child: reportsWidget[5],
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ),
-            Row(
-              children: [
-                sWidtht10,
-                Expanded(
-                  child: ReportContainerWidget(
-                    headingText: 'Daily Report',
-                    button1Text: "Button 1",
-                    button2Text: "Button 2",
-                    button3Text: "Button 3",
-                    buttonHeight: 40,
-                    buttonWidth: 140,
-                    button1OnPressed: () {},
-                    button2OnPressed: () {},
-                    button3OnPressed: () {},
+          )
+        : Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              height: sizeH * 0.91,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: cWhite,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: const [
+                  BoxShadow(blurRadius: 0.5),
+                ],
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child:
+                        GooglePoppinsWidgets(text: "All Report", fontsize: 26),
                   ),
-                ),
-                sWidtht40,
-                Expanded(
-                  child: ReportContainerWidget(
-                    headingText: 'Monthly Report',
-                    button1Text: "Button 1",
-                    button2Text: "Button 2",
-                    button3Text: "Button 3",
-                    buttonHeight: 40,
-                    buttonWidth: 140,
-                    button1OnPressed: () {},
-                    button2OnPressed: () {},
-                    button3OnPressed: () {},
+                  Row(
+                    children: [
+                      sWidtht10,
+                      Expanded(
+                        child: reportsWidget[0],
+                      ),
+                      sWidtht40,
+                      Expanded(
+                        child: reportsWidget[1],
+                      ),
+                      sWidtht40,
+                      Expanded(
+                        child: reportsWidget[2],
+                      ),
+                      sWidtht10
+                    ],
                   ),
-                ),
-                sWidtht40,
-                Expanded(
-                  child: ReportContainerWidget(
-                    headingText: 'Delivery Report',
-                    button1Text: "Button 1",
-                    button2Text: "Button 2",
-                    button3Text: "Button 3",
-                    buttonHeight: 40,
-                    buttonWidth: 140,
-                    button1OnPressed: () {},
-                    button2OnPressed: () {},
-                    button3OnPressed: () {},
+                  sHeight40,
+                  Row(
+                    children: [
+                      sWidtht10,
+                      Expanded(
+                        child: reportsWidget[3],
+                      ),
+                      sWidtht40,
+                      Expanded(
+                        child: reportsWidget[4],
+                      ),
+                      sWidtht40,
+                      Expanded(
+                        child: reportsWidget[5],
+                      ),
+                      sWidtht10
+                    ],
                   ),
-                ),
-                sWidtht10
-              ],
+                ],
+              ),
             ),
-            sHeight40,
-            Row(
-              children: [
-                sWidtht10,
-                Expanded(
-                  child: ReportContainerWidget(
-                    headingText: 'Purchase Report',
-                    button1Text: "Button 1",
-                    button2Text: "Button 2",
-                    button3Text: "Button 3",
-                    buttonHeight: 40,
-                    buttonWidth: 140,
-                    button1OnPressed: () {},
-                    button2OnPressed: () {},
-                    button3OnPressed: () {},
-                  ),
-                ),
-                sWidtht40,
-                Expanded(
-                  child: ReportContainerWidget(
-                    headingText: 'Sales Report',
-                    button1Text: "Button 1",
-                    button2Text: "Button 2",
-                    button3Text: "Button 3",
-                    buttonHeight: 40,
-                    buttonWidth: 140,
-                    button1OnPressed: () {},
-                    button2OnPressed: () {},
-                    button3OnPressed: () {},
-                  ),
-                ),
-                sWidtht40,
-                Expanded(
-                  child: ReportContainerWidget(
-                    headingText: 'Report Container',
-                    button1Text: "Button 1",
-                    button2Text: "Button 2",
-                    button3Text: "Button 3",
-                    buttonHeight: 40,
-                    buttonWidth: 140,
-                    button1OnPressed: () {},
-                    button2OnPressed: () {},
-                    button3OnPressed: () {},
-                  ),
-                ),
-                sWidtht10
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+          );
   }
 }
 

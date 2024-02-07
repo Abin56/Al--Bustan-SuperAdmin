@@ -66,7 +66,7 @@ class ContactUsContainerWidget extends StatelessWidget {
                         ),
                         PrimaryFontWidget(
                             text:
-                                'Lepton AI solutions middle east lmt.,\nOffice 105,\nKasco tower,\nAlqusais,\nDubai uae',
+                                'Amman Street, Al Qusais Industrial Area 3,\n Dubai Unit- ed Arab Emirates,PO Box 20584.',
                             fontSize: 13,
                             fontweight: FontWeight.w500,
                             color: Colors.white)
@@ -91,7 +91,7 @@ class ContactUsContainerWidget extends StatelessWidget {
                           width: 10,
                         ),
                         PrimaryFontWidget(
-                            text: '+971525892916',
+                            text: '+04-267-7644 / 050-495-7335',
                             fontSize: 13,
                             fontweight: FontWeight.w500,
                             color: Colors.white)

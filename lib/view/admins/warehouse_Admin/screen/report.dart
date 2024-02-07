@@ -8,7 +8,7 @@ class Reports extends StatelessWidget {
   Reports({super.key});
   List<Widget> reportsWidget = [
     ReportContainerWidget(
-      headingText: 'Daily Report',
+      headingText: 'Report',
       button1Text: "Button 1",
       button2Text: "Button 2",
       button3Text: "Button 3",
@@ -19,7 +19,7 @@ class Reports extends StatelessWidget {
       button3OnPressed: () {},
     ),
     ReportContainerWidget(
-      headingText: 'Monthly Report',
+      headingText: 'Store Report',
       button1Text: "Button 1",
       button2Text: "Button 2",
       button3Text: "Button 3",

@@ -59,129 +59,129 @@ class SocialMediaContact extends StatelessWidget {
         ResponsiveWebSite.isDesktop(context)
             ? SizedBox(
                 width: 350,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        _launchFacebookUrl();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: CircleAvatharWidget(
-                          imagePath: "assets/images/facebook.png",
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _launchInstaUrl();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: CircleAvatharWidget(
-                          imagePath: "assets/images/insta.png",
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _launchTwitterUrl();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: CircleAvatharWidget(
-                          imagePath: "assets/images/twitter.png",
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _launchyouTubeUrl();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: CircleAvatharWidget(
-                          imagePath: "assets/images/utube.png",
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _launchleptonUrl();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: CircleAvatharWidget(
-                          imagePath: "assets/images/leptonlogo.png",
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                // child: Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     GestureDetector(
+                //       onTap: () {
+                //         _launchFacebookUrl();
+                //       },
+                //       child: Padding(
+                //         padding: const EdgeInsets.only(left: 8),
+                //         child: CircleAvatharWidget(
+                //           imagePath: "assets/images/facebook.png",
+                //         ),
+                //       ),
+                //     ),
+                //     GestureDetector(
+                //       onTap: () {
+                //         _launchInstaUrl();
+                //       },
+                //       child: Padding(
+                //         padding: const EdgeInsets.only(left: 8),
+                //         child: CircleAvatharWidget(
+                //           imagePath: "assets/images/insta.png",
+                //         ),
+                //       ),
+                //     ),
+                //     GestureDetector(
+                //       onTap: () {
+                //         _launchTwitterUrl();
+                //       },
+                //       child: Padding(
+                //         padding: const EdgeInsets.only(left: 8),
+                //         child: CircleAvatharWidget(
+                //           imagePath: "assets/images/twitter.png",
+                //         ),
+                //       ),
+                //     ),
+                //     GestureDetector(
+                //       onTap: () {
+                //         _launchyouTubeUrl();
+                //       },
+                //       child: Padding(
+                //         padding: const EdgeInsets.only(left: 8),
+                //         child: CircleAvatharWidget(
+                //           imagePath: "assets/images/utube.png",
+                //         ),
+                //       ),
+                //     ),
+                //     GestureDetector(
+                //       onTap: () {
+                //         _launchleptonUrl();
+                //       },
+                //       child: Padding(
+                //         padding: const EdgeInsets.only(left: 8),
+                //         child: CircleAvatharWidget(
+                //           imagePath: "assets/images/leptonlogo.png",
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
               )
             : SizedBox(
                 width: 350,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        _launchFacebookUrl();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: CircleAvatharWidget(
-                          imagePath: "assets/images/facebook.png",
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _launchInstaUrl();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: CircleAvatharWidget(
-                          imagePath: "assets/images/insta.png",
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _launchTwitterUrl();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: CircleAvatharWidget(
-                          imagePath: "assets/images/twitter-x.png",
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _launchyouTubeUrl();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: CircleAvatharWidget(
-                          imagePath: "assets/images/utube.png",
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _launchleptonUrl();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: CircleAvathar1Widget(
-                          imagePath: "assets/images/leptonlogo.png",
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                // child: Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     GestureDetector(
+                //       onTap: () {
+                //         _launchFacebookUrl();
+                //       },
+                //       child: Padding(
+                //         padding: const EdgeInsets.only(left: 8),
+                //         child: CircleAvatharWidget(
+                //           imagePath: "assets/images/facebook.png",
+                //         ),
+                //       ),
+                //     ),
+                //     GestureDetector(
+                //       onTap: () {
+                //         _launchInstaUrl();
+                //       },
+                //       child: Padding(
+                //         padding: const EdgeInsets.only(left: 8),
+                //         child: CircleAvatharWidget(
+                //           imagePath: "assets/images/insta.png",
+                //         ),
+                //       ),
+                //     ),
+                //     GestureDetector(
+                //       onTap: () {
+                //         _launchTwitterUrl();
+                //       },
+                //       child: Padding(
+                //         padding: const EdgeInsets.only(left: 8),
+                //         child: CircleAvatharWidget(
+                //           imagePath: "assets/images/twitter-x.png",
+                //         ),
+                //       ),
+                //     ),
+                //     GestureDetector(
+                //       onTap: () {
+                //         _launchyouTubeUrl();
+                //       },
+                //       child: Padding(
+                //         padding: const EdgeInsets.only(left: 8),
+                //         child: CircleAvatharWidget(
+                //           imagePath: "assets/images/utube.png",
+                //         ),
+                //       ),
+                //     ),
+                //     GestureDetector(
+                //       onTap: () {
+                //         _launchleptonUrl();
+                //       },
+                //       child: Padding(
+                //         padding: const EdgeInsets.only(left: 8),
+                //         child: CircleAvathar1Widget(
+                //           imagePath: "assets/images/leptonlogo.png",
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
               ),
       ],
     );

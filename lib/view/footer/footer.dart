@@ -40,14 +40,14 @@ class FooterFinal extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             SizedBox(
-                                height: 350, child: LeptonContainerWidget()),
+                                height: 300, child: LeptonContainerWidget()),
                             SizedBox(
-                              height: 350,
+                              height: 300,
                               child: CompanyContainerWidget(),
                             ),
                             SizedBox(
                               // color: Colors.red,
-                              height: 350,
+                              height: 300,
                               child: ContactUsContainerWidget(),
                             ),
                           ],

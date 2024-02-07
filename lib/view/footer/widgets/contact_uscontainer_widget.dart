@@ -91,7 +91,7 @@ class ContactUsContainerWidget extends StatelessWidget {
                           width: 10,
                         ),
                         PrimaryFontWidget(
-                            text: '+04-267-7644 / 050-495-7335',
+                            text: '+04-267-7644 / +050-495-7335',
                             fontSize: 13,
                             fontweight: FontWeight.w500,
                             color: Colors.white)

@@ -159,6 +159,7 @@ class Reports extends StatelessWidget {
                 ],
               ),
               child: Column(
+                // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),

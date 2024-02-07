@@ -1,5 +1,6 @@
 import 'package:canteen_superadmin_website/controller/delivery_controller/delivery_controller.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivered_list_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/stock_upload_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:canteen_superadmin_website/controller/employee_controller/employee_controller.dart';
@@ -72,6 +73,14 @@ class DeliveryPickedUpList extends StatelessWidget {
                         child: Center(
                           child: Text(
                             "Order ID",
+                            style: AppTextStyles.textStyle1,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            "Canteen Name",
                             style: AppTextStyles.textStyle1,
                           ),
                         ),
@@ -163,12 +172,33 @@ class DeliveryPickedUpList extends StatelessWidget {
                                       Expanded(
                                         flex: 1,
                                         child: Center(
-                                          child: Text(
-                                            data['orderId'],
-                                            overflow: TextOverflow.ellipsis,
-                                            style: AppTextStyles
-                                                .deliveryTextStyle1,
-                                          ),
+                                          child: MarqueeWidget(
+                                              text: data['orderId'],
+                                              flex: 1,
+                                              color: cWhite,
+                                              velocity: 100),
+                                          // Text(
+                                          //   data['orderId'],
+                                          //   overflow: TextOverflow.ellipsis,
+                                          //   style: AppTextStyles
+                                          //       .deliveryTextStyle1,
+                                          // ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: Center(
+                                          child: MarqueeWidget(
+                                              text: data['canteenName'],
+                                              flex: 1,
+                                              color: cWhite,
+                                              velocity: 100),
+                                          // Text(
+                                          //   data['canteenName'],
+                                          //   overflow: TextOverflow.ellipsis,
+                                          //   style: AppTextStyles
+                                          //       .deliveryTextStyle1,
+                                          // ),
                                         ),
                                       ),
                                       Expanded(

@@ -4,6 +4,7 @@ import 'package:canteen_superadmin_website/model/employee_request_model.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/stock_upload_widget.dart';
 import 'package:canteen_superadmin_website/view/textstysle/textstyle.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -170,12 +171,19 @@ class EmployeeRequestTile extends StatelessWidget {
         children: [
           Expanded(
             child: Center(
-              child: GooglePoppinsWidgets(text: data.requestId, fontsize: 14),
+              child: MarqueeWidget(
+                  text: data.requestId, flex: 1, color: cWhite, velocity: 100),
+              // child: GooglePoppinsWidgets(text: data.requestId, fontsize: 14),
             ),
           ),
           Expanded(
             child: Center(
-              child: GooglePoppinsWidgets(text: data.CanteenName, fontsize: 14),
+              child: MarqueeWidget(
+                  text: data.CanteenName,
+                  flex: 1,
+                  color: cWhite,
+                  velocity: 100),
+              // child: GooglePoppinsWidgets(text: data.CanteenName, fontsize: 14),
             ),
           ),
           Expanded(

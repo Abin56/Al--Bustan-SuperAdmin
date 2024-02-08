@@ -57,6 +57,7 @@ dependencies:
   file_picker: ^6.1.1
   awesome_side_sheet:
   marquee:
+  syncfusion_flutter_pdf: ^21.2.10
 
 dev_dependencies:
   flutter_test:

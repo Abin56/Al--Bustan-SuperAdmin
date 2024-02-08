@@ -191,7 +191,22 @@ class Reports extends StatelessWidget {
                     children: [
                       sWidtht10,
                       Expanded(
-                        child: reportsWidget[0],
+                        // child: reportsWidget[0],
+
+                        child: ReportContainerWidget(
+                          headingText: 'Report',
+                          button1Text: "Button 1",
+                          button2Text: "Button 2",
+                          button3Text: "Button 3",
+                          buttonHeight: 40,
+                          buttonWidth: 140,
+                          button1OnPressed: () {
+                            showToast(msg: "done");
+                            getReportCtr.generateInvoice(context);
+                          },
+                          button2OnPressed: () {},
+                          button3OnPressed: () {},
+                        ),
                       ),
                       sWidtht40,
                       Expanded(

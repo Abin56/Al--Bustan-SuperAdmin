@@ -1,3 +1,6 @@
+import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
+import 'package:canteen_superadmin_website/core/core.dart';
+import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:get/get.dart';
 import 'dart:html';
 import 'package:flutter/services.dart';
@@ -23,23 +26,54 @@ class ReportController extends GetxController {
 
     final Uint8List imageData =
         await _getImageData('web_images/AL - Bustan.png');
-    for (int i = 0; i < 3; i++) {
-      // For example, add 10 rows with dummy data
+    // for (int i = 0; i < 3; i++) {
+    //   // For example, add 10 rows with dummy data
+    //   addProducts(
+    //       ' ${i + 1}',
+    //       'Canteen Name${i + 1}',
+    //       '${1 + 1}',
+    //       'Product Name ${i + 1}',
+    //       'Quantity1${i + 1}',
+    //       'Price ${i + 1}',
+    //       'Total${i + 1}',
+    //       grid);
+    // }
+    print('Start');
+    final deliverdData = await dataserver.collection('DeliveredList').get();
+    for (var element in deliverdData.docs) {
+      String canteen = element['canteenName'];
+      int orderCount = element['orderCount'];
+      String date = element['time'];
+      // String dateA = dateConveter(date).toString();
+      // print(dateA);
+
+      addProducts('1', dateConveter(DateTime.parse(date)), canteen,
+          orderCount.toString(), '', '', '', '', grid);
+      final deliverProductdata = await dataserver
+          .collection('DeliveredList')
+          .doc(element['docId'])
+          .collection('productsDetails')
+          .get();
+      final deliveryProductList = deliverProductdata.docs
+          .map((e) => AllProductDetailModel.fromMap(e.data()))
+          .toList();
+      int totalAmount = 0;
+      for (AllProductDetailModel productData in deliveryProductList) {
+        int totalPrice = productData.outPrice * productData.quantityinStock;
+        addProducts(
+            '',
+            '',
+            '',
+            '',
+            productData.productname,
+            productData.quantityinStock.toString(),
+            productData.outPrice.toString(),
+            totalPrice.toString(),
+            grid);
+        totalAmount = totalAmount + totalPrice;
+      }
       addProducts(
-          ' ${i + 1}',
-          'Product Name ${i + 1}',
-          ' Size${i + 1}',
-          'Unit ${i + 1}',
-          'Quantity1${i + 1}',
-          'Amount1${i + 1}',
-          'Quantity2${i + 1}',
-          'Amount2${i + 1}',
-          'Quantity3${i + 1}',
-          'Amount3${i + 1}',
-          'Quantity4${i + 1}',
-          'Amount4${i + 1}',
-          'Remarks${i + 1}',
-          grid);
+          '', '', '', '', '', '', "Total Amount", totalAmount.toString(), grid);
     }
 
     //Draw the header section by creating text element
@@ -100,8 +134,8 @@ class ReportController extends GetxController {
 
     String heading =
         '''AL BUSTAN BAKERY & SWEETS LLC\r\n\r\n         Al Qusais Industrial Area 3\r\n\r\n                 Emiates Dubai\r\n\r\n''';
-    String secondHeading =
-        '''                MATERIAL OUT                \r\n\r\n Canteen:    Ittilhad Private School-Mamzar\r\n\r\n Emiates:                 Dubai\r\n\r\nCountry:                 UAE\r\n\r\n''';
+    // String secondHeading =
+    //     '''                MATERIAL OUT                \r\n\r\n Canteen:    Ittilhad Private School-Mamzar\r\n\r\n Emiates:                 Dubai\r\n\r\nCountry:                 UAE\r\n\r\n''';
 
     page.graphics.drawImage(
       PdfBitmap(imageData),
@@ -116,15 +150,15 @@ class ReportController extends GetxController {
         page: page,
         bounds: Rect.fromLTWH(30, 10, pageSize.width - (contentSize.width + 30),
             pageSize.height - 10))!;
-    PdfTextElement(text: heading, font: contentFont).draw(
+    return PdfTextElement(text: heading, font: contentFont).draw(
         page: page,
         bounds: Rect.fromLTWH(200, 45,
             pageSize.width - (contentSize.width + 30), pageSize.height - 50))!;
 
-    return PdfTextElement(text: secondHeading, font: contentFont).draw(
-        page: page,
-        bounds: Rect.fromLTWH(200, 150,
-            pageSize.width - (contentSize.width + 30), pageSize.height - 100))!;
+    // return PdfTextElement(text: secondHeading, font: contentFont).draw(
+    //     page: page,
+    //     bounds: Rect.fromLTWH(200, 150,
+    //         pageSize.width - (contentSize.width + 30), pageSize.height - 100))!;
   }
 
 //Draws the grid
@@ -168,7 +202,7 @@ class ReportController extends GetxController {
     //Create a PDF grid
     final PdfGrid grid = PdfGrid();
     //Secify the columns count to the grid.
-    grid.columns.add(count: 13);
+    grid.columns.add(count: 9);
     //Create the header row of the grid.
     // final PdfGridRow headerRow = grid.headers.add(1)[0];
 
@@ -181,62 +215,62 @@ class ReportController extends GetxController {
     headerRow.style.textBrush = PdfBrushes.white;
 
 // Set values for the "S.no" column
-    headerRow.cells[0].value = 'S.no';
-    headerRow.cells[1].value = 'Product Name';
-    headerRow.cells[2].value = 'Size';
-    headerRow.cells[3].value = 'Unit';
+    headerRow.cells[0].value = 'Sl.No';
+    headerRow.cells[0].stringFormat.alignment = PdfTextAlignment.center;
+    headerRow.cells[1].value = 'Date';
+    headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
+    headerRow.cells[2].value = 'Canteen Name';
+    headerRow.cells[2].stringFormat.alignment = PdfTextAlignment.center;
+    // headerRow.cells[2].value = 'Size';
+    headerRow.cells[3].value = 'Count';
+    headerRow.cells[3].stringFormat.alignment = PdfTextAlignment.center;
 
 // Create the first cell of the second row and set its value
     final PdfGridCell productCell = headerRow.cells[4];
-    headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
+    headerRow.cells[4].stringFormat.alignment = PdfTextAlignment.center;
 
-    productCell.value = 'Last Month Stock';
-    productCell.columnSpan = 2;
+    productCell.value = 'Details';
+    productCell.columnSpan = 4;
 /////////////////////////////////////Wareh
-    final PdfGridCell warehouse = headerRow.cells[6];
-    headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
+    // final PdfGridCell warehouse = headerRow.cells[5];
+    // headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
 
-    warehouse.value = 'Entering-warehouse this month';
-    warehouse.columnSpan = 2;
+    // warehouse.value = 'Entering-warehouse this month';
+    // warehouse.columnSpan = 2;
 
-    /////////////////////////////////////Wareh
-    final PdfGridCell outerwarehouse = headerRow.cells[8];
-    headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
+    // /////////////////////////////////////Wareh
+    // final PdfGridCell outerwarehouse = headerRow.cells[7];
+    // headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
 
-    outerwarehouse.value = 'Out of warehouse this month';
-    outerwarehouse.columnSpan = 2;
+    // outerwarehouse.value = 'Out of warehouse this month';
+    // outerwarehouse.columnSpan = 2;
 
-    /////////////////////////////////////Wareh
-    final PdfGridCell thismonthstock = headerRow.cells[10];
-    headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
+    // /////////////////////////////////////Wareh
+    // final PdfGridCell thismonthstock = headerRow.cells[9];
+    // headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
 
-    thismonthstock.value = 'This month stock';
-    thismonthstock.columnSpan = 2;
+    // thismonthstock.value = 'This month stock';
+    // thismonthstock.columnSpan = 2;
 
-    //  headerRow.cells[8].value = 'Price';
-    headerRow.cells[12].value = 'Remarks';
-    // headerRow.cells[9].value = 'Quantity';
+    // //  headerRow.cells[8].value = 'Price';
+    // headerRow.cells[11].value = 'Remarks';
+    // // headerRow.cells[9].value = 'Quantity';
 
     //Add rows
-    addProducts('', '', '', '', 'Quantity', 'Amount', 'Quantity', 'Amount',
-        'Quantity', 'Amount', 'Quantity', 'Amount', '', grid);
+    addProducts('', '', '', '', 'Product Name', 'Quantity', 'Price/Qty',
+        'Amount', grid);
 
     //Apply the table built-in style
     grid.applyBuiltInStyle(PdfGridBuiltInStyle.gridTable1Light);
     //Set gird columns width
-    grid.columns[0].width = 10;
-    grid.columns[1].width = 45;
-    grid.columns[2].width = 30;
-    grid.columns[3].width = 30;
-    grid.columns[4].width = 45;
-    grid.columns[5].width = 45;
-    grid.columns[6].width = 45;
-    grid.columns[7].width = 45;
-    grid.columns[8].width = 45;
-    grid.columns[9].width = 45;
-    grid.columns[10].width = 45;
-    grid.columns[11].width = 45;
-    grid.columns[12].width = 45;
+    grid.columns[0].width = 30;
+    grid.columns[1].width = 30;
+    grid.columns[2].width = 60;
+    grid.columns[3].width = 35;
+    grid.columns[4].width = 90;
+    grid.columns[5].width = 90;
+    grid.columns[6].width = 90;
+    grid.columns[7].width = 90;
 
     for (int i = 0; i < headerRow.cells.count; i++) {
       headerRow.cells[i].style.cellPadding =
@@ -259,34 +293,23 @@ class ReportController extends GetxController {
 //Create and row for the grid.
   void addProducts(
       String sno,
+      String date,
+      String canteenName,
+      String count,
       String productName,
-      String size,
-      String unit,
-      String product,
-      String warehouse,
-      String outerwarehouse,
-      String thismonthstock,
       String quantity,
       String price,
-      String store,
-      String stock,
-      String remarks,
+      String total,
       PdfGrid grid) {
     final PdfGridRow row = grid.rows.add();
     row.cells[0].value = sno;
-    row.cells[1].value = productName;
-    row.cells[2].value = size;
-    row.cells[3].value = unit;
-
-    row.cells[4].value = product;
-    row.cells[5].value = warehouse;
-    row.cells[6].value = outerwarehouse;
-    row.cells[7].value = thismonthstock;
-    row.cells[8].value = quantity;
-    row.cells[9].value = price;
-    row.cells[10].value = store;
-    row.cells[11].value = stock;
-    row.cells[12].value = remarks;
+    row.cells[1].value = date;
+    row.cells[2].value = canteenName;
+    row.cells[3].value = count;
+    row.cells[4].value = productName;
+    row.cells[5].value = quantity;
+    row.cells[6].value = price;
+    row.cells[7].value = total;
   }
 
 //Get the total amount.

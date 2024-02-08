@@ -1,3 +1,6 @@
+import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
+import 'package:canteen_superadmin_website/core/core.dart';
+import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:get/get.dart';
 import 'dart:html';
 import 'package:flutter/services.dart';
@@ -23,22 +26,42 @@ class StoreReportController extends GetxController {
 
     final Uint8List imageData =
         await _getImageData('web_images/AL - Bustan.png');
-    for (int i = 0; i < 3; i++) {
-      // For example, add 10 rows with dummy data
+    // for (int i = 0; i < 3; i++) {
+    //   // For example, add 10 rows with dummy data
+    //   addProducts(
+    //       ' ${i + 1}',
+    //       'Product Name ${i + 1}',
+    //       ' Size${i + 1}',
+    //       'Unit ${i + 1}',
+    //       'Quantity1${i + 1}',
+    //       // 'Amount1${i + 1}',
+    //       'Quantity2${i + 1}',
+    //       // 'Amount2${i + 1}',
+    //       'Quantity3${i + 1}',
+    //       // 'Amount3${i + 1}',
+    //       // 'Quantity4${i + 1}',
+    //       // 'Amount4${i + 1}',
+    //       // 'Remarks${i + 1}',
+    //       grid);
+    // }
+
+    final storeData = await dataserver.collection('AvailableProducts').get();
+
+    final storeList = storeData.docs
+        .map((e) => AllProductDetailModel.fromMap(e.data()))
+        .toList();
+    int index = 0;
+
+    for (AllProductDetailModel productData in storeList) {
+      index++;
       addProducts(
-          ' ${i + 1}',
-          'Product Name ${i + 1}',
-          ' Size${i + 1}',
-          'Unit ${i + 1}',
-          'Quantity1${i + 1}',
-          // 'Amount1${i + 1}',
-          'Quantity2${i + 1}',
-          // 'Amount2${i + 1}',
-          'Quantity3${i + 1}',
-          // 'Amount3${i + 1}',
-          // 'Quantity4${i + 1}',
-          // 'Amount4${i + 1}',
-          // 'Remarks${i + 1}',
+          index.toString(),
+          productData.productname,
+          productData.companyName,
+          dateConveter(DateTime.parse(productData.addedDate)),
+          productData.quantityinStock.toString(),
+          productData.inPrice.toString(),
+          productData.outPrice.toString(),
           grid);
     }
 
@@ -182,8 +205,8 @@ class StoreReportController extends GetxController {
 // Set values for the "S.no" column
     headerRow.cells[0].value = 'S.no';
     headerRow.cells[1].value = 'Date';
-    headerRow.cells[2].value = 'Supplier Name';
-    headerRow.cells[3].value = 'Product Name';
+    headerRow.cells[2].value = 'Product Name';
+    headerRow.cells[3].value = 'Supplier Name';
 
 // Create the first cell of the second row and set its value
     final PdfGridCell productCell = headerRow.cells[4];
@@ -244,9 +267,9 @@ class StoreReportController extends GetxController {
       PdfGrid grid) {
     final PdfGridRow row = grid.rows.add();
     row.cells[0].value = sno;
-    row.cells[1].value = productName;
-    row.cells[2].value = supplierName;
-    row.cells[3].value = date;
+    row.cells[1].value = date;
+    row.cells[2].value = productName;
+    row.cells[3].value = supplierName;
     row.cells[4].value = quantity;
     row.cells[5].value = inPrice;
     row.cells[6].value = outPrince;

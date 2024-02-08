@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:canteen_superadmin_website/controller/wearhouse_controller/wearhouse_controller.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivered_list_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_assigning_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_pending_widget.dart';
@@ -13,6 +12,7 @@ import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/low_st
 import 'package:canteen_superadmin_website/view/admins/super_Admin/pages/user_assign_screen/user_assign_screen.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/appbar/app_bar.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/available_stock.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/report.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/return_screen/return_screen.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/stock_upload_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/temporary_stock_list.dart';
@@ -148,6 +148,7 @@ List<Widget> pages = [
 
   UserAssignListScreen(),
   AvailableStockWidget(), //10
+  Reports(), //15
   UserAssignListScreen(), //11
   UserAssignListScreen(), //12
   UserAssignListScreen(), //13

@@ -430,6 +430,23 @@ class DrawerWareHouseAdmin extends StatelessWidget {
             title: 'Sale',
           ),
         ),
+        sHeight10,
+        ListTile(
+          leading: const DashBoardIconWidget(
+              image: 'web_images/drawer_images/users.png'),
+          tileColor: selectedIndex == 13
+              ? themeColorBlue.withOpacity(0.1)
+              : Colors.transparent,
+          onTap: () {
+            index = 15;
+            onTap.call(index);
+          },
+          title: GooglePoppinsWidgets(
+            text: "Report",
+            fontsize: 14,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ],
     );
   }

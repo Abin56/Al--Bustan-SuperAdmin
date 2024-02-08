@@ -133,7 +133,7 @@ List<Widget> pages = [
   DeliveryPickedUpList(),
 
   DeliveredList(), //..4
-    UserAssignListScreen(), //10
+  UserAssignListScreen(), //10
 
   //.
 ];

@@ -1,4 +1,5 @@
 import 'package:canteen_superadmin_website/controller/report_controller/report_controller.dart';
+import 'package:canteen_superadmin_website/controller/store_report_controller/store_report_controller.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/const.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
@@ -9,77 +10,78 @@ import 'package:get/get.dart';
 
 class Reports extends StatelessWidget {
   final getReportCtr = Get.put(ReportController());
+  final getStoreReportCtr = Get.put(StoreReportController());
   Reports({super.key});
-  List<Widget> reportsWidget = [
-    ReportContainerWidget(
-      headingText: 'Report',
-      button1Text: "Button 1",
-      button2Text: "Button 2",
-      button3Text: "Button 3",
-      buttonHeight: 40,
-      buttonWidth: 140,
-      button1OnPressed: () {
-        // getReportCtr.generateInvoice(context);
-      },
-      button2OnPressed: () {},
-      button3OnPressed: () {},
-    ),
-    ReportContainerWidget(
-      headingText: 'Store Report',
-      button1Text: "Button 1",
-      button2Text: "Button 2",
-      button3Text: "Button 3",
-      buttonHeight: 40,
-      buttonWidth: 140,
-      button1OnPressed: () {},
-      button2OnPressed: () {},
-      button3OnPressed: () {},
-    ),
-    ReportContainerWidget(
-      headingText: 'Delivery Report',
-      button1Text: "Button 1",
-      button2Text: "Button 2",
-      button3Text: "Button 3",
-      buttonHeight: 40,
-      buttonWidth: 140,
-      button1OnPressed: () {},
-      button2OnPressed: () {},
-      button3OnPressed: () {},
-    ),
-    ReportContainerWidget(
-      headingText: 'Purchase Report',
-      button1Text: "Button 1",
-      button2Text: "Button 2",
-      button3Text: "Button 3",
-      buttonHeight: 40,
-      buttonWidth: 140,
-      button1OnPressed: () {},
-      button2OnPressed: () {},
-      button3OnPressed: () {},
-    ),
-    ReportContainerWidget(
-      headingText: 'Sales Report',
-      button1Text: "Button 1",
-      button2Text: "Button 2",
-      button3Text: "Button 3",
-      buttonHeight: 40,
-      buttonWidth: 140,
-      button1OnPressed: () {},
-      button2OnPressed: () {},
-      button3OnPressed: () {},
-    ),
-    ReportContainerWidget(
-      headingText: 'Report Container',
-      button1Text: "Button 1",
-      button2Text: "Button 2",
-      button3Text: "Button 3",
-      buttonHeight: 40,
-      buttonWidth: 140,
-      button1OnPressed: () {},
-      button2OnPressed: () {},
-      button3OnPressed: () {},
-    ),
-  ];
+  // List<Widget> reportsWidget = [
+  //   ReportContainerWidget(
+  //     headingText: 'Report',
+  //     button1Text: "Button 1",
+  //     button2Text: "Button 2",
+  //     button3Text: "Button 3",
+  //     buttonHeight: 40,
+  //     buttonWidth: 140,
+  //     button1OnPressed: () {
+  //       // getReportCtr.generateInvoice(context);
+  //     },
+  //     button2OnPressed: () {},
+  //     button3OnPressed: () {},
+  //   ),
+  //   ReportContainerWidget(
+  //     headingText: 'Store Report',
+  //     button1Text: "Button 1",
+  //     button2Text: "Button 2",
+  //     button3Text: "Button 3",
+  //     buttonHeight: 40,
+  //     buttonWidth: 140,
+  //     button1OnPressed: () {},
+  //     button2OnPressed: () {},
+  //     button3OnPressed: () {},
+  //   ),
+  //   ReportContainerWidget(
+  //     headingText: 'Delivery Report',
+  //     button1Text: "Button 1",
+  //     button2Text: "Button 2",
+  //     button3Text: "Button 3",
+  //     buttonHeight: 40,
+  //     buttonWidth: 140,
+  //     button1OnPressed: () {},
+  //     button2OnPressed: () {},
+  //     button3OnPressed: () {},
+  //   ),
+  //   ReportContainerWidget(
+  //     headingText: 'Purchase Report',
+  //     button1Text: "Button 1",
+  //     button2Text: "Button 2",
+  //     button3Text: "Button 3",
+  //     buttonHeight: 40,
+  //     buttonWidth: 140,
+  //     button1OnPressed: () {},
+  //     button2OnPressed: () {},
+  //     button3OnPressed: () {},
+  //   ),
+  //   ReportContainerWidget(
+  //     headingText: 'Sales Report',
+  //     button1Text: "Button 1",
+  //     button2Text: "Button 2",
+  //     button3Text: "Button 3",
+  //     buttonHeight: 40,
+  //     buttonWidth: 140,
+  //     button1OnPressed: () {},
+  //     button2OnPressed: () {},
+  //     button3OnPressed: () {},
+  //   ),
+  //   ReportContainerWidget(
+  //     headingText: 'Report Container',
+  //     button1Text: "Button 1",
+  //     button2Text: "Button 2",
+  //     button3Text: "Button 3",
+  //     buttonHeight: 40,
+  //     buttonWidth: 140,
+  //     button1OnPressed: () {},
+  //     button2OnPressed: () {},
+  //     button3OnPressed: () {},
+  //   ),
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +131,20 @@ class Reports extends StatelessWidget {
                           ),
                           sWidtht10,
                           Expanded(
-                            child: reportsWidget[1],
+                            // child: reportsWidget[1],
+                            child: ReportContainerWidget(
+                              headingText: 'Store Report',
+                              button1Text: "Button 1",
+                              button2Text: "Button 2",
+                              button3Text: "Button 3",
+                              buttonHeight: 40,
+                              buttonWidth: 140,
+                              button1OnPressed: () {
+                                getStoreReportCtr.generateInvoice(context);
+                              },
+                              button2OnPressed: () {},
+                              button3OnPressed: () {},
+                            ),
                           ),
                         ],
                       ),
@@ -139,11 +154,33 @@ class Reports extends StatelessWidget {
                       child: Row(
                         children: [
                           Expanded(
-                            child: reportsWidget[2],
+                            // child: reportsWidget[2],
+                            child: ReportContainerWidget(
+                              headingText: 'Delivery Report',
+                              button1Text: "Button 1",
+                              button2Text: "Button 2",
+                              button3Text: "Button 3",
+                              buttonHeight: 40,
+                              buttonWidth: 140,
+                              button1OnPressed: () {},
+                              button2OnPressed: () {},
+                              button3OnPressed: () {},
+                            ),
                           ),
                           sWidtht10,
                           Expanded(
-                            child: reportsWidget[3],
+                            // child: reportsWidget[3],
+                            child: ReportContainerWidget(
+                              headingText: 'Purchase Report',
+                              button1Text: "Button 1",
+                              button2Text: "Button 2",
+                              button3Text: "Button 3",
+                              buttonHeight: 40,
+                              buttonWidth: 140,
+                              button1OnPressed: () {},
+                              button2OnPressed: () {},
+                              button3OnPressed: () {},
+                            ),
                           ),
                         ],
                       ),
@@ -153,11 +190,33 @@ class Reports extends StatelessWidget {
                       child: Row(
                         children: [
                           Expanded(
-                            child: reportsWidget[4],
+                            // child: reportsWidget[4],
+                            child: ReportContainerWidget(
+                              headingText: 'Sales Report',
+                              button1Text: "Button 1",
+                              button2Text: "Button 2",
+                              button3Text: "Button 3",
+                              buttonHeight: 40,
+                              buttonWidth: 140,
+                              button1OnPressed: () {},
+                              button2OnPressed: () {},
+                              button3OnPressed: () {},
+                            ),
                           ),
                           sWidtht10,
                           Expanded(
-                            child: reportsWidget[5],
+                            // child: reportsWidget[5],
+                            child: ReportContainerWidget(
+                              headingText: 'Report Container',
+                              button1Text: "Button 1",
+                              button2Text: "Button 2",
+                              button3Text: "Button 3",
+                              buttonHeight: 40,
+                              buttonWidth: 140,
+                              button1OnPressed: () {},
+                              button2OnPressed: () {},
+                              button3OnPressed: () {},
+                            ),
                           ),
                         ],
                       ),
@@ -192,7 +251,6 @@ class Reports extends StatelessWidget {
                       sWidtht10,
                       Expanded(
                         // child: reportsWidget[0],
-
                         child: ReportContainerWidget(
                           headingText: 'Report',
                           button1Text: "Button 1",
@@ -210,11 +268,35 @@ class Reports extends StatelessWidget {
                       ),
                       sWidtht40,
                       Expanded(
-                        child: reportsWidget[1],
+                        // child: reportsWidget[1],
+                        child: ReportContainerWidget(
+                          headingText: 'Store Report',
+                          button1Text: "Button 1",
+                          button2Text: "Button 2",
+                          button3Text: "Button 3",
+                          buttonHeight: 40,
+                          buttonWidth: 140,
+                          button1OnPressed: () {
+                            getStoreReportCtr.generateInvoice(context);
+                          },
+                          button2OnPressed: () {},
+                          button3OnPressed: () {},
+                        ),
                       ),
                       sWidtht40,
                       Expanded(
-                        child: reportsWidget[2],
+                        // child: reportsWidget[2],
+                        child: ReportContainerWidget(
+                          headingText: 'Delivery Report',
+                          button1Text: "Button 1",
+                          button2Text: "Button 2",
+                          button3Text: "Button 3",
+                          buttonHeight: 40,
+                          buttonWidth: 140,
+                          button1OnPressed: () {},
+                          button2OnPressed: () {},
+                          button3OnPressed: () {},
+                        ),
                       ),
                       sWidtht10
                     ],
@@ -224,15 +306,48 @@ class Reports extends StatelessWidget {
                     children: [
                       sWidtht10,
                       Expanded(
-                        child: reportsWidget[3],
+                        // child: reportsWidget[3],
+                        child: ReportContainerWidget(
+                          headingText: 'Purchase Report',
+                          button1Text: "Button 1",
+                          button2Text: "Button 2",
+                          button3Text: "Button 3",
+                          buttonHeight: 40,
+                          buttonWidth: 140,
+                          button1OnPressed: () {},
+                          button2OnPressed: () {},
+                          button3OnPressed: () {},
+                        ),
                       ),
                       sWidtht40,
                       Expanded(
-                        child: reportsWidget[4],
+                        // child: reportsWidget[4],
+                        child: ReportContainerWidget(
+                          headingText: 'Sales Report',
+                          button1Text: "Button 1",
+                          button2Text: "Button 2",
+                          button3Text: "Button 3",
+                          buttonHeight: 40,
+                          buttonWidth: 140,
+                          button1OnPressed: () {},
+                          button2OnPressed: () {},
+                          button3OnPressed: () {},
+                        ),
                       ),
                       sWidtht40,
                       Expanded(
-                        child: reportsWidget[5],
+                        // child: reportsWidget[5],
+                        child: ReportContainerWidget(
+                          headingText: 'Report Container',
+                          button1Text: "Button 1",
+                          button2Text: "Button 2",
+                          button3Text: "Button 3",
+                          buttonHeight: 40,
+                          buttonWidth: 140,
+                          button1OnPressed: () {},
+                          button2OnPressed: () {},
+                          button3OnPressed: () {},
+                        ),
                       ),
                       sWidtht10
                     ],

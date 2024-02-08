@@ -1,4 +1,5 @@
 import 'package:canteen_superadmin_website/controller/report_controller/report_controller.dart';
+import 'package:canteen_superadmin_website/controller/store_report_controller/store_report_controller.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/const.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 
 class Reports extends StatelessWidget {
   final getReportCtr = Get.put(ReportController());
+  final getStoreReportCtr = Get.put(StoreReportController());
   Reports({super.key});
   // List<Widget> reportsWidget = [
   //   ReportContainerWidget(
@@ -137,7 +139,9 @@ class Reports extends StatelessWidget {
                               button3Text: "Button 3",
                               buttonHeight: 40,
                               buttonWidth: 140,
-                              button1OnPressed: () {},
+                              button1OnPressed: () {
+                                getStoreReportCtr.generateInvoice(context);
+                              },
                               button2OnPressed: () {},
                               button3OnPressed: () {},
                             ),
@@ -272,7 +276,9 @@ class Reports extends StatelessWidget {
                           button3Text: "Button 3",
                           buttonHeight: 40,
                           buttonWidth: 140,
-                          button1OnPressed: () {},
+                          button1OnPressed: () {
+                            getStoreReportCtr.generateInvoice(context);
+                          },
                           button2OnPressed: () {},
                           button3OnPressed: () {},
                         ),

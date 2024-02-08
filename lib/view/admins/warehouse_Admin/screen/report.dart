@@ -1,10 +1,14 @@
+import 'package:canteen_superadmin_website/controller/report_controller/report_controller.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/constant/const.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Reports extends StatelessWidget {
+  final getReportCtr = Get.put(ReportController());
   Reports({super.key});
   List<Widget> reportsWidget = [
     ReportContainerWidget(
@@ -14,7 +18,9 @@ class Reports extends StatelessWidget {
       button3Text: "Button 3",
       buttonHeight: 40,
       buttonWidth: 140,
-      button1OnPressed: () {},
+      button1OnPressed: () {
+        // getReportCtr.generateInvoice(context);
+      },
       button2OnPressed: () {},
       button3OnPressed: () {},
     ),
@@ -104,7 +110,22 @@ class Reports extends StatelessWidget {
                       child: Row(
                         children: [
                           Expanded(
-                            child: reportsWidget[0],
+                            // child: reportsWidget[0],
+
+                            child: ReportContainerWidget(
+                              headingText: 'Report',
+                              button1Text: "Button 1",
+                              button2Text: "Button 2",
+                              button3Text: "Button 3",
+                              buttonHeight: 40,
+                              buttonWidth: 140,
+                              button1OnPressed: () {
+                                showToast(msg: "done");
+                                getReportCtr.generateInvoice(context);
+                              },
+                              button2OnPressed: () {},
+                              button3OnPressed: () {},
+                            ),
                           ),
                           sWidtht10,
                           Expanded(

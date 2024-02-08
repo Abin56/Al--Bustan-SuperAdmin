@@ -21,7 +21,8 @@ class ReportController extends GetxController {
     //Generate PDF grid.
     final PdfGrid grid = getGrid();
 
-    final Uint8List imageData = await _getImageData('images/albustanblack.png');
+    final Uint8List imageData =
+        await _getImageData('web_images/AL - Bustan.png');
     for (int i = 0; i < 3; i++) {
       // For example, add 10 rows with dummy data
       addProducts(

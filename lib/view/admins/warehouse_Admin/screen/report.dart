@@ -1,3 +1,4 @@
+import 'package:canteen_superadmin_website/controller/all_report_controller/all_report_controller.dart';
 import 'package:canteen_superadmin_website/controller/purchase_report_controller/purchase_report_controller.dart';
 import 'package:canteen_superadmin_website/controller/report_controller/report_controller.dart';
 import 'package:canteen_superadmin_website/controller/store_report_controller/store_report_controller.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Reports extends StatelessWidget {
+  final getAllReportCtr = Get.put(AllReportController());
   final getReportCtr = Get.put(ReportController());
   final getStoreReportCtr = Get.put(StoreReportController());
   final getPurchaseReportController = Get.put(PurchaseReportController());
@@ -36,7 +38,8 @@ class Reports extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20),
-                      child: GooglePoppinsWidgets(text: "Report", fontsize: 26),
+                      child: GooglePoppinsWidgets(
+                          text: "All Report", fontsize: 26),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -52,7 +55,9 @@ class Reports extends StatelessWidget {
                               button3Text: "Button 3",
                               buttonHeight: 40,
                               buttonWidth: 140,
-                              button1OnPressed: () {},
+                              button1OnPressed: () {
+                                getAllReportCtr.generateInvoice(context);
+                              },
                               button2OnPressed: () {},
                               button3OnPressed: () {},
                             ),
@@ -192,7 +197,9 @@ class Reports extends StatelessWidget {
                           button3Text: "Button 3",
                           buttonHeight: 40,
                           buttonWidth: 140,
-                          button1OnPressed: () {},
+                          button1OnPressed: () {
+                            getAllReportCtr.generateInvoice(context);
+                          },
                           button2OnPressed: () {},
                           button3OnPressed: () {},
                         ),

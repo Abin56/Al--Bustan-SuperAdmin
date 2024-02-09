@@ -1,15 +1,12 @@
-import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
-import 'package:canteen_superadmin_website/core/core.dart';
-import 'package:canteen_superadmin_website/model/all_product_model.dart';
-import 'package:get/get.dart';
 import 'dart:html';
+
 import 'package:flutter/services.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 // ignore: depend_on_referenced_packages
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 //Local imports
-
-class PurchaseReportController extends GetxController {
+class AllReportController extends GetxController {
   Future<void> generateInvoice(context) async {
     //Create a PDF document.
     final PdfDocument document = PdfDocument();
@@ -26,42 +23,22 @@ class PurchaseReportController extends GetxController {
 
     final Uint8List imageData =
         await _getImageData('web_images/AL - Bustan.png');
-    // for (int i = 0; i < 3; i++) {
-    //   // For example, add 10 rows with dummy data
-    //   addProducts(
-    //       ' ${i + 1}',
-    //       'Product Name ${i + 1}',
-    //       ' Size${i + 1}',
-    //       'Unit ${i + 1}',
-    //       'Quantity1${i + 1}',
-    //       // 'Amount1${i + 1}',
-    //       'Quantity2${i + 1}',
-    //       // 'Amount2${i + 1}',
-    //       'Quantity3${i + 1}',
-    //       // 'Amount3${i + 1}',
-    //       // 'Quantity4${i + 1}',
-    //       // 'Amount4${i + 1}',
-    //       // 'Remarks${i + 1}',
-    //       grid);
-    // }
-
-    final storeData = await dataserver.collection('AvailableProducts').get();
-
-    final storeList = storeData.docs
-        .map((e) => AllProductDetailModel.fromMap(e.data()))
-        .toList();
-    int index = 0;
-
-    for (AllProductDetailModel productData in storeList) {
-      index++;
+    for (int i = 0; i < 3; i++) {
+      // For example, add 10 rows with dummy data
       addProducts(
-          index.toString(),
-          productData.productname,
-          productData.companyName,
-          dateConveter(DateTime.parse(productData.addedDate)),
-          productData.quantityinStock.toString(),
-          productData.inPrice.toString(),
-          productData.outPrice.toString(),
+          ' ${i + 1}',
+          'Product Name ${i + 1}',
+          ' Size${i + 1}',
+          'Unit ${i + 1}',
+          'Quantity1${i + 1}',
+          'Amount1${i + 1}',
+          'Quantity2${i + 1}',
+          'Amount2${i + 1}',
+          // 'Quantity3${i + 1}',
+          // 'Amount3${i + 1}',
+          // 'Quantity4${i + 1}',
+          // 'Amount4${i + 1}',
+          // 'Remarks${i + 1}',
           grid);
     }
 
@@ -191,8 +168,9 @@ class PurchaseReportController extends GetxController {
     //Create a PDF grid
     final PdfGrid grid = PdfGrid();
     //Secify the columns count to the grid.
-    grid.columns.add(count: 7);
+    grid.columns.add(count: 8);
     //Create the header row of the grid.
+    // final PdfGridRow headerRow = grid.headers.add(1)[0];
 
     //Set style
 // Create the header row of the grid.
@@ -207,35 +185,62 @@ class PurchaseReportController extends GetxController {
     headerRow.cells[1].value = 'Date';
     headerRow.cells[2].value = 'Type';
     headerRow.cells[3].value = 'Product Name';
+    headerRow.cells[4].value = 'Company Name';
+    headerRow.cells[5].value = 'Quantity';
+    headerRow.cells[6].value = 'price';
+    headerRow.cells[7].value = 'total';
 
 // Create the first cell of the second row and set its value
-    final PdfGridCell productCell = headerRow.cells[4];
-    headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
+//     final PdfGridCell productCell = headerRow.cells[4];
+//     headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
 
-    productCell.value = 'CompanyName';
-    // productCell.columnSpan = 1;
-/////////////////////////////////////Wareh
-    final PdfGridCell warehouse = headerRow.cells[5];
-    headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
+//     // productCell.value = 'Last Month Stock';
+//     // productCell.columnSpan = 2;
+// /////////////////////////////////////Wareh
+//     final PdfGridCell warehouse = headerRow.cells[5];
+//     headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
 
-    warehouse.value = 'Quantity';
-    // warehouse.columnSpan = 1;
+//     warehouse.value = 'Entering-warehouse this month';
+//     // warehouse.columnSpan = 2;
+
+//     /////////////////////////////////////Wareh
+//     final PdfGridCell outerwarehouse = headerRow.cells[6];
+//     headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
+
+//     outerwarehouse.value = 'Out of warehouse this month';
+//     // outerwarehouse.columnSpan = 2;
 
     /////////////////////////////////////Wareh
-    final PdfGridCell outerwarehouse = headerRow.cells[6];
+    // final PdfGridCell thismonthstock = headerRow.cells[10];
+    // headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
 
-    outerwarehouse.value = 'Prince';
+    // thismonthstock.value = 'This month stock';
+    // thismonthstock.columnSpan = 2;
+
+    //  headerRow.cells[8].value = 'Price';
+    // headerRow.cells[12].value = 'Remarks';
+    // headerRow.cells[9].value = 'Quantity';
+
+    //Add rows
+    // addProducts('', '', '', '', 'Quantity', 'Amount', 'Quantity', 'Amount',
+    //     'Quantity', 'Amount', 'Quantity', 'Amount', '', grid);
 
     //Apply the table built-in style
     grid.applyBuiltInStyle(PdfGridBuiltInStyle.gridTable1Light);
     //Set gird columns width
     grid.columns[0].width = 30;
-    grid.columns[1].width = 70;
-    grid.columns[2].width = 105;
-    grid.columns[3].width = 100;
-    grid.columns[4].width = 70;
-    grid.columns[5].width = 70;
-    grid.columns[6].width = 70;
+    grid.columns[1].width = 50;
+    grid.columns[2].width = 55;
+    grid.columns[3].width = 120;
+    grid.columns[4].width = 110;
+    grid.columns[5].width = 50;
+    grid.columns[6].width = 50;
+    grid.columns[7].width = 50;
+    // grid.columns[8].width = 45;
+    // grid.columns[9].width = 45;
+    // grid.columns[10].width = 45;
+    // grid.columns[11].width = 45;
+    // grid.columns[12].width = 45;
 
     for (int i = 0; i < headerRow.cells.count; i++) {
       headerRow.cells[i].style.cellPadding =
@@ -256,17 +261,35 @@ class PurchaseReportController extends GetxController {
   }
 
 //Create and row for the grid.
-  void addProducts(String sno, String productName, String companyName,
-      String date, String quantity, String price, String total, PdfGrid grid) {
+  void addProducts(
+      String sno,
+      String productName,
+      String date,
+      String type,
+      String companyName,
+      String quantity,
+      String price,
+      String total,
+      // String quantity,
+      // String price,
+      // String store,
+      // String stock,
+      // String remarks,
+      PdfGrid grid) {
     final PdfGridRow row = grid.rows.add();
     row.cells[0].value = sno;
-    row.cells[1].value = date;
-    row.cells[2].value = productName;
-    row.cells[3].value = companyName;
-    row.cells[4].value = quantity;
-    row.cells[5].value = price;
-    row.cells[6].value = total;
-  }
+    row.cells[1].value = productName;
+    row.cells[2].value = date;
+    row.cells[3].value = type;
 
-//Get the total amount.
+    row.cells[4].value = companyName;
+    row.cells[5].value = quantity;
+    row.cells[6].value = price;
+    row.cells[7].value = total;
+    // row.cells[8].value = quantity;
+    // row.cells[9].value = price;
+    // row.cells[10].value = store;
+    // row.cells[11].value = stock;
+    // row.cells[12].value = remarks;
+  }
 }

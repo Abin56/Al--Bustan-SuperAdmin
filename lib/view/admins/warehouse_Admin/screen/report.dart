@@ -1,3 +1,4 @@
+import 'package:canteen_superadmin_website/controller/purchase_report_controller/purchase_report_controller.dart';
 import 'package:canteen_superadmin_website/controller/report_controller/report_controller.dart';
 import 'package:canteen_superadmin_website/controller/store_report_controller/store_report_controller.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
@@ -11,78 +12,8 @@ import 'package:get/get.dart';
 class Reports extends StatelessWidget {
   final getReportCtr = Get.put(ReportController());
   final getStoreReportCtr = Get.put(StoreReportController());
+  final getPurchaseReportController = Get.put(PurchaseReportController());
   Reports({super.key});
-  // List<Widget> reportsWidget = [
-  //   ReportContainerWidget(
-  //     headingText: 'Report',
-  //     button1Text: "Button 1",
-  //     button2Text: "Button 2",
-  //     button3Text: "Button 3",
-  //     buttonHeight: 40,
-  //     buttonWidth: 140,
-  //     button1OnPressed: () {
-  //       // getReportCtr.generateInvoice(context);
-  //     },
-  //     button2OnPressed: () {},
-  //     button3OnPressed: () {},
-  //   ),
-  //   ReportContainerWidget(
-  //     headingText: 'Store Report',
-  //     button1Text: "Button 1",
-  //     button2Text: "Button 2",
-  //     button3Text: "Button 3",
-  //     buttonHeight: 40,
-  //     buttonWidth: 140,
-  //     button1OnPressed: () {},
-  //     button2OnPressed: () {},
-  //     button3OnPressed: () {},
-  //   ),
-  //   ReportContainerWidget(
-  //     headingText: 'Delivery Report',
-  //     button1Text: "Button 1",
-  //     button2Text: "Button 2",
-  //     button3Text: "Button 3",
-  //     buttonHeight: 40,
-  //     buttonWidth: 140,
-  //     button1OnPressed: () {},
-  //     button2OnPressed: () {},
-  //     button3OnPressed: () {},
-  //   ),
-  //   ReportContainerWidget(
-  //     headingText: 'Purchase Report',
-  //     button1Text: "Button 1",
-  //     button2Text: "Button 2",
-  //     button3Text: "Button 3",
-  //     buttonHeight: 40,
-  //     buttonWidth: 140,
-  //     button1OnPressed: () {},
-  //     button2OnPressed: () {},
-  //     button3OnPressed: () {},
-  //   ),
-  //   ReportContainerWidget(
-  //     headingText: 'Sales Report',
-  //     button1Text: "Button 1",
-  //     button2Text: "Button 2",
-  //     button3Text: "Button 3",
-  //     buttonHeight: 40,
-  //     buttonWidth: 140,
-  //     button1OnPressed: () {},
-  //     button2OnPressed: () {},
-  //     button3OnPressed: () {},
-  //   ),
-  //   ReportContainerWidget(
-  //     headingText: 'Report Container',
-  //     button1Text: "Button 1",
-  //     button2Text: "Button 2",
-  //     button3Text: "Button 3",
-  //     buttonHeight: 40,
-  //     buttonWidth: 140,
-  //     button1OnPressed: () {},
-  //     button2OnPressed: () {},
-  //     button3OnPressed: () {},
-  //   ),
-  // ];
-
   @override
   Widget build(BuildContext context) {
     final sizeW = MediaQuery.of(context).size.width;
@@ -121,10 +52,7 @@ class Reports extends StatelessWidget {
                               button3Text: "Button 3",
                               buttonHeight: 40,
                               buttonWidth: 140,
-                              button1OnPressed: () {
-                                showToast(msg: "done");
-                                getReportCtr.generateInvoice(context);
-                              },
+                              button1OnPressed: () {},
                               button2OnPressed: () {},
                               button3OnPressed: () {},
                             ),
@@ -162,7 +90,10 @@ class Reports extends StatelessWidget {
                               button3Text: "Button 3",
                               buttonHeight: 40,
                               buttonWidth: 140,
-                              button1OnPressed: () {},
+                              button1OnPressed: () {
+                                showToast(msg: "done");
+                                getReportCtr.generateInvoice(context);
+                              },
                               button2OnPressed: () {},
                               button3OnPressed: () {},
                             ),
@@ -177,7 +108,10 @@ class Reports extends StatelessWidget {
                               button3Text: "Button 3",
                               buttonHeight: 40,
                               buttonWidth: 140,
-                              button1OnPressed: () {},
+                              button1OnPressed: () {
+                                getPurchaseReportController
+                                    .generateInvoice(context);
+                              },
                               button2OnPressed: () {},
                               button3OnPressed: () {},
                             ),
@@ -258,10 +192,7 @@ class Reports extends StatelessWidget {
                           button3Text: "Button 3",
                           buttonHeight: 40,
                           buttonWidth: 140,
-                          button1OnPressed: () {
-                            showToast(msg: "done");
-                            getReportCtr.generateInvoice(context);
-                          },
+                          button1OnPressed: () {},
                           button2OnPressed: () {},
                           button3OnPressed: () {},
                         ),
@@ -293,7 +224,10 @@ class Reports extends StatelessWidget {
                           button3Text: "Button 3",
                           buttonHeight: 40,
                           buttonWidth: 140,
-                          button1OnPressed: () {},
+                          button1OnPressed: () {
+                            showToast(msg: "done");
+                            getReportCtr.generateInvoice(context);
+                          },
                           button2OnPressed: () {},
                           button3OnPressed: () {},
                         ),
@@ -314,7 +248,10 @@ class Reports extends StatelessWidget {
                           button3Text: "Button 3",
                           buttonHeight: 40,
                           buttonWidth: 140,
-                          button1OnPressed: () {},
+                          button1OnPressed: () {
+                            getPurchaseReportController
+                                .generateInvoice(context);
+                          },
                           button2OnPressed: () {},
                           button3OnPressed: () {},
                         ),

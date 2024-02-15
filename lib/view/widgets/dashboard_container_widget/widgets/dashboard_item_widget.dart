@@ -38,7 +38,7 @@ class DashboardItem extends StatelessWidget {
             size: 28,
           ),
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         Column(
           // mainAxisAlignment: MainAxisAlignment.start,
           // crossAxisAlignment: CrossAxisAlignment.start,

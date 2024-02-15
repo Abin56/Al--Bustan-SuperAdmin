@@ -9,7 +9,7 @@ class CategoryCreationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
       height: size.height - 110,
       width: double.infinity,
       child: Row(

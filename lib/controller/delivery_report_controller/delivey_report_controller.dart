@@ -6,12 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:html';
 import 'package:flutter/services.dart';
-// ignore: depend_on_referenced_packages
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 //Local imports
 
-class StoreReportController extends GetxController {
+class DeliveryReportController extends GetxController {
   validateStartandEndCalender(
       {required DateTime startTime,
       required DateTime? endTime,
@@ -53,91 +52,150 @@ class StoreReportController extends GetxController {
     //   // For example, add 10 rows with dummy data
     //   addProducts(
     //       ' ${i + 1}',
+    //       'Canteen Name${i + 1}',
+    //       '${1 + 1}',
     //       'Product Name ${i + 1}',
-    //       ' Size${i + 1}',
-    //       'Unit ${i + 1}',
     //       'Quantity1${i + 1}',
-    //       // 'Amount1${i + 1}',
-    //       'Quantity2${i + 1}',
-    //       // 'Amount2${i + 1}',
-    //       'Quantity3${i + 1}',
-    //       // 'Amount3${i + 1}',
-    //       // 'Quantity4${i + 1}',
-    //       // 'Amount4${i + 1}',
-    //       // 'Remarks${i + 1}',
+    //       'Price ${i + 1}',
+    //       'Total${i + 1}',
     //       grid);
     // }
-
-    final storeData = await dataserver
-        .collection('Storehistory')
-        .orderBy('addedDate', descending: true)
-        .get();
-
-    final storeList = storeData.docs
-        .map((e) => AllProductDetailModel.fromMap(e.data()))
-        .toList();
     int index = 0;
-    DateTime currentDate = DateTime.now();
-
-    for (AllProductDetailModel productData in storeList) {
-      DateTime productDate = DateTime.parse(productData.addedDate);
-
+    final deliverdData =
+        await dataserver.collection('DeliveredList').orderBy('time').get();
+    final currentDate = DateTime.now();
+    for (var element in deliverdData.docs) {
+      String canteen = element['canteenName'];
+      int orderCount = element['orderCount'];
+      String date = element['time'];
+      final productDate = DateTime.parse(date);
       if (type == '1') {
-        if (currentDate.day == productDate.day &&
-            currentDate.month == productDate.month &&
-            currentDate.year == productDate.year) {
+        if (productDate.day == currentDate.day &&
+            productDate.month == currentDate.month &&
+            productDate.year == currentDate.year) {
           index++;
-          addProducts(
-              index.toString(),
-              productData.productname,
-              productData.companyName,
-              dateConveter(DateTime.parse(productData.addedDate)),
-              productData.quantityinStock.toString(),
-              productData.inPrice.toString(),
-              productData.outPrice.toString(),
-              grid);
+          addProducts(index.toString(), dateConveter(productDate), canteen,
+              orderCount.toString(), '', '', '', '', grid);
+          final deliverProductdata = await dataserver
+              .collection('DeliveredList')
+              .doc(element['docId'])
+              .collection('productsDetails')
+              .get();
+          final deliveryProductList = deliverProductdata.docs
+              .map((e) => AllProductDetailModel.fromMap(e.data()))
+              .toList();
+          int totalAmount = 0;
+          for (AllProductDetailModel productData in deliveryProductList) {
+            int totalPrice = productData.outPrice * productData.quantityinStock;
+            addProducts(
+                '',
+                '',
+                '',
+                '',
+                productData.productname,
+                productData.quantityinStock.toString(),
+                productData.outPrice.toString(),
+                totalPrice.toString(),
+                grid);
+            totalAmount = totalAmount + totalPrice;
+          }
+          addProducts('', '', '', '', '', '', "Total Amount",
+              totalAmount.toString(), grid);
         }
       } else if (type == '2') {
-        if (DateTime.parse(productData.addedDate)
-            .isAfter(DateTime.now().subtract(const Duration(days: 7)))) {
+        if (productDate.isAfter(DateTime.now().subtract(const Duration(days: 7)))) {
           index++;
-          addProducts(
-              index.toString(),
-              productData.productname,
-              productData.companyName,
-              dateConveter(DateTime.parse(productData.addedDate)),
-              productData.quantityinStock.toString(),
-              productData.inPrice.toString(),
-              productData.outPrice.toString(),
-              grid);
+          addProducts(index.toString(), dateConveter(productDate), canteen,
+              orderCount.toString(), '', '', '', '', grid);
+          final deliverProductdata = await dataserver
+              .collection('DeliveredList')
+              .doc(element['docId'])
+              .collection('productsDetails')
+              .get();
+          final deliveryProductList = deliverProductdata.docs
+              .map((e) => AllProductDetailModel.fromMap(e.data()))
+              .toList();
+          int totalAmount = 0;
+          for (AllProductDetailModel productData in deliveryProductList) {
+            int totalPrice = productData.outPrice * productData.quantityinStock;
+            addProducts(
+                '',
+                '',
+                '',
+                '',
+                productData.productname,
+                productData.quantityinStock.toString(),
+                productData.outPrice.toString(),
+                totalPrice.toString(),
+                grid);
+            totalAmount = totalAmount + totalPrice;
+          }
+          addProducts('', '', '', '', '', '', "Total Amount",
+              totalAmount.toString(), grid);
         }
       } else if (type == '3') {
         if (productDate.isAfter(DateTime.now().subtract(const Duration(days: 30)))) {
           index++;
-          addProducts(
-              index.toString(),
-              productData.productname,
-              productData.companyName,
-              dateConveter(DateTime.parse(productData.addedDate)),
-              productData.quantityinStock.toString(),
-              productData.inPrice.toString(),
-              productData.outPrice.toString(),
-              grid);
+          addProducts(index.toString(), dateConveter(productDate), canteen,
+              orderCount.toString(), '', '', '', '', grid);
+          final deliverProductdata = await dataserver
+              .collection('DeliveredList')
+              .doc(element['docId'])
+              .collection('productsDetails')
+              .get();
+          final deliveryProductList = deliverProductdata.docs
+              .map((e) => AllProductDetailModel.fromMap(e.data()))
+              .toList();
+          int totalAmount = 0;
+          for (AllProductDetailModel productData in deliveryProductList) {
+            int totalPrice = productData.outPrice * productData.quantityinStock;
+            addProducts(
+                '',
+                '',
+                '',
+                '',
+                productData.productname,
+                productData.quantityinStock.toString(),
+                productData.outPrice.toString(),
+                totalPrice.toString(),
+                grid);
+            totalAmount = totalAmount + totalPrice;
+          }
+          addProducts('', '', '', '', '', '', "Total Amount",
+              totalAmount.toString(), grid);
         }
       } else if (type == '4') {
         if (productDate.isAfter(startTime!) && productDate.isBefore(endTime!) ||
             productDate.isAtSameMomentAs(startTime) ||
             productDate.isAtSameMomentAs(endTime!)) {
           index++;
-          addProducts(
-              index.toString(),
-              productData.productname,
-              productData.companyName,
-              dateConveter(DateTime.parse(productData.addedDate)),
-              productData.quantityinStock.toString(),
-              productData.inPrice.toString(),
-              productData.outPrice.toString(),
-              grid);
+          addProducts(index.toString(), dateConveter(productDate), canteen,
+              orderCount.toString(), '', '', '', '', grid);
+          final deliverProductdata = await dataserver
+              .collection('DeliveredList')
+              .doc(element['docId'])
+              .collection('productsDetails')
+              .get();
+          final deliveryProductList = deliverProductdata.docs
+              .map((e) => AllProductDetailModel.fromMap(e.data()))
+              .toList();
+          int totalAmount = 0;
+          for (AllProductDetailModel productData in deliveryProductList) {
+            int totalPrice = productData.outPrice * productData.quantityinStock;
+            addProducts(
+                '',
+                '',
+                '',
+                '',
+                productData.productname,
+                productData.quantityinStock.toString(),
+                productData.outPrice.toString(),
+                totalPrice.toString(),
+                grid);
+            totalAmount = totalAmount + totalPrice;
+          }
+          addProducts('', '', '', '', '', '', "Total Amount",
+              totalAmount.toString(), grid);
         }
       }
     }
@@ -200,7 +258,8 @@ class StoreReportController extends GetxController {
 
     String heading =
         '''AL BUSTAN BAKERY & SWEETS LLC\r\n\r\n         Al Qusais Industrial Area 3\r\n\r\n                 Emiates Dubai\r\n\r\n''';
-    String secondHeading = '''                MATERIAL IN                ''';
+    // String secondHeading =
+    //     '''                MATERIAL OUT                \r\n\r\n Canteen:    Ittilhad Private School-Mamzar\r\n\r\n Emiates:                 Dubai\r\n\r\nCountry:                 UAE\r\n\r\n''';
 
     page.graphics.drawImage(
       PdfBitmap(imageData),
@@ -215,15 +274,15 @@ class StoreReportController extends GetxController {
         page: page,
         bounds: Rect.fromLTWH(30, 10, pageSize.width - (contentSize.width + 30),
             pageSize.height - 10))!;
-    PdfTextElement(text: heading, font: contentFont).draw(
+    return PdfTextElement(text: heading, font: contentFont).draw(
         page: page,
         bounds: Rect.fromLTWH(200, 45,
             pageSize.width - (contentSize.width + 30), pageSize.height - 50))!;
 
-    return PdfTextElement(text: secondHeading, font: contentFont).draw(
-        page: page,
-        bounds: Rect.fromLTWH(200, 150,
-            pageSize.width - (contentSize.width + 30), pageSize.height - 100))!;
+    // return PdfTextElement(text: secondHeading, font: contentFont).draw(
+    //     page: page,
+    //     bounds: Rect.fromLTWH(200, 150,
+    //         pageSize.width - (contentSize.width + 30), pageSize.height - 100))!;
   }
 
 //Draws the grid
@@ -267,8 +326,9 @@ class StoreReportController extends GetxController {
     //Create a PDF grid
     final PdfGrid grid = PdfGrid();
     //Secify the columns count to the grid.
-    grid.columns.add(count: 7);
+    grid.columns.add(count: 9);
     //Create the header row of the grid.
+    // final PdfGridRow headerRow = grid.headers.add(1)[0];
 
     //Set style
 // Create the header row of the grid.
@@ -279,39 +339,62 @@ class StoreReportController extends GetxController {
     headerRow.style.textBrush = PdfBrushes.white;
 
 // Set values for the "S.no" column
-    headerRow.cells[0].value = 'S.no';
+    headerRow.cells[0].value = 'Sl.No';
+    headerRow.cells[0].stringFormat.alignment = PdfTextAlignment.center;
     headerRow.cells[1].value = 'Date';
-    headerRow.cells[2].value = 'Product Name';
-    headerRow.cells[3].value = 'Supplier Name';
+    headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
+    headerRow.cells[2].value = 'Canteen Name';
+    headerRow.cells[2].stringFormat.alignment = PdfTextAlignment.center;
+    // headerRow.cells[2].value = 'Size';
+    headerRow.cells[3].value = 'Count';
+    headerRow.cells[3].stringFormat.alignment = PdfTextAlignment.center;
 
 // Create the first cell of the second row and set its value
     final PdfGridCell productCell = headerRow.cells[4];
-    headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
+    headerRow.cells[4].stringFormat.alignment = PdfTextAlignment.center;
 
-    productCell.value = 'Quantity';
-    // productCell.columnSpan = 1;
+    productCell.value = 'Details';
+    productCell.columnSpan = 4;
 /////////////////////////////////////Wareh
-    final PdfGridCell warehouse = headerRow.cells[5];
-    headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
+    // final PdfGridCell warehouse = headerRow.cells[5];
+    // headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
 
-    warehouse.value = 'In Price';
-    // warehouse.columnSpan = 1;
+    // warehouse.value = 'Entering-warehouse this month';
+    // warehouse.columnSpan = 2;
 
-    /////////////////////////////////////Wareh
-    final PdfGridCell outerwarehouse = headerRow.cells[6];
+    // /////////////////////////////////////Wareh
+    // final PdfGridCell outerwarehouse = headerRow.cells[7];
+    // headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
 
-    outerwarehouse.value = 'Out Prince';
+    // outerwarehouse.value = 'Out of warehouse this month';
+    // outerwarehouse.columnSpan = 2;
+
+    // /////////////////////////////////////Wareh
+    // final PdfGridCell thismonthstock = headerRow.cells[9];
+    // headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
+
+    // thismonthstock.value = 'This month stock';
+    // thismonthstock.columnSpan = 2;
+
+    // //  headerRow.cells[8].value = 'Price';
+    // headerRow.cells[11].value = 'Remarks';
+    // // headerRow.cells[9].value = 'Quantity';
+
+    //Add rows
+    addProducts('', '', '', '', 'Product Name', 'Quantity', 'Price/Qty',
+        'Amount', grid);
 
     //Apply the table built-in style
     grid.applyBuiltInStyle(PdfGridBuiltInStyle.gridTable1Light);
     //Set gird columns width
     grid.columns[0].width = 30;
     grid.columns[1].width = 60;
-    grid.columns[2].width = 127.5;
-    grid.columns[3].width = 127.5;
+    grid.columns[2].width = 150;
+    grid.columns[3].width = 35;
     grid.columns[4].width = 60;
     grid.columns[5].width = 60;
     grid.columns[6].width = 60;
+    grid.columns[7].width = 60;
 
     for (int i = 0; i < headerRow.cells.count; i++) {
       headerRow.cells[i].style.cellPadding =
@@ -334,21 +417,23 @@ class StoreReportController extends GetxController {
 //Create and row for the grid.
   void addProducts(
       String sno,
-      String productName,
-      String supplierName,
       String date,
+      String canteenName,
+      String count,
+      String productName,
       String quantity,
-      String inPrice,
-      String outPrince,
+      String price,
+      String total,
       PdfGrid grid) {
     final PdfGridRow row = grid.rows.add();
     row.cells[0].value = sno;
     row.cells[1].value = date;
-    row.cells[2].value = productName;
-    row.cells[3].value = supplierName;
-    row.cells[4].value = quantity;
-    row.cells[5].value = inPrice;
-    row.cells[6].value = outPrince;
+    row.cells[2].value = canteenName;
+    row.cells[3].value = count;
+    row.cells[4].value = productName;
+    row.cells[5].value = quantity;
+    row.cells[6].value = price;
+    row.cells[7].value = total;
   }
 
 //Get the total amount.

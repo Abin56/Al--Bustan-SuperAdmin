@@ -8,7 +8,6 @@ import 'package:canteen_superadmin_website/core/constant/const.dart';
 import 'package:canteen_superadmin_website/view/widgets/id_generator/id_generator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:uuid/uuid.dart';
 
 class DeliveryController extends GetxController {
   final firestore = FirebaseFirestore.instance;
@@ -123,7 +122,7 @@ class DeliveryController extends GetxController {
     if (cartlistLength.docs.isNotEmpty) {
       int amount = 0;
       String id = idGenerator();
-      final orderid = '#' + id;
+      final orderid = '#$id';
       final cartProductS =
           await firestore.collectionGroup('CartProductDetails').get();
       final cartProductsList = cartProductS.docs
@@ -285,7 +284,7 @@ class DeliveryController extends GetxController {
 
   confirmEmployeeRequest(EmployeeRequestModel requestdata) async {
     String id = idGenerator();
-    final orderid = '#' + id;
+    final orderid = '#$id';
 
     final data = {
       'time': requestdata.time,
@@ -300,8 +299,8 @@ class DeliveryController extends GetxController {
       "price": requestdata.amount,
       "employeeName": requestdata.emplopeeName,
       "employeeId": requestdata.emplopeeId,
-      "canteenName": requestdata.CanteenName,
-      "canteenId": requestdata.CanteenId,
+      "canteenName": requestdata.canteenName,
+      "canteenId": requestdata.canteenId,
     };
     final requestedProductList = await firestore
         .collection('EmployeeDeliveryRequest')

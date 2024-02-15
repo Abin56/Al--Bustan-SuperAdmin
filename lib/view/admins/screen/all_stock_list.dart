@@ -17,6 +17,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AllStockList extends StatelessWidget {
@@ -86,7 +87,7 @@ class AllStockList extends StatelessWidget {
                                   placeholder: allProductCtr.filterName.value,
                                   // controller: allProductCtr.searchController,
                                   onChanged: (value) {
-                                    if (allProductCtr.filterName ==
+                                    if (allProductCtr.filterName.value ==
                                         "Product Name") {
                                       // allProductCtr.searchByProductName(value);
                                       allProductCtr
@@ -173,11 +174,11 @@ class AllStockList extends StatelessWidget {
                                 onSaved: (value) {
                                   // Do something with the selected value when the form is saved.
                                   // You can update the data or perform any necessary actions.
-                                  print("Form saved: $value");
+                                  // print("Form saved: $value");
                                 },
                                 clearButtonProps: ClearButtonProps(
                                   // isVisible: true,
-                                  icon: Icon(Icons.close),
+                                  icon: const Icon(Icons.close),
                                   iconSize: 15,
                                   onPressed: () {
                                     wearhouseCtr.productCompanyName.value = "";
@@ -191,9 +192,10 @@ class AllStockList extends StatelessWidget {
                                 ),
                                 dropdownDecoratorProps: DropDownDecoratorProps(
                                   textAlign: TextAlign.center,
-                                  dropdownSearchDecoration: InputDecoration(
-                                      enabledBorder: InputBorder.none,
-                                      hintText: 'Select Company'),
+                                  dropdownSearchDecoration:
+                                      const InputDecoration(
+                                          enabledBorder: InputBorder.none,
+                                          hintText: 'Select Company'),
                                   baseStyle: GoogleFonts.poppins(
                                     fontSize: 13,
                                     color: Colors.black.withOpacity(0.7),
@@ -359,6 +361,8 @@ class InventoryTileWidget extends StatelessWidget {
     super.key,
   });
 
+  final GlobalKey<FormState> fkey = GlobalKey<FormState>();
+
   final getWarehouseCtr = Get.put(WearHouseController());
   final allProductCtr = Get.put(AllProductController());
 
@@ -451,72 +455,191 @@ class InventoryTileWidget extends StatelessWidget {
                         productData.expiryDate;
                     allProductCtr.inPriceController.text =
                         productData.inPrice.toString();
-                    customShowDilogBox(
+
+                    showDialog(
                       context: context,
-                      title: "Edit",
-                      children: [
-                        TextFormFiledContainerWidget(
-                          controller: allProductCtr.productNameController,
-                          hintText: "Item Name",
-                          title: 'Item Name',
-                          width: 500,
-                        ),
-                        TextFormFiledContainerWidget(
-                            controller: allProductCtr.limitCtr,
-                            hintText: "Limit",
-                            title: 'Limit',
-                            width: 500),
-                        TextFormFiledContainerWidget(
-                            controller: allProductCtr.expiryDateController,
-                            hintText: "Expiry Date",
-                            title: 'Expiry Date',
-                            width: 500),
-                        TextFormFiledContainerWidget(
-                          controller: allProductCtr.inPriceController,
-                          hintText: "InPrice",
-                          title: 'InPrice',
-                          width: 500,
-                        ),
-                        sHeight10,
-                        GooglePoppinsWidgets(
-                            text: "Company Name", fontsize: 14),
-                        // drop
-                        CompanySetUpWidget1(),
-                        sHeight10,
-                        GooglePoppinsWidgets(text: "Category", fontsize: 14),
-                        CategorySetUpWidget1(),
-                        sHeight10,
-                        GooglePoppinsWidgets(text: "Subcategory", fontsize: 14),
-                        SubCategorySetUpWidget1(),
-                        sHeight10,
-                        GooglePoppinsWidgets(text: "Unit", fontsize: 14),
-                        UnitSetUpWidget1(),
-                        sHeight10,
-                        GooglePoppinsWidgets(
-                            text: "Package Type", fontsize: 14),
-                        PackageSetUpWidget1(),
-                      ],
-                      doyouwantActionButton: true,
-                      actiononTapfuction: () {
-                        allProductCtr.editProductList(
-                          productData.docId,
-                          allProductCtr.productNameController.text,
-                          allProductCtr.expiryDateController.text,
-                          int.parse(allProductCtr.inPriceController.text),
-                          int.parse(allProductCtr.limitCtr.text),
-                          getWarehouseCtr.productCompanyName.value,
-                          getWarehouseCtr.productCompanyID.value,
-                          getWarehouseCtr.productCategoryName.value,
-                          getWarehouseCtr.productCategoryID.value,
-                          getWarehouseCtr.productSubCategoryID.value,
-                          getWarehouseCtr.productSubCategoryName.value,
-                          getWarehouseCtr.productUnitID.value,
-                          getWarehouseCtr.productUnitName.value,
-                          getWarehouseCtr.productPackageID.value,
-                          getWarehouseCtr.productPackageName.value,
+                      builder: (context) {
+                        return Form(
+                          key: fkey,
+                          child: AlertDialog(
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                  child: GooglePoppinsWidgets(
+                                      text: "Cancel", fontsize: 14)),
+                              TextButton(
+                                  onPressed: () {
+                                    if (fkey.currentState?.validate() ??
+                                        false) {
+                                      allProductCtr.editProductList(
+                                        productData.docId,
+                                        allProductCtr
+                                            .productNameController.text,
+                                        allProductCtr.expiryDateController.text,
+                                        int.parse(allProductCtr
+                                            .inPriceController.text),
+                                        int.parse(allProductCtr.limitCtr.text),
+                                        getWarehouseCtr
+                                            .productCompanyName.value,
+                                        getWarehouseCtr.productCompanyID.value,
+                                        getWarehouseCtr
+                                            .productCategoryName.value,
+                                        getWarehouseCtr.productCategoryID.value,
+                                        getWarehouseCtr
+                                            .productSubCategoryID.value,
+                                        getWarehouseCtr
+                                            .productSubCategoryName.value,
+                                        getWarehouseCtr.productUnitID.value,
+                                        getWarehouseCtr.productUnitName.value,
+                                        getWarehouseCtr.productPackageID.value,
+                                        getWarehouseCtr
+                                            .productPackageName.value,
+                                      );
+                                      // Get.back();
+                                    }
+                                  },
+                                  child: GooglePoppinsWidgets(
+                                      text: "Update", fontsize: 14))
+                            ],
+                            content: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  GooglePoppinsWidgets(
+                                      text: "Edit Product Details",
+                                      fontsize: 20),
+                                  sHeight20,
+                                  TextFormFiledContainerWidget(
+                                    validator: checkFieldEmpty,
+                                    controller:
+                                        allProductCtr.productNameController,
+                                    hintText: "Item Name",
+                                    title: 'Item Name',
+                                    width: 500,
+                                  ),
+                                  TextFormFiledContainerWidget(
+                                      validator: checkFieldEmpty,
+                                      controller: allProductCtr.limitCtr,
+                                      hintText: "Limit",
+                                      title: 'Limit',
+                                      width: 500),
+                                  TextFormFiledContainerWidget(
+                                      validator: checkFieldEmpty,
+                                      controller:
+                                          allProductCtr.expiryDateController,
+                                      hintText: "Expiry Date",
+                                      title: 'Expiry Date',
+                                      width: 500),
+                                  TextFormFiledContainerWidget(
+                                    validator: checkFieldEmpty,
+                                    controller: allProductCtr.inPriceController,
+                                    hintText: "InPrice",
+                                    title: 'InPrice',
+                                    width: 500,
+                                  ),
+                                  sHeight10,
+                                  GooglePoppinsWidgets(
+                                      text: "Company Name", fontsize: 14),
+                                  // drop
+                                  CompanySetUpWidget1(),
+                                  sHeight10,
+                                  GooglePoppinsWidgets(
+                                      text: "Category", fontsize: 14),
+                                  CategorySetUpWidget1(),
+                                  sHeight10,
+                                  GooglePoppinsWidgets(
+                                      text: "Subcategory", fontsize: 14),
+                                  SubCategorySetUpWidget1(),
+                                  sHeight10,
+                                  GooglePoppinsWidgets(
+                                      text: "Unit", fontsize: 14),
+                                  UnitSetUpWidget1(),
+                                  sHeight10,
+                                  GooglePoppinsWidgets(
+                                      text: "Package Type", fontsize: 14),
+                                  PackageSetUpWidget1(),
+                                ],
+                              ),
+                            ),
+                          ),
                         );
                       },
                     );
+                    // customShowDilogBox(
+                    //   context: context,
+                    //   title: "Edit",
+                    //   children: [
+                    //     TextFormFiledContainerWidget(
+                    //       validator: checkFieldEmpty,
+                    //       controller: allProductCtr.productNameController,
+                    //       hintText: "Item Name",
+                    //       title: 'Item Name',
+                    //       width: 500,
+                    //     ),
+                    //     TextFormFiledContainerWidget(
+                    //         validator: checkFieldEmpty,
+                    //         controller: allProductCtr.limitCtr,
+                    //         hintText: "Limit",
+                    //         title: 'Limit',
+                    //         width: 500),
+                    //     TextFormFiledContainerWidget(
+                    //         validator: checkFieldEmpty,
+                    //         controller: allProductCtr.expiryDateController,
+                    //         hintText: "Expiry Date",
+                    //         title: 'Expiry Date',
+                    //         width: 500),
+                    //     TextFormFiledContainerWidget(
+                    //       validator: checkFieldEmpty,
+                    //       controller: allProductCtr.inPriceController,
+                    //       hintText: "InPrice",
+                    //       title: 'InPrice',
+                    //       width: 500,
+                    //     ),
+                    //     sHeight10,
+                    //     GooglePoppinsWidgets(
+                    //         text: "Company Name", fontsize: 14),
+                    //     // drop
+                    //     CompanySetUpWidget1(),
+                    //     sHeight10,
+                    //     GooglePoppinsWidgets(text: "Category", fontsize: 14),
+                    //     CategorySetUpWidget1(),
+                    //     sHeight10,
+                    //     GooglePoppinsWidgets(
+                    //         text: "Subcategory", fontsize: 14),
+                    //     SubCategorySetUpWidget1(),
+                    //     sHeight10,
+                    //     GooglePoppinsWidgets(text: "Unit", fontsize: 14),
+                    //     UnitSetUpWidget1(),
+                    //     sHeight10,
+                    //     GooglePoppinsWidgets(
+                    //         text: "Package Type", fontsize: 14),
+                    //     PackageSetUpWidget1(),
+                    //   ],
+                    //   doyouwantActionButton: true,
+                    //   actiononTapfuction: () {
+                    //     if (fkey.currentState?.validate() ?? false) {
+                    //       allProductCtr.editProductList(
+                    //         productData.docId,
+                    //         allProductCtr.productNameController.text,
+                    //         allProductCtr.expiryDateController.text,
+                    //         int.parse(allProductCtr.inPriceController.text),
+                    //         int.parse(allProductCtr.limitCtr.text),
+                    //         getWarehouseCtr.productCompanyName.value,
+                    //         getWarehouseCtr.productCompanyID.value,
+                    //         getWarehouseCtr.productCategoryName.value,
+                    //         getWarehouseCtr.productCategoryID.value,
+                    //         getWarehouseCtr.productSubCategoryID.value,
+                    //         getWarehouseCtr.productSubCategoryName.value,
+                    //         getWarehouseCtr.productUnitID.value,
+                    //         getWarehouseCtr.productUnitName.value,
+                    //         getWarehouseCtr.productPackageID.value,
+                    //         getWarehouseCtr.productPackageName.value,
+                    //       );
+                    //     }
+                    //   },
+                    // );
                   },
                   child: GooglePoppinsWidgets(
                     text: 'Edit',

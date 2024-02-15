@@ -8,7 +8,6 @@ import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/suppli
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/manual_product_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'package:get/get.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -105,7 +104,7 @@ class AllProductSearchContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Container(
+      child: SizedBox(
         width: 1700,
         child: Column(
           children: [

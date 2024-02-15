@@ -57,7 +57,7 @@ class SocialMediaContact extends StatelessWidget {
     return Column(
       children: [
         ResponsiveWebSite.isDesktop(context)
-            ? SizedBox(
+            ? const SizedBox(
                 width: 350,
                 // child: Row(
                 //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -120,7 +120,7 @@ class SocialMediaContact extends StatelessWidget {
                 //   ],
                 // ),
               )
-            : SizedBox(
+            : const SizedBox(
                 width: 350,
                 // child: Row(
                 //   mainAxisAlignment: MainAxisAlignment.spaceBetween,

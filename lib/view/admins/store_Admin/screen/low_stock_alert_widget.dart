@@ -4,9 +4,6 @@ import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
-import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/supplier_adding_widget.dart';
-import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/manual_product_adding_widget.dart';
-import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +18,7 @@ class LowStockAlertWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sizeW = MediaQuery.of(context).size.width;
+    // final sizeW = MediaQuery.of(context).size.width;
     final sizeH = MediaQuery.of(context).size.height;
     getStroreCtr.allProductAddToLowStockAlert();
     return Padding(

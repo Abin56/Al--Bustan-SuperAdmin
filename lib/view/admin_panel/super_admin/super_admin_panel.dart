@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/all_stock_details_widget.dart';
+
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/all_stock_details_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/screen/super_admin_dashboard.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/super_admin/super_admin_drawer.dart';
@@ -8,14 +8,11 @@ import 'package:sidebar_drawer/sidebar_drawer.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/admin_appBar.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_dashboard.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_request.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/drawer_page_delivery_admin.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/category_widget.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/product_temporary_list.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/unit_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/store_request.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/subcategory_widget.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/drawer_page_store_admin.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/store_dashboard.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/table_listview.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
@@ -23,7 +20,6 @@ import 'package:canteen_superadmin_website/core/constant/constant.validate.dart'
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_assigning_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_prodects.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
-import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/dashboard_container.dart';
 
 class SuperAdminAdminHomeScreen extends StatefulWidget {
   const SuperAdminAdminHomeScreen({
@@ -44,7 +40,7 @@ class _AdminHomeScreenState extends State<SuperAdminAdminHomeScreen> {
       body: SafeArea(
         child: SidebarDrawer(
             body: ListView(
-              children: [AppBarAdminPanel(), pages[selectedIndex]],
+              children: [const AppBarAdminPanel(), pages[selectedIndex]],
             ),
             drawer: ListView(
               children: [
@@ -123,7 +119,7 @@ List<Widget> pages = [
   SuperAdminDashboardContainer(),
   // const DashboardContainer(),
   // InventoryWidget(),
-  AllStockDetails(),
+  // AllStockDetails(),
   StoreRequetWidget(),
   CategoryWidget(),
   SubCategoryWidget(),

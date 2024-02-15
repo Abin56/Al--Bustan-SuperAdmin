@@ -1,5 +1,4 @@
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
-import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_heebo.dart';
 import 'package:canteen_superadmin_website/view/footer/footer.dart';
 import 'package:canteen_superadmin_website/view/welcome_screen/welcome_screen.dart';
@@ -172,10 +171,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 60,
           ),
-          FooterFinal()
+          const FooterFinal()
         ],
       ),
     );
@@ -338,10 +337,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 80,
           ),
-          FooterFinal()
+          const FooterFinal()
         ],
       ),
     );
@@ -503,10 +502,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 100,
           ),
-          FooterFinal()
+          const FooterFinal()
         ],
       ),
     );

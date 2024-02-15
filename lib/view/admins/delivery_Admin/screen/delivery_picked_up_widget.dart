@@ -38,8 +38,14 @@ class DeliveryPickedUpList extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              GooglePoppinsWidgets(
+                text: 'Delivery Pickedup List',
+                fontsize: 20,
+                fontWeight: FontWeight.w500,
+              ),
+              sHeight10,
               //  <<<<<<< list(table) >>>>>>>>>
               Container(
                 decoration: BoxDecoration(

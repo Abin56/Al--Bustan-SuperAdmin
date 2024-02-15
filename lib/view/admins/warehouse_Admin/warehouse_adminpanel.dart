@@ -135,7 +135,7 @@ List<Widget> pages = [
   TemporaryStockWidget(),
   // InventoryWidget(),
   AllStockList(),
-  CategoryCreationWidget(),
+  const CategoryCreationWidget(),
   ProductScreen(), //..1
   const DeliveryRequest(), //..2
   DeliveryScreen(), //..3
@@ -144,7 +144,7 @@ List<Widget> pages = [
   DeliveryPickedUpList(), //
 
   LowStockAlertWidget(),
-  ReturnScreen(),
+  const ReturnScreen(),
 
   UserAssignListScreen(),
   AvailableStockWidget(), //10

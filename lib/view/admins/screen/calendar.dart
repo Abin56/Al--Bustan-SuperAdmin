@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 
-class calendar extends StatefulWidget {
-  const calendar({super.key});
+class Calendar extends StatefulWidget {
+  const Calendar({super.key});
 
   @override
-  State<calendar> createState() => _calendarState();
+  State<Calendar> createState() => _CalendarState();
 }
 
-class _calendarState extends State<calendar> {
+class _CalendarState extends State<Calendar> {
   late DateTime _currentDate;
   @override
   void initState() {

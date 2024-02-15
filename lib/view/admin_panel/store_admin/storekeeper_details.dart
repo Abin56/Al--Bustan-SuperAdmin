@@ -9,7 +9,7 @@ class StoreKeeperDatailsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sizeW = MediaQuery.of(context).size.width;
-    return Container(
+    return SizedBox(
       width: sizeW * 0.3,
       height: 150,
       child: Row(

@@ -346,6 +346,8 @@ class InventoryTileWidget extends StatelessWidget {
               return [
                 PopupMenuItem(
                     onTap: () {
+                      getWarehouseCtr.quantityCtr.text =
+                          productData.quantityinStock.toString();
                       customShowDilogBox(
                         context: context,
                         title: "Quantity",
@@ -358,8 +360,10 @@ class InventoryTileWidget extends StatelessWidget {
                         ],
                         doyouwantActionButton: true,
                         actiononTapfuction: () {
-                          getWarehouseCtr.editQuantity(productData.docId,
-                              int.parse(getWarehouseCtr.quantityCtr.text));
+                          getWarehouseCtr.editQuantity(
+                              productData.docId,
+                              int.parse(getWarehouseCtr.quantityCtr.text),
+                              productData);
                         },
                       );
                     },

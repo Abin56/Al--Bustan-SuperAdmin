@@ -26,7 +26,14 @@ class DeliveryRequest extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              GooglePoppinsWidgets(
+                text: 'Delivey Request List',
+                fontsize: 20,
+                fontWeight: FontWeight.w500,
+              ),
+              sHeight10,
               //  <<<<<<< list(table) >>>>>>>>>
               Container(
                 decoration: BoxDecoration(
@@ -179,7 +186,7 @@ class EmployeeRequestTile extends StatelessWidget {
           Expanded(
             child: Center(
               child: MarqueeWidget(
-                  text: data.CanteenName,
+                  text: data.canteenName,
                   flex: 1,
                   color: cWhite,
                   velocity: 100),
@@ -289,7 +296,7 @@ class EmployeeRequestProductDetailsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
       width: size.width * 0.5,
       height: size.height * 0.4,
       child: Column(

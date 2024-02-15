@@ -10,7 +10,7 @@ class CanteenProfile extends StatelessWidget {
   // final canteencontroller = Get.put(Profilecontroller());
   CanteenProfile({super.key});
 
-final  GlobalKey<FormState> fkey = GlobalKey<FormState>();
+  final GlobalKey<FormState> fkey = GlobalKey<FormState>();
   final canteenCtr = Get.put(CanteenController());
 
   @override

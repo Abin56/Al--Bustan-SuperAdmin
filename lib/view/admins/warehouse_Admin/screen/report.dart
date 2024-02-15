@@ -1,88 +1,26 @@
-import 'package:canteen_superadmin_website/controller/report_controller/report_controller.dart';
+import 'package:canteen_superadmin_website/controller/all_report_controller/all_report_controller.dart';
+import 'package:canteen_superadmin_website/controller/calender_controller/calender_controller.dart';
+import 'package:canteen_superadmin_website/controller/delivery_report_controller/delivey_report_controller.dart';
 import 'package:canteen_superadmin_website/controller/store_report_controller/store_report_controller.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
-import 'package:canteen_superadmin_website/core/constant/const.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/tempory_productList/textformFiled_widget/textFormFiled_.dart';
+import 'package:canteen_superadmin_website/view/widgets/calender/calender.dart';
+import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Reports extends StatelessWidget {
-  final getReportCtr = Get.put(ReportController());
-  final getStoreReportCtr = Get.put(StoreReportController());
   Reports({super.key});
-  // List<Widget> reportsWidget = [
-  //   ReportContainerWidget(
-  //     headingText: 'Report',
-  //     button1Text: "Button 1",
-  //     button2Text: "Button 2",
-  //     button3Text: "Button 3",
-  //     buttonHeight: 40,
-  //     buttonWidth: 140,
-  //     button1OnPressed: () {
-  //       // getReportCtr.generateInvoice(context);
-  //     },
-  //     button2OnPressed: () {},
-  //     button3OnPressed: () {},
-  //   ),
-  //   ReportContainerWidget(
-  //     headingText: 'Store Report',
-  //     button1Text: "Button 1",
-  //     button2Text: "Button 2",
-  //     button3Text: "Button 3",
-  //     buttonHeight: 40,
-  //     buttonWidth: 140,
-  //     button1OnPressed: () {},
-  //     button2OnPressed: () {},
-  //     button3OnPressed: () {},
-  //   ),
-  //   ReportContainerWidget(
-  //     headingText: 'Delivery Report',
-  //     button1Text: "Button 1",
-  //     button2Text: "Button 2",
-  //     button3Text: "Button 3",
-  //     buttonHeight: 40,
-  //     buttonWidth: 140,
-  //     button1OnPressed: () {},
-  //     button2OnPressed: () {},
-  //     button3OnPressed: () {},
-  //   ),
-  //   ReportContainerWidget(
-  //     headingText: 'Purchase Report',
-  //     button1Text: "Button 1",
-  //     button2Text: "Button 2",
-  //     button3Text: "Button 3",
-  //     buttonHeight: 40,
-  //     buttonWidth: 140,
-  //     button1OnPressed: () {},
-  //     button2OnPressed: () {},
-  //     button3OnPressed: () {},
-  //   ),
-  //   ReportContainerWidget(
-  //     headingText: 'Sales Report',
-  //     button1Text: "Button 1",
-  //     button2Text: "Button 2",
-  //     button3Text: "Button 3",
-  //     buttonHeight: 40,
-  //     buttonWidth: 140,
-  //     button1OnPressed: () {},
-  //     button2OnPressed: () {},
-  //     button3OnPressed: () {},
-  //   ),
-  //   ReportContainerWidget(
-  //     headingText: 'Report Container',
-  //     button1Text: "Button 1",
-  //     button2Text: "Button 2",
-  //     button3Text: "Button 3",
-  //     buttonHeight: 40,
-  //     buttonWidth: 140,
-  //     button1OnPressed: () {},
-  //     button2OnPressed: () {},
-  //     button3OnPressed: () {},
-  //   ),
-  // ];
 
+  final getDeliveryReportCtr = Get.put(DeliveryReportController());
+
+  final getStoreReportCtr = Get.put(StoreReportController());
+  final getAllReportCtr = Get.put(AllReportController());
+  final getCalenderCtr = Get.put(CalenderController());
+  // List<Widget> reportsWidget = [
   @override
   Widget build(BuildContext context) {
     final sizeW = MediaQuery.of(context).size.width;
@@ -116,17 +54,36 @@ class Reports extends StatelessWidget {
 
                             child: ReportContainerWidget(
                               headingText: 'Report',
-                              button1Text: "Button 1",
-                              button2Text: "Button 2",
-                              button3Text: "Button 3",
+                              button1Text: "Today's Report",
+                              button2Text: "Last 7 days",
+                              button3Text: "Last 30 days",
+                              button4Text: "Report",
                               buttonHeight: 40,
                               buttonWidth: 140,
                               button1OnPressed: () {
-                                showToast(msg: "done");
-                                getReportCtr.generateInvoice(context);
+                                getAllReportCtr.generateInvoice(
+                                    context: context, type: '1');
                               },
-                              button2OnPressed: () {},
-                              button3OnPressed: () {},
+                              button2OnPressed: () {
+                                getAllReportCtr.generateInvoice(
+                                    context: context, type: '2');
+                              },
+                              button3OnPressed: () {
+                                getAllReportCtr.generateInvoice(
+                                    context: context, type: '3');
+                              },
+                              button4OnPressed: () {
+                                openStartandEndCalender(
+                                  context,
+                                  () {
+                                    getAllReportCtr.validateStartandEndCalender(
+                                        startTime:
+                                            getCalenderCtr.startDate.value,
+                                        endTime: getCalenderCtr.endDate.value,
+                                        context: context);
+                                  },
+                                );
+                              },
                             ),
                           ),
                           sWidtht10,
@@ -134,16 +91,38 @@ class Reports extends StatelessWidget {
                             // child: reportsWidget[1],
                             child: ReportContainerWidget(
                               headingText: 'Store Report',
-                              button1Text: "Button 1",
-                              button2Text: "Button 2",
-                              button3Text: "Button 3",
+                              button1Text: "Today's Report",
+                              button2Text: "Last 7 days",
+                              button3Text: "Last 30 days",
+                              button4Text: "Report",
                               buttonHeight: 40,
                               buttonWidth: 140,
                               button1OnPressed: () {
-                                getStoreReportCtr.generateInvoice(context);
+                                getStoreReportCtr.generateInvoice(
+                                    context: context, type: '1');
                               },
-                              button2OnPressed: () {},
-                              button3OnPressed: () {},
+                              button2OnPressed: () {
+                                getStoreReportCtr.generateInvoice(
+                                    context: context, type: '2');
+                              },
+                              button3OnPressed: () {
+                                getStoreReportCtr.generateInvoice(
+                                    context: context, type: '3');
+                              },
+                              button4OnPressed: () {
+                                openStartandEndCalender(
+                                  context,
+                                  () {
+                                    getStoreReportCtr
+                                        .validateStartandEndCalender(
+                                            startTime:
+                                                getCalenderCtr.startDate.value,
+                                            endTime:
+                                                getCalenderCtr.endDate.value,
+                                            context: context);
+                                  },
+                                );
+                              },
                             ),
                           ),
                         ],
@@ -157,14 +136,38 @@ class Reports extends StatelessWidget {
                             // child: reportsWidget[2],
                             child: ReportContainerWidget(
                               headingText: 'Delivery Report',
-                              button1Text: "Button 1",
-                              button2Text: "Button 2",
-                              button3Text: "Button 3",
+                              button1Text: "Today's Report",
+                              button2Text: "Last 7 days",
+                              button3Text: "Last 30 days",
+                              button4Text: "Report",
                               buttonHeight: 40,
                               buttonWidth: 140,
-                              button1OnPressed: () {},
-                              button2OnPressed: () {},
-                              button3OnPressed: () {},
+                              button1OnPressed: () {
+                                getDeliveryReportCtr.generateInvoice(
+                                    context: context, type: '1');
+                              },
+                              button2OnPressed: () {
+                                getDeliveryReportCtr.generateInvoice(
+                                    context: context, type: '2');
+                              },
+                              button3OnPressed: () {
+                                getDeliveryReportCtr.generateInvoice(
+                                    context: context, type: '3');
+                              },
+                              button4OnPressed: () {
+                                openStartandEndCalender(
+                                  context,
+                                  () {
+                                    getDeliveryReportCtr
+                                        .validateStartandEndCalender(
+                                            startTime:
+                                                getCalenderCtr.startDate.value,
+                                            endTime:
+                                                getCalenderCtr.endDate.value,
+                                            context: context);
+                                  },
+                                );
+                              },
                             ),
                           ),
                           sWidtht10,
@@ -172,14 +175,16 @@ class Reports extends StatelessWidget {
                             // child: reportsWidget[3],
                             child: ReportContainerWidget(
                               headingText: 'Purchase Report',
-                              button1Text: "Button 1",
-                              button2Text: "Button 2",
-                              button3Text: "Button 3",
+                              button1Text: "Today's Report",
+                              button2Text: "Last 7 days",
+                              button3Text: "Last 30 days",
+                              button4Text: "Report",
                               buttonHeight: 40,
                               buttonWidth: 140,
                               button1OnPressed: () {},
                               button2OnPressed: () {},
                               button3OnPressed: () {},
+                              button4OnPressed: () {},
                             ),
                           ),
                         ],
@@ -191,16 +196,19 @@ class Reports extends StatelessWidget {
                         children: [
                           Expanded(
                             // child: reportsWidget[4],
+
                             child: ReportContainerWidget(
                               headingText: 'Sales Report',
-                              button1Text: "Button 1",
-                              button2Text: "Button 2",
-                              button3Text: "Button 3",
+                              button1Text: "Today's Report",
+                              button2Text: "Last 7 days",
+                              button3Text: "Last 30 days",
+                              button4Text: "Report",
                               buttonHeight: 40,
                               buttonWidth: 140,
                               button1OnPressed: () {},
                               button2OnPressed: () {},
                               button3OnPressed: () {},
+                              button4OnPressed: () {},
                             ),
                           ),
                           sWidtht10,
@@ -208,14 +216,16 @@ class Reports extends StatelessWidget {
                             // child: reportsWidget[5],
                             child: ReportContainerWidget(
                               headingText: 'Report Container',
-                              button1Text: "Button 1",
-                              button2Text: "Button 2",
-                              button3Text: "Button 3",
+                              button1Text: "Today's Report",
+                              button2Text: "Last 7 days",
+                              button3Text: "Last 30 days",
+                              button4Text: "Report",
                               buttonHeight: 40,
                               buttonWidth: 140,
                               button1OnPressed: () {},
                               button2OnPressed: () {},
                               button3OnPressed: () {},
+                              button4OnPressed: () {},
                             ),
                           ),
                         ],
@@ -253,17 +263,35 @@ class Reports extends StatelessWidget {
                         // child: reportsWidget[0],
                         child: ReportContainerWidget(
                           headingText: 'Report',
-                          button1Text: "Button 1",
-                          button2Text: "Button 2",
-                          button3Text: "Button 3",
+                          button1Text: "Today's Report",
+                          button2Text: "Last 7 days",
+                          button3Text: "Last 30 days",
+                          button4Text: "Report",
                           buttonHeight: 40,
                           buttonWidth: 140,
                           button1OnPressed: () {
-                            showToast(msg: "done");
-                            getReportCtr.generateInvoice(context);
+                            getAllReportCtr.generateInvoice(
+                                context: context, type: '1');
                           },
-                          button2OnPressed: () {},
-                          button3OnPressed: () {},
+                          button2OnPressed: () {
+                            getAllReportCtr.generateInvoice(
+                                context: context, type: '2');
+                          },
+                          button3OnPressed: () {
+                            getAllReportCtr.generateInvoice(
+                                context: context, type: '3');
+                          },
+                          button4OnPressed: () {
+                            openStartandEndCalender(
+                              context,
+                              () {
+                                getAllReportCtr.validateStartandEndCalender(
+                                    startTime: getCalenderCtr.startDate.value,
+                                    endTime: getCalenderCtr.endDate.value,
+                                    context: context);
+                              },
+                            );
+                          },
                         ),
                       ),
                       sWidtht40,
@@ -271,16 +299,35 @@ class Reports extends StatelessWidget {
                         // child: reportsWidget[1],
                         child: ReportContainerWidget(
                           headingText: 'Store Report',
-                          button1Text: "Button 1",
-                          button2Text: "Button 2",
-                          button3Text: "Button 3",
+                          button1Text: "Today's Report",
+                          button2Text: "Last 7 days",
+                          button3Text: "Last 30 days",
+                          button4Text: "Report",
                           buttonHeight: 40,
                           buttonWidth: 140,
                           button1OnPressed: () {
-                            getStoreReportCtr.generateInvoice(context);
+                            getStoreReportCtr.generateInvoice(
+                                context: context, type: '1');
                           },
-                          button2OnPressed: () {},
-                          button3OnPressed: () {},
+                          button2OnPressed: () {
+                            getStoreReportCtr.generateInvoice(
+                                context: context, type: '2');
+                          },
+                          button3OnPressed: () {
+                            getStoreReportCtr.generateInvoice(
+                                context: context, type: '3');
+                          },
+                          button4OnPressed: () {
+                            openStartandEndCalender(
+                              context,
+                              () {
+                                getStoreReportCtr.validateStartandEndCalender(
+                                    startTime: getCalenderCtr.startDate.value,
+                                    endTime: getCalenderCtr.endDate.value,
+                                    context: context);
+                              },
+                            );
+                          },
                         ),
                       ),
                       sWidtht40,
@@ -288,14 +335,37 @@ class Reports extends StatelessWidget {
                         // child: reportsWidget[2],
                         child: ReportContainerWidget(
                           headingText: 'Delivery Report',
-                          button1Text: "Button 1",
-                          button2Text: "Button 2",
-                          button3Text: "Button 3",
+                          button1Text: "Today's Report",
+                          button2Text: "Last 7 days",
+                          button3Text: "Last 30 days",
+                          button4Text: "Report",
                           buttonHeight: 40,
                           buttonWidth: 140,
-                          button1OnPressed: () {},
-                          button2OnPressed: () {},
-                          button3OnPressed: () {},
+                          button1OnPressed: () {
+                            getDeliveryReportCtr.generateInvoice(
+                                context: context, type: '1');
+                          },
+                          button2OnPressed: () {
+                            getDeliveryReportCtr.generateInvoice(
+                                context: context, type: '2');
+                          },
+                          button3OnPressed: () {
+                            getDeliveryReportCtr.generateInvoice(
+                                context: context, type: '3');
+                          },
+                          button4OnPressed: () {
+                            openStartandEndCalender(
+                              context,
+                              () {
+                                getDeliveryReportCtr
+                                    .validateStartandEndCalender(
+                                        startTime:
+                                            getCalenderCtr.startDate.value,
+                                        endTime: getCalenderCtr.endDate.value,
+                                        context: context);
+                              },
+                            );
+                          },
                         ),
                       ),
                       sWidtht10
@@ -309,14 +379,16 @@ class Reports extends StatelessWidget {
                         // child: reportsWidget[3],
                         child: ReportContainerWidget(
                           headingText: 'Purchase Report',
-                          button1Text: "Button 1",
-                          button2Text: "Button 2",
-                          button3Text: "Button 3",
+                          button1Text: "Today's Report",
+                          button2Text: "Last 7 days",
+                          button3Text: "Last 30 days",
+                          button4Text: "Report",
                           buttonHeight: 40,
                           buttonWidth: 140,
                           button1OnPressed: () {},
                           button2OnPressed: () {},
                           button3OnPressed: () {},
+                          button4OnPressed: () {},
                         ),
                       ),
                       sWidtht40,
@@ -324,14 +396,16 @@ class Reports extends StatelessWidget {
                         // child: reportsWidget[4],
                         child: ReportContainerWidget(
                           headingText: 'Sales Report',
-                          button1Text: "Button 1",
-                          button2Text: "Button 2",
-                          button3Text: "Button 3",
+                          button1Text: "Today's Report",
+                          button2Text: "Last 7 days",
+                          button3Text: "Last 30 days",
+                          button4Text: "Report",
                           buttonHeight: 40,
                           buttonWidth: 140,
                           button1OnPressed: () {},
                           button2OnPressed: () {},
                           button3OnPressed: () {},
+                          button4OnPressed: () {},
                         ),
                       ),
                       sWidtht40,
@@ -339,14 +413,16 @@ class Reports extends StatelessWidget {
                         // child: reportsWidget[5],
                         child: ReportContainerWidget(
                           headingText: 'Report Container',
-                          button1Text: "Button 1",
-                          button2Text: "Button 2",
-                          button3Text: "Button 3",
+                          button1Text: "Today's Report",
+                          button2Text: "Last 7 days",
+                          button3Text: "Last 30 days",
+                          button4Text: "Report",
                           buttonHeight: 40,
                           buttonWidth: 140,
                           button1OnPressed: () {},
                           button2OnPressed: () {},
                           button3OnPressed: () {},
+                          button4OnPressed: () {},
                         ),
                       ),
                       sWidtht10
@@ -364,11 +440,13 @@ class ReportContainerWidget extends StatelessWidget {
   final String button1Text;
   final String button2Text;
   final String button3Text;
+  final String button4Text;
   final double buttonHeight;
   final double buttonWidth;
   final VoidCallback button1OnPressed;
   final VoidCallback button2OnPressed;
   final VoidCallback button3OnPressed;
+  final VoidCallback button4OnPressed;
   const ReportContainerWidget({
     super.key,
     required this.headingText,
@@ -380,6 +458,8 @@ class ReportContainerWidget extends StatelessWidget {
     required this.button1OnPressed,
     required this.button2OnPressed,
     required this.button3OnPressed,
+    required this.button4Text,
+    required this.button4OnPressed,
   });
 
   @override
@@ -451,9 +531,95 @@ class ReportContainerWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: ElevatedButton(
+                onPressed: button4OnPressed,
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.black,
+                  minimumSize: Size(buttonWidth, buttonHeight),
+                ),
+                child: Text(button4Text),
+              ),
+            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
     );
   }
+}
+
+openStartandEndCalender(BuildContext context, Function() function) {
+  final getCalendeCtr = Get.put(CalenderController());
+  customShowDilogBox(
+      context: context,
+      title: 'Choose date',
+      children: [
+        Column(
+          children: [
+            Obx(() {
+              getCalendeCtr.startDateCtr.text = dateConveter(
+                  DateTime.parse(getCalendeCtr.startDate.value.toString()));
+
+              return TextFormFiledWidget(
+                controller: getCalendeCtr.startDateCtr,
+                hintText: "Start Date",
+                title: "Start Date",
+                width: 200,
+                readOnly: true,
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        actions: [
+                          SizedBox(
+                            width: 300,
+                            height: 300,
+                            child:
+                                CalendarWidget(date: getCalendeCtr.startDate),
+                          )
+                        ],
+                      );
+                    },
+                  );
+                },
+              );
+            }),
+            GooglePoppinsWidgets(text: 'to', fontsize: 16),
+            Obx(() {
+              getCalendeCtr.endDateCtr.text = dateConveter(
+                  DateTime.parse(getCalendeCtr.endDate.value.toString()));
+
+              return TextFormFiledWidget(
+                controller: getCalendeCtr.endDateCtr,
+                hintText: "End Date",
+                title: "End Date",
+                width: 200,
+                readOnly: true,
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        actions: [
+                          SizedBox(
+                            width: 300,
+                            height: 300,
+                            child: CalendarWidget(date: getCalendeCtr.endDate),
+                          )
+                        ],
+                      );
+                    },
+                  );
+                },
+              );
+            }),
+          ],
+        )
+      ],
+      doyouwantActionButton: true,
+      actiononTapfuction: function);
 }

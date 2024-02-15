@@ -6,7 +6,6 @@ import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/suppli
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/chart_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/container_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/dashboard_item_widget.dart';
-import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/secondrow_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/responsive/responsive.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -113,7 +112,7 @@ class StoreDashboardContainer extends StatelessWidget {
                             ? const Spacer()
                             : const Text(''),
                         Padding(
-                          padding: EdgeInsets.only(right: 30),
+                          padding: const EdgeInsets.only(right: 30),
                           child: Obx(
                             () => DashboardItem(
                               icon: Icons.auto_graph_rounded,
@@ -339,7 +338,7 @@ class StoreDashboardContainer extends StatelessWidget {
         height: ResponsiveWebSite.isMobile(context) ? 250 : 300,
         width: double.infinity,
         child: Padding(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: SuppliersScendRowoneWidget(
             iconData1: Icons.home_work_outlined,
             title: "Suppliers",

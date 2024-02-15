@@ -27,7 +27,7 @@ class SuppliersControllers extends GetxController {
 
   addSuppliers() async {
     try {
-      final uuid = Uuid().v1();
+      final uuid = const Uuid().v1();
       String image = '';
       if (suppliersImage.value != null) {
         image = await uploapImageToFirebase(suppliersImage.value!);

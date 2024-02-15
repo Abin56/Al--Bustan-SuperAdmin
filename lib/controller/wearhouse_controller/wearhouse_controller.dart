@@ -1,7 +1,6 @@
 import 'package:canteen_superadmin_website/core/constant/const.dart';
 import 'package:canteen_superadmin_website/core/core.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
-import 'package:canteen_superadmin_website/model/canteen_model.dart';
 import 'package:canteen_superadmin_website/model/category_model.dart';
 import 'package:canteen_superadmin_website/model/packagetype_model.dart';
 import 'package:canteen_superadmin_website/model/quantity_model.dart';
@@ -180,13 +179,95 @@ class WearHouseController extends GetxController {
         .toList();
   }
 
-  Future<void> editQuantity(String docid, int quantity) async {
+  Future<void> editQuantity(
+      String docid, int quantity, AllProductDetailModel productData) async {
     dataserver
         .collection('AvailableProducts')
         .doc(docid)
         .update({'quantityinStock': quantity}).then((value) {
-      showToast(msg: "quantity updated");
-      Get.back();
+      String id = const Uuid().v1();
+      String time = DateTime.now().toString();
+
+      if (productData.quantityinStock < quantity) {
+        int diffQuantity = quantity - productData.quantityinStock;
+        String newProductName = "${productData.productname} (Manual)";
+
+        AllProductDetailModel data = AllProductDetailModel(
+            docId: id,
+            barcodeNumber: productData.barcodeNumber,
+            productname: newProductName,
+            categoryID: productData.categoryID,
+            categoryName: productData.categoryName,
+            subcategoryID: productData.subcategoryID,
+            subcategoryName: productData.subcategoryName,
+            inPrice: productData.inPrice,
+            outPrice: productData.outPrice,
+            quantityinStock: diffQuantity,
+            expiryDate: productData.expiryDate,
+            addedDate: time,
+            authuid: productData.authuid,
+            unitcategoryID: productData.unitcategoryID,
+            unitcategoryName: productData.unitcategoryName,
+            packageType: productData.packageType,
+            packageTypeID: productData.packageTypeID,
+            companyName: productData.companyName,
+            companyNameID: productData.companyNameID,
+            returnType: productData.returnType,
+            itemcode: productData.itemcode,
+            outofstock: productData.outofstock,
+            isavailable: productData.isavailable,
+            isEdit: productData.isEdit,
+            limit: productData.limit);
+        dataserver
+            .collection('Storehistory')
+            .doc(id)
+            .set(data.toMap())
+            .then((value) {
+          showToast(msg: "quantity updated");
+          Get.back();
+        });
+      } else if (productData.quantityinStock == quantity) {
+        showToast(msg: "quantity updated");
+        Get.back();
+      } else {
+        int diffQuantity = quantity - productData.quantityinStock;
+        String newProductName = "${productData.productname} (Manual)";
+
+        AllProductDetailModel data = AllProductDetailModel(
+            docId: id,
+            barcodeNumber: productData.barcodeNumber,
+            productname: newProductName,
+            categoryID: productData.categoryID,
+            categoryName: productData.categoryName,
+            subcategoryID: productData.subcategoryID,
+            subcategoryName: productData.subcategoryName,
+            inPrice: productData.inPrice,
+            outPrice: productData.outPrice,
+            quantityinStock: diffQuantity,
+            expiryDate: productData.expiryDate,
+            addedDate: time,
+            authuid: productData.authuid,
+            unitcategoryID: productData.unitcategoryID,
+            unitcategoryName: productData.unitcategoryName,
+            packageType: productData.packageType,
+            packageTypeID: productData.packageTypeID,
+            companyName: productData.companyName,
+            companyNameID: productData.companyNameID,
+            returnType: productData.returnType,
+            itemcode: productData.itemcode,
+            outofstock: productData.outofstock,
+            isavailable: productData.isavailable,
+            isEdit: productData.isEdit,
+            limit: productData.limit);
+        dataserver
+            .collection('Storehistory')
+            .doc(id)
+            .set(data.toMap())
+            .then((value) {
+          showToast(msg: "quantity updated");
+          Get.back();
+        });
+      }
     });
   }
 

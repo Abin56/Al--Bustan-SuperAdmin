@@ -1,3 +1,4 @@
+import 'package:canteen_superadmin_website/controller/calender_controller/calender_controller.dart';
 import 'package:canteen_superadmin_website/controller/wearhouse_controller/wearhouse_controller.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
@@ -7,6 +8,7 @@ import 'package:canteen_superadmin_website/model/packagetype_model.dart';
 import 'package:canteen_superadmin_website/model/quantity_model.dart';
 import 'package:canteen_superadmin_website/model/subcategory_model.dart';
 import 'package:canteen_superadmin_website/model/suppliers_model.dart';
+import 'package:canteen_superadmin_website/view/widgets/calender/calender.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,6 +18,7 @@ class ProductAddingScreen extends StatelessWidget {
   ProductAddingScreen({super.key});
 
   final getWarehouseCtr = Get.put(WearHouseController());
+  final calenderController = Get.put(CalenderController());
 
   InputDecoration _customInputDecoration(String labelText) {
     return InputDecoration(
@@ -78,10 +81,54 @@ class ProductAddingScreen extends StatelessWidget {
                     keyboardType: TextInputType.number,
                   ),
                   sHeight10,
-                  TextFormField(
-                    controller: getWarehouseCtr.expiryDateController,
-                    decoration: _customInputDecoration('Expiry Date'),
+                  InkWell(
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              actions: [
+                                SizedBox(
+                                    height: 300,
+                                    width: 300,
+                                    child: CalendarWidget(
+                                      date: calenderController.date,
+                                    ))
+                              ],
+                            );
+                          });
+                    },
+                    child: Container(
+                      height: 60,
+                      width: double.infinity,
+                      // width: 380,
+                      decoration: BoxDecoration(
+                        // border: Border.all(width: 0.4),
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        children: [
+                          Obx(
+                            () => Padding(
+                              padding: const EdgeInsets.only(left: 8, right: 8),
+                              child: GooglePoppinsWidgets(
+                                text:
+                                    dateConveter(calenderController.date.value),
+                                fontsize: 12.5,
+                                color: cBlack,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
+                  // TextFormField(
+                  //   readOnly: true,
+                  //   controller: getWarehouseCtr.expiryDateController,
+                  //   decoration: _customInputDecoration('Expiry Date'),
+                  // ),
                   sHeight10,
                   TextFormField(
                     controller: getWarehouseCtr.itemCodeController,

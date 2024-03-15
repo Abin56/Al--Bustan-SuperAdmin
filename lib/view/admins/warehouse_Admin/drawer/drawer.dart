@@ -414,38 +414,38 @@ class DrawerWareHouseAdmin extends StatelessWidget {
         //     ),
         //   ],
         // ),
-        sHeight10,
-        ExpansionTile(
-          leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/purchase.png'),
-          title: DashboardTextFontWidget(
-            title: 'Purchase',
-          ),
-        ),
-        sHeight10,
-        ExpansionTile(
-          leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/product-return.png'),
-          title: DashboardTextFontWidget(
-            title: 'Supplier Return',
-          ),
-        ),
-        sHeight10,
-        ExpansionTile(
-          leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/invoice.png'),
-          title: DashboardTextFontWidget(
-            title: 'Invoice',
-          ),
-        ),
-        sHeight10,
-        ExpansionTile(
-          leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/sale.png'),
-          title: DashboardTextFontWidget(
-            title: 'Sale',
-          ),
-        ),
+        // sHeight10,
+        // ExpansionTile(
+        //   leading: const DashBoardIconWidget(
+        //       image: 'web_images/drawer_images/purchase.png'),
+        //   title: DashboardTextFontWidget(
+        //     title: 'Purchase',
+        //   ),
+        // ),
+        // sHeight10,
+        // ExpansionTile(
+        //   leading: const DashBoardIconWidget(
+        //       image: 'web_images/drawer_images/product-return.png'),
+        //   title: DashboardTextFontWidget(
+        //     title: 'Supplier Return',
+        //   ),
+        // ),
+        // sHeight10,
+        // ExpansionTile(
+        //   leading: const DashBoardIconWidget(
+        //       image: 'web_images/drawer_images/invoice.png'),
+        //   title: DashboardTextFontWidget(
+        //     title: 'Invoice',
+        //   ),
+        // ),
+        // sHeight10,
+        // ExpansionTile(
+        //   leading: const DashBoardIconWidget(
+        //       image: 'web_images/drawer_images/sale.png'),
+        //   title: DashboardTextFontWidget(
+        //     title: 'Sale',
+        //   ),
+        // ),
         sHeight10,
       ],
     );

@@ -385,7 +385,7 @@ class DeliveredList extends StatelessWidget {
                                             height: size.height * 0.05,
                                             width: size.width * 0.06,
                                             onPressed: () {
-                                              printReceipt();
+                                              printReceipt(data['docId']);
                                             },
                                             text: 'Print',
                                           ),

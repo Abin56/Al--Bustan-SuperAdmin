@@ -174,40 +174,17 @@ class DeliveryScreen extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
-                                      Expanded(
-                                        flex: 1,
-                                        child: Center(
-                                          child: MarqueeWidget(
-                                              text: data['orderId'],
-                                              flex: 1,
-                                              color: cWhite,
-                                              velocity: 100),
-                                        ),
-                                        // child: Center(
-                                        // child: Text(
-                                        //   data['orderId'],
-                                        //   overflow: TextOverflow.ellipsis,
-                                        //   style: AppTextStyles
-                                        //       .deliveryTextStyle1,
-                                        // ),
-                                      ),
+                                      MarqueeWidget(
+                                          text: data['orderId'],
+                                          flex: 1,
+                                          color: cWhite,
+                                          velocity: 100),
 
-                                      Expanded(
-                                        flex: 1,
-                                        child: Center(
-                                          child: MarqueeWidget(
-                                              text: data['canteenName'],
-                                              flex: 1,
-                                              color: cWhite,
-                                              velocity: 100),
-                                          // child: Text(
-                                          //   data['canteenName'],
-                                          //   overflow: TextOverflow.ellipsis,
-                                          //   style: AppTextStyles
-                                          //       .deliveryTextStyle1,
-                                          // ),
-                                        ),
-                                      ),
+                                      MarqueeWidget(
+                                          text: data['canteenName'],
+                                          flex: 1,
+                                          color: cWhite,
+                                          velocity: 100),
                                       Expanded(
                                         flex: 1,
                                         child: Center(

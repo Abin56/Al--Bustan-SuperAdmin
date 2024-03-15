@@ -286,37 +286,54 @@ class DrawerSuperAdmin extends StatelessWidget {
           ),
         ),
         sHeight10,
-        ExpansionTile(
+        ListTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/purchase.png'),
-          title: DashboardTextFontWidget(
-            title: 'Purchase',
+              image: 'web_images/drawer_images/users.png'),
+          tileColor: selectedIndex == 12
+              ? themeColorBlue.withOpacity(0.1)
+              : Colors.transparent,
+          onTap: () {
+            index = 12;
+            onTap.call(index);
+          },
+          title: GooglePoppinsWidgets(
+            text: "REPORT",
+            fontsize: 14,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        sHeight10,
-        ExpansionTile(
-          leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/product-return.png'),
-          title: DashboardTextFontWidget(
-            title: 'Supplier Return',
-          ),
-        ),
-        sHeight10,
-        ExpansionTile(
-          leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/invoice.png'),
-          title: DashboardTextFontWidget(
-            title: 'Invoice',
-          ),
-        ),
-        sHeight10,
-        ExpansionTile(
-          leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/sale.png'),
-          title: DashboardTextFontWidget(
-            title: 'Sale',
-          ),
-        ),
+        // sHeight10,
+        // ExpansionTile(
+        //   leading: const DashBoardIconWidget(
+        //       image: 'web_images/drawer_images/purchase.png'),
+        //   title: DashboardTextFontWidget(
+        //     title: 'Purchase',
+        //   ),
+        // ),
+        // sHeight10,
+        // ExpansionTile(
+        //   leading: const DashBoardIconWidget(
+        //       image: 'web_images/drawer_images/product-return.png'),
+        //   title: DashboardTextFontWidget(
+        //     title: 'Supplier Return',
+        //   ),
+        // ),
+        // sHeight10,
+        // ExpansionTile(
+        //   leading: const DashBoardIconWidget(
+        //       image: 'web_images/drawer_images/invoice.png'),
+        //   title: DashboardTextFontWidget(
+        //     title: 'Invoice',
+        //   ),
+        // ),
+        // sHeight10,
+        // ExpansionTile(
+        //   leading: const DashBoardIconWidget(
+        //       image: 'web_images/drawer_images/sale.png'),
+        //   title: DashboardTextFontWidget(
+        //     title: 'Sale',
+        //   ),
+        // ),
       ],
     );
   }

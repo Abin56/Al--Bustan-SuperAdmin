@@ -176,23 +176,10 @@ class EmployeeRequestTile extends StatelessWidget {
       padding: const EdgeInsets.all(5.0),
       child: Row(
         children: [
-          Expanded(
-            child: Center(
-              child: MarqueeWidget(
-                  text: data.requestId, flex: 1, color: cWhite, velocity: 100),
-              // child: GooglePoppinsWidgets(text: data.requestId, fontsize: 14),
-            ),
-          ),
-          Expanded(
-            child: Center(
-              child: MarqueeWidget(
-                  text: data.canteenName,
-                  flex: 1,
-                  color: cWhite,
-                  velocity: 100),
-              // child: GooglePoppinsWidgets(text: data.CanteenName, fontsize: 14),
-            ),
-          ),
+          MarqueeWidget(
+              text: data.requestId, flex: 1, color: cWhite, velocity: 100),
+          MarqueeWidget(
+              text: data.canteenName, flex: 1, color: cWhite, velocity: 100),
           Expanded(
             child: Center(
               child:

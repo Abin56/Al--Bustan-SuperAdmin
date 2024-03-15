@@ -13,6 +13,7 @@ import 'package:canteen_superadmin_website/view/admins/super_Admin/drawer/drawer
 import 'package:canteen_superadmin_website/view/admins/super_Admin/pages/user_assign_screen/user_assign_screen.dart';
 import 'package:canteen_superadmin_website/view/admins/super_Admin/screen/super_admin_dashboard.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/available_stock.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/report.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/return_screen/return_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
@@ -135,6 +136,7 @@ List<Widget> pages = [
   DeliveryPickedUpList(),
   DeliveredList(), //..4
   UserAssignListScreen(), //10
+  Reports(),
 
   //.
 ];

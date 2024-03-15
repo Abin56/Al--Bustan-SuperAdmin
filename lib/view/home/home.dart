@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         onPressed: () {},
                       ),
                       GoogleHeeboWidget(
-                        text: "0521-1969-00",
+                        text: "04-2677644",
                         fontsize: 16,
                         color: const Color.fromARGB(255, 247, 182, 20),
                         fontWeight: FontWeight.bold,
@@ -225,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                       ),
                       GoogleHeeboWidget(
-                        text: "0521-1969-00",
+                        text: "04-2677644",
                         fontsize: 16,
                         color: const Color.fromARGB(255, 247, 182, 20),
                         fontWeight: FontWeight.bold,
@@ -392,7 +392,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         onPressed: () {},
                       ),
                       GoogleHeeboWidget(
-                        text: "0521-1969-00",
+                        text: "04-2677644",
                         fontsize: 16,
                         color: const Color.fromARGB(255, 247, 182, 20),
                         fontWeight: FontWeight.bold,

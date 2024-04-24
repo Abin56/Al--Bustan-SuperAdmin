@@ -46,14 +46,14 @@ class ProductAddingScreen extends StatelessWidget {
                     controller: getWarehouseCtr.barcodeController,
                     decoration: _customInputDecoration('Barcode Number'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
                     controller: getWarehouseCtr.productNameController,
                     decoration: _customInputDecoration('Product Name'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
@@ -61,7 +61,7 @@ class ProductAddingScreen extends StatelessWidget {
                     decoration: _customInputDecoration('In Price'),
                     keyboardType: TextInputType.number,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
@@ -69,7 +69,7 @@ class ProductAddingScreen extends StatelessWidget {
                     decoration: _customInputDecoration('Out Price'),
                     keyboardType: TextInputType.number,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
@@ -77,21 +77,21 @@ class ProductAddingScreen extends StatelessWidget {
                     decoration: _customInputDecoration('Quantity'),
                     keyboardType: TextInputType.number,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
                     controller: getWarehouseCtr.expiryDateController,
                     decoration: _customInputDecoration('Expiry Date'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
                     controller: getWarehouseCtr.itemCodeController,
                     decoration: _customInputDecoration('Item Code'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   GooglePoppinsWidgets(text: "Company Name", fontsize: 14),
@@ -114,7 +114,7 @@ class ProductAddingScreen extends StatelessWidget {
                       getWarehouseCtr.addManualStock();
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.blue, // Example button color
+                
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),

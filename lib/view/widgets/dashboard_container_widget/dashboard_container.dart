@@ -1,5 +1,9 @@
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
+import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/suppliers_all_list_screen.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/canteen_add_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/supplier_adding_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/suppliers_scendrowone_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/chart_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/container_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/dashboard_container_widget/widgets/dashboard_item_widget.dart';
@@ -103,7 +107,7 @@ class DashboardContainer extends StatelessWidget {
             ),
           ),
         ),
-      ), //...................................... [1]
+      ), //...................................... [0]
       Padding(
         padding: const EdgeInsets.only(
           right: 10,
@@ -191,7 +195,7 @@ class DashboardContainer extends StatelessWidget {
             ),
           ),
         ),
-      ), //...............................................[2]
+      ), //...............................................[1]
       Padding(
         padding: const EdgeInsets.only(left: 10),
         child: CustomContainer(
@@ -207,7 +211,7 @@ class DashboardContainer extends StatelessWidget {
             ),
           ),
         ),
-      ), //................................[1][0]
+      ), //................................[2]
       CustomContainer(
         height: ResponsiveWebSite.isMobile(context) ? 250 : 350,
         width: double.infinity,
@@ -311,22 +315,93 @@ class DashboardContainer extends StatelessWidget {
             ],
           ),
         ),
-      ), //...................................[1][1]
-      CustomContainer(
+      ), //...................................[3]
+      SizedBox(
         height: ResponsiveWebSite.isMobile(context) ? 250 : 350,
-        width: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.all(0),
-          child: ScendRowoneWidget(
-            iconData1: Icons.home_work_outlined,
-            title: "Canteens",
-            navigate: () {
-              Get.to(CanteenProfile());
-            },
-            icon: Icons.more_vert_outlined,
+        // width: double.infinity,
+        child: DefaultTabController(
+          length: 2,
+          child: SizedBox(
+            height: 80,
+            child: AppBar(
+                bottom: PreferredSize(
+                  preferredSize: const Size.fromHeight(4.0),
+                  child: Container(
+                    color: Colors.blue[100],
+                    height: 40,
+                    child: TabBar(
+                        unselectedLabelColor: Colors.black,
+                        labelColor: const Color.fromARGB(255, 27, 79, 29),
+                        tabs: [
+                          Tab(
+                            child: GooglePoppinsWidgets(
+                              text: "CANTEENS",
+                              fontsize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Tab(
+                            child: GooglePoppinsWidgets(
+                              text: "SUPPLIERS",
+                              fontsize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ]),
+                  ),
+                ),
+                // TabBar(
+                //   unselectedLabelColor: Colors.black,
+                //    labelColor: Colors.green,
+                //   tabs: [
+                //   Tab(
+                //   child: GooglePoppinsWidgets(text: "CANTEENS", fontsize: 14,fontWeight: FontWeight.w500,),
+                // ),
+                // Tab(
+                //   child: GooglePoppinsWidgets(text: "SUPPLIERS", fontsize: 14,fontWeight: FontWeight.w500,),
+                // ),
+                // ]),
+                flexibleSpace: TabBarView(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 40),
+                    child: ScendRowoneWidget(
+                      iconData1: Icons.home_work_outlined,
+                      title: "Canteens",
+                      navigate: () {
+                        Get.to(CanteenProfile());
+                      },
+                      icon: Icons.more_vert_outlined,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 40),
+                    child: SuppliersScendRowoneWidget(
+                      iconData1: Icons.home_work_outlined,
+                      title: "Suppliers",
+                      navigate: () {
+                        Get.to(SuppliersProfile());
+                      },
+                      icon: Icons.more_vert_outlined,
+                      onpressedViewAll: () {
+                        Get.to(SuppliersViewPage());
+                      },
+                    ),
+                  ),
+                ])),
           ),
         ),
-      ),
+        // child: Padding(
+        //   padding: const EdgeInsets.all(0),
+        //   child: ScendRowoneWidget(
+        //     iconData1: Icons.home_work_outlined,
+        //     title: "Canteens",
+        //     navigate: () {
+        //       Get.to(CanteenProfile());
+        //     },
+        //     icon: Icons.more_vert_outlined,
+        //   ),
+        // ),
+      ), //..............................4
     ];
 
     return SingleChildScrollView(
@@ -385,12 +460,7 @@ class DashboardContainer extends StatelessWidget {
                               padding: const EdgeInsets.only(left: 10),
                               child: dashboardcontent[3],
                             )),
-                        Expanded(
-                            flex: 1,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: dashboardcontent[4],
-                            ))
+                        Expanded(flex: 1, child: dashboardcontent[4])
                       ],
                     ),
                   ],

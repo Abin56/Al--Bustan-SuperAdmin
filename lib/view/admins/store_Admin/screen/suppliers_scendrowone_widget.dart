@@ -1,8 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:canteen_superadmin_website/model/suppliers_model.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/model/suppliers_model.dart';
+import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/suppliers_showing/suppliers_details_showing.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SuppliersScendRowoneWidget extends StatelessWidget {
   final IconData icon;
@@ -81,35 +83,49 @@ class SuppliersScendRowoneWidget extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final SuppliersData = SuppliersModel.fromMap(
                         snapshot.data!.docs[index].data());
-                    return Container(
-                      decoration: BoxDecoration(
-                        color: cWhite,
-                        border: Border.all(color: cGrey),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              height: 50,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                image: DecorationImage(
-                                  image: NetworkImage(SuppliersData.image),
-                                  fit: BoxFit.cover,
+                    return GestureDetector(
+                      onTap: (){
+                        Get.to(()=>SuppliersDetailsShowingPage(
+                          producttext: SuppliersData.suppliersProducts,
+                          suppliersaddress: SuppliersData.suppliersAddress ,
+                          supplierscontactperson: SuppliersData.contactPerson,
+                          suppliersidtext: SuppliersData.suppliersId,
+                          suppliersimagepath: SuppliersData.image,
+                          suppliersnametext: SuppliersData.suppliersName,
+                          suppliersstarttime: SuppliersData.workstartTime,
+                          suppliersendtime: SuppliersData.workEndTime,
+                        ));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: cWhite,
+                          border: Border.all(color: cGrey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: DecorationImage(
+                                    image: NetworkImage(SuppliersData.image),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(height: 8),
-                            GooglePoppinsWidgets(
-                              text: SuppliersData.suppliersName,
-                              fontsize: 14,
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
+                              const SizedBox(height: 8),
+                              GooglePoppinsWidgets(
+                                text: SuppliersData.suppliersName,
+                                fontsize: 13,
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );

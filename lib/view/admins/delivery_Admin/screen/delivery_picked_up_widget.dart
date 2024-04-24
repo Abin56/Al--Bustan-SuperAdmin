@@ -1,4 +1,5 @@
 import 'package:canteen_superadmin_website/controller/delivery_controller/delivery_controller.dart';
+import 'package:canteen_superadmin_website/controller/delivery_print_controller/delivery_print_controller.dart';
 import 'package:canteen_superadmin_website/controller/print_controller/print_controller.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivered_list_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/stock_upload_widget.dart';
@@ -22,6 +23,7 @@ class DeliveryPickedUpList extends StatelessWidget {
 
   final employeeController = Get.put(EmployeeController());
   final getDeliveryCtr = Get.put(DeliveryController());
+  final printController = Get.put(DeliveryPrintController());
 
   @override
   Widget build(BuildContext context) {
@@ -389,15 +391,38 @@ class DeliveryPickedUpList extends StatelessWidget {
                                       ),
                                       data['assignStatus'] == true
                                           ? Expanded(
-                                              child: Center(
-                                                child: CustomGradientButton(
-                                                  height: size.height * 0.05,
-                                                  width: size.width * 0.06,
-                                                  onPressed: () {
-                                                    printReceipt(data['docId']);
-                                                  },
-                                                  text: 'Print',
-                                                ),
+                                              child: Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: Center(
+                                                      child:
+                                                          CustomGradientButton(
+                                                        height:
+                                                            size.height * 0.05,
+                                                        width:
+                                                            size.width * 0.06,
+                                                        onPressed: () {
+                                                          printReceipt(
+                                                              data['docId']);
+                                                        },
+                                                        text: 'Print',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  IconButton(
+                                                      onPressed: () {
+                                                        printController
+                                                            .generateInvoice(
+                                                                context:
+                                                                    context,
+                                                                deliveryData:
+                                                                    data,
+                                                                collectionPath:
+                                                                    'DeliverypickedupList');
+                                                      },
+                                                      icon:
+                                                          Icon(Icons.download))
+                                                ],
                                               ),
                                             )
                                           : const Expanded(child: SizedBox())

@@ -37,8 +37,6 @@ class GooglePoppinsWidgets extends StatelessWidget {
         fontSize: fontsize,
         fontWeight: fontWeight,
         color: color,
-        
-        
       ),
       textScaleFactor: textScaleFactor,
     );

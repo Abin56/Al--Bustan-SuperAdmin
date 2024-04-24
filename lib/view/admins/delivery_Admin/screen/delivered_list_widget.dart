@@ -1,4 +1,6 @@
 import 'package:canteen_superadmin_website/controller/delivery_controller/delivery_controller.dart';
+import 'package:canteen_superadmin_website/controller/delivery_print_controller/delivery_print_controller.dart';
+import 'package:canteen_superadmin_website/controller/delivery_report_controller/delivey_report_controller.dart';
 import 'package:canteen_superadmin_website/controller/print_controller/print_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:canteen_superadmin_website/controller/employee_controller/employee_controller.dart';
@@ -19,6 +21,7 @@ class DeliveredList extends StatelessWidget {
 
   final employeeController = Get.put(EmployeeController());
   final getDeliveryCtr = Get.put(DeliveryController());
+  final printController = Get.put(DeliveryPrintController());
 
   @override
   Widget build(BuildContext context) {
@@ -380,17 +383,34 @@ class DeliveredList extends StatelessWidget {
                                       // data['assignStatus'] == true
                                       //     ?
                                       Expanded(
-                                        child: Center(
-                                          child: CustomGradientButton(
-                                            height: size.height * 0.05,
-                                            width: size.width * 0.06,
-                                            onPressed: () {
-                                              printReceipt(data['docId']);
-                                            },
-                                            text: 'Print',
-                                          ),
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                              child: Center(
+                                                child: CustomGradientButton(
+                                                  height: size.height * 0.05,
+                                                  width: size.width * 0.06,
+                                                  onPressed: () {
+                                                    printReceipt(data['docId']);
+                                                  },
+                                                  text: 'Print',
+                                                ),
+                                              ),
+                                            ),
+                                            IconButton(
+                                                onPressed: () {
+                                                  printController
+                                                      .generateInvoice(
+                                                          context: context,
+                                                          deliveryData: data,
+                                                          collectionPath:
+                                                              'DeliveredList');
+                                                },
+                                                icon: Icon(Icons.download))
+                                          ],
                                         ),
-                                      )
+                                      ),
+
                                       // : const Expanded(child: SizedBox())
                                     ],
                                   ),

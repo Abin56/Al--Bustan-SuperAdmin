@@ -1,3 +1,4 @@
+import 'package:canteen_superadmin_website/controller/all_report_controller/all_report_controller.dart';
 import 'package:canteen_superadmin_website/controller/delivery_controller/delivery_controller.dart';
 import 'package:canteen_superadmin_website/controller/print_controller/print_controller.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivered_list_widget.dart';
@@ -19,6 +20,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class DeliveryPendingList extends StatelessWidget {
   DeliveryPendingList({super.key});
+  final pdfController = Get.put(AllReportController());
 
   final employeeController = Get.put(EmployeeController());
   final getDeliveryCtr = Get.put(DeliveryController());
@@ -394,6 +396,7 @@ class DeliveryPendingList extends StatelessWidget {
                                                   height: size.height * 0.05,
                                                   width: size.width * 0.06,
                                                   onPressed: () {
+                                        
                                                     printReceipt(data['docId']);
                                                   },
                                                   text: 'Print',

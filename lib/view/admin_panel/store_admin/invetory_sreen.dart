@@ -358,8 +358,10 @@ class InventoryTileWidget extends StatelessWidget {
                         ],
                         doyouwantActionButton: true,
                         actiononTapfuction: () {
-                          getWarehouseCtr.editQuantity(productData.docId,
-                              int.parse(getWarehouseCtr.quantityCtr.text));
+                          getWarehouseCtr.editQuantity(
+                              productData.docId,
+                              int.parse(getWarehouseCtr.quantityCtr.text),
+                              productData);
                         },
                       );
                     },

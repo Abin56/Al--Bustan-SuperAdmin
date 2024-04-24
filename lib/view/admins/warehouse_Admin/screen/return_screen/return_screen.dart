@@ -41,17 +41,17 @@ class ReturnScreen extends StatelessWidget {
                                 children: [
                                   DeliveryAdminListContainers(
                                       text: '${index + 1}', flex: 1),
-                                 AlBustanTableViewApp(
+                                  AlBustanTableViewApp(
                                     text: "Boost jbhjdf fghf ghiruhgiurh",
                                     flex: 2,
                                     color: Colors.pink.withOpacity(0.2),
                                   ),
                                   // const DeliveryAdminListContainers(text:  "GYtuhrhgdk",flex: 2,),
                                   AlBustanTableViewApp(
-                                      text: "Al Bustan",
-                                      flex: 2,
-                                       color: Colors.pink.withOpacity(0.2),
-                                          ),
+                                    text: "Al Bustan",
+                                    flex: 2,
+                                    color: Colors.pink.withOpacity(0.2),
+                                  ),
                                   const DeliveryAdminListContainers(
                                     text: "23/04/24",
                                     flex: 2,
@@ -102,10 +102,16 @@ class ReturnScreen extends StatelessWidget {
                                       height: 45,
                                       decoration: BoxDecoration(
                                           border: const Border(
-                                              right: BorderSide(color: cWhite, width: 5),
-                                              bottom: BorderSide(color: cWhite)),
-                                          color: const Color.fromARGB(255, 247, 234, 121).withOpacity(0.7)),
-                                      child: Center(child: Text("${index+1}"),),
+                                              right: BorderSide(
+                                                  color: cWhite, width: 5),
+                                              bottom:
+                                                  BorderSide(color: cWhite)),
+                                          color: const Color.fromARGB(
+                                                  255, 247, 234, 121)
+                                              .withOpacity(0.7)),
+                                      child: Center(
+                                        child: Text("${index + 1}"),
+                                      ),
                                     ),
                                   ),
                                   AlBustanTableViewApp(
@@ -128,10 +134,16 @@ class ReturnScreen extends StatelessWidget {
                                       height: 45,
                                       decoration: BoxDecoration(
                                           border: const Border(
-                                              right: BorderSide(color: cWhite, width: 5),
-                                              bottom: BorderSide(color: cWhite)),
-                                          color: const Color.fromARGB(255, 247, 234, 121).withOpacity(0.7)),
-                                      child: Center(child: GooglePoppinsWidgets(text: "23/04/24", fontsize: 13 )),
+                                              right: BorderSide(
+                                                  color: cWhite, width: 5),
+                                              bottom:
+                                                  BorderSide(color: cWhite)),
+                                          color: const Color.fromARGB(
+                                                  255, 247, 234, 121)
+                                              .withOpacity(0.7)),
+                                      child: Center(
+                                          child: GooglePoppinsWidgets(
+                                              text: "23/04/24", fontsize: 13)),
                                     ),
                                   ),
                                   // const DeliveryAdminListContainers(text:  "🛒",flex: 1,),

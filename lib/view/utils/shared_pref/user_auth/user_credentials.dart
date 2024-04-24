@@ -1,5 +1,5 @@
 import 'package:canteen_superadmin_website/model/admin_model.dart';
-import 'package:canteen_superadmin_website/view/login/login_section/login_page.dart';
+import 'package:canteen_superadmin_website/view/home/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -49,7 +49,7 @@ class UserCredentialsController {
 
 logoutUser() async {
   await FirebaseAuth.instance.signOut().then((value) async {
-    Get.offAll( LoginSection());
+    Get.offAll(const HomeScreen());
     await SharedPreferencesHelper.clearSharedPreferenceData();
     UserCredentialsController.clearUserCredentials();
   });

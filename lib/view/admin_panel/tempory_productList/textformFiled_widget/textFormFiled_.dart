@@ -16,6 +16,7 @@ class TextFormFiledWidget extends StatelessWidget {
   Function()? onTap;
   TextInputType? keyboardType;
   bool? enabled;
+  bool? readOnly;
   TextFormFiledWidget({
     required this.hintText,
     required this.title,
@@ -28,12 +29,14 @@ class TextFormFiledWidget extends StatelessWidget {
     this.onTap,
     this.focusNode,
     this.enabled,
+    this.readOnly,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: readOnly ?? false,
       enabled: enabled,
       focusNode: focusNode,
       style: GoogleFonts.poppins(fontSize: 12),

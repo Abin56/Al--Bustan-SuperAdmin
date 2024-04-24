@@ -60,11 +60,11 @@ class DrawerWareHouseAdmin extends StatelessWidget {
         ListTile(
           leading: const DashBoardIconWidget(
               image: 'web_images/drawer_images/avilable_products.png'),
-          tileColor: selectedIndex == 13
+          tileColor: selectedIndex == 14
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
           onTap: () {
-            index = 13;
+            index = 14;
             onTap.call(index);
           },
           title: Row(
@@ -339,26 +339,22 @@ class DrawerWareHouseAdmin extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        //........................................>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-          ListTile(
+        ListTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/all_orders.png'),
-          tileColor: selectedIndex == 10
+              image: 'web_images/drawer_images/users.png'),
+          tileColor: selectedIndex == 13
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
           onTap: () {
-            index = 10;
+            index = 15;
             onTap.call(index);
           },
-          title: Row(
-            children: [
-              DashboardTextFontWidget(
-                title: 'Notifications',
-              ),
-            ],
+          title: GooglePoppinsWidgets(
+            text: "Report",
+            fontsize: 14,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        //>>>>>>>>>>>>>>>>>>>>....................................>>>>>>>>>>>>
         // ExpansionTile(
         //   leading: const DashBoardIconWidget(
         //       image: 'web_images/drawer_images/users.png'),
@@ -418,39 +414,39 @@ class DrawerWareHouseAdmin extends StatelessWidget {
         //     ),
         //   ],
         // ),
+        // sHeight10,
+        // ExpansionTile(
+        //   leading: const DashBoardIconWidget(
+        //       image: 'web_images/drawer_images/purchase.png'),
+        //   title: DashboardTextFontWidget(
+        //     title: 'Purchase',
+        //   ),
+        // ),
+        // sHeight10,
+        // ExpansionTile(
+        //   leading: const DashBoardIconWidget(
+        //       image: 'web_images/drawer_images/product-return.png'),
+        //   title: DashboardTextFontWidget(
+        //     title: 'Supplier Return',
+        //   ),
+        // ),
+        // sHeight10,
+        // ExpansionTile(
+        //   leading: const DashBoardIconWidget(
+        //       image: 'web_images/drawer_images/invoice.png'),
+        //   title: DashboardTextFontWidget(
+        //     title: 'Invoice',
+        //   ),
+        // ),
+        // sHeight10,
+        // ExpansionTile(
+        //   leading: const DashBoardIconWidget(
+        //       image: 'web_images/drawer_images/sale.png'),
+        //   title: DashboardTextFontWidget(
+        //     title: 'Sale',
+        //   ),
+        // ),
         sHeight10,
-        ExpansionTile(
-          leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/purchase.png'),
-          title: DashboardTextFontWidget(
-            title: 'Purchase',
-          ),
-        ),
-        sHeight10,
-        ExpansionTile(
-          leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/product-return.png'),
-          title: DashboardTextFontWidget(
-            title: 'Supplier Return',
-          ),
-        ),
-        sHeight10,
-        ExpansionTile(
-          leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/invoice.png'),
-          title: DashboardTextFontWidget(
-            title: 'Invoice',
-          ),
-        ),
-        sHeight10,
-        ExpansionTile(
-          leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/sale.png'),
-          title: DashboardTextFontWidget(
-            title: 'Sale',
-          ),
-        ),
-        
       ],
     );
   }

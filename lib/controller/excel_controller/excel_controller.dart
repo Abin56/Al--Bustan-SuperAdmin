@@ -180,7 +180,8 @@ class ExcelController extends GetxController {
                     itemcode: "",
                     outofstock: false,
                     isavailable: false,
-                    isEdit: false);
+                    isEdit: false,
+                    limit: 0);
 
                 firestore.collection("Stock").doc(uuid).set(data.toMap());
               }

@@ -1,5 +1,7 @@
 import 'package:canteen_superadmin_website/controller/delivery_controller/delivery_controller.dart';
+import 'package:canteen_superadmin_website/controller/print_controller/print_controller.dart';
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivered_list_widget.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/stock_upload_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:canteen_superadmin_website/controller/employee_controller/employee_controller.dart';
@@ -37,8 +39,14 @@ class DeliveryPendingList extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              GooglePoppinsWidgets(
+                text: 'Delivery Pending List',
+                fontsize: 20,
+                fontWeight: FontWeight.w500,
+              ),
+              sHeight10,
               //  <<<<<<< list(table) >>>>>>>>>
               Container(
                 decoration: BoxDecoration(
@@ -72,6 +80,14 @@ class DeliveryPendingList extends StatelessWidget {
                         child: Center(
                           child: Text(
                             "Order ID",
+                            style: AppTextStyles.textStyle1,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            "Canteen Name",
                             style: AppTextStyles.textStyle1,
                           ),
                         ),
@@ -160,17 +176,16 @@ class DeliveryPendingList extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
-                                      Expanded(
-                                        flex: 1,
-                                        child: Center(
-                                          child: Text(
-                                            data['orderId'],
-                                            overflow: TextOverflow.ellipsis,
-                                            style: AppTextStyles
-                                                .deliveryTextStyle1,
-                                          ),
-                                        ),
-                                      ),
+                                      MarqueeWidget(
+                                          text: data['orderId'],
+                                          flex: 1,
+                                          color: cWhite,
+                                          velocity: 100),
+                                      MarqueeWidget(
+                                          text: data['canteenName'],
+                                          flex: 1,
+                                          color: cWhite,
+                                          velocity: 100),
                                       Expanded(
                                         flex: 1,
                                         child: Center(
@@ -378,7 +393,9 @@ class DeliveryPendingList extends StatelessWidget {
                                                 child: CustomGradientButton(
                                                   height: size.height * 0.05,
                                                   width: size.width * 0.06,
-                                                  onPressed: () {},
+                                                  onPressed: () {
+                                                    printReceipt(data['docId']);
+                                                  },
                                                   text: 'Print',
                                                 ),
                                               ),

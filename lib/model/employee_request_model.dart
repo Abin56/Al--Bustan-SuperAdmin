@@ -2,6 +2,8 @@ class EmployeeRequestModel {
   String docid;
   String emplopeeName;
   String emplopeeId;
+  String canteenName;
+  String canteenId;
   String requestId;
   String time;
   int orderCount;
@@ -10,6 +12,8 @@ class EmployeeRequestModel {
       {required this.docid,
       required this.emplopeeName,
       required this.emplopeeId,
+      required this.canteenName,
+      required this.canteenId,
       required this.requestId,
       required this.time,
       required this.orderCount,
@@ -20,6 +24,8 @@ class EmployeeRequestModel {
       'docid': docid,
       'employeeName': emplopeeName,
       'employeeId': emplopeeId,
+      'canteenName': canteenName,
+      'canteeId': canteenId,
       'requestId': requestId,
       'time': time,
       'orderCount': orderCount,
@@ -32,6 +38,8 @@ class EmployeeRequestModel {
       docid: map['docid'] ?? '',
       emplopeeName: map['employeeName'] ?? '',
       emplopeeId: map['employeeId'] ?? '',
+      canteenName: map['canteenName'] ?? '',
+      canteenId: map['canteeId'] ?? '',
       requestId: map['requestId'] ?? '',
       time: map['time'] ?? '',
       orderCount: map['orderCount'] ?? 0,

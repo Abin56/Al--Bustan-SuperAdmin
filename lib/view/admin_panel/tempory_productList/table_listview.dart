@@ -97,7 +97,7 @@ class TableListviewWidget extends StatelessWidget {
                               child: Center(
                                   child: Obx(
                                 () => getExcelCtr.isLoading.value
-                                    ? CircularProgressIndicator()
+                                    ? const CircularProgressIndicator()
                                     : GooglePoppinsWidgets(
                                         text: "Select Excel",
                                         fontsize: 14,

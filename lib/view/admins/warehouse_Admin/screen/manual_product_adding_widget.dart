@@ -1,3 +1,4 @@
+import 'package:canteen_superadmin_website/controller/calender_controller/calender_controller.dart';
 import 'package:canteen_superadmin_website/controller/wearhouse_controller/wearhouse_controller.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
@@ -7,6 +8,7 @@ import 'package:canteen_superadmin_website/model/packagetype_model.dart';
 import 'package:canteen_superadmin_website/model/quantity_model.dart';
 import 'package:canteen_superadmin_website/model/subcategory_model.dart';
 import 'package:canteen_superadmin_website/model/suppliers_model.dart';
+import 'package:canteen_superadmin_website/view/widgets/calender/calender.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,6 +18,7 @@ class ProductAddingScreen extends StatelessWidget {
   ProductAddingScreen({super.key});
 
   final getWarehouseCtr = Get.put(WearHouseController());
+  final calenderController = Get.put(CalenderController());
 
   InputDecoration _customInputDecoration(String labelText) {
     return InputDecoration(
@@ -77,23 +80,61 @@ class ProductAddingScreen extends StatelessWidget {
                     decoration: _customInputDecoration('Quantity'),
                     keyboardType: TextInputType.number,
                   ),
-                  const SizedBox(
-                    height: 10,
+                  sHeight10,
+                  InkWell(
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              actions: [
+                                SizedBox(
+                                    height: 300,
+                                    width: 300,
+                                    child: CalendarWidget(
+                                      date: calenderController.date,
+                                    ))
+                              ],
+                            );
+                          });
+                    },
+                    child: Container(
+                      height: 60,
+                      width: double.infinity,
+                      // width: 380,
+                      decoration: BoxDecoration(
+                        // border: Border.all(width: 0.4),
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        children: [
+                          Obx(
+                            () => Padding(
+                              padding: const EdgeInsets.only(left: 8, right: 8),
+                              child: GooglePoppinsWidgets(
+                                text:
+                                    dateConveter(calenderController.date.value),
+                                fontsize: 12.5,
+                                color: cBlack,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
-                  TextFormField(
-                    controller: getWarehouseCtr.expiryDateController,
-                    decoration: _customInputDecoration('Expiry Date'),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  // TextFormField(
+                  //   readOnly: true,
+                  //   controller: getWarehouseCtr.expiryDateController,
+                  //   decoration: _customInputDecoration('Expiry Date'),
+                  // ),
+                  sHeight10,
                   TextFormField(
                     controller: getWarehouseCtr.itemCodeController,
                     decoration: _customInputDecoration('Item Code'),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  sHeight10,
                   GooglePoppinsWidgets(text: "Company Name", fontsize: 14),
                   CompanySetUpWidget1(),
                   sHeight10,
@@ -114,7 +155,7 @@ class ProductAddingScreen extends StatelessWidget {
                       getWarehouseCtr.addManualStock();
                     },
                     style: ElevatedButton.styleFrom(
-                
+                      backgroundColor: Colors.blue,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
@@ -253,8 +294,11 @@ class UnitSetUpWidget1 extends StatelessWidget {
           }
         },
         dropdownDecoratorProps: DropDownDecoratorProps(
-            baseStyle: GoogleFonts.poppins(
-                fontSize: 13, color: Colors.black.withOpacity(0.7))),
+          baseStyle: GoogleFonts.poppins(
+            fontSize: 13,
+            color: Colors.black.withOpacity(0.7),
+          ),
+        ),
       )),
     );
   }
@@ -303,12 +347,57 @@ class PackageSetUpWidget1 extends StatelessWidget {
   }
 }
 
+// class CompanySetUpWidget1 extends StatelessWidget {
+//   CompanySetUpWidget1({
+//     Key? key,
+//   }) : super(key: key);
+
+//   final wearhouseCtr = Get.put(WearHouseController());
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       decoration: BoxDecoration(
+//           color: Colors.blue.withOpacity(0.3),
+//           border: Border.all(color: cGrey.withOpacity(0.2))),
+//       child: Center(
+//           child: DropdownSearch<SuppliersModel>(
+//         validator: (item) {
+//           if (item == null) {
+//             return "Required field";
+//           } else {
+//             return null;
+//           }
+//         },
+
+//         // autoValidateMode: AutovalidateMode.always,
+//         asyncItems: (value) {
+//           wearhouseCtr.supplierList.clear();
+
+//           return wearhouseCtr.fetchSupplireModel();
+//         },
+//         itemAsString: (value) => value.suppliersName,
+//         onChanged: (value) async {
+//           if (value != null) {
+//             wearhouseCtr.productCompanyName.value = value.suppliersName;
+//             wearhouseCtr.productCompanyID.value = value.docId;
+//           }
+//         },
+//         dropdownDecoratorProps: DropDownDecoratorProps(
+//             baseStyle: GoogleFonts.poppins(
+//                 fontSize: 13, color: Colors.black.withOpacity(0.7))),
+//       )),
+//     );
+//   }
+// }
+
 class CompanySetUpWidget1 extends StatelessWidget {
   CompanySetUpWidget1({
     Key? key,
   }) : super(key: key);
 
   final wearhouseCtr = Get.put(WearHouseController());
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -317,32 +406,43 @@ class CompanySetUpWidget1 extends StatelessWidget {
           color: Colors.blue.withOpacity(0.3),
           border: Border.all(color: cGrey.withOpacity(0.2))),
       child: Center(
+        child: Form(
+          key: _formKey,
           child: DropdownSearch<SuppliersModel>(
-        validator: (item) {
-          if (item == null) {
-            return "Required field";
-          } else {
-            return null;
-          }
-        },
-
-        // autoValidateMode: AutovalidateMode.always,
-        asyncItems: (value) {
-          wearhouseCtr.supplierList.clear();
-
-          return wearhouseCtr.fetchSupplireModel();
-        },
-        itemAsString: (value) => value.suppliersName,
-        onChanged: (value) async {
-          if (value != null) {
-            wearhouseCtr.productCompanyName.value = value.suppliersName;
-            wearhouseCtr.productCompanyID.value = value.docId;
-          }
-        },
-        dropdownDecoratorProps: DropDownDecoratorProps(
-            baseStyle: GoogleFonts.poppins(
-                fontSize: 13, color: Colors.black.withOpacity(0.7))),
-      )),
+            validator: (item) {
+              if (item == null) {
+                return "Required field";
+              } else {
+                return null;
+              }
+            },
+            asyncItems: (value) {
+              wearhouseCtr.supplierList.clear();
+              return wearhouseCtr.fetchSupplireModel();
+            },
+            itemAsString: (value) => value.suppliersName,
+            onChanged: (value) async {
+              if (value != null) {
+                wearhouseCtr.productCompanyName.value = value.suppliersName;
+                wearhouseCtr.productCompanyID.value = value.docId;
+              }
+            },
+            onSaved: (value) {
+              // Do something with the selected value when the form is saved.
+              // You can update the data or perform any necessary actions.
+              print("Form saved: $value");
+            },
+            dropdownDecoratorProps: DropDownDecoratorProps(
+              baseStyle: GoogleFonts.poppins(
+                fontSize: 13,
+                color: Colors.black.withOpacity(0.7),
+              ),
+            ),
+            popupProps: const PopupProps.menu(
+                showSearchBox: true, searchDelay: Duration(microseconds: 10)),
+          ),
+        ),
+      ),
     );
   }
 }

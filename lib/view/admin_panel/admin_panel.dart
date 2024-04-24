@@ -2,7 +2,6 @@
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/status_screen/delivery_status.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/status_screen/pending_status.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/status_screen/pending_status/pickuped_status.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/all_stock_details_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/all_stock_details_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
@@ -11,7 +10,6 @@ import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/del
 import 'package:canteen_superadmin_website/view/admins/delivery_Admin/screen/delivery_request.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/drawer_page_delivery_admin.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/category_widget.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/invetory_sreen.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/product_temporary_list.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/unit_widget.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/store_admin/store_request.dart';
@@ -55,7 +53,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
         child: SidebarDrawer(
             body: ListView(
               children: [
-                AppBarAdminPanel(),
+                const AppBarAdminPanel(),
                 // pages[widget.navvalue == 'storeadmin' ? 7 : 6],
                 pages[selectedIndex]
               ],
@@ -147,7 +145,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
 
 List<Widget> pages = [
   const DashboardContainer(), //..1
-  AllStockDetails(),
+  // AllStockDetails(),
   // InventoryWidget(), //..2
   StoreRequetWidget(), //..3
   CategoryWidget(), //..4
@@ -167,7 +165,7 @@ List<Widget> pages = [
     child: Text(sideMenu[8]),
   ),
   const DashboardContainer(),
-  AllStockDetails(),
+  // AllStockDetails(),
   // InventoryWidget(),
   StoreRequetWidget(),
   CategoryWidget(),

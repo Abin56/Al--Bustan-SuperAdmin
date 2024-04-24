@@ -91,7 +91,6 @@ class CanteenController extends GetxController {
       );
       return imageUrl;
     } catch (e) {
-      print(e);
       return "error";
     }
   }

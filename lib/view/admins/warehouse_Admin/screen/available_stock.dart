@@ -1,10 +1,10 @@
 import 'package:canteen_superadmin_website/controller/store_controller/store_controller.dart';
 import 'package:canteen_superadmin_website/controller/wearhouse_controller/wearhouse_controller.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/storekeeper_details.dart';
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
+import 'package:canteen_superadmin_website/view/admin_panel/store_admin/storekeeper_details.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/supplier_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/manual_product_adding_widget.dart';
 import 'package:canteen_superadmin_website/view/widgets/custom_showDilog/custom_showdilog.dart';
@@ -346,6 +346,8 @@ class InventoryTileWidget extends StatelessWidget {
               return [
                 PopupMenuItem(
                     onTap: () {
+                      getWarehouseCtr.quantityCtr.text =
+                          productData.quantityinStock.toString();
                       customShowDilogBox(
                         context: context,
                         title: "Quantity",
@@ -358,8 +360,10 @@ class InventoryTileWidget extends StatelessWidget {
                         ],
                         doyouwantActionButton: true,
                         actiononTapfuction: () {
-                          getWarehouseCtr.editQuantity(productData.docId,
-                              int.parse(getWarehouseCtr.quantityCtr.text));
+                          getWarehouseCtr.editQuantity(
+                              productData.docId,
+                              int.parse(getWarehouseCtr.quantityCtr.text),
+                              productData);
                         },
                       );
                     },

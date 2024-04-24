@@ -55,14 +55,14 @@ class ProductAddingScreen extends StatelessWidget {
                     controller: barcodeController,
                     decoration: _customInputDecoration('Barcode Number'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
                     controller: productNameController,
                     decoration: _customInputDecoration('Product Name'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
@@ -70,7 +70,7 @@ class ProductAddingScreen extends StatelessWidget {
                     decoration: _customInputDecoration('In Price'),
                     keyboardType: TextInputType.number,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
@@ -78,7 +78,7 @@ class ProductAddingScreen extends StatelessWidget {
                     decoration: _customInputDecoration('Out Price'),
                     keyboardType: TextInputType.number,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
@@ -86,21 +86,21 @@ class ProductAddingScreen extends StatelessWidget {
                     decoration: _customInputDecoration('Quantity'),
                     keyboardType: TextInputType.number,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
                     controller: expiryDateController,
                     decoration: _customInputDecoration('Expiry Date'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
                     controller: itemCodeController,
                     decoration: _customInputDecoration('Item Code'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   CategorySetUpWidget(),

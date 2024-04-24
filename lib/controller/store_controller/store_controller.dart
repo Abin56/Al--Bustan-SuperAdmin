@@ -1,3 +1,5 @@
+import 'package:canteen_superadmin_website/core/core.dart';
+import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:canteen_superadmin_website/model/category_model.dart';
 import 'package:canteen_superadmin_website/model/product_model.dart';
 import 'package:canteen_superadmin_website/model/product_request_model.dart';
@@ -168,5 +170,32 @@ class StoreController extends GetxController {
         });
       }
     }
+  }
+
+  allProductAddToLowStockAlert() async {
+    try {
+      final availableProductList = await getAvailableProductList();
+
+      for (AllProductDetailModel data in availableProductList) {
+        if (data.quantityinStock <= data.limit) {
+          dataserver
+              .collection('LowStockAlert')
+              .doc(data.docId)
+              .set(data.toMap());
+        }
+      }
+    } catch (e) {
+      showToast(msg: 'Error occure in all product low stock checking ');
+    }
+  }
+
+  Future<List<AllProductDetailModel>> getAvailableProductList() async {
+    final avilableStockData =
+        await dataserver.collection('AvailableProducts').get();
+
+    final availableProdcutList = avilableStockData.docs
+        .map((e) => AllProductDetailModel.fromMap(e.data()))
+        .toList();
+    return availableProdcutList;
   }
 }

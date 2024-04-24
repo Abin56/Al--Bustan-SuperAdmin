@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-
-import 'package:canteen_superadmin_website/view/admin_panel/store_admin/invetory_sreen.dart';
+import 'package:canteen_superadmin_website/view/admins/screen/all_stock_list.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/appbar/app_bar.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/drawer/drawer.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/category_creation_widget.dart';
@@ -8,12 +7,11 @@ import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/low_st
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/returns_widget.dart';
 import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/store_dashboard.dart';
 import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/available_stock.dart';
+import 'package:canteen_superadmin_website/view/admins/warehouse_Admin/screen/return_screen/return_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
-
 import 'package:canteen_superadmin_website/core/colors/colors.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
-
 import 'package:canteen_superadmin_website/core/fonts/google_poppins.dart';
 
 class StoreAdminPanelScreen extends StatefulWidget {
@@ -113,8 +111,10 @@ class _StoreAdminPanelScreenState extends State<StoreAdminPanelScreen> {
 List<Widget> pages = [
   StoreDashboardContainer(), //..0
   const CategoryCreationWidget(),
-  InventoryWidget(),
-  const LowStockAlertWidget(),
-  const ReturnWidget(),
+  // InventoryWidget(),
+  AllStockList(),
+  LowStockAlertWidget(),
+  // const ReturnWidget(),
+  ReturnScreen(),
   AvailableStockWidget()
 ];

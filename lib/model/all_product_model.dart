@@ -26,6 +26,7 @@ class AllProductDetailModel {
   bool outofstock;
   bool isavailable;
   bool isEdit;
+  int limit;
   AllProductDetailModel(
       {required this.docId,
       required this.barcodeNumber,
@@ -50,7 +51,8 @@ class AllProductDetailModel {
       required this.itemcode,
       required this.outofstock,
       required this.isavailable,
-      required this.isEdit});
+      required this.isEdit,
+      required this.limit});
 
   AllProductDetailModel copyWith(
       {String? docId,
@@ -76,7 +78,8 @@ class AllProductDetailModel {
       String? itemcode,
       bool? outofstock,
       bool? isavailable,
-      bool? isEdit}) {
+      bool? isEdit,
+      int? limit}) {
     return AllProductDetailModel(
         docId: docId ?? this.docId,
         barcodeNumber: barcodeNumber ?? this.barcodeNumber,
@@ -101,7 +104,8 @@ class AllProductDetailModel {
         itemcode: itemcode ?? this.itemcode,
         outofstock: outofstock ?? this.outofstock,
         isavailable: isavailable ?? this.isavailable,
-        isEdit: isEdit ?? this.isEdit);
+        isEdit: isEdit ?? this.isEdit,
+        limit: limit ?? this.limit);
   }
 
   Map<String, dynamic> toMap() {
@@ -129,37 +133,38 @@ class AllProductDetailModel {
       'itemcode': itemcode,
       'outofstock': outofstock,
       'isavailable': isavailable,
-      'isedit': isEdit
+      'isedit': isEdit,
+      'limit': limit
     };
   }
 
   factory AllProductDetailModel.fromMap(Map<String, dynamic> map) {
     return AllProductDetailModel(
-      docId: map['docId'] ?? '',
-      barcodeNumber: map['barcodeNumber'] ?? '',
-      productname: map['productname'] ?? '',
-      categoryID: map['categoryID'] ?? '',
-      categoryName: map['categoryName'] ?? '',
-      subcategoryID: map['subcategoryID'] ?? '',
-      subcategoryName: map['subcategoryName'] ?? '',
-      inPrice: map['inPrice'] ?? 0,
-      outPrice: map['outPrice'] ?? 0,
-      quantityinStock: map['quantityinStock'] ?? 0,
-      expiryDate: map['expiryDate'] ?? '',
-      addedDate: map['addedDate'] ?? '',
-      authuid: map['authuid'] ?? '',
-      unitcategoryID: map['unitcategoryID'] ?? '',
-      unitcategoryName: map['unitcategoryName'] ?? '',
-      packageType: map['packageType'] ?? '',
-      packageTypeID: map['packageTypeID'] ?? '',
-      companyName: map['companyName'] ?? '',
-      companyNameID: map['companyNameID'] ?? '',
-      returnType: map['returnType'] ?? '',
-      itemcode: map['itemcode'] ?? '',
-      outofstock: map['outofstock'] ?? false,
-      isavailable: map['isavailable'] ?? true,
-      isEdit: map['isedit'] ?? false,
-    );
+        docId: map['docId'] ?? '',
+        barcodeNumber: map['barcodeNumber'] ?? '',
+        productname: map['productname'] ?? '',
+        categoryID: map['categoryID'] ?? '',
+        categoryName: map['categoryName'] ?? '',
+        subcategoryID: map['subcategoryID'] ?? '',
+        subcategoryName: map['subcategoryName'] ?? '',
+        inPrice: map['inPrice'] ?? 0,
+        outPrice: map['outPrice'] ?? 0,
+        quantityinStock: map['quantityinStock'] ?? 0,
+        expiryDate: map['expiryDate'] ?? '',
+        addedDate: map['addedDate'] ?? '',
+        authuid: map['authuid'] ?? '',
+        unitcategoryID: map['unitcategoryID'] ?? '',
+        unitcategoryName: map['unitcategoryName'] ?? '',
+        packageType: map['packageType'] ?? '',
+        packageTypeID: map['packageTypeID'] ?? '',
+        companyName: map['companyName'] ?? '',
+        companyNameID: map['companyNameID'] ?? '',
+        returnType: map['returnType'] ?? '',
+        itemcode: map['itemcode'] ?? '',
+        outofstock: map['outofstock'] ?? false,
+        isavailable: map['isavailable'] ?? true,
+        isEdit: map['isedit'] ?? false,
+        limit: map['limit'] ?? 0);
   }
 
   String toJson() => json.encode(toMap());
@@ -170,7 +175,7 @@ class AllProductDetailModel {
 
   @override
   String toString() {
-    return 'AllProductDetailModel(docId: $docId, barcodeNumber: $barcodeNumber, productname: $productname, categoryID: $categoryID, categoryName: $categoryName, subcategoryID: $subcategoryID, subcategoryName: $subcategoryName, inPrice: $inPrice, outPrice: $outPrice, quantityinStock: $quantityinStock, expiryDate: $expiryDate, addedDate: $addedDate, authuid: $authuid, unitcategoryID: $unitcategoryID, unitcategoryName: $unitcategoryName, packageType: $packageType,packageTypeID: $packageTypeID, companyName: $companyName,companyNameID: $companyNameID, returnType: $returnType, itemcode: $itemcode, outofstock: $outofstock, isavailable: $isavailable,isedit:$isEdit)';
+    return 'AllProductDetailModel(docId: $docId, barcodeNumber: $barcodeNumber, productname: $productname, categoryID: $categoryID, categoryName: $categoryName, subcategoryID: $subcategoryID, subcategoryName: $subcategoryName, inPrice: $inPrice, outPrice: $outPrice, quantityinStock: $quantityinStock, expiryDate: $expiryDate, addedDate: $addedDate, authuid: $authuid, unitcategoryID: $unitcategoryID, unitcategoryName: $unitcategoryName, packageType: $packageType,packageTypeID: $packageTypeID, companyName: $companyName,companyNameID: $companyNameID, returnType: $returnType, itemcode: $itemcode, outofstock: $outofstock, isavailable: $isavailable,isedit:$isEdit,limit:$limit)';
   }
 
   @override
@@ -200,7 +205,8 @@ class AllProductDetailModel {
         other.itemcode == itemcode &&
         other.outofstock == outofstock &&
         other.isavailable == isavailable &&
-        other.isEdit == isEdit;
+        other.isEdit == isEdit &&
+        other.limit == limit;
   }
 
   @override
@@ -228,6 +234,7 @@ class AllProductDetailModel {
         itemcode.hashCode ^
         outofstock.hashCode ^
         isavailable.hashCode ^
-        isEdit.hashCode;
+        isEdit.hashCode ^
+        limit.hashCode;
   }
 }

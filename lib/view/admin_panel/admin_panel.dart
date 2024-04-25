@@ -2,7 +2,6 @@
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/status_screen/delivery_status.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/status_screen/pending_status.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/delivery_admin/status_screen/pending_status/pickuped_status.dart';
-import 'package:canteen_superadmin_website/view/admins/store_Admin/screen/all_stock_details_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 import 'package:canteen_superadmin_website/view/admin_panel/admin_appBar.dart';
@@ -79,7 +78,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                       height: 60,
                                       width: 60,
                                       child: Image.asset(
-                                        'web_images/AL - Bustan.png',
+                                        'assests/web_images/AL - Bustan.png',
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -276,7 +275,7 @@ List<String> sideMenu = [
 //                                 SizedBox(
 //                                   height: 60,
 //                                   child: Image.asset(
-//                                     'web_images/AL - Bustan.png',
+//                                     'assests/web_images/AL - Bustan.png',
 //                                     fit: BoxFit.fill,
 //                                   ),
 //                                 ),

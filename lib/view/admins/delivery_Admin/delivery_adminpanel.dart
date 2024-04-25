@@ -62,7 +62,7 @@ class _DeliveryAdminPanelScreenState extends State<DeliveryAdminPanelScreen> {
                                       height: 60,
                                       width: 60,
                                       child: Image.asset(
-                                        'web_images/AL - Bustan.png',
+                                        'assests/web_images/AL - Bustan.png',
                                         fit: BoxFit.cover,
                                       ),
                                     ),

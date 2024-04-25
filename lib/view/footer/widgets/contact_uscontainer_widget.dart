@@ -36,7 +36,7 @@ class ContactUsContainerWidget extends StatelessWidget {
                             width: 70,
                             height: 50,
                             child: Image.asset(
-                              'web_images/albustanwhite.png',
+                              'assests/web_images/albustanwhite.png',
                               fit: BoxFit.fill,
                             ),
                           ),

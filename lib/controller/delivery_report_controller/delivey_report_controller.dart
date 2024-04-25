@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:canteen_superadmin_website/core/constant/const.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/core.dart';
@@ -39,6 +41,8 @@ class DeliveryReportController extends GetxController {
     final PdfPage page = document.pages.add();
     //Get page client size
     final Size pageSize = page.getClientSize();
+    // final Uint8List imageData =
+    //     await _getImageData('assests/web_images/AL - Bustan.png');
     //Draw rectangle
     page.graphics.drawRectangle(
         bounds: Rect.fromLTWH(0, 0, pageSize.width, pageSize.height),
@@ -46,20 +50,6 @@ class DeliveryReportController extends GetxController {
     //Generate PDF grid.
     final PdfGrid grid = getGrid();
 
-    final Uint8List imageData =
-        await _getImageData('web_images/AL - Bustan.png');
-    // for (int i = 0; i < 3; i++) {
-    //   // For example, add 10 rows with dummy data
-    //   addProducts(
-    //       ' ${i + 1}',
-    //       'Canteen Name${i + 1}',
-    //       '${1 + 1}',
-    //       'Product Name ${i + 1}',
-    //       'Quantity1${i + 1}',
-    //       'Price ${i + 1}',
-    //       'Total${i + 1}',
-    //       grid);
-    // }
     int index = 0;
     final deliverdData =
         await dataserver.collection('DeliveredList').orderBy('time').get();
@@ -103,7 +93,8 @@ class DeliveryReportController extends GetxController {
               totalAmount.toString(), grid);
         }
       } else if (type == '2') {
-        if (productDate.isAfter(DateTime.now().subtract(const Duration(days: 7)))) {
+        if (productDate
+            .isAfter(DateTime.now().subtract(const Duration(days: 7)))) {
           index++;
           addProducts(index.toString(), dateConveter(productDate), canteen,
               orderCount.toString(), '', '', '', '', grid);
@@ -134,7 +125,8 @@ class DeliveryReportController extends GetxController {
               totalAmount.toString(), grid);
         }
       } else if (type == '3') {
-        if (productDate.isAfter(DateTime.now().subtract(const Duration(days: 30)))) {
+        if (productDate
+            .isAfter(DateTime.now().subtract(const Duration(days: 30)))) {
           index++;
           addProducts(index.toString(), dateConveter(productDate), canteen,
               orderCount.toString(), '', '', '', '', grid);
@@ -201,52 +193,38 @@ class DeliveryReportController extends GetxController {
     }
 
     //Draw the header section by creating text element
-    final PdfLayoutResult result = drawHeader(page, pageSize, grid, imageData);
+    final PdfLayoutResult result = drawHeader(page, pageSize, grid);
     //Draw grid
     drawGrid(page, grid, result);
     //Add invoice footer
     // drawFooter(page, pageSize);
     //Save the PDF document
-    final List<int> bytes = document.saveSync();
-    page.graphics.drawImage(
-      PdfBitmap(imageData),
-      const Rect.fromLTWH(10, 10, 80, 80),
-    );
+
+    final List<int> bytes = await document.save();
+
+    // page.graphics.drawImage(
+    //   PdfBitmap(imageData),
+    //   const Rect.fromLTWH(10, 10, 80, 80),
+    // );
 
     //Save and launch the file.
-    await saveAndLaunchFile(bytes, 'Invoice.pdf');
-
-// Dispose the document.
-    document.dispose();
-
-    // Draw the image on the PDF page
-    page.graphics.drawImage(
-      PdfBitmap(imageData),
-      const Rect.fromLTWH(10, 10, 80, 80),
-    );
-
-    //Save and launch the file.
-    await saveAndLaunchFile(bytes, 'Invoice.pdf');
-  }
-
-  Future<Uint8List> _getImageData(String imagePath) async {
-    ByteData data = await rootBundle.load(imagePath);
-    return data.buffer.asUint8List();
-  }
-
-  Future<void> saveAndLaunchFile(List<int> bytes, String fileName) async {
-    final blob = Blob([Uint8List.fromList(bytes)]);
-    final url = Url.createObjectUrlFromBlob(blob);
-    AnchorElement(href: url)
-      ..target = 'webbrowser'
-      ..download = fileName
+    AnchorElement(
+        href:
+            "data:application/octet-stream;charset=utf-16le;base64,${base64.encode(bytes)}")
+      ..setAttribute("download", "output.pdf")
       ..click();
-    Url.revokeObjectUrl(url);
+
+    document.dispose();
   }
+
+  // Future<Uint8List> _getImageData(String imagePath) async {
+  //   ByteData data = await rootBundle.load(imagePath);
+  //   return data.buffer.asUint8List();
+  // }
 
 //Draws the invoice header
   PdfLayoutResult drawHeader(
-      PdfPage page, Size pageSize, PdfGrid grid, Uint8List imageData) {
+      PdfPage page, Size pageSize, PdfGrid grid, ) {
     final PdfFont contentFont = PdfStandardFont(PdfFontFamily.helvetica, 9);
     //final PdfFont headingFont = PdfStandardFont(PdfFontFamily.timesRoman, 10);
 
@@ -260,11 +238,6 @@ class DeliveryReportController extends GetxController {
         '''AL BUSTAN BAKERY & SWEETS LLC\r\n\r\n         Al Qusais Industrial Area 3\r\n\r\n                 Emiates Dubai\r\n\r\n''';
     // String secondHeading =
     //     '''                MATERIAL OUT                \r\n\r\n Canteen:    Ittilhad Private School-Mamzar\r\n\r\n Emiates:                 Dubai\r\n\r\nCountry:                 UAE\r\n\r\n''';
-
-    page.graphics.drawImage(
-      PdfBitmap(imageData),
-      const Rect.fromLTWH(40, 40, 50, 50),
-    );
 
     PdfTextElement(text: invoiceNumber, font: contentFont).draw(
         page: page,

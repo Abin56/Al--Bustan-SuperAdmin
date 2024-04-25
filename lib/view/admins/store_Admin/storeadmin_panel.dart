@@ -56,7 +56,7 @@ class _StoreAdminPanelScreenState extends State<StoreAdminPanelScreen> {
                                       height: 60,
                                       width: 60,
                                       child: Image.asset(
-                                        'web_images/AL - Bustan.png',
+                                        'assests/web_images/AL - Bustan.png',
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -115,6 +115,6 @@ List<Widget> pages = [
   AllStockList(),
   LowStockAlertWidget(),
   // const ReturnWidget(),
-  ReturnScreen(),
+  const ReturnScreen(),
   AvailableStockWidget()
 ];

@@ -130,7 +130,7 @@ class PickedDataListWidget extends StatelessWidget {
                       height: 25,
                       width: 25,
                       child: LottieBuilder.asset(
-                          'web_images/pending_animation.json')),
+                          'assests/web_images/pending_animation.json')),
                 ],
               ),
             ),

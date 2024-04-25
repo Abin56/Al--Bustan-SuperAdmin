@@ -125,17 +125,17 @@ class _LoginSectionState extends State<LoginSection> {
       // ), ///////////////////////////////////////////////////////7
       LoginContainerWidget(
         value: 'superadmin',
-        imagepath: 'web_images/super_Admin.jpg',
+        imagepath: 'assests/web_images/super_Admin.jpg',
         text: 'SUPER ADMIN',
       ), //////////////////////////////////////////////////////////////8
       LoginContainerWidget(
         value: 'storeadmin',
-        imagepath: 'web_images/store_Admin.jpg',
+        imagepath: 'assests/web_images/store_Admin.jpg',
         text: 'STORE ADMIN',
       ), //////////////////////////////////////////////////////////////////9
       LoginContainerWidget(
         value: 'deliveryadmin',
-        imagepath: 'web_images/delivery_admin.jpg',
+        imagepath: 'assests/web_images/delivery_admin.jpg',
         text: 'DELIVERY ADMIN',
       ), /////////////////////////////////////////////////////////////////////////////10
       Row(
@@ -165,7 +165,7 @@ class _LoginSectionState extends State<LoginSection> {
       ), /////////////////////////////////
       LoginContainerWidget(
         value: 'wearhouseadmin',
-        imagepath: 'web_images/warehouse_Admin.jpg',
+        imagepath: 'assests/web_images/warehouse_Admin.jpg',
         text: 'WEARHOUSE ADMIN',
       ), /////////////////////////////////
     ];
@@ -194,8 +194,8 @@ class _LoginSectionState extends State<LoginSection> {
                         //   child: loginWidget[2],
                         // ),
                         Padding(
-                          child: loginWidget[3],
                           padding: const EdgeInsets.only(top: 10),
+                          child: loginWidget[3],
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
@@ -354,7 +354,7 @@ class LoginContainerWidget extends StatelessWidget {
               ),
               // const CircleAvatar(
               //   radius: 100,
-              //   backgroundImage: AssetImage('web_images/super_Admin (1).jpg'),
+              //   backgroundImage: AssetImage('assests/web_images/super_Admin (1).jpg'),
               // ),
               Center(
                   child: GooglePoppinsWidgets(

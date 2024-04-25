@@ -23,7 +23,7 @@ class DrawerDeliveryAdmin extends StatelessWidget {
       children: [
         ListTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/dashboard.png'),
+              image: 'assests/web_images/drawer_images/dashboard.png'),
           tileColor: selectedIndex == 0
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
@@ -41,7 +41,7 @@ class DrawerDeliveryAdmin extends StatelessWidget {
         ),
         ListTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/all_orders.png'),
+              image: 'assests/web_images/drawer_images/all_orders.png'),
           tileColor: selectedIndex == 1
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
@@ -59,7 +59,7 @@ class DrawerDeliveryAdmin extends StatelessWidget {
         ),
         ListTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/delivery_request.png'),
+              image: 'assests/web_images/drawer_images/delivery_request.png'),
           tileColor: selectedIndex == 2
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
@@ -103,7 +103,7 @@ class DrawerDeliveryAdmin extends StatelessWidget {
         ),
         ListTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/order_pending.png'),
+              image: 'assests/web_images/drawer_images/order_pending.png'),
           tileColor: selectedIndex == 3
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
@@ -147,7 +147,7 @@ class DrawerDeliveryAdmin extends StatelessWidget {
         ),
         ListTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/picked_orders.png'),
+              image: 'assests/web_images/drawer_images/picked_orders.png'),
           tileColor: selectedIndex == 5
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
@@ -191,7 +191,7 @@ class DrawerDeliveryAdmin extends StatelessWidget {
         ),
         ListTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/picked_orders.png'),
+              image: 'assests/web_images/drawer_images/picked_orders.png'),
           tileColor: selectedIndex == 6
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
@@ -235,7 +235,7 @@ class DrawerDeliveryAdmin extends StatelessWidget {
         ),
         ListTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/delivered_success.png'),
+              image: 'assests/web_images/drawer_images/delivered_success.png'),
           tileColor: selectedIndex == 4
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
@@ -254,7 +254,7 @@ class DrawerDeliveryAdmin extends StatelessWidget {
         // sHeight10,
         // ExpansionTile(
         //   leading: const DashBoardIconWidget(
-        //       image: 'web_images/drawer_images/purchase.png'),
+        //       image: 'assests/web_images/drawer_images/purchase.png'),
         //   title: DashboardTextFontWidget(
         //     title: 'Purchase',
         //   ),
@@ -262,7 +262,7 @@ class DrawerDeliveryAdmin extends StatelessWidget {
         // sHeight10,
         // ExpansionTile(
         //   leading: const DashBoardIconWidget(
-        //       image: 'web_images/drawer_images/product-return.png'),
+        //       image: 'assests/web_images/drawer_images/product-return.png'),
         //   title: DashboardTextFontWidget(
         //     title: 'Supplier Return',
         //   ),
@@ -270,7 +270,7 @@ class DrawerDeliveryAdmin extends StatelessWidget {
         // sHeight10,
         // ExpansionTile(
         //   leading: const DashBoardIconWidget(
-        //       image: 'web_images/drawer_images/invoice.png'),
+        //       image: 'assests/web_images/drawer_images/invoice.png'),
         //   title: DashboardTextFontWidget(
         //     title: 'Invoice',
         //   ),
@@ -278,7 +278,7 @@ class DrawerDeliveryAdmin extends StatelessWidget {
         // sHeight10,
         // ExpansionTile(
         //   leading: const DashBoardIconWidget(
-        //       image: 'web_images/drawer_images/sale.png'),
+        //       image: 'assests/web_images/drawer_images/sale.png'),
         //   title: DashboardTextFontWidget(
         //     title: 'Sale',
         //   ),
@@ -318,7 +318,7 @@ class DashboardTextFontWidget extends StatelessWidget {
 }
     //  ExpansionTile(
     //       leading: const DashBoardIconWidget(
-    //           image: 'web_images/drawer_images/supplier.png'),
+    //           image: 'assests/web_images/drawer_images/supplier.png'),
     //       title: DashboardTextFontWidget(
     //         title: 'Delivery Panal',
     //       ),

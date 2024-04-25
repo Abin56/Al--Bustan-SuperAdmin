@@ -67,7 +67,7 @@ class _SuperAdminPanelScreenState extends State<SuperAdminPanelScreen> {
                                       height: 60,
                                       width: 60,
                                       child: Image.asset(
-                                        'web_images/AL - Bustan.png',
+                                        'assests/web_images/AL - Bustan.png',
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -128,7 +128,7 @@ List<Widget> pages = [
   AllStockList(),
   AvailableStockWidget(),
   LowStockAlertWidget(),
-  ReturnScreen(),
+  const ReturnScreen(),
   const CategoryCreationWidget(),
   ProductScreen(), //..1
   const DeliveryRequest(),

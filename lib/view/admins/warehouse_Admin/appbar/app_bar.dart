@@ -239,7 +239,7 @@ class _AppBarWarehouseAdminState extends State<AppBarWarehouseAdmin> {
                 child: Row(children: [
                   const CircleAvatar(
                     radius: 15,
-                    backgroundImage: AssetImage('web_images/user.png'),
+                    backgroundImage: AssetImage('assests/web_images/user.png'),
                   ),
                   sWidtht10,
                   GooglePoppinsWidgets(text: "AL BUSTAN", fontsize: 11),

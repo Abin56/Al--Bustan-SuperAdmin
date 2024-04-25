@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 760,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('web_images/home/slider-eclipse.png'),
+                image: AssetImage('assests/web_images/home/slider-eclipse.png'),
                 fit: BoxFit.fill,
               ),
             ),
@@ -102,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: double.infinity,
                   height: 1000,
                   child: Image.asset(
-                    'web_images/home/slider-glob.png',
+                    'assests/web_images/home/slider-glob.png',
                   ),
                 ),
                 // Login Button
@@ -142,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: SizedBox(
                     width: double.infinity,
                     height: 260,
-                    child: Image.asset('web_images/albustanwhite.png'),
+                    child: Image.asset('assests/web_images/albustanwhite.png'),
                   ),
                 ),
                 // Address
@@ -188,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 900,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('web_images/home/slider-eclipse.png'),
+                image: AssetImage('assests/web_images/home/slider-eclipse.png'),
                 fit: BoxFit.fill,
               ),
             ),
@@ -204,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 60,
                         width: 100,
                         child: Image.asset(
-                          'web_images/albustanwhite.png',
+                          'assests/web_images/albustanwhite.png',
                         ),
                       ),
                       GoogleHeeboWidget(
@@ -262,7 +262,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: double.infinity,
                   height: ResponsiveWebSite.isDesktop(context) ? 840 : 1200,
                   child: Image.asset(
-                    'web_images/home/slider-glob.png',
+                    'assests/web_images/home/slider-glob.png',
                   ),
                 ),
                 // Login Button
@@ -307,7 +307,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: SizedBox(
                     width: double.infinity,
                     height: 380,
-                    child: Image.asset('web_images/albustanwhite.png'),
+                    child: Image.asset('assests/web_images/albustanwhite.png'),
                   ),
                 ),
                 // Address
@@ -354,7 +354,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: ResponsiveWebSite.isDesktop(context) ? 1100 : 950,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('web_images/home/slider-eclipse.png'),
+                image: AssetImage('assests/web_images/home/slider-eclipse.png'),
                 fit: BoxFit.fill,
               ),
             ),
@@ -370,7 +370,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 60,
                         width: 100,
                         child: Image.asset(
-                          'web_images/albustanwhite.png',
+                          'assests/web_images/albustanwhite.png',
                         ),
                       ),
                       // listofwidget[1],
@@ -483,7 +483,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     width: double.infinity,
                     height: 1000,
                     child: Image.asset(
-                      'web_images/home/slider-glob.png',
+                      'assests/web_images/home/slider-glob.png',
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -493,9 +493,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: SizedBox(
                     width: double.infinity,
                     height: 800,
-                    // child: Image.asset('web_images/home/slider-courier.png'),
+                    // child: Image.asset('assests/web_images/home/slider-courier.png'),
                     child: Image.asset(
-                      'web_images/albustanwhite.png',
+                      'assests/web_images/albustanwhite.png',
                     ),
                   ),
                 ),

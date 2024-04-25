@@ -1,14 +1,12 @@
 import 'dart:convert';
-import 'dart:html' as html;
-// import 'dart:typed_data';
-import 'package:canteen_superadmin_website/core/constant/const.dart';
+import 'dart:html';
+
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
-import 'dart:ui_web' as ui;
 
 class DeliveryPrintController extends GetxController {
   Future<void> generateInvoice(
@@ -28,9 +26,6 @@ class DeliveryPrintController extends GetxController {
     //Generate PDF grid.
     final PdfGrid grid = getGrid();
 
-    final Uint8List imageData =
-        await _getImageData('web_images/AL - Bustan.png');
-
     int index = 0;
     int totalAmount = 0;
     final deliveryProductData = await dataserver
@@ -41,8 +36,6 @@ class DeliveryPrintController extends GetxController {
         .get();
 
     for (var element in deliveryProductData.docs) {
-      print('object');
-      print(element['addedDate']);
       index++;
       // String date = element['addedDate'];
       // final productDate = DateTime.parse(date);
@@ -60,69 +53,27 @@ class DeliveryPrintController extends GetxController {
 
     addProducts('', '', '', '', '', totalAmount.toString(), grid);
 
-    //Draw the header section by creating text element
-    final PdfLayoutResult result = drawHeader(page, pageSize, grid, imageData,
+    final PdfLayoutResult result = drawHeader(page, pageSize, grid,
         deliveryData['canteenName'], deliveryData['orderId']);
     //Draw grid
     drawGrid(page, grid, result);
-    //Add invoice footer
-    // drawFooter(page, pageSize);
-    //Save the PDF document
-    // final List<int> bytes = document.saveSync();
+
     final List<int> bytes = await document.save();
 
-    page.graphics.drawImage(
-      PdfBitmap(imageData),
-      const Rect.fromLTWH(10, 10, 80, 80),
-    );
-
     //Save and launch the file.
-    await saveAndLaunchFile2(bytes, 'Invoice.pdf');
-    print('finish');
+    AnchorElement(
+        href:
+            "data:application/octet-stream;charset=utf-16le;base64,${base64.encode(bytes)}")
+      ..setAttribute("download", "output.pdf")
+      ..click();
 
-// Dispose the document.
     document.dispose();
-
-    // Draw the image on the PDF page
-    page.graphics.drawImage(
-      PdfBitmap(imageData),
-      const Rect.fromLTWH(10, 10, 80, 80),
-    );
-
-    //Save and launch the file.
-    // await saveAndLaunchFile2(bytes, 'Invoice.pdf');
   }
 
-  Future<Uint8List> _getImageData(String imagePath) async {
-    ByteData data = await rootBundle.load(imagePath);
-    return data.buffer.asUint8List();
-  }
-
-  // Future<void> saveAndLaunchFile(List<int> bytes, String fileName) async {
-  //   final blob = Blob([Uint8List.fromList(bytes)]);
-  //   final url = Url.createObjectUrlFromBlob(blob);
-  //   AnchorElement(href: url)
-  //     ..target = 'webbrowser'
-  //     ..download = fileName
-  //     ..click();
-  //   Url.revokeObjectUrl(url);
+  // Future<Uint8List> _getImageData(String imagePath) async {
+  //   ByteData data = await rootBundle.load(imagePath);
+  //   return data.buffer.asUint8List();
   // }
-
-  Future<void> saveAndLaunchFile2(List<int> bytes, String fileName) async {
-    try {
-      final blob = html.Blob([Uint8List.fromList(bytes)]);
-      final url = html.Url.createObjectUrlFromBlob(blob);
-      // html.AnchorElement anchorElement = html.AnchorElement(href: url);
-      html.AnchorElement anchorElement =
-          html.AnchorElement(href: ui.AssetManager().getAssetUrl(url));
-      anchorElement.download = fileName;
-      anchorElement.click();
-      html.Url.revokeObjectUrl(url);
-      showToast(msg: 'Downloaded');
-    } catch (e) {
-      showToast(msg: e.toString());
-    }
-  }
 
   // Future<void> saveAndLaunchFile2(List<int> bytes, String fileName) async {
   //   // final blob = html.Blob([Uint8List.fromList(bytes)]);
@@ -138,7 +89,7 @@ class DeliveryPrintController extends GetxController {
 
 //Draws the invoice header
   PdfLayoutResult drawHeader(PdfPage page, Size pageSize, PdfGrid grid,
-      Uint8List imageData, String canteenName, String deliveryId) {
+      String canteenName, String deliveryId) {
     final PdfFont contentFont = PdfStandardFont(PdfFontFamily.helvetica, 9);
     //final PdfFont headingFont = PdfStandardFont(PdfFontFamily.timesRoman, 10);
 
@@ -151,13 +102,8 @@ class DeliveryPrintController extends GetxController {
     String heading =
         '''AL BUSTAN BAKERY & SWEETS LLC\r\n\r\n         Al Qusais Industrial Area 3\r\n\r\n                 Emiates Dubai\r\n\r\n''';
     String secondHeading =
-        '''                MATERIAL OUT                \r\n\r\n Canteen:    $canteenName''';
+        '''                MATERIAL OUT                \r\n\r\n Canteen::    $canteenName''';
     // \r\n\r\n Emiates:                 Dubai\r\n\r\nCountry:                 UAE\r\n\r\n''';
-
-    page.graphics.drawImage(
-      PdfBitmap(imageData),
-      const Rect.fromLTWH(40, 40, 50, 50),
-    );
 
     PdfTextElement(text: invoiceNumber, font: contentFont).draw(
         page: page,

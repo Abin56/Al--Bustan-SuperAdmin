@@ -1,11 +1,13 @@
+import 'dart:convert';
+import 'dart:html';
+
 import 'package:canteen_superadmin_website/core/constant/const.dart';
 import 'package:canteen_superadmin_website/core/constant/constant.validate.dart';
 import 'package:canteen_superadmin_website/core/core.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'dart:html';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 // ignore: depend_on_referenced_packages
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
@@ -47,8 +49,7 @@ class StoreReportController extends GetxController {
     //Generate PDF grid.
     final PdfGrid grid = getGrid();
 
-    final Uint8List imageData =
-        await _getImageData('web_images/AL - Bustan.png');
+
     // for (int i = 0; i < 3; i++) {
     //   // For example, add 10 rows with dummy data
     //   addProducts(
@@ -112,7 +113,8 @@ class StoreReportController extends GetxController {
               grid);
         }
       } else if (type == '3') {
-        if (productDate.isAfter(DateTime.now().subtract(const Duration(days: 30)))) {
+        if (productDate
+            .isAfter(DateTime.now().subtract(const Duration(days: 30)))) {
           index++;
           addProducts(
               index.toString(),
@@ -143,52 +145,31 @@ class StoreReportController extends GetxController {
     }
 
     //Draw the header section by creating text element
-    final PdfLayoutResult result = drawHeader(page, pageSize, grid, imageData);
+    final PdfLayoutResult result = drawHeader(page, pageSize, grid);
     //Draw grid
     drawGrid(page, grid, result);
     //Add invoice footer
     // drawFooter(page, pageSize);
     //Save the PDF document
-    final List<int> bytes = document.saveSync();
-    page.graphics.drawImage(
-      PdfBitmap(imageData),
-      const Rect.fromLTWH(10, 10, 80, 80),
-    );
+    final List<int> bytes = await document.save();
+
+
 
     //Save and launch the file.
-    await saveAndLaunchFile(bytes, 'Invoice.pdf');
-
-// Dispose the document.
-    document.dispose();
-
-    // Draw the image on the PDF page
-    page.graphics.drawImage(
-      PdfBitmap(imageData),
-      const Rect.fromLTWH(10, 10, 80, 80),
-    );
-
-    //Save and launch the file.
-    await saveAndLaunchFile(bytes, 'Invoice.pdf');
-  }
-
-  Future<Uint8List> _getImageData(String imagePath) async {
-    ByteData data = await rootBundle.load(imagePath);
-    return data.buffer.asUint8List();
-  }
-
-  Future<void> saveAndLaunchFile(List<int> bytes, String fileName) async {
-    final blob = Blob([Uint8List.fromList(bytes)]);
-    final url = Url.createObjectUrlFromBlob(blob);
-    AnchorElement(href: url)
-      ..target = 'webbrowser'
-      ..download = fileName
+    AnchorElement(
+        href:
+            "data:application/octet-stream;charset=utf-16le;base64,${base64.encode(bytes)}")
+      ..setAttribute("download", "output.pdf")
       ..click();
-    Url.revokeObjectUrl(url);
+
+    document.dispose();
   }
+
+
 
 //Draws the invoice header
   PdfLayoutResult drawHeader(
-      PdfPage page, Size pageSize, PdfGrid grid, Uint8List imageData) {
+      PdfPage page, Size pageSize, PdfGrid grid, ) {
     final PdfFont contentFont = PdfStandardFont(PdfFontFamily.helvetica, 9);
     //final PdfFont headingFont = PdfStandardFont(PdfFontFamily.timesRoman, 10);
 
@@ -202,10 +183,10 @@ class StoreReportController extends GetxController {
         '''AL BUSTAN BAKERY & SWEETS LLC\r\n\r\n         Al Qusais Industrial Area 3\r\n\r\n                 Emiates Dubai\r\n\r\n''';
     String secondHeading = '''                MATERIAL IN                ''';
 
-    page.graphics.drawImage(
-      PdfBitmap(imageData),
-      const Rect.fromLTWH(40, 40, 50, 50),
-    );
+    // page.graphics.drawImage(
+    //   PdfBitmap(imageData),
+    //   const Rect.fromLTWH(40, 40, 50, 50),
+    // );
 
     PdfTextElement(text: invoiceNumber, font: contentFont).draw(
         page: page,

@@ -60,7 +60,7 @@ class AllStockList extends StatelessWidget {
                       child: Row(
                         children: [
                           const ImageWidget(
-                              image: 'web_images/drawer_images/inventory.png'),
+                              image: 'assests/web_images/drawer_images/inventory.png'),
                           sWidtht10,
                           GooglePoppinsWidgets(
                             text: 'All Stocks',

@@ -23,7 +23,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
       children: [
         ListTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/dashboard.png'),
+              image: 'assests/web_images/drawer_images/dashboard.png'),
           tileColor: selectedIndex == 0
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
@@ -41,7 +41,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
         ),
         ListTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/all_orders.png'),
+              image: 'assests/web_images/drawer_images/all_orders.png'),
           tileColor: selectedIndex == 3
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
@@ -59,7 +59,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
         ),
         ListTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/avilable_products.png'),
+              image: 'assests/web_images/drawer_images/avilable_products.png'),
           tileColor: selectedIndex == 14
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
@@ -77,7 +77,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
         ),
         ListTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/all_orders.png'),
+              image: 'assests/web_images/drawer_images/all_orders.png'),
           tileColor: selectedIndex == 1
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
@@ -95,7 +95,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
         ),
         ListTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/all_orders.png'),
+              image: 'assests/web_images/drawer_images/all_orders.png'),
           tileColor: selectedIndex == 2
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
@@ -113,7 +113,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
         ),
         ExpansionTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/avilable_products.png'),
+              image: 'assests/web_images/drawer_images/avilable_products.png'),
           title: GooglePoppinsWidgets(
             text: "STORE MANAGEMENT",
             fontsize: 14,
@@ -122,7 +122,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
           children: [
             ListTile(
               leading: const DashBoardIconWidget(
-                  image: 'web_images/drawer_images/avilable_products.png'),
+                  image: 'assests/web_images/drawer_images/avilable_products.png'),
               tileColor: selectedIndex == 3
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
@@ -140,7 +140,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
             ),
             ListTile(
               leading: const DashBoardIconWidget(
-                  image: 'web_images/drawer_images/alert.png'),
+                  image: 'assests/web_images/drawer_images/alert.png'),
               tileColor: selectedIndex == 11
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
@@ -158,7 +158,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
             ),
             ListTile(
               leading: const DashBoardIconWidget(
-                  image: 'web_images/drawer_images/picked_orders.png'),
+                  image: 'assests/web_images/drawer_images/picked_orders.png'),
               tileColor: selectedIndex == 12
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
@@ -176,7 +176,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
             ),
             ListTile(
               leading: const DashBoardIconWidget(
-                  image: 'web_images/drawer_images/categorization.png'),
+                  image: 'assests/web_images/drawer_images/categorization.png'),
               tileColor: selectedIndex == 4
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
@@ -197,7 +197,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
         sHeight10,
         ExpansionTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/purchase.png'),
+              image: 'assests/web_images/drawer_images/purchase.png'),
           title: GooglePoppinsWidgets(
             text: "DELIVERY MANAGEMENT",
             fontsize: 13,
@@ -206,7 +206,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
           children: [
             ListTile(
               leading: const DashBoardIconWidget(
-                  image: 'web_images/drawer_images/all_orders.png'),
+                  image: 'assests/web_images/drawer_images/all_orders.png'),
               tileColor: selectedIndex == 5
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
@@ -224,7 +224,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
             ),
             ListTile(
               leading: const DashBoardIconWidget(
-                  image: 'web_images/drawer_images/delivery_request.png'),
+                  image: 'assests/web_images/drawer_images/delivery_request.png'),
               tileColor: selectedIndex == 6
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
@@ -268,7 +268,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
             ),
             ListTile(
               leading: const DashBoardIconWidget(
-                  image: 'web_images/drawer_images/order_pending.png'),
+                  image: 'assests/web_images/drawer_images/order_pending.png'),
               tileColor: selectedIndex == 9
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
@@ -286,7 +286,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
             ),
             ListTile(
               leading: const DashBoardIconWidget(
-                  image: 'web_images/drawer_images/picked_orders.png'),
+                  image: 'assests/web_images/drawer_images/picked_orders.png'),
               tileColor: selectedIndex == 10
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
@@ -304,7 +304,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
             ),
             ListTile(
               leading: const DashBoardIconWidget(
-                  image: 'web_images/drawer_images/delivered_success.png'),
+                  image: 'assests/web_images/drawer_images/delivered_success.png'),
               tileColor: selectedIndex == 8
                   ? themeColorBlue.withOpacity(0.1)
                   : Colors.transparent,
@@ -325,7 +325,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
         sHeight10,
         ListTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/users.png'),
+              image: 'assests/web_images/drawer_images/users.png'),
           tileColor: selectedIndex == 13
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
@@ -341,7 +341,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
         ),
         ListTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/users.png'),
+              image: 'assests/web_images/drawer_images/users.png'),
           tileColor: selectedIndex == 13
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
@@ -357,7 +357,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
         ),
         // ExpansionTile(
         //   leading: const DashBoardIconWidget(
-        //       image: 'web_images/drawer_images/users.png'),
+        //       image: 'assests/web_images/drawer_images/users.png'),
         //   title: GooglePoppinsWidgets(
         //     text: "USERS REQUEST",
         //     fontsize: 14,
@@ -417,7 +417,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
         // sHeight10,
         // ExpansionTile(
         //   leading: const DashBoardIconWidget(
-        //       image: 'web_images/drawer_images/purchase.png'),
+        //       image: 'assests/web_images/drawer_images/purchase.png'),
         //   title: DashboardTextFontWidget(
         //     title: 'Purchase',
         //   ),
@@ -425,7 +425,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
         // sHeight10,
         // ExpansionTile(
         //   leading: const DashBoardIconWidget(
-        //       image: 'web_images/drawer_images/product-return.png'),
+        //       image: 'assests/web_images/drawer_images/product-return.png'),
         //   title: DashboardTextFontWidget(
         //     title: 'Supplier Return',
         //   ),
@@ -433,7 +433,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
         // sHeight10,
         // ExpansionTile(
         //   leading: const DashBoardIconWidget(
-        //       image: 'web_images/drawer_images/invoice.png'),
+        //       image: 'assests/web_images/drawer_images/invoice.png'),
         //   title: DashboardTextFontWidget(
         //     title: 'Invoice',
         //   ),
@@ -441,7 +441,7 @@ class DrawerWareHouseAdmin extends StatelessWidget {
         // sHeight10,
         // ExpansionTile(
         //   leading: const DashBoardIconWidget(
-        //       image: 'web_images/drawer_images/sale.png'),
+        //       image: 'assests/web_images/drawer_images/sale.png'),
         //   title: DashboardTextFontWidget(
         //     title: 'Sale',
         //   ),
@@ -482,7 +482,7 @@ class DashboardTextFontWidget extends StatelessWidget {
 }
 //  ExpansionTile(
 //       leading: const DashBoardIconWidget(
-//           image: 'web_images/drawer_images/supplier.png'),
+//           image: 'assests/web_images/drawer_images/supplier.png'),
 //       title: DashboardTextFontWidget(
 //         title: 'Delivery Panal',
 //       ),

@@ -21,7 +21,7 @@ class DrawerSelectedPagesSection extends StatelessWidget {
       children: [
         ListTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/dashboard.png'),
+              image: 'assests/web_images/drawer_images/dashboard.png'),
           tileColor: selectedIndex == 0
               ? themeColorBlue.withOpacity(0.1)
               : Colors.transparent,
@@ -40,7 +40,7 @@ class DrawerSelectedPagesSection extends StatelessWidget {
         sHeight10,
         ExpansionTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/inventory.png'),
+              image: 'assests/web_images/drawer_images/inventory.png'),
           title: DashboardTextFontWidget(
             title: 'Store',
           ),
@@ -122,7 +122,7 @@ class DrawerSelectedPagesSection extends StatelessWidget {
         sHeight10,
         ExpansionTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/purchase.png'),
+              image: 'assests/web_images/drawer_images/purchase.png'),
           title: DashboardTextFontWidget(
             title: 'Purchase',
           ),
@@ -168,7 +168,7 @@ class DrawerSelectedPagesSection extends StatelessWidget {
         sHeight10,
         ExpansionTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/product-return.png'),
+              image: 'assests/web_images/drawer_images/product-return.png'),
           title: DashboardTextFontWidget(
             title: 'Supplier Return',
           ),
@@ -214,7 +214,7 @@ class DrawerSelectedPagesSection extends StatelessWidget {
         sHeight10,
         ExpansionTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/invoice.png'),
+              image: 'assests/web_images/drawer_images/invoice.png'),
           title: DashboardTextFontWidget(
             title: 'Invoice',
           ),
@@ -272,7 +272,7 @@ class DrawerSelectedPagesSection extends StatelessWidget {
         sHeight10,
         ExpansionTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/sale.png'),
+              image: 'assests/web_images/drawer_images/sale.png'),
           title: DashboardTextFontWidget(
             title: 'Sale',
           ),
@@ -319,7 +319,7 @@ class DrawerSelectedPagesSection extends StatelessWidget {
         // >
         ExpansionTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/supplier.png'),
+              image: 'assests/web_images/drawer_images/supplier.png'),
           title: DashboardTextFontWidget(
             title: 'Delivery Panal',
           ),
@@ -366,7 +366,7 @@ class DrawerSelectedPagesSection extends StatelessWidget {
         sHeight10,
         ExpansionTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/bill.png'),
+              image: 'assests/web_images/drawer_images/bill.png'),
           title: DashboardTextFontWidget(
             title: 'Bill',
           ),
@@ -412,7 +412,7 @@ class DrawerSelectedPagesSection extends StatelessWidget {
         sHeight10,
         ExpansionTile(
           leading: const DashBoardIconWidget(
-              image: 'web_images/drawer_images/customer.png'),
+              image: 'assests/web_images/drawer_images/customer.png'),
           title: DashboardTextFontWidget(
             title: 'Customer',
           ),
@@ -458,7 +458,7 @@ class DrawerSelectedPagesSection extends StatelessWidget {
         // sHeight10,
         // ExpansionTile(
         //   leading: const DashBoardIconWidget(
-        //       image: 'web_images/drawer_images/supplier.png'),
+        //       image: 'assests/web_images/drawer_images/supplier.png'),
         //   textColor: Colors.amber,
         //   title: DashboardTextFontWidget(
         //     title: 'Supplier',

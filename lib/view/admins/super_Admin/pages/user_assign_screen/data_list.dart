@@ -47,7 +47,7 @@ class UserDataListWidget extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 2),
                       child: Image.asset(
-                        'web_images/profile.png',
+                        'assests/web_images/profile.png',
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -78,7 +78,7 @@ class UserDataListWidget extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(5),
                       child: Image.asset(
-                        'web_images/gmail.png',
+                        'assests/web_images/gmail.png',
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -109,7 +109,7 @@ class UserDataListWidget extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 05),
                       child: Image.asset(
-                        'web_images/telephone.png',
+                        'assests/web_images/telephone.png',
                         // fit: BoxFit.fill,
                       ),
                     ),
@@ -144,7 +144,7 @@ class UserDataListWidget extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(1),
                             child: Image.asset(
-                              'web_images/user_role.png',
+                              'assests/web_images/user_role.png',
                               fit: BoxFit.fitHeight,
                             ),
                           ),
@@ -193,7 +193,7 @@ class UserDataListWidget extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5),
                             child: Image.asset(
-                              'web_images/not_active.png',
+                              'assests/web_images/not_active.png',
                               // fit: BoxFit.fill,
                             ),
                           ),
@@ -250,7 +250,7 @@ class UserDataListWidget extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5),
                             child: Image.asset(
-                              'web_images/active.png',
+                              'assests/web_images/active.png',
                               // fit: BoxFit.fill,
                             ),
                           ),
@@ -311,7 +311,7 @@ class UserDataListWidget extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(6),
                       child: Image.asset(
-                        'web_images/ink.png',
+                        'assests/web_images/ink.png',
                         // fit: BoxFit.fill,
                       ),
                     ),
@@ -361,7 +361,7 @@ class UserDataListWidget extends StatelessWidget {
           //       //         height: 25,
           //       //         width: 25,
           //       //         child: LottieBuilder.asset(
-          //       //             'web_images/pending_animation.json')),
+          //       //             'assests/web_images/pending_animation.json')),
           //       //   ],
           //       // ),
           //       ),

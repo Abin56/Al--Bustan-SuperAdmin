@@ -411,7 +411,14 @@ class DeliveryPendingList extends StatelessWidget {
                                                   ),
                                                   IconButton(
                                                       onPressed: () {
-                                                        printController.generateInvoice(context: context, deliveryData: data, collectionPath: 'DeliveryPendingList');
+                                                        printController
+                                                            .generateInvoice(
+                                                                context:
+                                                                    context,
+                                                                deliveryData:
+                                                                    data,
+                                                                collectionPath:
+                                                                    'DeliveryPendingList');
                                                       },
                                                       icon:
                                                           Icon(Icons.download))

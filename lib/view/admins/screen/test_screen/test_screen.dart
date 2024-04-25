@@ -30,7 +30,7 @@ class TestScreen extends StatelessWidget {
                 height: 300,
                 width: 300,
                 child: LottieBuilder.asset(
-                    'web_images/lottie/under_construction.json'))
+                    'assests/web_images/lottie/under_construction.json'))
           ],
         ),
       ),

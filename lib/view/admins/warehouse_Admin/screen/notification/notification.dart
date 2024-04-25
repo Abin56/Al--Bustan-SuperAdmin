@@ -109,7 +109,7 @@ class WareAdminNotification extends StatelessWidget {
                                           decoration: const BoxDecoration(
                                               image: DecorationImage(
                                                   image: AssetImage(
-                                                      "web_images/division (1).png")))),
+                                                      "assests/web_images/division (1).png")))),
                                     ),
                                     const Padding(
                                       padding: EdgeInsets.only(top: 20),
@@ -188,7 +188,7 @@ class WareAdminNotification extends StatelessWidget {
                                           decoration: const BoxDecoration(
                                               image: DecorationImage(
                                                   image: AssetImage(
-                                                      "web_images/home-delivery.png")))),
+                                                      "assests/web_images/home-delivery.png")))),
                                     ),
                                     const Padding(
                                       padding: EdgeInsets.only(top: 20),
@@ -272,7 +272,7 @@ class WareAdminNotification extends StatelessWidget {
                                       decoration: const BoxDecoration(
                                           image: DecorationImage(
                                               image: AssetImage(
-                                                  "web_images/management.png")))),
+                                                  "assests/web_images/management.png")))),
                                 ),
                                 const Padding(
                                   padding: EdgeInsets.only(top: 20),
@@ -355,7 +355,7 @@ class WareAdminNotification extends StatelessWidget {
                                         decoration: const BoxDecoration(
                                             image: DecorationImage(
                                                 image: AssetImage(
-                                                    "web_images/manager.png")))),
+                                                    "assests/web_images/manager.png")))),
                                   ),
                                   const Padding(
                                     padding: EdgeInsets.only(top: 20),
@@ -430,7 +430,7 @@ class WareAdminNotification extends StatelessWidget {
                                         decoration: const BoxDecoration(
                                             image: DecorationImage(
                                                 image: AssetImage(
-                                                    "web_images/inventory.png")))),
+                                                    "assests/web_images/inventory.png")))),
                                   ),
                                   const Padding(
                                     padding: EdgeInsets.only(top: 20),

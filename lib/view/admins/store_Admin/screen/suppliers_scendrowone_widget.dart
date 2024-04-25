@@ -81,7 +81,7 @@ class SuppliersScendRowoneWidget extends StatelessWidget {
                     childAspectRatio: 0.8,
                   ),
                   itemBuilder: (context, index) {
-                    final SuppliersData = SuppliersModel.fromMap(
+                    final SuppliersModel SuppliersData = SuppliersModel.fromMap(
                         snapshot.data!.docs[index].data());
                     return GestureDetector(
                       onTap: (){
@@ -112,8 +112,9 @@ class SuppliersScendRowoneWidget extends StatelessWidget {
                                 width: 50,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  image: DecorationImage(
-                                    image: NetworkImage(SuppliersData.image),
+                                  image: const DecorationImage(
+                                    // image:SuppliersData.image==''?Image.asset(''): NetworkImage(SuppliersData.image),
+                                    image:NetworkImage('https://via.placeholder.com/150',scale: 1),
                                     fit: BoxFit.cover,
                                   ),
                                 ),

@@ -22,7 +22,7 @@ Future<void> whoAreYou(context) async {
                         await Get.find<UserLoginController>().superAdminLogin();
                       },
                       text: 'Super Admin',
-                      imagepath: 'web_images/super_Admin.jpg',
+                      imagepath: 'assests/web_images/super_Admin.jpg',
                       value: 'superadmin'),
                   LoginContainerWidget(
                       onTap: () async {
@@ -31,7 +31,7 @@ Future<void> whoAreYou(context) async {
                             .wareHouseAdminLogin();
                       },
                       text: 'WareHouse\n    Admin',
-                      imagepath: 'web_images/warehouse_Admin.jpg',
+                      imagepath: 'assests/web_images/warehouse_Admin.jpg',
                       value: 'warehouseadmin'),
                 ],
               ),
@@ -43,7 +43,7 @@ Future<void> whoAreYou(context) async {
                         await Get.find<UserLoginController>().storeAdminLogin();
                       },
                       text: 'Store Admin',
-                      imagepath: 'web_images/store_Admin.jpg',
+                      imagepath: 'assests/web_images/store_Admin.jpg',
                       value: 'storeadmin'),
                   LoginContainerWidget(
                       onTap: () async {
@@ -51,7 +51,7 @@ Future<void> whoAreYou(context) async {
                             .deliveryAdminLogin();
                       },
                       text: 'Delivery Admin',
-                      imagepath: 'web_images/delivery_admin.jpg',
+                      imagepath: 'assests/web_images/delivery_admin.jpg',
                       value: 'deliveryadmin')
                 ],
               )

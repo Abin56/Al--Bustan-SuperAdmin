@@ -255,6 +255,7 @@ class DeliveryReportController extends GetxController {
     //Draw the PDF grid and get the result.
     result = grid.draw(
         page: page, bounds: Rect.fromLTWH(0, result.bounds.bottom + 40, 0, 0))!;
+        
 
     page.graphics.drawString(
         'AL BUSTAN BAKERY & SWEETS LLC\n',
@@ -263,9 +264,9 @@ class DeliveryReportController extends GetxController {
           8,
         ),
         bounds: Rect.fromLTWH(
-            quantityCellBounds!.left - 90,
+            quantityCellBounds!.left - 120,
             result.bounds.bottom + 380,
-            quantityCellBounds!.width + 100,
+            quantityCellBounds!.width + 150,
             quantityCellBounds!.height));
 
     page.graphics.drawString(
@@ -275,9 +276,9 @@ class DeliveryReportController extends GetxController {
           6.5,
         ),
         bounds: Rect.fromLTWH(
-            quantityCellBounds!.left - 90,
+            quantityCellBounds!.left - 120,
             result.bounds.bottom + 410,
-            quantityCellBounds!.width + 100,
+            quantityCellBounds!.width + 150,
             quantityCellBounds!.height));
   }
 

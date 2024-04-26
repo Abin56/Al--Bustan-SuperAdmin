@@ -233,9 +233,9 @@ class AllReportController extends GetxController {
           7,
         ),
         bounds: Rect.fromLTWH(
-            quantityCellBounds!.left-40,
+            quantityCellBounds!.left-90,
             result.bounds.bottom + 380,
-            quantityCellBounds!.width +50,
+            quantityCellBounds!.width +100,
             quantityCellBounds!.height));
 
     page.graphics.drawString(
@@ -245,9 +245,9 @@ class AllReportController extends GetxController {
           6.5,
         ),
         bounds: Rect.fromLTWH(
-            quantityCellBounds!.left-40,
+            quantityCellBounds!.left-90,
             result.bounds.bottom + 410,
-            quantityCellBounds!.width + 70,
+            quantityCellBounds!.width + 100,
             quantityCellBounds!.height));
   }
 //Draw the invoice footer data.

@@ -227,7 +227,7 @@ class StoreReportController extends GetxController {
   page.graphics.drawString('Total Price\n',
         PdfStandardFont(PdfFontFamily.helvetica, 9,style: PdfFontStyle.bold ),
         bounds: Rect.fromLTWH(
-            quantityCellBounds!.left-40,
+            quantityCellBounds!.left-90,
             result.bounds.bottom + 340,
             quantityCellBounds!.width,
             quantityCellBounds!.height));
@@ -235,7 +235,7 @@ class StoreReportController extends GetxController {
         '123451234 /-', //
         PdfStandardFont(PdfFontFamily.helvetica, 9,style: PdfFontStyle.bold ),
         bounds: Rect.fromLTWH(
-            totalPriceCellBounds!.left-40,
+            totalPriceCellBounds!.left-90,
             result.bounds.bottom + 340,
             totalPriceCellBounds!.width,
             totalPriceCellBounds!.height));
@@ -243,17 +243,17 @@ class StoreReportController extends GetxController {
                page.graphics.drawString('AL BUSTAN BAKERY & SWEETS LLC\n',
         PdfStandardFont(PdfFontFamily.helvetica, 8, ),
         bounds: Rect.fromLTWH(
-            quantityCellBounds!.left-60,
+            quantityCellBounds!.left-90,
             result.bounds.bottom + 380,
-            quantityCellBounds!.width+120,
+            quantityCellBounds!.width+140,
             quantityCellBounds!.height));
 
              page.graphics.drawString('Authorised Signatory\n',
         PdfStandardFont(PdfFontFamily.helvetica, 6.5, ),
         bounds: Rect.fromLTWH(
-            quantityCellBounds!.left-60,
+            quantityCellBounds!.left-90,
             result.bounds.bottom + 410,
-            quantityCellBounds!.width+120,
+            quantityCellBounds!.width+140,
             quantityCellBounds!.height));
  
   }

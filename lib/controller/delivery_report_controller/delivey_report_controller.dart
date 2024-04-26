@@ -311,7 +311,7 @@ class DeliveryReportController extends GetxController {
         bounds: Rect.fromLTWH(
             quantityCellBounds!.left-90,
             result.bounds.bottom + 380,
-            quantityCellBounds!.width+100,
+            quantityCellBounds!.width+120,
             quantityCellBounds!.height));
 
              page.graphics.drawString('Authorised Signatory\n',
@@ -319,7 +319,7 @@ class DeliveryReportController extends GetxController {
         bounds: Rect.fromLTWH(
             quantityCellBounds!.left-90,
             result.bounds.bottom + 410,
-            quantityCellBounds!.width+100,
+            quantityCellBounds!.width+120,
             quantityCellBounds!.height));
   }
 //Draw the invoice footer data.

@@ -95,7 +95,7 @@ class DeliveryPrintController extends GetxController {
     String heading =
         '''AL BUSTAN BAKERY & SWEETS LLC\r\n\r\n         Al Qusais Industrial Area 3\r\n\r\n                 Emiates Dubai\r\n\r\n''';
     String secondHeading =
-        '''                MATERIAL OUT                \r\n\r\n Canteen::    $canteenName''';
+        '''                MATERIAL OUT                \r\n\r\n Canteen:   $canteenName''';
     // \r\n\r\n Emiates:                 Dubai\r\n\r\nCountry:                 UAE\r\n\r\n''';
 
     PdfTextElement(text: invoiceNumber, font: contentFont).draw(

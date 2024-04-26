@@ -8,7 +8,6 @@ import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:canteen_superadmin_website/model/all_report_model/all_report_model.dart';
 import 'package:canteen_superadmin_website/model/delivery_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 // ignore: depend_on_referenced_packages
 import 'package:syncfusion_flutter_pdf/pdf.dart';
@@ -236,21 +235,37 @@ class AllReportController extends GetxController {
         page: page, bounds: Rect.fromLTWH(0, result.bounds.bottom + 40, 0, 0))!;
 
     //Draw grand total.
-    page.graphics.drawString('Total Price\n',
-        PdfStandardFont(PdfFontFamily.helvetica, 9, style: PdfFontStyle.bold),
+    page.graphics.drawString('Total Price',
+        PdfStandardFont(PdfFontFamily.helvetica, 9,style: PdfFontStyle.bold ),
         bounds: Rect.fromLTWH(
             quantityCellBounds!.left,
-            result.bounds.bottom + 10,
+            result.bounds.bottom + 340,
             quantityCellBounds!.width,
             quantityCellBounds!.height));
     page.graphics.drawString(
         '123451234 /-', //
-        PdfStandardFont(PdfFontFamily.helvetica, 9, style: PdfFontStyle.bold),
+        PdfStandardFont(PdfFontFamily.helvetica, 9,style: PdfFontStyle.bold ),
         bounds: Rect.fromLTWH(
-            totalPriceCellBounds!.left,
-            result.bounds.bottom + 10,
+            totalPriceCellBounds!.left-80,
+            result.bounds.bottom + 340,
             totalPriceCellBounds!.width,
             totalPriceCellBounds!.height));
+
+               page.graphics.drawString('AL BUSTAN BAKERY & SWEETS LLC\n',
+        PdfStandardFont(PdfFontFamily.helvetica, 8, ),
+        bounds: Rect.fromLTWH(
+            quantityCellBounds!.left,
+            result.bounds.bottom + 380,
+            quantityCellBounds!.width+70,
+            quantityCellBounds!.height));
+
+             page.graphics.drawString('Authorised Signatory\n',
+        PdfStandardFont(PdfFontFamily.helvetica, 6.5, ),
+        bounds: Rect.fromLTWH(
+            quantityCellBounds!.left,
+            result.bounds.bottom + 410,
+            quantityCellBounds!.width+70,
+            quantityCellBounds!.height));
   }
 //Draw the invoice footer data.
 

@@ -6,7 +6,6 @@ import 'package:canteen_superadmin_website/core/constant/constant.validate.dart'
 import 'package:canteen_superadmin_website/core/core.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 // ignore: depend_on_referenced_packages
 import 'package:syncfusion_flutter_pdf/pdf.dart';
@@ -225,26 +224,45 @@ class StoreReportController extends GetxController {
         page: page, bounds: Rect.fromLTWH(0, result.bounds.bottom + 40, 0, 0))!;
 
     //Draw grand total.
-    // page.graphics.drawString('Total Price\n',
-    //     PdfStandardFont(PdfFontFamily.helvetica, 9, style: PdfFontStyle.bold),
-    //     bounds: Rect.fromLTWH(
-    //         quantityCellBounds!.left,
-    //         result.bounds.bottom + 10,
-    //         quantityCellBounds!.width,
-    //         quantityCellBounds!.height));
-    // page.graphics.drawString(
-    //     '123451234 /-', //
-    //     PdfStandardFont(PdfFontFamily.helvetica, 9, style: PdfFontStyle.bold),
-    //     bounds: Rect.fromLTWH(
-    //         totalPriceCellBounds!.left,
-    //         result.bounds.bottom + 10,
-    //         totalPriceCellBounds!.width,
-    //         totalPriceCellBounds!.height));
+  page.graphics.drawString('Total Price\n',
+        PdfStandardFont(PdfFontFamily.helvetica, 9,style: PdfFontStyle.bold ),
+        bounds: Rect.fromLTWH(
+            quantityCellBounds!.left-40,
+            result.bounds.bottom + 340,
+            quantityCellBounds!.width,
+            quantityCellBounds!.height));
+    page.graphics.drawString(
+        '123451234 /-', //
+        PdfStandardFont(PdfFontFamily.helvetica, 9,style: PdfFontStyle.bold ),
+        bounds: Rect.fromLTWH(
+            totalPriceCellBounds!.left-40,
+            result.bounds.bottom + 340,
+            totalPriceCellBounds!.width,
+            totalPriceCellBounds!.height));
+
+               page.graphics.drawString('AL BUSTAN BAKERY & SWEETS LLC\n',
+        PdfStandardFont(PdfFontFamily.helvetica, 8, ),
+        bounds: Rect.fromLTWH(
+            quantityCellBounds!.left-40,
+            result.bounds.bottom + 380,
+            quantityCellBounds!.width+100,
+            quantityCellBounds!.height));
+
+             page.graphics.drawString('Authorised Signatory\n',
+        PdfStandardFont(PdfFontFamily.helvetica, 6.5, ),
+        bounds: Rect.fromLTWH(
+            quantityCellBounds!.left-40,
+            result.bounds.bottom + 410,
+            quantityCellBounds!.width+100,
+            quantityCellBounds!.height));
+ 
   }
 //Draw the invoice footer data.
 
+
 //Create PDF grid and return
   PdfGrid getGrid() {
+    
     //Create a PDF grid
     final PdfGrid grid = PdfGrid();
     //Secify the columns count to the grid.
@@ -331,6 +349,7 @@ class StoreReportController extends GetxController {
     row.cells[5].value = inPrice;
     row.cells[6].value = outPrince;
   }
+
 
 //Get the total amount.
 }

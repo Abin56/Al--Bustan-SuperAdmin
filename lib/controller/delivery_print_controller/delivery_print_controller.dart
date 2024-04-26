@@ -151,6 +151,30 @@ class DeliveryPrintController extends GetxController {
             result.bounds.bottom + 10,
             totalPriceCellBounds!.width,
             totalPriceCellBounds!.height));
+
+             page.graphics.drawString(
+        'AL BUSTAN BAKERY & SWEETS LLC\n',
+        PdfStandardFont(
+          PdfFontFamily.helvetica,
+          8,
+        ),
+        bounds: Rect.fromLTWH(
+            quantityCellBounds!.left - 120,
+            result.bounds.bottom + 380,
+            quantityCellBounds!.width + 150,
+            quantityCellBounds!.height));
+
+    page.graphics.drawString(
+        'Authorised Signatory\n',
+        PdfStandardFont(
+          PdfFontFamily.helvetica,
+          6.5,
+        ),
+        bounds: Rect.fromLTWH(
+            quantityCellBounds!.left - 120,
+            result.bounds.bottom + 410,
+            quantityCellBounds!.width + 150,
+            quantityCellBounds!.height));
   }
 
 

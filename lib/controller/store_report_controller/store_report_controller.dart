@@ -147,9 +147,7 @@ class StoreReportController extends GetxController {
     final PdfLayoutResult result = drawHeader(page, pageSize, grid);
     //Draw grid
     drawGrid(page, grid, result);
-    //Add invoice footer
-    // drawFooter(page, pageSize);
-    //Save the PDF document
+
     final List<int> bytes = await document.save();
 
 
@@ -182,10 +180,6 @@ class StoreReportController extends GetxController {
         '''AL BUSTAN BAKERY & SWEETS LLC\r\n\r\n         Al Qusais Industrial Area 3\r\n\r\n                 Emiates Dubai\r\n\r\n''';
     String secondHeading = '''                MATERIAL IN                ''';
 
-    // page.graphics.drawImage(
-    //   PdfBitmap(imageData),
-    //   const Rect.fromLTWH(40, 40, 50, 50),
-    // );
 
     PdfTextElement(text: invoiceNumber, font: contentFont).draw(
         page: page,
@@ -223,22 +217,6 @@ class StoreReportController extends GetxController {
     result = grid.draw(
         page: page, bounds: Rect.fromLTWH(0, result.bounds.bottom + 40, 0, 0))!;
 
-    //Draw grand total.
-  page.graphics.drawString('Total Price\n',
-        PdfStandardFont(PdfFontFamily.helvetica, 9,style: PdfFontStyle.bold ),
-        bounds: Rect.fromLTWH(
-            quantityCellBounds!.left-90,
-            result.bounds.bottom + 340,
-            quantityCellBounds!.width,
-            quantityCellBounds!.height));
-    page.graphics.drawString(
-        '123451234 /-', //
-        PdfStandardFont(PdfFontFamily.helvetica, 9,style: PdfFontStyle.bold ),
-        bounds: Rect.fromLTWH(
-            totalPriceCellBounds!.left-90,
-            result.bounds.bottom + 340,
-            totalPriceCellBounds!.width,
-            totalPriceCellBounds!.height));
 
                page.graphics.drawString('AL BUSTAN BAKERY & SWEETS LLC\n',
         PdfStandardFont(PdfFontFamily.helvetica, 8, ),
@@ -279,25 +257,24 @@ class StoreReportController extends GetxController {
 
 // Set values for the "S.no" column
     headerRow.cells[0].value = 'S.no';
-    headerRow.cells[1].value = 'Date';
-    headerRow.cells[2].value = 'Product Name';
-    headerRow.cells[3].value = 'Supplier Name';
+    headerRow.cells[1].value = 'Product Name';
+    headerRow.cells[2].value = 'Supplier Name';
 
 // Create the first cell of the second row and set its value
-    final PdfGridCell productCell = headerRow.cells[4];
-    headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
+    final PdfGridCell productCell = headerRow.cells[3];
+    headerRow.cells[3].stringFormat.alignment = PdfTextAlignment.center;
 
     productCell.value = 'Quantity';
     // productCell.columnSpan = 1;
 /////////////////////////////////////Wareh
-    final PdfGridCell warehouse = headerRow.cells[5];
-    headerRow.cells[1].stringFormat.alignment = PdfTextAlignment.center;
+    final PdfGridCell warehouse = headerRow.cells[4];
+    headerRow.cells[4].stringFormat.alignment = PdfTextAlignment.center;
 
     warehouse.value = 'In Price';
     // warehouse.columnSpan = 1;
 
     /////////////////////////////////////Wareh
-    final PdfGridCell outerwarehouse = headerRow.cells[6];
+    final PdfGridCell outerwarehouse = headerRow.cells[5];
 
     outerwarehouse.value = 'Out Prince';
 
@@ -305,12 +282,11 @@ class StoreReportController extends GetxController {
     grid.applyBuiltInStyle(PdfGridBuiltInStyle.gridTable1Light);
     //Set gird columns width
     grid.columns[0].width = 30;
-    grid.columns[1].width = 60;
+    grid.columns[1].width = 127.5;
     grid.columns[2].width = 127.5;
-    grid.columns[3].width = 127.5;
+    grid.columns[3].width = 60;
     grid.columns[4].width = 60;
     grid.columns[5].width = 60;
-    grid.columns[6].width = 60;
 
     for (int i = 0; i < headerRow.cells.count; i++) {
       headerRow.cells[i].style.cellPadding =
@@ -342,12 +318,11 @@ class StoreReportController extends GetxController {
       PdfGrid grid) {
     final PdfGridRow row = grid.rows.add();
     row.cells[0].value = sno;
-    row.cells[1].value = date;
-    row.cells[2].value = productName;
-    row.cells[3].value = supplierName;
-    row.cells[4].value = quantity;
-    row.cells[5].value = inPrice;
-    row.cells[6].value = outPrince;
+    row.cells[1].value = productName;
+    row.cells[2].value = supplierName;
+    row.cells[3].value = quantity;
+    row.cells[4].value = inPrice;
+    row.cells[5].value = outPrince;
   }
 
 

@@ -318,12 +318,11 @@ class DeliveryReportController extends GetxController {
     grid.applyBuiltInStyle(PdfGridBuiltInStyle.gridTable1Light);
     //Set gird columns width
     grid.columns[0].width = 30;
-    grid.columns[1].width = 150;
-    grid.columns[2].width = 35;
+    grid.columns[1].width = 35;
+    grid.columns[2].width = 60;
     grid.columns[3].width = 60;
     grid.columns[4].width = 60;
     grid.columns[5].width = 60;
-    grid.columns[6].width = 60;
 
     for (int i = 0; i < headerRow.cells.count; i++) {
       headerRow.cells[i].style.cellPadding =

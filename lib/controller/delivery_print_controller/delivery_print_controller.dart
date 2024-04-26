@@ -201,8 +201,8 @@ class DeliveryPrintController extends GetxController {
 
     grid.applyBuiltInStyle(PdfGridBuiltInStyle.gridTable1Light);
     grid.columns[0].width = 70;
-    grid.columns[1].width = 70;
-    grid.columns[2].width = 170;
+    grid.columns[1].width = 170;
+    grid.columns[2].width = 70;
     grid.columns[3].width = 70;
     grid.columns[4].width = 70;
 
@@ -229,9 +229,9 @@ class DeliveryPrintController extends GetxController {
       String quantity, String amount, PdfGrid grid) {
     final PdfGridRow row = grid.rows.add();
     row.cells[0].value = sno;
-    row.cells[2].value = productName;
-    row.cells[3].value = price;
-    row.cells[4].value = quantity;
-    row.cells[5].value = amount;
+    row.cells[1].value = productName;
+    row.cells[2].value = price;
+    row.cells[3].value = quantity;
+    row.cells[4].value = amount;
   }
 }

@@ -7,6 +7,7 @@ import 'package:canteen_superadmin_website/core/core.dart';
 import 'package:canteen_superadmin_website/model/all_product_model.dart';
 import 'package:canteen_superadmin_website/model/all_report_model/all_report_model.dart';
 import 'package:canteen_superadmin_website/model/delivery_model.dart';
+import 'package:canteen_superadmin_website/model/m.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 // ignore: depend_on_referenced_packages
@@ -70,6 +71,7 @@ class AllReportController extends GetxController {
         deliveryData.docs.map((e) => DeliveryModel.fromMap(e.data())).toList();
 
     final allReportlist2 = deliveredList.map((e) {
+    
       return AllReportModel(
           productName: '',
           date: e.time,
